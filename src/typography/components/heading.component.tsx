@@ -3,15 +3,16 @@ import clsx from "clsx";
 
 type TProps = {
   children: React.ReactNode;
-  element: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div" | "span";
   type: "title" | "subtitle" | "subsubtitle" | "small";
 
   className?: string;
   variant?: "condensed";
-  weight?: number;
 };
+
+export type THeadingProps = TProps;
 export function Heading(props: TProps) {
-  const HTag = props.element;
+  const HTag = props.tag;
 
   const classes = clsx(
     // type
@@ -22,9 +23,6 @@ export function Heading(props: TProps) {
 
     // variant
     props.variant === "condensed" && ["uppercase", "tracking-widest"],
-
-    // weight
-    props.weight ? `font-${props.weight}` : "font-bold",
 
     // user classes
     props.className,
