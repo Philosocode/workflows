@@ -1,17 +1,17 @@
 import React from "react";
 import clsx from "clsx";
 
-type TProps = {
+interface IProps {
   children: React.ReactNode;
   tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div" | "span";
   type: "title" | "subtitle" | "subsubtitle" | "small";
 
   className?: string;
   variant?: "condensed";
-};
+}
+export type IHeadingProps = IProps;
 
-export type THeadingProps = TProps;
-export function Heading(props: TProps) {
+export function Heading(props: IProps) {
   const HTag = props.tag;
 
   const classes = clsx(

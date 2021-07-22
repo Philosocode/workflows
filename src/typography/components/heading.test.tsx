@@ -1,13 +1,13 @@
 import React from "react";
 import { render, RenderResult } from "@testing-library/react";
 
-import { Heading, THeadingProps } from "./heading.component";
+import { Heading, IHeadingProps } from "./heading.component";
 
 describe("Heading", () => {
   let context: RenderResult;
 
-  function renderWithProps(propOverrides: Partial<THeadingProps> = {}) {
-    const props: THeadingProps = {
+  function renderWithProps(propOverrides: Partial<IHeadingProps> = {}) {
+    const props: IHeadingProps = {
       tag: "h1",
       type: "title",
       children: "Hello World",
