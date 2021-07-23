@@ -1,7 +1,7 @@
 import React from "react";
 import { render, RenderResult } from "@testing-library/react";
 
-import { Heading, IHeadingProps } from "./heading.component";
+import { Heading, IProps as IHeadingProps } from "./heading.component";
 
 describe("Heading", () => {
   let context: RenderResult;

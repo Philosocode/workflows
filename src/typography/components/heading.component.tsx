@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-interface IProps {
+export interface IProps {
   children: React.ReactNode;
   tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div" | "span";
   type: "title" | "subtitle" | "subsubtitle" | "small";
@@ -9,12 +9,12 @@ interface IProps {
   className?: string;
   variant?: "condensed";
 }
-export type IHeadingProps = IProps;
-
 export function Heading(props: IProps) {
   const HTag = props.tag;
 
   const classes = clsx(
+    "font-bold",
+
     // type
     props.type === "title" && ["text-4xl"],
     props.type === "subtitle" && ["text-3xl"],
