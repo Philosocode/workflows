@@ -5,11 +5,11 @@ import { ConsumePage } from "consume/pages/consume.page";
 
 const App: React.FC = () => {
   return (
-    <div>
+    <main className="max-w-screen-lg my-10 mx-auto">
       <Switch>
         <Route path="/" component={ConsumePage} />
       </Switch>
-    </div>
+    </main>
   );
 };
 
