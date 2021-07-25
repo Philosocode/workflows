@@ -8,21 +8,27 @@ import {
   RadioGroup,
   Stack,
 } from "@chakra-ui/react";
-import { Message } from "message/components/message.component";
 import { useForm } from "react-hook-form";
-import { Button } from "shared/components/button.component";
 
+import { TMaterialType } from "consume/logic/consume.types";
+import { Message } from "message/components/message.component";
+import { Button } from "shared/components/button.component";
+import { useDispatch } from "react-redux";
+import { stepOne } from "consume/logic/consume.slice";
+
+interface IFormProps {
+  materialName: string;
+  materialType: TMaterialType;
+}
 export function StepOne() {
-  interface IFormProps {
-    materialName: string;
-    materialType: "reading" | "watching";
-  }
+  const dispatch = useDispatch();
+
   const { formState, handleSubmit, register } = useForm<IFormProps>({
     mode: "onChange",
   });
 
   function onSubmit(values: IFormProps) {
-    console.log(values);
+    dispatch(stepOne(values));
   }
 
   return (
@@ -43,17 +49,23 @@ export function StepOne() {
             <FormLabel>Material Type</FormLabel>
             <RadioGroup>
               <Stack>
-                <Radio {...register("materialType")} value="reading">
+                <Radio
+                  {...register("materialType", { required: true })}
+                  value="reading"
+                >
                   Reading
                 </Radio>
-                <Radio {...register("materialType")} value="watching">
+                <Radio
+                  {...register("materialType", { required: true })}
+                  value="watching"
+                >
                   Watching
                 </Radio>
               </Stack>
             </RadioGroup>
           </FormControl>
 
-          <Button color="green" disabled={!formState.isValid}>
+          <Button color="green" disabled={!formState.isValid} type="submit">
             Next
           </Button>
         </VStack>
