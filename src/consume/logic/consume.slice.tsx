@@ -5,7 +5,7 @@ import { IConsumeState, IStepOnePayload } from "./consume.types";
 const initialState: IConsumeState = {
   materialName: "",
   materialType: "reading",
-  step: 0,
+  step: 1,
 };
 
 const consumeSlice = createSlice({

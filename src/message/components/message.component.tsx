@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import clsx from "clsx";
 
 export interface IProps {
@@ -5,12 +6,12 @@ export interface IProps {
 }
 export function Message(props: IProps) {
   return (
-    <div
+    <Box
       className={clsx(
         "bg-white mx-auto mb-8 max-w-full rounded-lg shadow-md p-8 text-gray-700 text-3xl w-max",
       )}
     >
       {props.children}
-    </div>
+    </Box>
   );
 }
