@@ -19,7 +19,7 @@ interface IFormProps {
   materialName: string;
   materialType: TMaterialType;
 }
-export function Step1() {
+export function MaterialData() {
   const dispatch = useDispatch();
 
   const { formState, handleSubmit, register } = useForm<IFormProps>({

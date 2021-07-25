@@ -1,14 +1,28 @@
 import { useAppSelector } from "app/hooks";
-import { Step1 } from "consume/components/step-1.component";
-import { Step2 } from "consume/components/step-2.component";
-import { Step3 } from "consume/components/step-3.component";
-import { Step4 } from "consume/components/step-4.component";
+import { MaterialData } from "consume/components/material-data.component";
+import { GoSlowly } from "consume/components/go-slowly.component";
+import { StartTimer } from "consume/components/start-timer.component";
+import { Skim } from "consume/components/skim.component";
+import { ViewSummary } from "consume/components/view-summary.component";
+import { Practice } from "consume/components/practice.component";
+import { PreStudySummarize } from "consume/components/pre-study-summarize.component";
+import { Study } from "consume/components/study.component";
+import { PostStudySummarize } from "consume/components/post-study-summarize.component";
 
-const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />];
+const steps = [
+  <MaterialData />,
+  <GoSlowly />,
+  <StartTimer />,
+  <Skim />,
+  <ViewSummary />,
+  <Practice />,
+  <PreStudySummarize />,
+  <Study />,
+  // <PostStudySummarize />,
+];
 
 export function ConsumePage() {
   const step = useAppSelector((state) => state.consume.step);
 
-  // return <div>{steps[step - 1]}</div>;
-  return <div>{steps[3]}</div>;
+  return <div>{steps[steps.length - 1]}</div>;
 }

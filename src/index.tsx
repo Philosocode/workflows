@@ -9,6 +9,7 @@ import { store } from "./app/store";
 import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
+import "react-mde/lib/styles/css/react-mde-all.css";
 
 ReactDOM.render(
   <React.StrictMode>

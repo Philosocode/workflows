@@ -5,7 +5,7 @@ import { nextStep } from "consume/logic/consume.slice";
 import { Button } from "shared/components/button.component";
 import { WorkflowStep } from "shared/components/workflow-step.component";
 
-export function Step4() {
+export function StartTimer() {
   const dispatch = useDispatch();
 
   function onClick() {
@@ -23,8 +23,7 @@ export function Step4() {
             </Link>
             .
           </Box>
-          <br />
-          <Box>
+          <Box pt={10}>
             To learn more about the Pomodoro method, you can check out{" "}
             <Link
               color="green.500"

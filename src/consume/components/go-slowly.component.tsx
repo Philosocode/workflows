@@ -6,7 +6,7 @@ import { nextStep } from "consume/logic/consume.slice";
 import { Button } from "shared/components/button.component";
 import { WorkflowStep } from "shared/components/workflow-step.component";
 
-export function Step2() {
+export function GoSlowly() {
   const dispatch = useDispatch();
   const materialType = useAppSelector((state) => state.consume.materialType);
   const word = materialType === "reading" ? "Read" : "Watch";
