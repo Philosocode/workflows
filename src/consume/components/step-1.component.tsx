@@ -3,24 +3,23 @@ import {
   FormControl,
   FormLabel,
   VStack,
-  Box,
   Radio,
   RadioGroup,
   Stack,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 import { TMaterialType } from "consume/logic/consume.types";
-import { Message } from "message/components/message.component";
 import { Button } from "shared/components/button.component";
-import { useDispatch } from "react-redux";
 import { stepOne } from "consume/logic/consume.slice";
+import { WorkflowStep } from "shared/components/workflow-step.component";
 
 interface IFormProps {
   materialName: string;
   materialType: TMaterialType;
 }
-export function StepOne() {
+export function Step1() {
   const dispatch = useDispatch();
 
   const { formState, handleSubmit, register } = useForm<IFormProps>({
@@ -32,8 +31,7 @@ export function StepOne() {
   }
 
   return (
-    <Box>
-      <Message>What are you reading / watching today?</Message>
+    <WorkflowStep messageContent="What are you reading / watching today?">
       <form onSubmit={handleSubmit(onSubmit)}>
         <VStack spacing="25px" alignItems="start">
           <FormControl id="materialName">
@@ -70,6 +68,6 @@ export function StepOne() {
           </Button>
         </VStack>
       </form>
-    </Box>
+    </WorkflowStep>
   );
 }

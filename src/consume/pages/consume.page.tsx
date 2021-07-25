@@ -1,9 +1,10 @@
 import { useAppSelector } from "app/hooks";
-import { StepOne } from "consume/components/step-one.component";
-import { StepTwo } from "consume/components/step-two.component";
-import { StepThree } from "consume/components/step-three.component";
+import { Step1 } from "consume/components/step-1.component";
+import { Step2 } from "consume/components/step-2.component";
+import { Step3 } from "consume/components/step-3.component";
+import { Step4 } from "consume/components/step-4.component";
 
-const steps = [<StepOne />, <StepTwo />, <StepThree />];
+const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />];
 
 export function ConsumePage() {
   const step = useAppSelector((state) => state.consume.step);
