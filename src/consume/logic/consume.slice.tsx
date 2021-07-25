@@ -19,8 +19,11 @@ const consumeSlice = createSlice({
       state.materialType = payload.materialType;
       state.step++;
     },
+    nextStep: (state) => {
+      state.step++;
+    },
   },
 });
 
 export const consumeReducer = consumeSlice.reducer;
-export const { stepOne } = consumeSlice.actions;
+export const { stepOne, nextStep } = consumeSlice.actions;
