@@ -22,6 +22,10 @@ const consumeSlice = createSlice({
     nextStep: (state) => {
       state.step++;
     },
+    goToStudy: (state) => {
+      // TODO: change this. This is bad
+      state.step = 8;
+    },
   },
 });
 
