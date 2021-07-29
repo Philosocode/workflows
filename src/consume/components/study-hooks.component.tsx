@@ -4,18 +4,17 @@ import { WorkflowStep } from "shared/components/workflow-step.component";
 
 interface IProps {
   goBack: () => void;
+  messageText: React.ReactNode;
+  showIcons?: boolean;
 }
-export function StudyNotes(props: IProps) {
+export function StudyHooks(props: IProps) {
   function createHook(title: string, content: string) {
     console.log(title, content);
   }
 
   return (
-    <WorkflowStep
-      messageContent="Create some notes. Try to do this from memory before referring to the
-    material."
-    >
-      <CreateHookForm onSubmit={createHook} />
+    <WorkflowStep messageContent={props.messageText}>
+      <CreateHookForm onSubmit={createHook} showIcons={props.showIcons} />
       <Button color="gray" onClick={props.goBack} mt={2}>
         Go Back
       </Button>
