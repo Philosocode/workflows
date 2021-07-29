@@ -5,7 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 
 import App from "./App";
-import { store } from "./app/store";
+import { store } from "./shared/redux/store";
 import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
