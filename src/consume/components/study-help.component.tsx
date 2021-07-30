@@ -14,6 +14,33 @@ import { Button } from "shared/components/button.component";
 import { WorkflowStep } from "shared/components/workflow-step.component";
 
 import duckImage from "../assets/timothy-dykes-LhqLdDPcSV8-unsplash.png";
+import { useStep } from "shared/hooks/use-step.hook";
+
+const introMessage = (
+  <>
+    <Box>
+      Hi, I'm Quackers the rubber duck. I'm here to help you get un-stuck!
+    </Box>
+    <Box>Just one question. Do you need help with programming?</Box>
+  </>
+);
+
+const regularPrompts = [
+  "Okay, cool! What problem are you struggling with?",
+  "What should be happening? What are you expecting?",
+  "What's actually happening?",
+  "What have you tried so far?",
+  "That's all the questions I got! Hope this helped!",
+];
+
+const progPrompts = [
+  "Okay, cool! What problem are you struggling with?",
+  "What's the code supposed to do?",
+  "What's actually happening?",
+  "What have you tried so far?",
+  "Explain your code in detail, line-by-line.",
+  "That's all the questions I got! Hope this helped!",
+];
 
 interface IProps {
   goBack: () => void;
@@ -21,57 +48,35 @@ interface IProps {
 export function StudyHelp(props: IProps) {
   const [isProgrammer, setIsProgrammer] = useState<boolean>();
   const [text, setText] = useState("");
+  const { step, increment } = useStep(1, progPrompts.length);
 
-  let message: React.ReactNode;
+  function getMessage() {
+    if (isProgrammer === undefined) return introMessage;
 
-  switch (isProgrammer) {
-    case false:
-      message = (
-        <VStack alignItems="start">
-          <Box>Okay, cool! Tell me...</Box>
-          <CheckboxGroup size="lg" colorScheme="green">
-            <Checkbox>What problem are you struggling with?</Checkbox>
-            <Checkbox>
-              What should be happening? What are you expecting?
-            </Checkbox>
-            <Checkbox>What's actually happening?</Checkbox>
-            <Checkbox>What have you tried so far?</Checkbox>
-          </CheckboxGroup>
-        </VStack>
-      );
-      break;
-    case true:
-      message = (
-        <VStack alignItems="start">
-          <Box>Okay, cool! Tell me...</Box>
-          <CheckboxGroup size="lg" colorScheme="green">
-            <Checkbox>What problem are you struggling with?</Checkbox>
-            <Checkbox>What's the code supposed to do?</Checkbox>
-            <Checkbox>What's actually happening?</Checkbox>
-            <Checkbox>What have you tried so far?</Checkbox>
-            <Checkbox>Explain your code in detail, line-by-line.</Checkbox>
-          </CheckboxGroup>
-        </VStack>
-      );
-      break;
-    default:
-      message = (
-        <>
-          <Box>
-            Hi, I'm Quackers the rubber duck. I'm here to help you get un-stuck!
-          </Box>
-          <Box>Just one question. Do you need help with programming?</Box>
-        </>
-      );
+    return isProgrammer ? progPrompts[step - 1] : regularPrompts[step - 1];
+  }
+
+  function isDone() {
+    if (isProgrammer === undefined) return false;
+
+    return (
+      (isProgrammer && step === progPrompts.length) ||
+      (!isProgrammer && step === regularPrompts.length)
+    );
+  }
+
+  function onNext() {
+    setText("");
+    increment();
   }
 
   return (
     <>
-      <WorkflowStep messageContent={message}>
+      <WorkflowStep messageContent={getMessage()}>
         <Center mb={10}>
           <Image src={duckImage} alt="Rubber Duck" />
         </Center>
-        {isProgrammer === undefined && (
+        {isProgrammer === undefined ? (
           <ButtonGroup spacing={"1rem"}>
             <Button color="green" onClick={() => setIsProgrammer(true)}>
               Yes
@@ -83,13 +88,17 @@ export function StudyHelp(props: IProps) {
               Go Back
             </Button>
           </ButtonGroup>
-        )}
-        {isProgrammer !== undefined && (
+        ) : (
           <>
             <MarkdownEditor value={text} setValue={setText} />
-            <Button color="gray" onClick={props.goBack} mt={5}>
-              Go Back
-            </Button>
+            <ButtonGroup mt={5}>
+              <Button color="green" onClick={onNext} disabled={isDone()}>
+                Next
+              </Button>
+              <Button color="gray" onClick={props.goBack}>
+                Return to Menu
+              </Button>
+            </ButtonGroup>
           </>
         )}
       </WorkflowStep>
