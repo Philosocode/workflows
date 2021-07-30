@@ -1,4 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
+import { reverse } from "lodash";
 
 import { TAppState } from "shared/redux/store";
 
@@ -9,6 +10,10 @@ export const selectHookHash = createSelector(
   (state) => state.hooks,
 );
 
-export const selectHookList = createSelector([selectHookState], (state) =>
-  Object.values(state.hooks),
+export const selectCurrentHooks = createSelector([selectHookState], (state) =>
+  reverse(Object.values(state.hooks).filter((hook) => !hook.isPrevious)),
+);
+
+export const selectPastHooks = createSelector([selectHookState], (state) =>
+  reverse(Object.values(state.hooks).filter((hook) => hook.isPrevious)),
 );

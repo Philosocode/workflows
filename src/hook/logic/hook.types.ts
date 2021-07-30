@@ -4,6 +4,7 @@ export interface IHook {
   content: string;
   id: string;
   title: string;
+  isPrevious: boolean;
 }
 
 export interface IHookState {

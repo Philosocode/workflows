@@ -14,7 +14,9 @@ export function StudyHooks(props: IProps) {
   const dispatch = useAppDispatch();
 
   function handleCreateHook(title: string, content: string) {
-    dispatch(createHook({ id: `${Date.now()}`, title, content }));
+    dispatch(
+      createHook({ id: `${Date.now()}`, title, content, isPrevious: false }),
+    );
   }
 
   return (

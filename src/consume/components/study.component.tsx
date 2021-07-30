@@ -1,12 +1,16 @@
-import { ButtonGroup } from "@chakra-ui/react";
 import { useState } from "react";
+
+import { Box, Divider, Heading } from "@chakra-ui/react";
+import { TStudyView } from "consume/logic/consume.types";
+import { selectCurrentHooks, selectPastHooks } from "hook/logic/hook.selectors";
 
 import { Button } from "shared/components/button.component";
 import { WorkflowStep } from "shared/components/workflow-step.component";
+import { useAppSelector } from "shared/redux/store";
+import { HookList } from "./hook-list.component";
 import { StudyHelp } from "./study-help.component";
 import { StudyHooks } from "./study-hooks.component";
-
-type TStudyView = "study" | "menu" | "hooks" | "notes" | "help";
+import { StudyMenu } from "./study-menu.component";
 
 const notesText = (
   <>
@@ -27,6 +31,8 @@ const hooksText = (
 
 export function Study() {
   const [view, setView] = useState<TStudyView>("study");
+  const currentHooks = useAppSelector(selectCurrentHooks);
+  const pastHooks = useAppSelector(selectPastHooks);
 
   function goToMenu() {
     setView("menu");
@@ -42,28 +48,37 @@ export function Study() {
         </WorkflowStep>
       )}
 
-      {view === "menu" && (
-        <WorkflowStep messageContent="Choose an option:">
-          <ButtonGroup>
-            <Button color="green" onClick={() => setView("hooks")}>
-              Hooks
-            </Button>
-            <Button color="green" onClick={() => setView("notes")}>
-              Notes
-            </Button>
-            <Button color="green" onClick={() => setView("help")}>
-              I'm Stuck
-            </Button>
-          </ButtonGroup>
-        </WorkflowStep>
-      )}
-
+      {view === "menu" && <StudyMenu setView={setView} />}
       {view === "help" && <StudyHelp goBack={goToMenu} />}
       {view === "hooks" && (
         <StudyHooks goBack={goToMenu} messageText={hooksText} showIcons />
       )}
       {view === "notes" && (
         <StudyHooks goBack={goToMenu} messageText={notesText} />
+      )}
+
+      {view !== "help" && currentHooks.length > 0 && (
+        <>
+          <Divider />
+          <Box mt={8}>
+            <Heading textAlign="center" size="lg">
+              Current Hooks
+            </Heading>
+            <HookList hooks={currentHooks} />
+          </Box>
+        </>
+      )}
+
+      {view !== "help" && pastHooks.length > 0 && (
+        <>
+          <Divider />
+          <Box mt={8}>
+            <Heading textAlign="center" size="lg">
+              Past Hooks
+            </Heading>
+            <HookList hooks={pastHooks} />
+          </Box>
+        </>
       )}
     </>
   );

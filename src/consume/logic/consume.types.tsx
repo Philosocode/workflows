@@ -1,4 +1,5 @@
 export type TMaterialType = "reading" | "writing";
+export type TStudyView = "study" | "menu" | "hooks" | "notes" | "help";
 
 export interface IConsumeState {
   materialName: string;

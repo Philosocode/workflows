@@ -16,18 +16,14 @@ const hookSlice = createSlice({
 
       state.hooks[newHook.id] = newHook;
     },
-    updateHook: (state, action) => {
-      const { hookId, updates } = action.payload;
+    updateHook: (state, action: PayloadAction<IHook>) => {
+      const { id, title, content } = action.payload;
 
-      const oldHook = state.hooks[hookId];
-
-      state.hooks[hookId] = {
-        ...oldHook,
-        ...updates,
-      };
+      state.hooks[id].title = title;
+      state.hooks[id].content = content;
     },
     deleteHook: (state, action) => {
-      state.hooks = omit(state.hooks, [action.payload.hookId]);
+      state.hooks = omit(state.hooks, [action.payload]);
     },
   },
 });
