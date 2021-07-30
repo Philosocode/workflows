@@ -18,11 +18,11 @@ export function HookListItem(props: IProps) {
   function handleTitleUpdate(event: React.ChangeEvent<HTMLInputElement>) {
     const newTitle = event.target.value;
 
-    dispatch(updateHook({ ...props.hook, title: newTitle }));
+    dispatch(updateHook({ id: props.hook.id, updates: { title: newTitle } }));
   }
 
   function handleContentUpdate(content: string) {
-    dispatch(updateHook({ ...props.hook, content }));
+    dispatch(updateHook({ id: props.hook.id, updates: { content } }));
   }
 
   function handleDelete() {

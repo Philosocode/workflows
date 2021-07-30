@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import omit from "lodash/omit";
 
-import { IHook, IHookState } from "./hook.types";
+import { IHook, IHookState, IUpdateHookPayload } from "./hook.types";
 
 const initialState: IHookState = {
   hooks: {},
+  hookIds: [],
 };
 
 const hookSlice = createSlice({
@@ -15,15 +16,19 @@ const hookSlice = createSlice({
       const newHook = { ...action.payload };
 
       state.hooks[newHook.id] = newHook;
+      state.hookIds.push(newHook.id);
     },
-    updateHook: (state, action: PayloadAction<IHook>) => {
-      const { id, title, content } = action.payload;
+    updateHook: (state, action: PayloadAction<IUpdateHookPayload>) => {
+      const { id, updates } = action.payload;
 
-      state.hooks[id].title = title;
-      state.hooks[id].content = content;
+      state.hooks[id] = {
+        ...state.hooks.id,
+        ...updates,
+      };
     },
     deleteHook: (state, action) => {
       state.hooks = omit(state.hooks, [action.payload]);
+      state.hookIds = state.hookIds.filter((id) => id !== action.payload);
     },
   },
 });

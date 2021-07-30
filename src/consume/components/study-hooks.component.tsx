@@ -15,7 +15,13 @@ export function StudyHooks(props: IProps) {
 
   function handleCreateHook(title: string, content: string) {
     dispatch(
-      createHook({ id: `${Date.now()}`, title, content, isPrevious: false }),
+      createHook({
+        id: `${Date.now()}`,
+        title,
+        content,
+        isPrevious: false,
+        isExpanded: false,
+      }),
     );
   }
 
