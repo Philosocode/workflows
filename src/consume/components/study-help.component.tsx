@@ -1,19 +1,11 @@
 import { useState } from "react";
-import {
-  Box,
-  ButtonGroup,
-  Center,
-  Checkbox,
-  CheckboxGroup,
-  Image,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, ButtonGroup, Center, Image } from "@chakra-ui/react";
 
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { Button } from "shared/components/button.component";
 import { WorkflowStep } from "shared/components/workflow-step.component";
 
-import duckImage from "../assets/timothy-dykes-LhqLdDPcSV8-unsplash.png";
+import duckImage from "consume/assets/timothy-dykes-LhqLdDPcSV8-unsplash.png";
 import { useStep } from "shared/hooks/use-step.hook";
 
 const introMessage = (
