@@ -60,9 +60,26 @@ const hookSlice = createSlice({
       state.hooks = omit(state.hooks, [action.payload]);
       state.hookIds = state.hookIds.filter((id) => id !== action.payload);
     },
+    toggleAllHooks: (state) => {
+      let allExpanded = Object.values(state.hooks).every(
+        (hook) => hook.isExpanded,
+      );
+
+      // contract if all hooks are expanded
+      const newValue = allExpanded ? false : true;
+
+      state.hookIds.forEach((id) => {
+        state.hooks[id].isExpanded = newValue;
+      });
+    },
   },
 });
 
 export const hookReducer = hookSlice.reducer;
-export const { createHook, updateHook, deleteHook, repositionHook } =
-  hookSlice.actions;
+export const {
+  createHook,
+  updateHook,
+  deleteHook,
+  repositionHook,
+  toggleAllHooks,
+} = hookSlice.actions;

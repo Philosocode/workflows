@@ -1,16 +1,18 @@
 import { useState } from "react";
+import { Box, Divider, Heading, Icon } from "@chakra-ui/react";
+import { AiOutlineExpand } from "react-icons/ai";
 
-import { Box, Divider, Heading } from "@chakra-ui/react";
 import { TStudyView } from "consume/logic/consume.types";
 import { selectCurrentHooks, selectPastHooks } from "hook/logic/hook.selectors";
 
 import { Button } from "shared/components/button.component";
 import { WorkflowStep } from "shared/components/workflow-step.component";
-import { useAppSelector } from "shared/redux/store";
+import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { HookList } from "./hook-list.component";
 import { StudyHelp } from "./study-help.component";
 import { StudyHooks } from "./study-hooks.component";
 import { StudyMenu } from "./study-menu.component";
+import { toggleAllHooks } from "hook/logic/hook.slice";
 
 const notesText = (
   <>
@@ -30,6 +32,7 @@ const hooksText = (
 );
 
 export function Study() {
+  const dispatch = useAppDispatch();
   const [view, setView] = useState<TStudyView>("study");
   const currentHooks = useAppSelector(selectCurrentHooks);
   const pastHooks = useAppSelector(selectPastHooks);
@@ -57,7 +60,7 @@ export function Study() {
         <StudyHooks goBack={goToMenu} messageText={notesText} />
       )}
 
-      {view !== "help" && currentHooks.length > 0 && (
+      {!["study", "help"].includes(view) && currentHooks.length > 0 && (
         <>
           <Divider />
           <Box mt={8}>
@@ -69,7 +72,7 @@ export function Study() {
         </>
       )}
 
-      {view !== "help" && pastHooks.length > 0 && (
+      {!["study", "help"].includes(view) && pastHooks.length > 0 && (
         <>
           <Divider />
           <Box mt={8}>
@@ -79,6 +82,24 @@ export function Study() {
             <HookList hooks={pastHooks} />
           </Box>
         </>
+      )}
+      {!["study", "help"].includes(view) && (
+        <Box
+          bg="green.400"
+          cursor="pointer"
+          d="flex"
+          alignItems="center"
+          justifyContent="center"
+          position="fixed"
+          bottom={10}
+          right={10}
+          p={4}
+          borderRadius="50%"
+          shadow="xl"
+          onClick={() => dispatch(toggleAllHooks())}
+        >
+          <Icon as={AiOutlineExpand} boxSize={7} color="white" />
+        </Box>
       )}
     </>
   );

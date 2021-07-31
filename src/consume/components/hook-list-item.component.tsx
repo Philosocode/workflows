@@ -41,9 +41,6 @@ export function HookListItem({ hook }: IProps) {
       border="1px solid"
       borderColor="gray.100"
       cursor={hook.isExpanded ? "default" : "pointer"}
-      pt={hook.isExpanded ? 0 : 5}
-      pb={hook.isExpanded ? 10 : 5}
-      px={10}
       shadow="md"
       borderRadius="md"
       w="100%"
@@ -55,13 +52,15 @@ export function HookListItem({ hook }: IProps) {
           alignItems="center"
           justifyContent="space-between"
           onClick={handleToggle}
+          py={5}
+          px={10}
         >
           <Text>{hook.title}</Text>
           <Icon as={FaChevronDown} />
         </Box>
       )}
       {hook.isExpanded && (
-        <>
+        <Box pb={10} px={10}>
           <Box
             className="header"
             cursor="pointer"
@@ -94,7 +93,7 @@ export function HookListItem({ hook }: IProps) {
             onChange={handleTitleUpdate}
           />
           <MarkdownEditor value={hook.content} setValue={handleContentUpdate} />
-        </>
+        </Box>
       )}
       <DeleteModal
         isShowing={modalShowing}
