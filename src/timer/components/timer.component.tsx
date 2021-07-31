@@ -4,7 +4,7 @@ import { Box, ButtonGroup } from "@chakra-ui/react";
 import { Button } from "shared/components/button.component";
 import { useEffect } from "react";
 import { useAppSelector } from "shared/redux/store";
-import { selectConsumeState } from "consume/logic/consume.selectors";
+import { selectConsumeState } from "consume/redux/consume.selectors";
 
 interface IProps {
   goToMenu: () => void;

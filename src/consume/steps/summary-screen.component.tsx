@@ -1,8 +1,8 @@
 import { Box, ButtonGroup, Heading, Text } from "@chakra-ui/react";
 
-import { selectMaterialName } from "consume/logic/consume.selectors";
-import { newMaterial, nextStudyBlock } from "consume/logic/consume.slice";
-import { selectCurrentHooks } from "hook/logic/hook.selectors";
+import { selectMaterialName } from "consume/redux/consume.selectors";
+import { newMaterial, nextStudyBlock } from "consume/redux/consume.slice";
+import { selectCurrentHooks } from "hook/redux/hook.selectors";
 import { Button } from "shared/components/button.component";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { HookList } from "../components/hook-list.component";

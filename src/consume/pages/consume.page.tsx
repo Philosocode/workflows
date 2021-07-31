@@ -12,7 +12,7 @@ import { PreStudySummarize } from "consume/steps/pre-study-summarize.component";
 import { Study } from "consume/steps/study.component";
 import { PostStudySummarize } from "consume/steps/post-study-summarize.component";
 import { SummaryScreen } from "consume/steps/summary-screen.component";
-import { selectConsumeState } from "consume/logic/consume.selectors";
+import { selectConsumeState } from "consume/redux/consume.selectors";
 import { RandoHookModal } from "modal/components/rando-hook-modal.component";
 import { GetUnstuckModal } from "modal/components/get-unstuck-modal.component";
 

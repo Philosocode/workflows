@@ -16,9 +16,9 @@ import {
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-import { TMaterialType } from "consume/logic/consume.types";
+import { TMaterialType } from "consume/redux/consume.types";
 import { Button } from "shared/components/button.component";
-import { goToStudy, nextStep, stepOne } from "consume/logic/consume.slice";
+import { goToStudy, nextStep, stepOne } from "consume/redux/consume.slice";
 import { WorkflowStep } from "shared/components/workflow-step.component";
 
 interface IFormProps {

@@ -7,7 +7,7 @@ import {
   Grid,
 } from "@chakra-ui/react";
 
-import { THookType } from "hook/logic/hook.types";
+import { THookType } from "hook/redux/hook.types";
 import { Button } from "shared/components/button.component";
 
 interface IProps {

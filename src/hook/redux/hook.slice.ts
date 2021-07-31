@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { nextStudyBlock } from "consume/logic/consume.slice";
+import { nextStudyBlock } from "consume/redux/consume.slice";
 import omit from "lodash/omit";
 
 import {

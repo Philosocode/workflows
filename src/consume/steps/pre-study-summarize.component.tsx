@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Box, ButtonGroup } from "@chakra-ui/react";
 
-import { nextStep } from "consume/logic/consume.slice";
+import { nextStep } from "consume/redux/consume.slice";
 import { Button } from "shared/components/button.component";
 import { WorkflowStep } from "shared/components/workflow-step.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";

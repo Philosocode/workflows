@@ -1,5 +1,5 @@
 import { useAppDispatch } from "shared/redux/store";
-import { createHook } from "hook/logic/hook.slice";
+import { createHook } from "hook/redux/hook.slice";
 
 import { CreateHookForm } from "hook/components/create-hook-form.component";
 import { Button } from "shared/components/button.component";

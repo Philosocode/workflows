@@ -2,8 +2,8 @@ import { Box, Icon, Input, Text } from "@chakra-ui/react";
 import { FaChevronDown, FaRegTrashAlt } from "react-icons/fa";
 
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
-import { deleteHook, updateHook } from "hook/logic/hook.slice";
-import { IHook } from "hook/logic/hook.types";
+import { deleteHook, updateHook } from "hook/redux/hook.slice";
+import { IHook } from "hook/redux/hook.types";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { useAppDispatch } from "shared/redux/store";
 import { DeleteModal } from "modal/components/delete-modal.component";

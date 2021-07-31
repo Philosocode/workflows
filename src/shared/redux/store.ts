@@ -1,8 +1,8 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
-import { consumeReducer } from "consume/logic/consume.slice";
-import { hookReducer } from "hook/logic/hook.slice";
+import { consumeReducer } from "consume/redux/consume.slice";
+import { hookReducer } from "hook/redux/hook.slice";
 
 export const store = configureStore({
   reducer: {

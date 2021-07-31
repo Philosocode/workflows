@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 
 import { allHooksHash } from "hook/data/hooks.data";
-import { THookType } from "hook/logic/hook.types";
+import { THookType } from "hook/redux/hook.types";
 import { Button } from "shared/components/button.component";
 import { capitalizeFirstLetter } from "shared/helpers/string.helper";
 import { HookSelectGrid } from "./hook-select-grid.component";

@@ -1,5 +1,5 @@
 import { ButtonGroup } from "@chakra-ui/react";
-import { TStudyView } from "consume/logic/consume.types";
+import { TStudyView } from "consume/redux/consume.types";
 
 import { Button } from "shared/components/button.component";
 import { WorkflowStep } from "shared/components/workflow-step.component";
