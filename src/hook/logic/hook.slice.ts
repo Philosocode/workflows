@@ -27,7 +27,8 @@ const initialState: IHookState = {
       title: "c",
     },
   },
-  hookIds: ["a", "b", "c"],
+  currentHookIds: ["a", "b", "c"],
+  previousHookIds: ["a", "b", "c"],
 };
 
 const hookSlice = createSlice({
@@ -38,7 +39,7 @@ const hookSlice = createSlice({
       const newHook = { ...action.payload };
 
       state.hooks[newHook.id] = newHook;
-      state.hookIds.push(newHook.id);
+      state.currentHookIds.push(newHook.id);
     },
     updateHook: (state, action: PayloadAction<IUpdateHookPayload>) => {
       const { id, updates } = action.payload;
@@ -49,28 +50,35 @@ const hookSlice = createSlice({
       };
     },
     repositionHook: (state, action) => {
-      const { oldIndex, newIndex } = action.payload;
+      const { oldIndex, newIndex, isPrevious } = action.payload;
 
-      const hookIds = state.hookIds;
+      const hookIds = isPrevious ? state.previousHookIds : state.currentHookIds;
       const [hookToReposition] = hookIds.splice(oldIndex, 1);
 
       hookIds.splice(newIndex, 0, hookToReposition);
     },
     deleteHook: (state, action) => {
+      const isPrevious = state.hooks[action.payload].isPrevious;
+
       state.hooks = omit(state.hooks, [action.payload]);
-      state.hookIds = state.hookIds.filter((id) => id !== action.payload);
+
+      if (isPrevious) {
+        state.previousHookIds = state.previousHookIds.filter(
+          (id) => id !== action.payload,
+        );
+      } else {
+        state.currentHookIds = state.currentHookIds.filter(
+          (id) => id !== action.payload,
+        );
+      }
     },
     toggleAllHooks: (state) => {
-      let allExpanded = Object.values(state.hooks).every(
-        (hook) => hook.isExpanded,
-      );
+      const allHooks = Object.values(state.hooks);
+      let allExpanded = allHooks.every((hook) => hook.isExpanded);
 
       // contract if all hooks are expanded
       const newValue = allExpanded ? false : true;
-
-      state.hookIds.forEach((id) => {
-        state.hooks[id].isExpanded = newValue;
-      });
+      allHooks.forEach((hook) => (state.hooks[hook.id].isExpanded = newValue));
     },
   },
 });

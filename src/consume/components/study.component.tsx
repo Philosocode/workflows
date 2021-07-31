@@ -13,6 +13,7 @@ import { StudyHelp } from "./study-help.component";
 import { StudyHooks } from "./study-hooks.component";
 import { StudyMenu } from "./study-menu.component";
 import { toggleAllHooks } from "hook/logic/hook.slice";
+import { Timer } from "timer/components/timer.component";
 
 const notesText = (
   <>
@@ -45,7 +46,8 @@ export function Study() {
     <>
       {view === "study" && (
         <WorkflowStep messageContent="Study for a few minutes.">
-          <Button color="green" onClick={goToMenu}>
+          <Timer />
+          <Button color="green" onClick={goToMenu} mt={8}>
             Next
           </Button>
         </WorkflowStep>

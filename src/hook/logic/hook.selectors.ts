@@ -10,13 +10,18 @@ export const selectHookHash = createSelector(
   (state) => state.hooks,
 );
 
-export const selectHookIds = createSelector(
+export const selectCurrentHookIds = createSelector(
   [selectHookState],
-  (state) => state.hookIds,
+  (state) => state.currentHookIds,
+);
+
+export const selectPreviousHookIds = createSelector(
+  [selectHookState],
+  (state) => state.previousHookIds,
 );
 
 export const selectCurrentHooks = createSelector(
-  [selectHookHash, selectHookIds],
+  [selectHookHash, selectCurrentHookIds],
   (hash, ids) => {
     const hooks: IHook[] = [];
 
@@ -30,7 +35,7 @@ export const selectCurrentHooks = createSelector(
 );
 
 export const selectPastHooks = createSelector(
-  [selectHookHash, selectHookIds],
+  [selectHookHash, selectPreviousHookIds],
   (hash, ids) => {
     const hooks: IHook[] = [];
 

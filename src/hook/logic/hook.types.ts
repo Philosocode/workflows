@@ -12,7 +12,8 @@ export interface IHookState {
   hooks: {
     [key: string]: IHook;
   };
-  hookIds: string[];
+  currentHookIds: string[];
+  previousHookIds: string[];
 }
 
 // actions
