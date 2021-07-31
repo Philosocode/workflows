@@ -78,13 +78,17 @@ export function HookListItem({ hook }: IProps) {
               right={5}
               boxSize={5}
               _hover={{ color: "red.500" }}
-              onClick={toggleModal}
+              onClick={(event) => {
+                event.stopPropagation();
+                toggleModal();
+              }}
             />
           </Box>
 
           <Input
             borderColor="gray.300"
             mb={5}
+            focusBorderColor="green.500"
             variant="flushed"
             value={hook.title}
             onChange={handleTitleUpdate}

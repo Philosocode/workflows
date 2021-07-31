@@ -19,8 +19,15 @@ const initialState: IHookState = {
       isPrevious: false,
       title: "b",
     },
+    c: {
+      id: "c",
+      content: "c",
+      isExpanded: false,
+      isPrevious: false,
+      title: "c",
+    },
   },
-  hookIds: [],
+  hookIds: ["a", "b", "c"],
 };
 
 const hookSlice = createSlice({
@@ -41,6 +48,14 @@ const hookSlice = createSlice({
         ...updates,
       };
     },
+    repositionHook: (state, action) => {
+      const { oldIndex, newIndex } = action.payload;
+
+      const hookIds = state.hookIds;
+      const [hookToReposition] = hookIds.splice(oldIndex, 1);
+
+      hookIds.splice(newIndex, 0, hookToReposition);
+    },
     deleteHook: (state, action) => {
       state.hooks = omit(state.hooks, [action.payload]);
       state.hookIds = state.hookIds.filter((id) => id !== action.payload);
@@ -49,4 +64,5 @@ const hookSlice = createSlice({
 });
 
 export const hookReducer = hookSlice.reducer;
-export const { createHook, updateHook, deleteHook } = hookSlice.actions;
+export const { createHook, updateHook, deleteHook, repositionHook } =
+  hookSlice.actions;
