@@ -7,10 +7,10 @@ import { selectCurrentHooks, selectPastHooks } from "hook/logic/hook.selectors";
 
 import { WorkflowStep } from "shared/components/workflow-step.component";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { HookList } from "./hook-list.component";
-import { StudyHelp } from "./study-help.component";
-import { StudyHooks } from "./study-hooks.component";
-import { StudyMenu } from "./study-menu.component";
+import { HookList } from "../components/hook-list.component";
+import { StudyHelp } from "../components/study-help.component";
+import { StudyHooks } from "../components/study-hooks.component";
+import { StudyMenu } from "../components/study-menu.component";
 import { toggleAllHooks } from "hook/logic/hook.slice";
 import { Timer } from "timer/components/timer.component";
 import { nextStep } from "consume/logic/consume.slice";

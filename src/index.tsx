@@ -8,7 +8,6 @@ import App from "./App";
 import { store } from "./shared/redux/store";
 import * as serviceWorker from "./serviceWorker";
 
-import "./index.css";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 ReactDOM.render(

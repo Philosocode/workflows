@@ -55,6 +55,7 @@ export function MaterialData() {
               {...register("materialName", { required: true })}
               placeholder="Name of Material"
               required
+              focusBorderColor="green.500"
             />
           </FormControl>
 
@@ -65,12 +66,14 @@ export function MaterialData() {
                 <Radio
                   {...register("materialType", { required: true })}
                   value="reading"
+                  colorScheme="green"
                 >
                   Reading
                 </Radio>
                 <Radio
                   {...register("materialType", { required: true })}
                   value="watching"
+                  colorScheme="green"
                 >
                   Watching
                 </Radio>
