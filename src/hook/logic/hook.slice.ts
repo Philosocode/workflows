@@ -1,7 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import omit from "lodash/omit";
 
-import { IHook, IHookState, IUpdateHookPayload } from "./hook.types";
+import {
+  IHook,
+  IHookState,
+  IRepositionHookPayload,
+  IUpdateHookPayload,
+} from "./hook.types";
 
 const initialState: IHookState = {
   hooks: {
@@ -49,7 +54,7 @@ const hookSlice = createSlice({
         ...updates,
       };
     },
-    repositionHook: (state, action) => {
+    repositionHook: (state, action: PayloadAction<IRepositionHookPayload>) => {
       const { oldIndex, newIndex, isPrevious } = action.payload;
 
       const hookIds = isPrevious ? state.previousHookIds : state.currentHookIds;

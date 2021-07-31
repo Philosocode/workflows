@@ -69,7 +69,7 @@ export function Study() {
             <Heading textAlign="center" size="lg">
               Current Hooks
             </Heading>
-            <HookList hooks={currentHooks} />
+            <HookList hooks={currentHooks} isPrevious={false} />
           </Box>
         </>
       )}
@@ -81,7 +81,7 @@ export function Study() {
             <Heading textAlign="center" size="lg">
               Past Hooks
             </Heading>
-            <HookList hooks={pastHooks} />
+            <HookList hooks={pastHooks} isPrevious />
           </Box>
         </>
       )}

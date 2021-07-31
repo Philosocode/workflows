@@ -10,6 +10,7 @@ import { useAppDispatch } from "shared/redux/store";
 
 interface IProps {
   hooks: IHook[];
+  isPrevious: boolean;
 }
 export function HookList(props: IProps) {
   const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ export function HookList(props: IProps) {
       repositionHook({
         oldIndex,
         newIndex,
+        isPrevious: props.isPrevious,
       }),
     );
   }

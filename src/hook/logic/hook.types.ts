@@ -26,3 +26,8 @@ export interface IUpdateHookPayload {
     isExpanded?: boolean;
   };
 }
+export interface IRepositionHookPayload {
+  oldIndex: number;
+  newIndex: number;
+  isPrevious: boolean;
+}
