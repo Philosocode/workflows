@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { nextStudyBlock } from "consume/logic/consume.slice";
 import omit from "lodash/omit";
 
 import {
@@ -85,6 +86,16 @@ const hookSlice = createSlice({
       const newValue = allExpanded ? false : true;
       allHooks.forEach((hook) => (state.hooks[hook.id].isExpanded = newValue));
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(nextStudyBlock, (state) => {
+      // move current hook ids into previous
+      state.previousHookIds = [
+        ...state.previousHookIds,
+        ...state.currentHookIds,
+      ];
+      state.currentHookIds = [];
+    });
   },
 });
 

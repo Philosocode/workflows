@@ -19,7 +19,7 @@ export function PostStudySummarize() {
     <WorkflowStep
       messageContent={
         <>
-          <Box>Summarize everything you've learned in this study session.</Box>
+          <Box>Summarize everything you've learned in this study block.</Box>
           <Box>Try to do it from memory, without looking at the material.</Box>
         </>
       }

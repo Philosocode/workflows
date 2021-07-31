@@ -6,6 +6,7 @@ import { WorkflowStep } from "shared/components/workflow-step.component";
 
 interface IProps {
   setView: (view: TStudyView) => void;
+  goToSummary: () => void;
 }
 export function StudyMenu(props: IProps) {
   return (
@@ -19,6 +20,9 @@ export function StudyMenu(props: IProps) {
         </Button>
         <Button color="green" onClick={() => props.setView("help")}>
           I'm Stuck
+        </Button>
+        <Button color="green" onClick={props.goToSummary}>
+          I'm Done
         </Button>
       </ButtonGroup>
     </WorkflowStep>

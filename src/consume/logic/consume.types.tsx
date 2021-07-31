@@ -5,9 +5,12 @@ export interface IConsumeState {
   materialName: string;
   materialType: TMaterialType;
   step: number;
+  studyBlockCount: number;
+  studyBlockTime: number;
 }
 
 export interface IStepOnePayload {
   materialName: string;
   materialType: TMaterialType;
+  studyBlockTime: number;
 }

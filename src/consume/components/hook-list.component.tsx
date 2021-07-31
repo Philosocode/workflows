@@ -11,6 +11,7 @@ import { useAppDispatch } from "shared/redux/store";
 interface IProps {
   hooks: IHook[];
   isPrevious: boolean;
+  dragDisabled?: boolean;
 }
 export function HookList(props: IProps) {
   const dispatch = useAppDispatch();
@@ -41,7 +42,7 @@ export function HookList(props: IProps) {
           <DraggableWrapper
             key={hook.id}
             draggableId={hook.id}
-            dragDisabled={false}
+            dragDisabled={props.dragDisabled ?? false}
             index={index}
           >
             <HookListItem key={hook.id} hook={hook} />

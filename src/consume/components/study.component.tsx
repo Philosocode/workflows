@@ -5,7 +5,6 @@ import { AiOutlineExpand } from "react-icons/ai";
 import { TStudyView } from "consume/logic/consume.types";
 import { selectCurrentHooks, selectPastHooks } from "hook/logic/hook.selectors";
 
-import { Button } from "shared/components/button.component";
 import { WorkflowStep } from "shared/components/workflow-step.component";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { HookList } from "./hook-list.component";
@@ -14,6 +13,8 @@ import { StudyHooks } from "./study-hooks.component";
 import { StudyMenu } from "./study-menu.component";
 import { toggleAllHooks } from "hook/logic/hook.slice";
 import { Timer } from "timer/components/timer.component";
+import { nextStep } from "consume/logic/consume.slice";
+import { selectMaterialType } from "consume/logic/consume.selectors";
 
 const notesText = (
   <>
@@ -37,23 +38,27 @@ export function Study() {
   const [view, setView] = useState<TStudyView>("study");
   const currentHooks = useAppSelector(selectCurrentHooks);
   const pastHooks = useAppSelector(selectPastHooks);
+  const materialType = useAppSelector(selectMaterialType);
 
   function goToMenu() {
     setView("menu");
   }
+  const studyMessage =
+    materialType === "reading"
+      ? "Read for 3-5 minutes. Depending on the material, this may be a few paragraphs, or 1-2 pages"
+      : "Watch for 3-5 minutes.";
 
   return (
     <>
       {view === "study" && (
-        <WorkflowStep messageContent="Study for a few minutes.">
-          <Timer />
-          <Button color="green" onClick={goToMenu} mt={8}>
-            Next
-          </Button>
+        <WorkflowStep messageContent={studyMessage}>
+          <Timer goToMenu={goToMenu} />
         </WorkflowStep>
       )}
 
-      {view === "menu" && <StudyMenu setView={setView} />}
+      {view === "menu" && (
+        <StudyMenu setView={setView} goToSummary={() => dispatch(nextStep())} />
+      )}
       {view === "help" && <StudyHelp goBack={goToMenu} />}
       {view === "hooks" && (
         <StudyHooks goBack={goToMenu} messageText={hooksText} showIcons />

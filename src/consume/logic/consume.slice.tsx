@@ -6,6 +6,8 @@ const initialState: IConsumeState = {
   materialName: "",
   materialType: "reading",
   step: 1,
+  studyBlockCount: 0,
+  studyBlockTime: 3,
 };
 
 const consumeSlice = createSlice({
@@ -17,17 +19,25 @@ const consumeSlice = createSlice({
 
       state.materialName = payload.materialName;
       state.materialType = payload.materialType;
-      state.step++;
-    },
-    nextStep: (state) => {
-      state.step++;
+      state.studyBlockTime = payload.studyBlockTime;
     },
     goToStudy: (state) => {
       // TODO: change this. This is bad
       state.step = 8;
     },
+    nextStep: (state) => {
+      state.step++;
+    },
+    nextStudyBlock: (state) => {
+      state.studyBlockCount++;
+      state.step = 8;
+    },
+    newMaterial: () => {
+      return initialState;
+    },
   },
 });
 
 export const consumeReducer = consumeSlice.reducer;
-export const { stepOne, nextStep } = consumeSlice.actions;
+export const { stepOne, nextStep, goToStudy, nextStudyBlock, newMaterial } =
+  consumeSlice.actions;
