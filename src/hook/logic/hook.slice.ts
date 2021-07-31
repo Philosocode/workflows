@@ -4,7 +4,22 @@ import omit from "lodash/omit";
 import { IHook, IHookState, IUpdateHookPayload } from "./hook.types";
 
 const initialState: IHookState = {
-  hooks: {},
+  hooks: {
+    a: {
+      id: "a",
+      content: "a",
+      isExpanded: false,
+      isPrevious: false,
+      title: "a",
+    },
+    b: {
+      id: "b",
+      content: "b",
+      isExpanded: false,
+      isPrevious: false,
+      title: "b",
+    },
+  },
   hookIds: [],
 };
 
@@ -22,7 +37,7 @@ const hookSlice = createSlice({
       const { id, updates } = action.payload;
 
       state.hooks[id] = {
-        ...state.hooks.id,
+        ...state.hooks[id],
         ...updates,
       };
     },

@@ -7,7 +7,7 @@ interface IProps {
 }
 export function HookList(props: IProps) {
   return (
-    <VStack w="100%" mt={5} spacing={10}>
+    <VStack w="100%" mt={5} spacing={5}>
       {props.hooks.map((hook) => (
         <HookListItem key={hook.id} hook={hook} />
       ))}

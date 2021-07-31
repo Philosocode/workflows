@@ -1,5 +1,5 @@
-import { Box, Icon, Input } from "@chakra-ui/react";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { Box, Icon, Input, Text } from "@chakra-ui/react";
+import { FaChevronDown, FaRegTrashAlt } from "react-icons/fa";
 
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { deleteHook, updateHook } from "hook/logic/hook.slice";
@@ -11,22 +11,28 @@ import { DeleteModal } from "modal/components/delete-modal.component";
 interface IProps {
   hook: IHook;
 }
-export function HookListItem(props: IProps) {
+export function HookListItem({ hook }: IProps) {
   const dispatch = useAppDispatch();
   const [modalShowing, toggleModal] = useToggle(false);
 
   function handleTitleUpdate(event: React.ChangeEvent<HTMLInputElement>) {
-    const newTitle = event.target.value;
-
-    dispatch(updateHook({ id: props.hook.id, updates: { title: newTitle } }));
+    handleHookUpdate({ title: event.target.value });
   }
 
   function handleContentUpdate(content: string) {
-    dispatch(updateHook({ id: props.hook.id, updates: { content } }));
+    handleHookUpdate({ content });
+  }
+
+  function handleToggle() {
+    handleHookUpdate({ isExpanded: !hook.isExpanded });
+  }
+
+  function handleHookUpdate(updates: Partial<IHook>) {
+    dispatch(updateHook({ id: hook.id, updates: { ...updates } }));
   }
 
   function handleDelete() {
-    dispatch(deleteHook(props.hook.id));
+    dispatch(deleteHook(hook.id));
     toggleModal();
   }
 
@@ -34,33 +40,58 @@ export function HookListItem(props: IProps) {
     <Box
       border="1px solid"
       borderColor="gray.100"
-      p={10}
+      cursor={hook.isExpanded ? "default" : "pointer"}
+      pt={hook.isExpanded ? 0 : 5}
+      pb={hook.isExpanded ? 10 : 5}
+      px={10}
       shadow="md"
       borderRadius="md"
       w="100%"
       position="relative"
     >
-      <Icon
-        as={FaRegTrashAlt}
-        cursor="pointer"
-        position="absolute"
-        top={5}
-        right={5}
-        boxSize={5}
-        _hover={{ color: "red.500" }}
-        onClick={toggleModal}
-      />
-      <Input
-        borderColor="gray.300"
-        mb={5}
-        variant="flushed"
-        value={props.hook.title}
-        onChange={handleTitleUpdate}
-      />
-      <MarkdownEditor
-        value={props.hook.content}
-        setValue={handleContentUpdate}
-      />
+      {!hook.isExpanded && (
+        <Box
+          d="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          onClick={handleToggle}
+        >
+          <Text>{hook.title}</Text>
+          <Icon as={FaChevronDown} />
+        </Box>
+      )}
+      {hook.isExpanded && (
+        <>
+          <Box
+            className="header"
+            cursor="pointer"
+            onClick={handleToggle}
+            py={5}
+            w="100%"
+            h="1rem"
+          >
+            <Icon
+              as={FaRegTrashAlt}
+              cursor="pointer"
+              position="absolute"
+              top={5}
+              right={5}
+              boxSize={5}
+              _hover={{ color: "red.500" }}
+              onClick={toggleModal}
+            />
+          </Box>
+
+          <Input
+            borderColor="gray.300"
+            mb={5}
+            variant="flushed"
+            value={hook.title}
+            onChange={handleTitleUpdate}
+          />
+          <MarkdownEditor value={hook.content} setValue={handleContentUpdate} />
+        </>
+      )}
       <DeleteModal
         isShowing={modalShowing}
         onClose={toggleModal}
