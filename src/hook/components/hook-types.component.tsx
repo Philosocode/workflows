@@ -1,14 +1,27 @@
 import {
+  Grid,
+  Icon,
   ModalContent,
   ModalHeader,
   ModalCloseButton,
   ModalBody,
   ModalFooter,
-  Grid,
 } from "@chakra-ui/react";
+import { IconType } from "react-icons";
+import { BiNetworkChart } from "react-icons/bi";
+import { AiTwotoneFire } from "react-icons/ai";
+import { FaBrain, FaMemory } from "react-icons/fa";
 
 import { THookType } from "hook/shared/hook.types";
 import { Button } from "shared/components/button.component";
+import { capitalizeFirstLetter } from "shared/helpers/string.helper";
+
+const hookTypes: { icon: IconType; text: THookType }[] = [
+  { icon: AiTwotoneFire, text: "common" },
+  { icon: FaBrain, text: "process" },
+  { icon: BiNetworkChart, text: "connect" },
+  { icon: FaMemory, text: "memorize" },
+];
 
 interface IProps {
   onSelect: (type: THookType) => void;
@@ -16,25 +29,38 @@ interface IProps {
 export function HookTypes(props: IProps) {
   return (
     <ModalContent>
-      <ModalHeader>Select Type</ModalHeader>
+      <ModalHeader>Select Hook Type</ModalHeader>
       <ModalCloseButton />
       <ModalBody>
-        <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-          <Button color="gray" onClick={() => props.onSelect("common")}>
-            Common
-          </Button>
-          <Button color="gray" onClick={() => props.onSelect("process")}>
-            Process
-          </Button>
-          <Button color="gray" onClick={() => props.onSelect("connect")}>
-            Connect
-          </Button>
-          <Button color="gray" onClick={() => props.onSelect("memorize")}>
-            Memorize
-          </Button>
+        <Grid templateColumns="repeat(2, 1fr)" gap={5}>
+          {hookTypes.map((hookType) => (
+            <IconButton
+              icon={hookType.icon}
+              onClick={() => props.onSelect(hookType.text)}
+            >
+              {capitalizeFirstLetter(hookType.text)}
+            </IconButton>
+          ))}
         </Grid>
       </ModalBody>
       <ModalFooter />
     </ModalContent>
+  );
+}
+
+function IconButton(props: {
+  children: React.ReactNode;
+  onClick: () => void;
+  icon: IconType;
+}) {
+  return (
+    <Button
+      color="gray"
+      onClick={props.onClick}
+      _hover={{ bg: "green.500", color: "white" }}
+    >
+      <Icon as={props.icon} boxSize={5} mr={2} />
+      {props.children}
+    </Button>
   );
 }

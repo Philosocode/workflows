@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { nextStudyBlock } from "consume/redux/consume.slice";
 import omit from "lodash/omit";
 
 import {
@@ -8,6 +7,7 @@ import {
   IRepositionHookPayload,
   IUpdateHookPayload,
 } from "../shared/hook.types";
+import { nextStudyBlock } from "consume/redux/consume.slice";
 
 const initialState: IHookState = {
   hooks: {

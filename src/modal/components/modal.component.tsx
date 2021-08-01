@@ -16,7 +16,6 @@ export interface IProps {
 
   footer?: React.ReactNode;
 }
-// FROM: https://tailwindui.com/components/application-ui/overlays/modals
 export function Modal(props: IProps) {
   return (
     <ModalBase
