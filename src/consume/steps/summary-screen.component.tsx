@@ -4,7 +4,7 @@ import { newMaterial, nextStudyBlock } from "consume/redux/consume.slice";
 import { selectCurrentHooks } from "hook/redux/hook.selectors";
 import { Button } from "shared/components/button.component";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { HookList } from "../components/hook-list.component";
+import { HookList } from "../../hook/components/hook-list.component";
 
 export function SummaryScreen() {
   const dispatch = useAppDispatch();
