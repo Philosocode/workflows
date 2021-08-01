@@ -25,7 +25,7 @@ import {
 } from "consume/redux/consume.slice";
 import { selectStudyBlockTime } from "consume/redux/consume.selectors";
 
-import { Button } from "shared/components/button.component";
+import { Button } from "shared/components/button/button.component";
 import { Message } from "message/components/message.component";
 import { theme } from "theme";
 

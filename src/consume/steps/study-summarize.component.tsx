@@ -5,7 +5,7 @@ import { ButtonGroup } from "@chakra-ui/react";
 import { theme } from "theme";
 import { nextStep } from "consume/redux/consume.slice";
 
-import { Button } from "shared/components/button.component";
+import { Button } from "shared/components/button/button.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { Message } from "message/components/message.component";
 

@@ -13,7 +13,7 @@ import { AiTwotoneFire } from "react-icons/ai";
 import { FaBrain, FaMemory } from "react-icons/fa";
 
 import { THookType } from "hook/shared/hook.types";
-import { Button } from "shared/components/button.component";
+import { Button } from "shared/components/button/button.component";
 import { capitalizeFirstLetter } from "shared/helpers/string.helper";
 
 const hookTypes: { icon: IconType; text: THookType }[] = [

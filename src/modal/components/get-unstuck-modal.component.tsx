@@ -5,7 +5,7 @@ import { ModalContent } from "modal/components/modal-content.component";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { useRandom } from "shared/hooks/use-random.hook";
 
-import { Button } from "shared/components/button.component";
+import { Button } from "shared/components/button/button.component";
 import { ModalWrapper } from "./modal-wrapper.component";
 import { IconButton } from "shared/components/icon-button.component";
 import { Link } from "typography/components/link.component";

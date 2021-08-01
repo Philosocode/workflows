@@ -17,7 +17,7 @@ export function Message(props: IProps) {
       background={styles.background}
       mb={theme.spacing.nextButtonMarginTop}
       maxW="full"
-      rounded="xl"
+      rounded="lg"
       shadow="md"
       p={10}
       fontSize="3xl"

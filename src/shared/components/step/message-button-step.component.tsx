@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { Button } from "shared/components/button.component";
+import { Button } from "shared/components/button/button.component";
 import { Message } from "message/components/message.component";
 import { useKeypress } from "shared/hooks/use-key-press.hook";
 

@@ -3,7 +3,7 @@ import { FormControl, VStack } from "@chakra-ui/react";
 
 import { useToggle } from "shared/hooks/use-toggle.hook";
 
-import { Button } from "shared/components/button.component";
+import { Button } from "shared/components/button/button.component";
 import { HookSelectModal } from "./hook-select-modal.component";
 import { InputWithLabel } from "form/components/input-with-label.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";

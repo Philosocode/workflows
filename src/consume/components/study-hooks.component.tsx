@@ -2,7 +2,7 @@ import { useAppDispatch } from "shared/redux/store";
 import { createHook } from "hook/redux/hook.slice";
 
 import { CreateHookForm } from "hook/components/create-hook-form.component";
-import { Button } from "shared/components/button.component";
+import { Button } from "shared/components/button/button.component";
 import { Message } from "message/components/message.component";
 
 interface IProps {

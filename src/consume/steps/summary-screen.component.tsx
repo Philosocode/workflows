@@ -2,7 +2,7 @@ import { ButtonGroup, Heading, VStack } from "@chakra-ui/react";
 
 import { newMaterial, nextStudyBlock } from "consume/redux/consume.slice";
 import { selectCurrentHooks } from "hook/redux/hook.selectors";
-import { Button } from "shared/components/button.component";
+import { Button } from "shared/components/button/button.component";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { HookList } from "../../hook/components/hook-list.component";
 

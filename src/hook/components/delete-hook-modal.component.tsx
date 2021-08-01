@@ -3,7 +3,7 @@ import { deleteHook } from "hook/redux/hook.slice";
 
 import { ModalContent } from "modal/components/modal-content.component";
 import { IModalProps } from "modal/shared/modal.types";
-import { Button } from "shared/components/button.component";
+import { Button } from "shared/components/button/button.component";
 import { useAppDispatch } from "shared/redux/store";
 
 interface IProps extends IModalProps {

@@ -1,7 +1,7 @@
 import { ButtonGroup } from "@chakra-ui/react";
 
 import { TStudyView } from "consume/redux/consume.types";
-import { Button } from "shared/components/button.component";
+import { Button } from "shared/components/button/button.component";
 import { Message } from "message/components/message.component";
 
 interface IProps {

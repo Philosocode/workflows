@@ -4,7 +4,7 @@ import { Box, ButtonGroup } from "@chakra-ui/react";
 import { useAppSelector } from "shared/redux/store";
 import { selectConsumeState } from "consume/redux/consume.selectors";
 
-import { Button } from "shared/components/button.component";
+import { Button } from "shared/components/button/button.component";
 import { theme } from "theme";
 
 interface IProps {
