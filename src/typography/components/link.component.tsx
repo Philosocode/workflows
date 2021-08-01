@@ -1,4 +1,4 @@
-import { Link as LinkChakra } from "@chakra-ui/react";
+import { Link as LinkChakra, useColorModeValue } from "@chakra-ui/react";
 
 interface IProps {
   children: React.ReactNode;
@@ -8,9 +8,11 @@ interface IProps {
   isExternal?: boolean;
 }
 export function Link(props: IProps) {
+  const color = useColorModeValue("green.500", "green.200");
+
   return (
     <LinkChakra
-      color={props.color ?? "green.500"}
+      color={props.color ?? color}
       href={props.href}
       isExternal={props.isExternal ?? true}
     >

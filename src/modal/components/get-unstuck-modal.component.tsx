@@ -1,24 +1,19 @@
-import {
-  Box,
-  Heading,
-  Link,
-  ListItem,
-  Text,
-  UnorderedList,
-} from "@chakra-ui/react";
+import { Box, Heading, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import { IoMdHelpCircle } from "react-icons/io";
 
 import { ModalContent } from "modal/components/modal-content.component";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { useRandom } from "shared/hooks/use-random.hook";
+
 import { Button } from "shared/components/button.component";
-import { HoverIcon } from "icon/components/hover-icon.component";
 import { ModalWrapper } from "./modal-wrapper.component";
+import { IconButton } from "shared/components/icon-button.component";
+import { Link } from "typography/components/link.component";
 
 function HeadingLink(props: { children: string; href: string }) {
   return (
     <Heading as="h3" size="sm" mb={1}>
-      <Link color="green.500" href={props.href} isExternal>
+      <Link href={props.href} isExternal>
         {props.children}
       </Link>
     </Heading>
@@ -100,7 +95,11 @@ export function GetUnstuckModal() {
   return (
     <>
       <Box>
-        <HoverIcon as={IoMdHelpCircle} onClick={toggleModal} />
+        <IconButton
+          aria-label="Get Unstuck"
+          icon={<IoMdHelpCircle />}
+          onClick={toggleModal}
+        />
       </Box>
       <ModalWrapper isOpen={modalShowing} onClose={toggleModal}>
         <ModalContent

@@ -13,6 +13,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   VStack,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { TMaterialType } from "consume/redux/consume.types";
@@ -26,6 +27,7 @@ import { selectStudyBlockTime } from "consume/redux/consume.selectors";
 
 import { Button } from "shared/components/button.component";
 import { Message } from "message/components/message.component";
+import { theme } from "theme";
 
 interface IFormProps {
   materialType: TMaterialType;
@@ -49,14 +51,18 @@ export function GetMaterialData() {
     dispatch(goToStudy());
   }
 
+  const styles = {
+    focusBorderColor: useColorModeValue("green.500", "green.200"),
+  };
+
   return (
     <>
-      <Message>What are you reading / watching today?</Message>
+      <Message>What are you studying today?</Message>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <VStack spacing={5} alignItems="start">
+        <VStack spacing={7} alignItems="start">
           <FormControl id="materialType">
-            <FormLabel>Material Type</FormLabel>
+            <FormLabel fontWeight="bold">Material Type:</FormLabel>
             <RadioGroup>
               <Stack>
                 <Radio
@@ -78,7 +84,7 @@ export function GetMaterialData() {
           </FormControl>
 
           <FormControl id="studyBlockTime">
-            <FormLabel>Study Block Time (minutes)</FormLabel>
+            <FormLabel fontWeight="bold">Study Block Time (minutes):</FormLabel>
             <Controller
               name="studyBlockTime"
               control={control}
