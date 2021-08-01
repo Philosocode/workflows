@@ -4,5 +4,13 @@ interface IProps extends GridProps {
   children: React.ReactNode;
 }
 export function CardButtonGrid(props: IProps) {
-  return <Grid templateColumns="repeat(2, 1fr)" gap={10} {...props} w="full" />;
+  return (
+    <Grid
+      templateColumns="repeat(2, 1fr)"
+      columnGap={10}
+      rowGap={5}
+      {...props}
+      w="full"
+    />
+  );
 }

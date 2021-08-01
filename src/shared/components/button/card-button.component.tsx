@@ -25,7 +25,7 @@ export function CardButton(props: IProps) {
       },
     },
     gray: {
-      borderColor: useColorModeValue("gray.200", "gray.700"),
+      borderColor: useColorModeValue("gray.200", "gray.600"),
       bg: useColorModeValue("gray.100", "gray.700"),
       textColor: useColorModeValue("gray.800", "gray.100"),
       _hover: {

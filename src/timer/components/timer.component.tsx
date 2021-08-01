@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, ButtonGroup } from "@chakra-ui/react";
-
-import { useAppSelector } from "shared/redux/store";
-import { selectConsumeState } from "consume/redux/consume.selectors";
+import { Box, ButtonGroup, useColorModeValue } from "@chakra-ui/react";
 
 import { Button } from "shared/components/button/button.component";
 import { theme } from "theme";
@@ -46,11 +43,15 @@ export function Timer(props: IProps) {
     return `${minutesCounter}:${computedSeconds}`;
   }
 
+  const styles = {
+    borderColor: useColorModeValue("gray.300", "gray.600"),
+  };
+
   return (
     <>
       <Box
         border="1px solid"
-        borderColor="gray.300"
+        borderColor={styles.borderColor}
         d="grid"
         placeItems="center"
         pt={10}
@@ -63,13 +64,8 @@ export function Timer(props: IProps) {
         </Box>
 
         {counter > 0 && (
-          <ButtonGroup mt={3} className="buttons">
-            <Button
-              color="green"
-              onClick={() => setIsActive(!isActive)}
-              className="start"
-              type="button"
-            >
+          <ButtonGroup mt={3} spacing={3}>
+            <Button onClick={() => setIsActive(!isActive)} type="button">
               {isActive ? "Pause" : "Start"}
             </Button>
             <Button color="gray" onClick={props.goToMenu}>

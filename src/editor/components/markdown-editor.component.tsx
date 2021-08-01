@@ -3,7 +3,9 @@ import ReactMde, { getDefaultToolbarCommands } from "react-mde";
 import Showdown from "showdown";
 
 import { TMarkdownEditorTab } from "editor/shared/editor.types";
-import styles from "editor/components/markdown-editor.module.css";
+import lightStyles from "editor/components/markdown-editor.module.css";
+import darkStyles from "editor/components/markdown-editor-dark.module.css";
+import { useColorMode } from "@chakra-ui/react";
 
 const toolbarCommands = getDefaultToolbarCommands();
 
@@ -35,6 +37,9 @@ export const MarkdownEditor: React.FC<IProps> = ({
   const [selectedTab, setSelectedTab] = useState<TMarkdownEditorTab>(
     initialTab ?? "write",
   );
+
+  const { colorMode } = useColorMode();
+  const styles = colorMode === "light" ? lightStyles : darkStyles;
 
   return (
     <ReactMde
