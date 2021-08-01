@@ -4,11 +4,11 @@ import { useAppSelector } from "shared/redux/store";
 import { selectStep } from "consume/redux/consume.selectors";
 
 import { GetMaterialData } from "consume/steps/get-material-data.component";
-import { GoSlowly } from "consume/steps/go-slowly.component";
+import { SlowReminder } from "consume/steps/slow-reminder.component";
 import { TimerReminder } from "consume/steps/timer-reminder.component";
-import { Skim } from "consume/steps/skim.component";
-import { ViewSummary } from "consume/steps/view-summary.component";
-import { Practice } from "consume/steps/practice.component";
+import { SkimReminder } from "consume/steps/skim-reminder.component";
+import { SummaryReminder } from "consume/steps/summary-reminder.component";
+import { PracticeReminder } from "consume/steps/practice-reminder.component";
 import { PreStudySummarize } from "consume/steps/pre-study-summarize.component";
 import { Study } from "consume/steps/study.component";
 import { PostStudySummarize } from "consume/steps/post-study-summarize.component";
@@ -17,11 +17,11 @@ import { ConsumeNav } from "consume/components/consume-nav.component";
 
 const steps = [
   <GetMaterialData />,
-  <GoSlowly />,
+  <SlowReminder />,
   <TimerReminder />,
-  <Skim />,
-  <ViewSummary />,
-  <Practice />,
+  <SkimReminder />,
+  <SummaryReminder />,
+  <PracticeReminder />,
   <PreStudySummarize />,
   <Study />,
   <PostStudySummarize />,

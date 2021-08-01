@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IConsumeState, IStepOnePayload } from "./consume.types";
+import { IConsumeState, ISetMaterialDataPayload } from "./consume.types";
 
 const initialState: IConsumeState = {
   materialType: "reading",
@@ -13,7 +13,10 @@ const consumeSlice = createSlice({
   name: "consume",
   initialState,
   reducers: {
-    stepOne: (state, action: PayloadAction<IStepOnePayload>) => {
+    setMaterialData: (
+      state,
+      action: PayloadAction<ISetMaterialDataPayload>,
+    ) => {
       const { payload } = action;
 
       state.materialType = payload.materialType;
@@ -37,5 +40,10 @@ const consumeSlice = createSlice({
 });
 
 export const consumeReducer = consumeSlice.reducer;
-export const { stepOne, nextStep, goToStudy, nextStudyBlock, newMaterial } =
-  consumeSlice.actions;
+export const {
+  setMaterialData,
+  nextStep,
+  goToStudy,
+  nextStudyBlock,
+  newMaterial,
+} = consumeSlice.actions;

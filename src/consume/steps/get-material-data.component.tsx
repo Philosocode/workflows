@@ -17,7 +17,11 @@ import {
 
 import { TMaterialType } from "consume/redux/consume.types";
 import { useAppSelector } from "shared/redux/store";
-import { goToStudy, nextStep, stepOne } from "consume/redux/consume.slice";
+import {
+  goToStudy,
+  nextStep,
+  setMaterialData,
+} from "consume/redux/consume.slice";
 import { selectStudyBlockTime } from "consume/redux/consume.selectors";
 
 import { Button } from "shared/components/button.component";
@@ -36,12 +40,12 @@ export function GetMaterialData() {
     });
 
   function onSubmit(values: IFormProps) {
-    dispatch(stepOne(values));
+    dispatch(setMaterialData(values));
     dispatch(nextStep());
   }
 
   function skipToStudy() {
-    dispatch(stepOne(getValues()));
+    dispatch(setMaterialData(getValues()));
     dispatch(goToStudy());
   }
 

@@ -1,19 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, ButtonGroup } from "@chakra-ui/react";
 
-import { Button } from "shared/components/button.component";
-import { useEffect } from "react";
 import { useAppSelector } from "shared/redux/store";
 import { selectConsumeState } from "consume/redux/consume.selectors";
 
+import { Button } from "shared/components/button.component";
+import { theme } from "theme";
+
 interface IProps {
+  duration: number;
   goToMenu: () => void;
+
   startAutomatically?: boolean;
 }
 // From: https://dev.to/emmaadesile/build-a-timer-using-react-hooks-3he2
 export function Timer(props: IProps) {
-  const { studyBlockTime } = useAppSelector(selectConsumeState);
-  const initialSeconds = studyBlockTime * 60;
+  const initialSeconds = props.duration * 60;
 
   const initialTimeString = secondsToTimeString(initialSeconds);
   const [timeString, setTimeString] = useState(initialTimeString);
@@ -47,18 +49,19 @@ export function Timer(props: IProps) {
   return (
     <>
       <Box
-        border="1px solid gray"
-        borderRadius="md"
-        className="container"
+        border="1px solid"
+        borderColor="gray.300"
         d="grid"
-        maxW="60rem"
-        m="0 auto"
         placeItems="center"
-        py="10"
+        pt={10}
+        pb={12}
+        shadow="md"
+        rounded="md"
       >
         <Box className="time" fontSize="6xl">
           {timeString}
         </Box>
+
         {counter > 0 && (
           <ButtonGroup mt={3} className="buttons">
             <Button
@@ -75,8 +78,9 @@ export function Timer(props: IProps) {
           </ButtonGroup>
         )}
       </Box>
+
       {counter <= 0 && (
-        <Button onClick={props.goToMenu} mt={8}>
+        <Button onClick={props.goToMenu} mt={theme.spacing.nextButtonMarginTop}>
           Next
         </Button>
       )}
