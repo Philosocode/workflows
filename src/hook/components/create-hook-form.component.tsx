@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { FormControl, HStack, Icon, VStack } from "@chakra-ui/react";
-import { RiLightbulbFlashFill } from "react-icons/ri";
-import { FaRandom } from "react-icons/fa";
+import { FormControl, VStack } from "@chakra-ui/react";
 
-import { getRandomHook } from "hook/shared/hook.helper";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 
 import { Button } from "shared/components/button.component";
 import { HookSelectModal } from "./hook-select-modal.component";
 import { InputWithLabel } from "form/components/input-with-label.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
+import { CreateHookIcons } from "./create-hook-icons.component";
 
 interface IProps {
   onSubmit: (title: string, content: string) => void;
@@ -44,30 +42,20 @@ export function CreateHookForm(props: IProps) {
             <InputWithLabel
               id="hookTitle"
               label="Hook Title"
-              placeholder="Enter title..."
+              placeholder="Hook Title"
               value={title}
               onChange={handleTitleChange}
-              showLabel
             />
           </FormControl>
+
           {props.showIcons && (
-            <HStack cursor="pointer" spacing={4}>
-              <Icon
-                as={RiLightbulbFlashFill}
-                h={7}
-                w={7}
-                _hover={{ color: "green.500" }}
-                onClick={toggleModal}
-              />
-              <Icon
-                as={FaRandom}
-                h={6}
-                w={6}
-                _hover={{ color: "green.500" }}
-                onClick={() => setTitle(getRandomHook(title))}
-              />
-            </HStack>
+            <CreateHookIcons
+              toggleModal={toggleModal}
+              setTitle={setTitle}
+              currentTitle={title}
+            />
           )}
+
           <FormControl id="content">
             <MarkdownEditor
               value={content}
@@ -75,11 +63,13 @@ export function CreateHookForm(props: IProps) {
               placeholder="Content"
             />
           </FormControl>
-          <Button color="green" disabled={buttonDisabled} type="submit">
+
+          <Button disabled={buttonDisabled} type="submit">
             Create
           </Button>
         </VStack>
       </form>
+
       <HookSelectModal
         isOpen={modalShowing}
         onClose={toggleModal}
