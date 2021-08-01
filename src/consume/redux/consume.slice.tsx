@@ -6,7 +6,7 @@ const initialState: IConsumeState = {
   materialType: "reading",
   step: 1,
   studyBlockCount: 0,
-  studyBlockTime: 3,
+  studyBlockTime: 5,
 };
 
 const consumeSlice = createSlice({

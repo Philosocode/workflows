@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { useAppSelector } from "shared/redux/store";
 import { selectStep } from "consume/redux/consume.selectors";
 
-import { MaterialData } from "consume/steps/material-data.component";
+import { GetMaterialData } from "consume/steps/get-material-data.component";
 import { GoSlowly } from "consume/steps/go-slowly.component";
 import { StartTimer } from "consume/steps/start-timer.component";
 import { Skim } from "consume/steps/skim.component";
@@ -16,7 +16,7 @@ import { SummaryScreen } from "consume/steps/summary-screen.component";
 import { ConsumeNav } from "consume/components/consume-nav.component";
 
 const steps = [
-  <MaterialData />,
+  <GetMaterialData />,
   <GoSlowly />,
   <StartTimer />,
   <Skim />,
@@ -34,7 +34,7 @@ export function ConsumePage() {
   return (
     <Box>
       <ConsumeNav />
-      <div>{steps[step - 1]}</div>
+      <Box>{steps[step - 1]}</Box>
     </Box>
   );
 }

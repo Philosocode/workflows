@@ -18,3 +18,8 @@ export const selectStudyBlockCount = createSelector(
   [selectConsumeState],
   (state) => state.studyBlockCount,
 );
+
+export const selectStudyBlockTime = createSelector(
+  [selectConsumeState],
+  (state) => state.studyBlockTime,
+);

@@ -1,7 +1,9 @@
+import { Controller, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import {
+  ButtonGroup,
   FormControl,
   FormLabel,
-  VStack,
   Radio,
   RadioGroup,
   Stack,
@@ -10,13 +12,13 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  ButtonGroup,
+  VStack,
 } from "@chakra-ui/react";
-import { Controller, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 
 import { TMaterialType } from "consume/redux/consume.types";
+import { useAppSelector } from "shared/redux/store";
 import { goToStudy, nextStep, stepOne } from "consume/redux/consume.slice";
+import { selectStudyBlockTime } from "consume/redux/consume.selectors";
 
 import { Button } from "shared/components/button.component";
 import { Message } from "message/components/message.component";
@@ -25,7 +27,8 @@ interface IFormProps {
   materialType: TMaterialType;
   studyBlockTime: number;
 }
-export function MaterialData() {
+export function GetMaterialData() {
+  const studyBlockTime = useAppSelector(selectStudyBlockTime);
   const dispatch = useDispatch();
   const { control, formState, handleSubmit, register, getValues } =
     useForm<IFormProps>({
@@ -37,8 +40,7 @@ export function MaterialData() {
     dispatch(nextStep());
   }
 
-  function skipToStudy(event: React.FormEvent) {
-    event.preventDefault();
+  function skipToStudy() {
     dispatch(stepOne(getValues()));
     dispatch(goToStudy());
   }
@@ -48,7 +50,7 @@ export function MaterialData() {
       <Message>What are you reading / watching today?</Message>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <VStack spacing={0} alignItems="start">
+        <VStack spacing={5} alignItems="start">
           <FormControl id="materialType">
             <FormLabel>Material Type</FormLabel>
             <RadioGroup>
@@ -76,7 +78,7 @@ export function MaterialData() {
             <Controller
               name="studyBlockTime"
               control={control}
-              defaultValue={0}
+              defaultValue={studyBlockTime}
               render={({ field }) => (
                 <NumberInput {...field} maxW="100px" mr="2rem" min={0} max={25}>
                   <NumberInputField />
@@ -90,13 +92,12 @@ export function MaterialData() {
           </FormControl>
 
           <ButtonGroup>
-            <Button color="green" disabled={!formState.isValid} type="submit">
+            <Button disabled={!formState.isValid} type="submit">
               Next
             </Button>
             <Button
               color="gray"
               disabled={!formState.isValid}
-              type="submit"
               onClick={skipToStudy}
             >
               Skip to Study
