@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IConsumeState, IStepOnePayload } from "./consume.types";
 
 const initialState: IConsumeState = {
-  materialName: "",
   materialType: "reading",
   step: 1,
   studyBlockCount: 0,
@@ -17,7 +16,6 @@ const consumeSlice = createSlice({
     stepOne: (state, action: PayloadAction<IStepOnePayload>) => {
       const { payload } = action;
 
-      state.materialName = payload.materialName;
       state.materialType = payload.materialType;
       state.studyBlockTime = payload.studyBlockTime;
     },

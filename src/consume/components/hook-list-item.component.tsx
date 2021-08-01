@@ -3,20 +3,18 @@ import { FaChevronDown, FaRegTrashAlt } from "react-icons/fa";
 
 // logic
 import { IHook } from "hook/shared/hook.types";
-import { deleteHook, updateHook } from "hook/redux/hook.slice";
-import { useToggle } from "shared/hooks/use-toggle.hook";
+import { updateHook } from "hook/redux/hook.slice";
 import { useAppDispatch } from "shared/redux/store";
 
-import { DeleteModal } from "modal/components/delete-modal.component";
-import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { InputWithLabel } from "form/components/input-with-label.component";
+import { MarkdownEditor } from "editor/components/markdown-editor.component";
+import { showModal } from "modal/redux/modal.slice";
 
 interface IProps {
   hook: IHook;
 }
 export function HookListItem({ hook }: IProps) {
   const dispatch = useAppDispatch();
-  const [modalShowing, toggleModal] = useToggle(false);
 
   function handleTitleUpdate(event: React.ChangeEvent<HTMLInputElement>) {
     handleHookUpdate({ title: event.target.value });
@@ -35,8 +33,14 @@ export function HookListItem({ hook }: IProps) {
   }
 
   function handleDelete() {
-    dispatch(deleteHook(hook.id));
-    toggleModal();
+    dispatch(
+      showModal({
+        modalType: "delete-hook",
+        modalProps: {
+          id: hook.id,
+        },
+      }),
+    );
   }
 
   return (
@@ -82,7 +86,7 @@ export function HookListItem({ hook }: IProps) {
               _hover={{ color: "red.500" }}
               onClick={(event) => {
                 event.stopPropagation();
-                toggleModal();
+                handleDelete();
               }}
             />
           </Box>
@@ -97,11 +101,6 @@ export function HookListItem({ hook }: IProps) {
           <MarkdownEditor value={hook.content} setValue={handleContentUpdate} />
         </Box>
       )}
-      <DeleteModal
-        isShowing={modalShowing}
-        onClose={toggleModal}
-        onDelete={handleDelete}
-      />
     </Box>
   );
 }

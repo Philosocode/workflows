@@ -3,11 +3,13 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
 import { consumeReducer } from "consume/redux/consume.slice";
 import { hookReducer } from "hook/redux/hook.slice";
+import { modalReducer } from "modal/redux/modal.slice";
 
 export const store = configureStore({
   reducer: {
     consume: consumeReducer,
     hook: hookReducer,
+    modal: modalReducer,
   },
 });
 

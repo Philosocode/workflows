@@ -1,7 +1,6 @@
 import {
   Box,
   Heading,
-  Icon,
   Link,
   ListItem,
   Text,
@@ -9,10 +8,12 @@ import {
 } from "@chakra-ui/react";
 import { IoMdHelpCircle } from "react-icons/io";
 
-import { Modal } from "modal/components/modal.component";
+import { ModalContent } from "modal/components/modal-content.component";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { useRandom } from "shared/hooks/use-random.hook";
 import { Button } from "shared/components/button.component";
+import { HoverIcon } from "icon/components/hover-icon.component";
+import { ModalWrapper } from "./modal-wrapper.component";
 
 function HeadingLink(props: { children: string; href: string }) {
   return (
@@ -94,35 +95,28 @@ const prompts = [
 
 export function GetUnstuckModal() {
   const [modalShowing, toggleModal] = useToggle(false);
-  const [hook, getRandomHook] = useRandom(prompts, prompts[0]);
+  const [hook, getRandomHook] = useRandom(prompts);
 
   return (
     <>
       <Box>
-        <Icon
-          as={IoMdHelpCircle}
-          cursor="pointer"
-          w={7}
-          h={7}
-          onClick={toggleModal}
-          _hover={{ color: "green.500" }}
-        />
+        <HoverIcon as={IoMdHelpCircle} onClick={toggleModal} />
       </Box>
-      <Modal
-        isOpen={modalShowing}
-        onClose={toggleModal}
-        header="Get Unstuck"
-        body={
-          <Box>
-            <Text fontSize="md">{hook}</Text>
-          </Box>
-        }
-        footer={
-          <Button color="green" onClick={getRandomHook}>
-            Next Hook
-          </Button>
-        }
-      />
+      <ModalWrapper isOpen={modalShowing} onClose={toggleModal}>
+        <ModalContent
+          header="Get Unstuck"
+          body={
+            <Box>
+              <Text fontSize="md">{hook}</Text>
+            </Box>
+          }
+          footer={
+            <Button color="green" onClick={getRandomHook}>
+              Next Prompt
+            </Button>
+          }
+        />
+      </ModalWrapper>
     </>
   );
 }

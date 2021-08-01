@@ -1,8 +1,8 @@
 import { useState } from "react";
 import sample from "lodash/sample";
 
-export function useRandom<T>(values: T[], initialValue: T): [T, () => void] {
-  const [currentValue, setCurrentValue] = useState(initialValue);
+export function useRandom<T>(values: T[], initialValue?: T): [T, () => void] {
+  const [currentValue, setCurrentValue] = useState(initialValue ?? values[0]);
 
   function getRandomValue() {
     let newValue = sample(values);

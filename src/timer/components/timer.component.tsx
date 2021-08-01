@@ -69,11 +69,14 @@ export function Timer(props: IProps) {
             >
               {isActive ? "Pause" : "Start"}
             </Button>
+            <Button color="gray" onClick={props.goToMenu}>
+              Skip Timer
+            </Button>
           </ButtonGroup>
         )}
       </Box>
       {counter <= 0 && (
-        <Button color="green" onClick={props.goToMenu} mt={8}>
+        <Button onClick={props.goToMenu} mt={8}>
           Next
         </Button>
       )}

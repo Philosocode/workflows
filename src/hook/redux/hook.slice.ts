@@ -6,7 +6,7 @@ import {
   IHookState,
   IRepositionHookPayload,
   IUpdateHookPayload,
-} from "../shared/hook.types";
+} from "hook/shared/hook.types";
 import { nextStudyBlock } from "consume/redux/consume.slice";
 
 const initialState: IHookState = {
@@ -34,7 +34,7 @@ const initialState: IHookState = {
     },
   },
   currentHookIds: ["a", "b", "c"],
-  previousHookIds: ["a", "b", "c"],
+  previousHookIds: [],
 };
 
 const hookSlice = createSlice({

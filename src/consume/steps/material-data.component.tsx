@@ -1,5 +1,4 @@
 import {
-  Input,
   FormControl,
   FormLabel,
   VStack,
@@ -20,11 +19,9 @@ import { TMaterialType } from "consume/redux/consume.types";
 import { goToStudy, nextStep, stepOne } from "consume/redux/consume.slice";
 
 import { Button } from "shared/components/button.component";
-import { InputWithLabel } from "form/components/input-with-label.component";
 import { WorkflowStep } from "shared/components/workflow-step.component";
 
 interface IFormProps {
-  materialName: string;
   materialType: TMaterialType;
   studyBlockTime: number;
 }
@@ -51,17 +48,6 @@ export function MaterialData() {
     <WorkflowStep messageContent="What are you reading / watching today?">
       <form onSubmit={handleSubmit(onSubmit)}>
         <VStack spacing="25px" alignItems="start">
-          <FormControl id="materialName">
-            <FormLabel>Material Name</FormLabel>
-            <InputWithLabel
-              {...register("materialName", { required: true })}
-              id="materialName"
-              placeholder="Enter material name..."
-              label="Material Name"
-              variant="outline"
-            />
-          </FormControl>
-
           <FormControl id="materialType">
             <FormLabel>Material Type</FormLabel>
             <RadioGroup>

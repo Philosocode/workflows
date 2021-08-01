@@ -4,11 +4,6 @@ import { TAppState } from "shared/redux/store";
 
 export const selectConsumeState = (state: TAppState) => state.consume;
 
-export const selectMaterialName = createSelector(
-  [selectConsumeState],
-  (state) => state.materialName,
-);
-
 export const selectMaterialType = createSelector(
   [selectConsumeState],
   (state) => state.materialType,
@@ -17,4 +12,9 @@ export const selectMaterialType = createSelector(
 export const selectStep = createSelector(
   [selectConsumeState],
   (state) => state.step,
+);
+
+export const selectStudyBlockCount = createSelector(
+  [selectConsumeState],
+  (state) => state.studyBlockCount,
 );
