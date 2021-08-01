@@ -1,4 +1,4 @@
-import { Button as ButtonBase, ButtonProps } from "@chakra-ui/react";
+import { Button as ButtonChakra, ButtonProps } from "@chakra-ui/react";
 
 type TButtonColor = "green" | "red" | "gray";
 export interface IProps extends ButtonProps {
@@ -8,8 +8,8 @@ export interface IProps extends ButtonProps {
 }
 export function Button({ color, children, ...rest }: IProps) {
   return (
-    <ButtonBase colorScheme={color ?? "green"} minW={20} {...rest}>
+    <ButtonChakra colorScheme={color ?? "green"} minW={20} {...rest}>
       {children}
-    </ButtonBase>
+    </ButtonChakra>
   );
 }

@@ -1,9 +1,7 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import {
-  ButtonGroup,
   FormControl,
-  FormLabel,
   Radio,
   RadioGroup,
   Stack,
@@ -25,9 +23,11 @@ import {
 } from "consume/redux/consume.slice";
 import { selectStudyBlockTime } from "consume/redux/consume.selectors";
 
-import { Button } from "shared/components/button/button.component";
 import { Message } from "message/components/message.component";
-import { theme } from "theme";
+import { CardButton } from "shared/components/button/card-button.component";
+import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
+import { FormLabel } from "form/components/form-label.component";
+import { Button } from "shared/components/button/button.component";
 
 interface IFormProps {
   materialType: TMaterialType;
@@ -51,10 +51,6 @@ export function GetMaterialData() {
     dispatch(goToStudy());
   }
 
-  const styles = {
-    focusBorderColor: useColorModeValue("green.500", "green.200"),
-  };
-
   return (
     <>
       <Message>What are you studying today?</Message>
@@ -62,7 +58,7 @@ export function GetMaterialData() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <VStack spacing={7} alignItems="start">
           <FormControl id="materialType">
-            <FormLabel fontWeight="bold">Material Type:</FormLabel>
+            <FormLabel>Material Type:</FormLabel>
             <RadioGroup>
               <Stack>
                 <Radio
@@ -84,7 +80,7 @@ export function GetMaterialData() {
           </FormControl>
 
           <FormControl id="studyBlockTime">
-            <FormLabel fontWeight="bold">Study Block Time (minutes):</FormLabel>
+            <FormLabel>Study Block Time (minutes):</FormLabel>
             <Controller
               name="studyBlockTime"
               control={control}
@@ -101,18 +97,18 @@ export function GetMaterialData() {
             />
           </FormControl>
 
-          <ButtonGroup>
-            <Button disabled={!formState.isValid} type="submit">
+          <CardButtonGrid>
+            <CardButton disabled={!formState.isValid} type="submit">
               Next
-            </Button>
-            <Button
-              color="gray"
+            </CardButton>
+            <CardButton
               disabled={!formState.isValid}
+              color="gray"
               onClick={skipToStudy}
             >
               Skip to Study
-            </Button>
-          </ButtonGroup>
+            </CardButton>
+          </CardButtonGrid>
         </VStack>
       </form>
     </>
