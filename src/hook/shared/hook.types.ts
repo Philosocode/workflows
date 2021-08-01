@@ -4,7 +4,6 @@ export interface IHook {
   content: string;
   id: string;
   title: string;
-  isPrevious: boolean;
   isExpanded: boolean;
 }
 
@@ -22,7 +21,6 @@ export interface IUpdateHookPayload {
   updates: {
     title?: string;
     content?: string;
-    isPrevious?: boolean;
     isExpanded?: boolean;
   };
 }

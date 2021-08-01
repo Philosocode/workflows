@@ -1,4 +1,4 @@
-import { Box, ButtonGroup, Heading, Text } from "@chakra-ui/react";
+import { ButtonGroup, Heading, VStack } from "@chakra-ui/react";
 
 import { newMaterial, nextStudyBlock } from "consume/redux/consume.slice";
 import { selectCurrentHooks } from "hook/redux/hook.selectors";
@@ -11,14 +11,10 @@ export function SummaryScreen() {
   const currentHooks = useAppSelector(selectCurrentHooks);
 
   return (
-    <Box
-      d="flex"
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="column"
-    >
-      <Heading size="md">Summary Screen</Heading>
-      <Text>Hooks Created: {currentHooks.length}</Text>
+    <VStack spacing={5}>
+      <Heading size="md">
+        You created {currentHooks.length} hooks/notes in this study block
+      </Heading>
       <ButtonGroup mt={5}>
         <Button color="green" onClick={() => dispatch(nextStudyBlock())}>
           Next Study Block
@@ -27,7 +23,7 @@ export function SummaryScreen() {
           New Material
         </Button>
       </ButtonGroup>
-      <HookList hooks={currentHooks} isPrevious={false} dragDisabled />
-    </Box>
+      <HookList hooks={currentHooks} dragDisabled />
+    </VStack>
   );
 }

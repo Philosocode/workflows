@@ -15,26 +15,41 @@ const initialState: IHookState = {
       id: "a",
       content: "a",
       isExpanded: false,
-      isPrevious: false,
       title: "a",
     },
     b: {
       id: "b",
       content: "b",
       isExpanded: false,
-      isPrevious: false,
       title: "b",
     },
     c: {
       id: "c",
       content: "c",
       isExpanded: false,
-      isPrevious: false,
       title: "c",
+    },
+    d: {
+      id: "d",
+      content: "d",
+      isExpanded: false,
+      title: "d",
+    },
+    e: {
+      id: "e",
+      content: "e",
+      isExpanded: false,
+      title: "e",
+    },
+    f: {
+      id: "f",
+      content: "f",
+      isExpanded: false,
+      title: "f",
     },
   },
   currentHookIds: ["a", "b", "c"],
-  previousHookIds: [],
+  previousHookIds: ["d", "e", "f"],
 };
 
 const hookSlice = createSlice({
@@ -64,7 +79,7 @@ const hookSlice = createSlice({
       hookIds.splice(newIndex, 0, hookToReposition);
     },
     deleteHook: (state, action) => {
-      const isPrevious = state.hooks[action.payload].isPrevious;
+      const isPrevious = state.previousHookIds.includes(action.payload);
 
       state.hooks = omit(state.hooks, [action.payload]);
 
@@ -90,10 +105,7 @@ const hookSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(nextStudyBlock, (state) => {
       // move current hook ids into previous
-      state.previousHookIds = [
-        ...state.previousHookIds,
-        ...state.currentHookIds,
-      ];
+      state.previousHookIds.push(...state.currentHookIds);
       state.currentHookIds = [];
     });
   },

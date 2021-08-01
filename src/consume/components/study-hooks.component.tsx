@@ -19,7 +19,6 @@ export function StudyHooks(props: IProps) {
         id: `${Date.now()}`,
         title,
         content,
-        isPrevious: false,
         isExpanded: false,
       }),
     );
@@ -27,7 +26,7 @@ export function StudyHooks(props: IProps) {
 
   return (
     <>
-    <Message>{props.messageText}</Message>
+      <Message>{props.messageText}</Message>
       <CreateHookForm onSubmit={handleCreateHook} showIcons={props.showIcons} />
       <Button color="gray" onClick={props.goBack} mt={2}>
         Go Back

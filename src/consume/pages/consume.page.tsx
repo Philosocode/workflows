@@ -9,9 +9,8 @@ import { TimerReminder } from "consume/steps/timer-reminder.component";
 import { SkimReminder } from "consume/steps/skim-reminder.component";
 import { SummaryReminder } from "consume/steps/summary-reminder.component";
 import { PracticeReminder } from "consume/steps/practice-reminder.component";
-import { PreStudySummarize } from "consume/steps/pre-study-summarize.component";
 import { Study } from "consume/steps/study.component";
-import { PostStudySummarize } from "consume/steps/post-study-summarize.component";
+import { StudySummarize } from "consume/steps/study-summarize.component";
 import { SummaryScreen } from "consume/steps/summary-screen.component";
 import { ConsumeNav } from "consume/components/consume-nav.component";
 
@@ -22,9 +21,9 @@ const steps = [
   <SkimReminder />,
   <SummaryReminder />,
   <PracticeReminder />,
-  <PreStudySummarize />,
+  <StudySummarize message="Summarize everything you've learned so far. Try to do it from memory, without looking at the material." />,
   <Study />,
-  <PostStudySummarize />,
+  <StudySummarize message="Summarize everything you've learned in this study block. Try to do it from memory, without looking at the material." />,
   <SummaryScreen />,
 ];
 

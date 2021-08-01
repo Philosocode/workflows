@@ -25,24 +25,18 @@ export const selectCurrentHooks = createSelector(
   (hash, ids) => {
     const hooks: IHook[] = [];
 
-    ids.forEach((id) => {
-      const currentHook = hash[id];
-      if (!currentHook.isPrevious) hooks.push(hash[id]);
-    });
+    ids.forEach((id) => hooks.push(hash[id]));
 
     return hooks;
   },
 );
 
-export const selectPastHooks = createSelector(
+export const selectPreviousHooks = createSelector(
   [selectHookHash, selectPreviousHookIds],
   (hash, ids) => {
     const hooks: IHook[] = [];
 
-    ids.forEach((id) => {
-      const currentHook = hash[id];
-      if (currentHook.isPrevious) hooks.push(hash[id]);
-    });
+    ids.forEach((id) => hooks.push(hash[id]));
 
     return hooks;
   },

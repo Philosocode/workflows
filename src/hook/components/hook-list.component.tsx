@@ -2,16 +2,18 @@ import { VStack } from "@chakra-ui/react";
 import { DropResult } from "react-beautiful-dnd";
 
 import { IHook } from "hook/shared/hook.types";
-import { HookListItem } from "./hook-list-item.component";
+import { useAppDispatch } from "shared/redux/store";
+import { repositionHook } from "hook/redux/hook.slice";
+
 import { DragAndDropWrapper } from "shared/components/drag-and-drop/drag-and-drop-wrapper.component";
 import { DraggableWrapper } from "shared/components/drag-and-drop/draggable-wrapper.component";
-import { repositionHook } from "hook/redux/hook.slice";
-import { useAppDispatch } from "shared/redux/store";
+import { HookListItem } from "hook/components/hook-list-item.component";
 
 interface IProps {
   hooks: IHook[];
-  isPrevious: boolean;
+
   dragDisabled?: boolean;
+  isPrevious?: boolean;
 }
 export function HookList(props: IProps) {
   const dispatch = useAppDispatch();
@@ -27,7 +29,7 @@ export function HookList(props: IProps) {
       repositionHook({
         oldIndex,
         newIndex,
-        isPrevious: props.isPrevious,
+        isPrevious: props.isPrevious ?? false,
       }),
     );
   }
@@ -37,7 +39,7 @@ export function HookList(props: IProps) {
       droppableId="hook-list-droppable"
       handleDragEnd={handleDragEnd}
     >
-      <VStack w="100%" mt={10} spacing={5}>
+      <VStack w="100%" spacing={5}>
         {props.hooks.map((hook, index) => (
           <DraggableWrapper
             key={hook.id}
