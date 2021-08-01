@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal, ModalOverlay } from "@chakra-ui/react";
 
-import { THookType } from "hook/redux/hook.types";
+import { THookType } from "hook/shared/hook.types";
 import { HookTypes } from "./hook-types.component";
 import { HookSelect } from "./hook-select.component";
 

@@ -2,7 +2,7 @@ import { Box, Icon, Text } from "@chakra-ui/react";
 import { FaChevronDown, FaRegTrashAlt } from "react-icons/fa";
 
 // logic
-import { IHook } from "hook/redux/hook.types";
+import { IHook } from "hook/shared/hook.types";
 import { deleteHook, updateHook } from "hook/redux/hook.slice";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { useAppDispatch } from "shared/redux/store";

@@ -4,7 +4,7 @@ import { RiLightbulbFlashFill } from "react-icons/ri";
 import { Modal } from "modal/components/modal.component";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { useRandom } from "shared/hooks/use-random.hook";
-import { allHooksArray } from "hook/data/hooks.data";
+import { allHooksArray } from "hook/shared/hooks.data";
 import { Button } from "shared/components/button.component";
 
 export function RandoHookModal() {

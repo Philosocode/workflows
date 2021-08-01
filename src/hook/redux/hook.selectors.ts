@@ -1,7 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 
 import { TAppState } from "shared/redux/store";
-import { IHook } from "./hook.types";
+import { IHook } from "../shared/hook.types";
 
 const selectHookState = (state: TAppState) => state.hook;
 

@@ -1,7 +1,7 @@
 import { VStack } from "@chakra-ui/react";
 import { DropResult } from "react-beautiful-dnd";
 
-import { IHook } from "hook/redux/hook.types";
+import { IHook } from "hook/shared/hook.types";
 import { HookListItem } from "./hook-list-item.component";
 import { DragAndDropWrapper } from "shared/components/drag-and-drop/drag-and-drop-wrapper.component";
 import { DraggableWrapper } from "shared/components/drag-and-drop/draggable-wrapper.component";

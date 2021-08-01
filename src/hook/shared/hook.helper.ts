@@ -1,6 +1,6 @@
 import { random } from "lodash";
 
-import { allHooksArray } from "hook/data/hooks.data";
+import { allHooksArray } from "hook/shared/hooks.data";
 
 export function getRandomHook(currentHook: string = "") {
   const currHook = currentHook.trim().toLowerCase();

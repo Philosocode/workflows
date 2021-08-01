@@ -3,7 +3,7 @@ import { FormControl, HStack, Icon, VStack } from "@chakra-ui/react";
 import { RiLightbulbFlashFill } from "react-icons/ri";
 import { FaRandom } from "react-icons/fa";
 
-import { getRandomHook } from "hook/helpers/hook.helper";
+import { getRandomHook } from "hook/shared/hook.helper";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 
 import { Button } from "shared/components/button.component";

@@ -7,7 +7,7 @@ import {
   IHookState,
   IRepositionHookPayload,
   IUpdateHookPayload,
-} from "./hook.types";
+} from "../shared/hook.types";
 
 const initialState: IHookState = {
   hooks: {
