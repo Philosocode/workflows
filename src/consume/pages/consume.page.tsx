@@ -5,7 +5,7 @@ import { selectStep } from "consume/redux/consume.selectors";
 
 import { GetMaterialData } from "consume/steps/get-material-data.component";
 import { GoSlowly } from "consume/steps/go-slowly.component";
-import { StartTimer } from "consume/steps/start-timer.component";
+import { TimerReminder } from "consume/steps/timer-reminder.component";
 import { Skim } from "consume/steps/skim.component";
 import { ViewSummary } from "consume/steps/view-summary.component";
 import { Practice } from "consume/steps/practice.component";
@@ -18,7 +18,7 @@ import { ConsumeNav } from "consume/components/consume-nav.component";
 const steps = [
   <GetMaterialData />,
   <GoSlowly />,
-  <StartTimer />,
+  <TimerReminder />,
   <Skim />,
   <ViewSummary />,
   <Practice />,
