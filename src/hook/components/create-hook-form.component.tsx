@@ -1,16 +1,19 @@
 import { useState } from "react";
-import { FormControl, HStack, Icon, Input, VStack } from "@chakra-ui/react";
+import { FormControl, HStack, Icon, VStack } from "@chakra-ui/react";
 import { RiLightbulbFlashFill } from "react-icons/ri";
 import { FaRandom } from "react-icons/fa";
 
 import { getRandomHook } from "hook/helpers/hook.helper";
 import { useToggle } from "shared/hooks/use-toggle.hook";
-import { MarkdownEditor } from "editor/components/markdown-editor.component";
+
 import { Button } from "shared/components/button.component";
 import { HookSelectModal } from "./hook-select-modal.component";
+import { InputWithLabel } from "form/components/input-with-label.component";
+import { MarkdownEditor } from "editor/components/markdown-editor.component";
 
 interface IProps {
   onSubmit: (title: string, content: string) => void;
+
   showIcons?: boolean;
 }
 export function CreateHookForm(props: IProps) {
@@ -27,6 +30,10 @@ export function CreateHookForm(props: IProps) {
     setContent("");
   }
 
+  function handleTitleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setTitle(event.target.value);
+  }
+
   const buttonDisabled = title.trim() === "" || content.trim() === "";
 
   return (
@@ -34,15 +41,13 @@ export function CreateHookForm(props: IProps) {
       <form onSubmit={onSubmit}>
         <VStack spacing={25} alignItems="start">
           <FormControl id="title">
-            <Input
-              placeholder="Title"
-              required
-              variant="flushed"
-              focusBorderColor="green.500"
+            <InputWithLabel
+              id="hookTitle"
+              label="Hook Title"
+              placeholder="Enter title..."
               value={title}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                setTitle(event.target.value)
-              }
+              onChange={handleTitleChange}
+              showLabel
             />
           </FormControl>
           {props.showIcons && (

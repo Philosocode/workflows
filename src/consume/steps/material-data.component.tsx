@@ -17,8 +17,10 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 import { TMaterialType } from "consume/redux/consume.types";
-import { Button } from "shared/components/button.component";
 import { goToStudy, nextStep, stepOne } from "consume/redux/consume.slice";
+
+import { Button } from "shared/components/button.component";
+import { InputWithLabel } from "form/components/input-with-label.component";
 import { WorkflowStep } from "shared/components/workflow-step.component";
 
 interface IFormProps {
@@ -51,11 +53,12 @@ export function MaterialData() {
         <VStack spacing="25px" alignItems="start">
           <FormControl id="materialName">
             <FormLabel>Material Name</FormLabel>
-            <Input
+            <InputWithLabel
               {...register("materialName", { required: true })}
-              placeholder="Name of Material"
-              required
-              focusBorderColor="green.500"
+              id="materialName"
+              placeholder="Enter material name..."
+              label="Material Name"
+              variant="outline"
             />
           </FormControl>
 
