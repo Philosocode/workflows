@@ -6,13 +6,13 @@ export interface IProps {
 export function Message(props: IProps) {
   return (
     <Box
-      bg="white"
-      mx="auto"
-      mb={8}
+      border="1px solid"
+      borderColor="gray.300"
+      mb={7}
       maxW="full"
-      rounded="lg"
-      shadow="lg"
-      p={8}
+      rounded="xl"
+      shadow="md"
+      p={10}
       fontSize="3xl"
     >
       {props.children}
