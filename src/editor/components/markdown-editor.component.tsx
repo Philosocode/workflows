@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import ReactMde, { getDefaultToolbarCommands } from "react-mde";
 import Showdown from "showdown";
 
-import { TMarkdownEditorTab } from "editor/redux/editor.types";
-import styles from "./markdown-editor.module.css";
+import { TMarkdownEditorTab } from "editor/shared/editor.types";
+import styles from "editor/components/markdown-editor.module.css";
 
 const toolbarCommands = getDefaultToolbarCommands();
 
