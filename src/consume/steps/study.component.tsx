@@ -3,18 +3,18 @@ import { Box, Divider, Heading, Icon } from "@chakra-ui/react";
 import { AiOutlineExpand } from "react-icons/ai";
 
 import { TStudyView } from "consume/redux/consume.types";
-import { selectCurrentHooks, selectPastHooks } from "hook/redux/hook.selectors";
-
-import { WorkflowStep } from "shared/components/workflow-step.component";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
+import { selectCurrentHooks, selectPastHooks } from "hook/redux/hook.selectors";
+import { toggleAllHooks } from "hook/redux/hook.slice";
+import { selectMaterialType } from "consume/redux/consume.selectors";
+import { nextStep } from "consume/redux/consume.slice";
+
 import { HookList } from "../components/hook-list.component";
 import { StudyHelp } from "../components/study-help.component";
 import { StudyHooks } from "../components/study-hooks.component";
 import { StudyMenu } from "../components/study-menu.component";
-import { toggleAllHooks } from "hook/redux/hook.slice";
 import { Timer } from "timer/components/timer.component";
-import { nextStep } from "consume/redux/consume.slice";
-import { selectMaterialType } from "consume/redux/consume.selectors";
+import { Message } from "message/components/message.component";
 
 const notesText = (
   <>
@@ -51,9 +51,10 @@ export function Study() {
   return (
     <>
       {view === "study" && (
-        <WorkflowStep messageContent={studyMessage}>
+        <>
+          <Message>{studyMessage}</Message>
           <Timer goToMenu={goToMenu} />
-        </WorkflowStep>
+        </>
       )}
 
       {view === "menu" && (

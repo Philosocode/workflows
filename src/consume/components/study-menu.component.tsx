@@ -1,8 +1,8 @@
 import { ButtonGroup } from "@chakra-ui/react";
-import { TStudyView } from "consume/redux/consume.types";
 
+import { TStudyView } from "consume/redux/consume.types";
 import { Button } from "shared/components/button.component";
-import { WorkflowStep } from "shared/components/workflow-step.component";
+import { Message } from "message/components/message.component";
 
 interface IProps {
   setView: (view: TStudyView) => void;
@@ -10,7 +10,8 @@ interface IProps {
 }
 export function StudyMenu(props: IProps) {
   return (
-    <WorkflowStep messageContent="Choose an option:">
+    <>
+      <Message>Choose an option:</Message>
       <ButtonGroup>
         <Button color="green" onClick={() => props.setView("hooks")}>
           Hooks
@@ -25,6 +26,6 @@ export function StudyMenu(props: IProps) {
           I'm Done
         </Button>
       </ButtonGroup>
-    </WorkflowStep>
+    </>
   );
 }

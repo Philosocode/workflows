@@ -3,7 +3,7 @@ import { createHook } from "hook/redux/hook.slice";
 
 import { CreateHookForm } from "hook/components/create-hook-form.component";
 import { Button } from "shared/components/button.component";
-import { WorkflowStep } from "shared/components/workflow-step.component";
+import { Message } from "message/components/message.component";
 
 interface IProps {
   goBack: () => void;
@@ -26,11 +26,12 @@ export function StudyHooks(props: IProps) {
   }
 
   return (
-    <WorkflowStep messageContent={props.messageText}>
+    <>
+      <Message>{props.messageText}</Message>
       <CreateHookForm onSubmit={handleCreateHook} showIcons={props.showIcons} />
       <Button color="gray" onClick={props.goBack} mt={2}>
         Go Back
       </Button>
-    </WorkflowStep>
+    </>
   );
 }

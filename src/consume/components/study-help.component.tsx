@@ -3,10 +3,10 @@ import { Box, ButtonGroup, Center, Image } from "@chakra-ui/react";
 
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { Button } from "shared/components/button.component";
-import { WorkflowStep } from "shared/components/workflow-step.component";
 
 import duckImage from "consume/assets/timothy-dykes-LhqLdDPcSV8-unsplash.png";
 import { useStep } from "shared/hooks/use-step.hook";
+import { Message } from "message/components/message.component";
 
 const introMessage = (
   <>
@@ -64,36 +64,35 @@ export function StudyHelp(props: IProps) {
 
   return (
     <>
-      <WorkflowStep messageContent={getMessage()}>
-        <Center mb={10}>
-          <Image src={duckImage} alt="Rubber Duck" />
-        </Center>
-        {isProgrammer === undefined ? (
-          <ButtonGroup spacing={"1rem"}>
-            <Button color="green" onClick={() => setIsProgrammer(true)}>
-              Yes
-            </Button>
-            <Button color="red" onClick={() => setIsProgrammer(false)}>
-              No
+      <Message>{getMessage()}</Message>
+      <Center mb={10}>
+        <Image src={duckImage} alt="Rubber Duck" />
+      </Center>
+      {isProgrammer === undefined ? (
+        <ButtonGroup spacing={"1rem"}>
+          <Button color="green" onClick={() => setIsProgrammer(true)}>
+            Yes
+          </Button>
+          <Button color="red" onClick={() => setIsProgrammer(false)}>
+            No
+          </Button>
+          <Button color="gray" onClick={props.goBack}>
+            Go Back
+          </Button>
+        </ButtonGroup>
+      ) : (
+        <>
+          <MarkdownEditor value={text} setValue={setText} />
+          <ButtonGroup mt={5}>
+            <Button color="green" onClick={onNext} disabled={isDone()}>
+              Next
             </Button>
             <Button color="gray" onClick={props.goBack}>
-              Go Back
+              Return to Menu
             </Button>
           </ButtonGroup>
-        ) : (
-          <>
-            <MarkdownEditor value={text} setValue={setText} />
-            <ButtonGroup mt={5}>
-              <Button color="green" onClick={onNext} disabled={isDone()}>
-                Next
-              </Button>
-              <Button color="gray" onClick={props.goBack}>
-                Return to Menu
-              </Button>
-            </ButtonGroup>
-          </>
-        )}
-      </WorkflowStep>
+        </>
+      )}
     </>
   );
 }

@@ -19,7 +19,7 @@ import { TMaterialType } from "consume/redux/consume.types";
 import { goToStudy, nextStep, stepOne } from "consume/redux/consume.slice";
 
 import { Button } from "shared/components/button.component";
-import { WorkflowStep } from "shared/components/workflow-step.component";
+import { Message } from "message/components/message.component";
 
 interface IFormProps {
   materialType: TMaterialType;
@@ -27,7 +27,6 @@ interface IFormProps {
 }
 export function MaterialData() {
   const dispatch = useDispatch();
-
   const { control, formState, handleSubmit, register, getValues } =
     useForm<IFormProps>({
       mode: "onChange",
@@ -45,9 +44,11 @@ export function MaterialData() {
   }
 
   return (
-    <WorkflowStep messageContent="What are you reading / watching today?">
+    <>
+      <Message>What are you reading / watching today?</Message>
+
       <form onSubmit={handleSubmit(onSubmit)}>
-        <VStack spacing="25px" alignItems="start">
+        <VStack spacing={0} alignItems="start">
           <FormControl id="materialType">
             <FormLabel>Material Type</FormLabel>
             <RadioGroup>
@@ -103,6 +104,6 @@ export function MaterialData() {
           </ButtonGroup>
         </VStack>
       </form>
-    </WorkflowStep>
+    </>
   );
 }

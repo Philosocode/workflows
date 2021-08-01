@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
+import { Box } from "@chakra-ui/react";
 
 import { nextStep } from "consume/redux/consume.slice";
 import { Button } from "shared/components/button.component";
-import { WorkflowStep } from "shared/components/workflow-step.component";
+import { Message } from "message/components/message.component";
 
 export function Skim() {
   const dispatch = useDispatch();
@@ -12,18 +13,14 @@ export function Skim() {
   }
 
   return (
-    <WorkflowStep
-      messageContent={
-        <>
-          Skim through the material.
-          <br />
-          Pay attention to headings, images, and questions.
-        </>
-      }
-    >
+    <>
+      <Message>
+        <Box>Skim through the material.</Box>
+        <Box>Pay attention to headings, images, and questions.</Box>
+      </Message>
       <Button color="green" onClick={onClick}>
         Next
       </Button>
-    </WorkflowStep>
+    </>
   );
 }

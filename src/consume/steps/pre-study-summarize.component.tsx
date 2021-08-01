@@ -4,8 +4,8 @@ import { Box, ButtonGroup } from "@chakra-ui/react";
 
 import { nextStep } from "consume/redux/consume.slice";
 import { Button } from "shared/components/button.component";
-import { WorkflowStep } from "shared/components/workflow-step.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
+import { Message } from "message/components/message.component";
 
 export function PreStudySummarize() {
   const dispatch = useDispatch();
@@ -16,14 +16,14 @@ export function PreStudySummarize() {
   }
 
   return (
-    <WorkflowStep
-      messageContent={
+    <>
+      <Message>
         <>
           <Box>Summarize everything you've learned so far.</Box>
           <Box>Try to do it from memory, without looking at the material.</Box>
         </>
-      }
-    >
+      </Message>
+
       <MarkdownEditor
         value={summary}
         setValue={setSummary}
@@ -38,6 +38,6 @@ export function PreStudySummarize() {
           Okay
         </Button>
       </ButtonGroup>
-    </WorkflowStep>
+    </>
   );
 }

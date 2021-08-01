@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 
 import { nextStep } from "consume/redux/consume.slice";
 import { Button } from "shared/components/button.component";
-import { WorkflowStep } from "shared/components/workflow-step.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { Box, ButtonGroup } from "@chakra-ui/react";
+import { Message } from "message/components/message.component";
 
 export function PostStudySummarize() {
   const dispatch = useDispatch();
@@ -16,14 +16,11 @@ export function PostStudySummarize() {
   }
 
   return (
-    <WorkflowStep
-      messageContent={
-        <>
-          <Box>Summarize everything you've learned in this study block.</Box>
-          <Box>Try to do it from memory, without looking at the material.</Box>
-        </>
-      }
-    >
+    <>
+      <Message>
+        <Box>Summarize everything you've learned in this study block.</Box>
+        <Box>Try to do it from memory, without looking at the material.</Box>
+      </Message>
       <MarkdownEditor
         value={summary}
         setValue={setSummary}
@@ -38,6 +35,6 @@ export function PostStudySummarize() {
           Next
         </Button>
       </ButtonGroup>
-    </WorkflowStep>
+    </>
   );
 }

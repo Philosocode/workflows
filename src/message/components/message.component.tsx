@@ -8,7 +8,7 @@ export function Message(props: IProps) {
     <Box
       border="1px solid"
       borderColor="gray.300"
-      mb={7}
+      mb={10}
       maxW="full"
       rounded="xl"
       shadow="md"

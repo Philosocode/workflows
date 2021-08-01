@@ -17,7 +17,7 @@ export function SummaryScreen() {
       alignItems="center"
       flexDirection="column"
     >
-      <Heading size="lg">Summary Screen</Heading>
+      <Heading size="md">Summary Screen</Heading>
       <Text>Hooks Created: {currentHooks.length}</Text>
       <ButtonGroup mt={5}>
         <Button color="green" onClick={() => dispatch(nextStudyBlock())}>
