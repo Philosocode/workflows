@@ -4,9 +4,13 @@ import { ConsumeMessageButtonStep } from "consume/components/consume-message-but
 
 export function SkimReminder() {
   return (
-    <ConsumeMessageButtonStep>
-      <Box>Skim through the material.</Box>
-      <Box>Pay attention to headings, images, and questions.</Box>
-    </ConsumeMessageButtonStep>
+    <ConsumeMessageButtonStep
+      message={
+        <>
+          <Box>Skim through the material.</Box>
+          <Box>Pay attention to headings, images, and questions.</Box>
+        </>
+      }
+    />
   );
 }

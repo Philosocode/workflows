@@ -78,18 +78,10 @@ export function StudyHelp(props: IProps) {
       </Center>
       {isProgrammer === undefined ? (
         <CardButtonGrid>
-          <CardButton
-            color="gray"
-            onClick={() => setIsProgrammer(true)}
-            icon={FiThumbsUp}
-          >
+          <CardButton color="gray" onClick={() => setIsProgrammer(true)}>
             Yes
           </CardButton>
-          <CardButton
-            color="gray"
-            onClick={() => setIsProgrammer(false)}
-            icon={FiThumbsDown}
-          >
+          <CardButton color="gray" onClick={() => setIsProgrammer(false)}>
             No
           </CardButton>
         </CardButtonGrid>
@@ -98,11 +90,11 @@ export function StudyHelp(props: IProps) {
           <MarkdownEditor value={text} setValue={setText} />
           <ButtonGroup mt={5}>
             {!isDone() && (
-              <Button color="green" onClick={onNext} disabled={isDone()}>
+              <Button onClick={onNext} disabled={isDone()}>
                 Next
               </Button>
             )}
-            <Button color="gray" onClick={props.goBack}>
+            <Button colorScheme="gray" onClick={props.goBack}>
               Return to Menu
             </Button>
           </ButtonGroup>

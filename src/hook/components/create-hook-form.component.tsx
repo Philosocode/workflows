@@ -69,7 +69,7 @@ export function CreateHookForm(props: IProps) {
             <Button disabled={buttonDisabled} type="submit">
               Create
             </Button>
-            <Button color="gray" type="button" onClick={props.goBack}>
+            <Button colorScheme="gray" type="button" onClick={props.goBack}>
               Go Back
             </Button>
           </ButtonGroup>

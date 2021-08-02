@@ -31,7 +31,7 @@ export function HookSelect(props: IProps) {
         />
       </ModalBody>
       <ModalFooter>
-        <Button color="gray" onClick={props.goBack}>
+        <Button colorScheme="gray" onClick={props.goBack}>
           Go Back
         </Button>
       </ModalFooter>

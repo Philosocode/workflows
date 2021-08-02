@@ -1,15 +1,16 @@
 import { useState } from "react";
 
 import { TStudyView } from "consume/redux/consume.types";
-import { useAppDispatch } from "shared/redux/store";
+import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { nextStep } from "consume/redux/consume.slice";
 
 import { StudyHelp } from "../components/study-help.component";
 import { StudyHooks } from "../components/study-hooks.component";
 import { StudyMenu } from "../components/study-menu.component";
-import { StudyTimer } from "consume/components/study-timer.component";
 import { StudyFooter } from "consume/components/study-footer.component";
 import { Box } from "@chakra-ui/react";
+import { useNextPage } from "shared/hooks/use-next-page.hook";
+import { selectStep } from "consume/redux/consume.selectors";
 
 const notesText = (
   <>
@@ -35,18 +36,17 @@ const hooksText = (
 );
 
 export function Study() {
-  const dispatch = useAppDispatch();
-  const [view, setView] = useState<TStudyView>("timer");
+  const [view, setView] = useState<TStudyView>("menu");
+  const step = useAppSelector(selectStep);
+
+  const nextPage = useNextPage("/consume", step);
 
   function goToMenu() {
     setView("menu");
   }
 
   const studyViewMap = {
-    timer: <StudyTimer onNext={goToMenu} />,
-    menu: (
-      <StudyMenu setView={setView} goToSummary={() => dispatch(nextStep())} />
-    ),
+    menu: <StudyMenu setView={setView} goToSummary={nextPage} />,
     help: <StudyHelp goBack={goToMenu} />,
     hooks: <StudyHooks goBack={goToMenu} messageText={hooksText} showIcons />,
     notes: <StudyHooks goBack={goToMenu} messageText={notesText} />,

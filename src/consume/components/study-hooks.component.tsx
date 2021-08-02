@@ -18,7 +18,7 @@ export function StudyHooks(props: IProps) {
         id: `${Date.now()}`,
         title,
         content,
-        isExpanded: false,
+        isExpanded: true,
       }),
     );
   }

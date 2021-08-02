@@ -16,7 +16,7 @@ export function ExpandHooksButton({ view }: IProps) {
     color: useColorModeValue("white", "black"),
   };
 
-  if (view === "timer" || view === "help") return null;
+  if (view === "help") return null;
   return (
     <Box
       bg={styles.bg}

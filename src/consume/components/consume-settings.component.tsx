@@ -99,7 +99,7 @@ export function ConsumeSettings() {
             <>
               <ButtonGroup spacing={5}>
                 <Button onClick={submitForm}>Save</Button>
-                <Button color="gray" onClick={toggleModal}>
+                <Button colorScheme="gray" onClick={toggleModal}>
                   Cancel
                 </Button>
               </ButtonGroup>

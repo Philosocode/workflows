@@ -10,7 +10,7 @@ const audio = new Audio("/alarm-beep.mp3");
 
 interface IProps {
   duration: number;
-  goToMenu: () => void;
+  onDone: () => void;
 
   startAutomatically?: boolean;
 }
@@ -25,6 +25,10 @@ export function Timer(props: IProps) {
   const [isActive, setIsActive] = useState(props.startAutomatically ?? true);
 
   const shouldPlayAlarm = useAppSelector(selectShouldPlayAlarm);
+
+  useEffect(() => {
+    setCounter(props.duration * 60);
+  }, [props.duration]);
 
   useEffect(() => {
     let intervalId: ReturnType<typeof setInterval>;
@@ -80,21 +84,21 @@ export function Timer(props: IProps) {
         {counter > 0 && (
           <ButtonGroup mt={3} spacing={3}>
             <Button
-              color={isActive ? "gray" : "green"}
+              colorScheme={isActive ? "gray" : "green"}
               onClick={() => setIsActive(!isActive)}
               type="button"
             >
               {isActive ? "Pause" : "Start"}
             </Button>
-            <Button color="gray" onClick={props.goToMenu}>
+            <Button colorScheme="gray" onClick={props.onDone}>
               Skip Timer
             </Button>
           </ButtonGroup>
         )}
       </Box>
 
-      {counter <= 0 && (
-        <Button onClick={props.goToMenu} mt={theme.spacing.nextButtonMarginTop}>
+      {counter <= -1 && (
+        <Button onClick={props.onDone} mt={theme.spacing.nextButtonMarginTop}>
           Next
         </Button>
       )}

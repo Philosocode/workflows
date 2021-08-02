@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CONSUME_STUDY_PAGE_NUMBER } from "consume/routes/consume.routes";
 
 import {
   IConsumeState,
@@ -12,7 +11,7 @@ const initialState: IConsumeState = {
   step: 1,
   studyBlockCount: 0,
   studyBlockTime: 5,
-  shouldPlayAlarm: false,
+  shouldPlayAlarm: true,
 };
 
 const consumeSlice = createSlice({

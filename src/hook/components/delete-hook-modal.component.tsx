@@ -23,10 +23,10 @@ export function DeleteHookModal(props: IProps) {
       body="Are you sure? You can't undo this action"
       footer={
         <ButtonGroup spacing={3}>
-          <Button color="red" onClick={onDelete}>
+          <Button colorScheme="red" onClick={onDelete}>
             Delete
           </Button>
-          <Button color="gray" onClick={props.onClose}>
+          <Button colorScheme="gray" onClick={props.onClose}>
             Cancel
           </Button>
         </ButtonGroup>

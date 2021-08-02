@@ -1,4 +1,5 @@
 import { useState, ReactNode } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ButtonGroup } from "@chakra-ui/react";
 
@@ -8,33 +9,27 @@ import { nextStep } from "consume/redux/consume.slice";
 import { Button } from "shared/components/button/button.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { Message } from "message/components/message.component";
+import { useAppSelector } from "shared/redux/store";
+import { selectStep } from "consume/redux/consume.selectors";
+import { ConsumeMessageButtonStep } from "consume/components/consume-message-button-step.component";
 
 interface IProps {
   message: ReactNode;
 }
 export function StudySummarize(props: IProps) {
-  const dispatch = useDispatch();
   const [summary, setSummary] = useState("");
 
-  function onClick() {
-    dispatch(nextStep());
-  }
-
   return (
-    <>
-      <Message>{props.message}</Message>
-
+    <ConsumeMessageButtonStep
+      message={props.message}
+      keyPressDisabled
+      buttonProps={{ disabled: summary.trim() === "" }}
+    >
       <MarkdownEditor
         value={summary}
         setValue={setSummary}
         placeholder="Enter summary"
       />
-
-      <ButtonGroup mt={theme.spacing.nextButtonMarginTop}>
-        <Button onClick={onClick} disabled={summary.trim() === ""}>
-          Next
-        </Button>
-      </ButtonGroup>
-    </>
+    </ConsumeMessageButtonStep>
   );
 }

@@ -15,7 +15,7 @@ export function StudyFooter({ view }: IProps) {
   const currentHooks = useAppSelector(selectCurrentHooks);
   const previousHooks = useAppSelector(selectPreviousHooks);
 
-  const shouldShowHooks = view !== "timer" && view !== "help";
+  const shouldShowHooks = view !== "help";
   if (!shouldShowHooks) return null;
 
   return (

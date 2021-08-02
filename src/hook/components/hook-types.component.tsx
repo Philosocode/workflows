@@ -58,7 +58,7 @@ function IconButton(props: {
 
   return (
     <Button
-      color="gray"
+      colorScheme="gray"
       onClick={props.onClick}
       _hover={{ bg: hoverBg, color: "white" }}
     >

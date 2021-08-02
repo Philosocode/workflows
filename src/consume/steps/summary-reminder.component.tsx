@@ -2,8 +2,6 @@ import { ConsumeMessageButtonStep } from "consume/components/consume-message-but
 
 export function SummaryReminder() {
   return (
-    <ConsumeMessageButtonStep>
-      Is there a summary? If so, view it.
-    </ConsumeMessageButtonStep>
+    <ConsumeMessageButtonStep message="Is there a summary? If so, view it." />
   );
 }

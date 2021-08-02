@@ -1,5 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   FormControl,
   Radio,
@@ -17,11 +18,9 @@ import {
 
 import { TMaterialType } from "consume/redux/consume.types";
 import { useAppSelector } from "shared/redux/store";
-import { goToStudy, setMaterialData } from "consume/redux/consume.slice";
-import {
-  selectShouldPlayAlarm,
-  selectStudyBlockTime,
-} from "consume/redux/consume.selectors";
+import { setMaterialData } from "consume/redux/consume.slice";
+import { selectConsumeState } from "consume/redux/consume.selectors";
+import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 
 import { Message } from "message/components/message.component";
 import { CardButton } from "shared/components/button/card-button.component";
@@ -34,9 +33,11 @@ interface IFormProps {
   shouldPlayAlarm: boolean;
 }
 export function GetMaterialData() {
+  const history = useHistory();
   const dispatch = useDispatch();
-  const studyBlockTime = useAppSelector(selectStudyBlockTime);
-  const shouldPlayAlarm = useAppSelector(selectShouldPlayAlarm);
+
+  const { step, studyBlockTime, shouldPlayAlarm } =
+    useAppSelector(selectConsumeState);
 
   const { control, formState, handleSubmit, register, getValues } =
     useForm<IFormProps>({
@@ -45,11 +46,12 @@ export function GetMaterialData() {
 
   function onSubmit(values: IFormProps) {
     dispatch(setMaterialData(values));
+    history.push(`/consume/${step + 1}`);
   }
 
   function skipToStudy() {
     dispatch(setMaterialData(getValues()));
-    dispatch(goToStudy());
+    history.push(`/consume/${CONSUME_PAGE_NUMBERS.STUDY}`);
   }
 
   const focusBorderColor = useColorModeValue("green.500", "green.200");

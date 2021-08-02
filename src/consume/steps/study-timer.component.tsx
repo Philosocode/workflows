@@ -1,18 +1,16 @@
 import { useAppSelector } from "shared/redux/store";
-import {
-  selectMaterialType,
-  selectStudyBlockTime,
-} from "consume/redux/consume.selectors";
+import { selectConsumeState } from "consume/redux/consume.selectors";
 
 import { Message } from "message/components/message.component";
 import { Timer } from "timer/components/timer.component";
+import { useNextPage } from "shared/hooks/use-next-page.hook";
 
-interface IProps {
-  onNext: () => void;
-}
-export function StudyTimer(props: IProps) {
-  const materialType = useAppSelector(selectMaterialType);
-  const studyBlockTime = useAppSelector(selectStudyBlockTime);
+export function StudyTimer() {
+  const { materialType, step, studyBlockTime } =
+    useAppSelector(selectConsumeState);
+
+  const nextStep = useNextPage("/consume", step);
+
   const studyMessage =
     materialType === "reading"
       ? `Read for ${studyBlockTime} minute(s). Depending on the material, this may be a few paragraphs, or 1-2 pages`
@@ -21,7 +19,7 @@ export function StudyTimer(props: IProps) {
   return (
     <>
       <Message>{studyMessage}</Message>
-      <Timer duration={studyBlockTime} goToMenu={props.onNext} />
+      <Timer duration={studyBlockTime} onDone={nextStep} />
     </>
   );
 }

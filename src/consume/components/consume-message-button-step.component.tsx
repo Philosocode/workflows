@@ -1,15 +1,18 @@
-import { nextStep } from "consume/redux/consume.slice";
-import { MessageButtonStep } from "shared/components/step/message-button-step.component";
-import { useAppDispatch } from "shared/redux/store";
+import { useAppSelector } from "shared/redux/store";
+import { selectStep } from "consume/redux/consume.selectors";
 
-interface IProps {
-  children: React.ReactNode;
-}
-export function ConsumeMessageButtonStep(props: IProps) {
-  const dispatch = useAppDispatch();
+import {
+  IMessageButtonStepProps,
+  MessageButtonStep,
+} from "shared/components/step/message-button-step.component";
+import { useNextPage } from "shared/hooks/use-next-page.hook";
+
+export function ConsumeMessageButtonStep(props: IMessageButtonStepProps) {
+  const step = useAppSelector(selectStep);
+  const nextPage = useNextPage("/consume", step);
 
   return (
-    <MessageButtonStep onNext={() => dispatch(nextStep())}>
+    <MessageButtonStep onNext={nextPage} {...props}>
       {props.children}
     </MessageButtonStep>
   );
