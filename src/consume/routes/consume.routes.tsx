@@ -1,5 +1,5 @@
 import { Route, RouteProps } from "react-router-dom";
-import { Box } from "@chakra-ui/react";
+import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 
 import { StudyHelp } from "consume/components/study-help.component";
 import { StudyHooks } from "consume/components/study-hooks.component";
@@ -15,6 +15,8 @@ import { Study } from "consume/steps/study.component";
 import { SummaryReminder } from "consume/steps/summary-reminder.component";
 import { SummaryScreen } from "consume/steps/summary-screen.component";
 import { TimerReminder } from "consume/steps/timer-reminder.component";
+import { Messages } from "message/components/messages.component";
+import { theme } from "shared/styles/theme";
 
 const _consumeRoutes = [
   { component: GetMaterialData },
@@ -84,16 +86,16 @@ const _studyRoutes = [
       <StudyHooks
         showIcons
         messageText={
-          <>
-            <Box>
-              Create notes to summarize what what you've learned during this
-              study block.
-            </Box>
-            <br />
-            <Box>
-              Try to do this from memory without referring to the material.
-            </Box>
-          </>
+          <Messages>
+            <UnorderedList spacing={theme.spacing.messageBoxSpacing}>
+              <ListItem>Create hooks for abstract concepts and ideas.</ListItem>
+              <ListItem>Pause and think about the concept deeply.</ListItem>
+              <ListItem>
+                Keep creating hooks until you have a solid understanding of the
+                concept.
+              </ListItem>
+            </UnorderedList>
+          </Messages>
         }
       />
     ),
@@ -103,16 +105,17 @@ const _studyRoutes = [
     render: () => (
       <StudyHooks
         messageText={
-          <>
-            <Box>Create hooks for abstract concepts and ideas.</Box>
-            <br />
-            <Box>Think about the concept deeply.</Box>
-            <br />
-            <Box>
-              Keep creating hooks until you have a solid understanding of the
-              concept.
-            </Box>
-          </>
+          <Messages>
+            <UnorderedList spacing={theme.spacing.messageBoxSpacing}>
+              <ListItem>
+                Create notes to summarize what what you've learned during this
+                study block.
+              </ListItem>
+              <ListItem>
+                Try to do this from memory without referring to the material.
+              </ListItem>
+            </UnorderedList>
+          </Messages>
         }
       />
     ),
