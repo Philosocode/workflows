@@ -1,8 +1,8 @@
-import { Tooltip } from "@chakra-ui/react";
+import { Icon, ListItem, Tooltip, UnorderedList } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import { BiNetworkChart, BiNote } from "react-icons/bi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { IoMdCheckmarkCircle } from "react-icons/io";
+import { IoMdCheckmarkCircle, IoMdHelpCircle } from "react-icons/io";
 
 import { useAppSelector } from "shared/redux/store";
 import { TStudyView } from "consume/redux/consume.types";
@@ -12,6 +12,7 @@ import { selectStep } from "consume/redux/consume.selectors";
 import { Message } from "message/components/message.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
+import { theme } from "shared/styles/theme";
 
 interface IProps {
   setView: (view: TStudyView) => void;
@@ -24,7 +25,19 @@ export function StudyMenu(props: IProps) {
 
   return (
     <>
-      <Message>Choose an option:</Message>
+      <Message>
+        <UnorderedList spacing={theme.spacing.messageBoxSpacing}>
+          <ListItem>
+            Create hooks for ideas or concepts you're struggling with or want to
+            understand better.
+          </ListItem>
+          <ListItem>Create notes to summarize what you learned.</ListItem>
+          <ListItem>
+            Stuck on a problem? Click on "I'm Stuck" or{" "}
+            <Icon as={IoMdHelpCircle} /> in the top-left corner.
+          </ListItem>
+        </UnorderedList>
+      </Message>
       <CardButtonGrid>
         <Tooltip
           label="Create hooks for abstract ideas or concepts"
