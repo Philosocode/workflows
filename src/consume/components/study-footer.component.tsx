@@ -1,5 +1,3 @@
-import { Divider, Heading, VStack } from "@chakra-ui/react";
-
 import { TStudyView } from "consume/redux/consume.types";
 import {
   selectCurrentHooks,

@@ -8,7 +8,8 @@ export function HookSelectGridItem(props: IProps) {
   const styles = {
     bg: useColorModeValue("gray.100", "gray.600"),
     hoverBg: useColorModeValue("green.500", "gray.500"),
-  }
+  };
+
   return (
     <GridItem key={props.hook}>
       <Box

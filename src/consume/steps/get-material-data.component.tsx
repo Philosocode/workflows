@@ -11,7 +11,6 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   VStack,
-  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { TMaterialType } from "consume/redux/consume.types";
@@ -27,7 +26,6 @@ import { Message } from "message/components/message.component";
 import { CardButton } from "shared/components/button/card-button.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { FormLabel } from "form/components/form-label.component";
-import { Button } from "shared/components/button/button.component";
 
 interface IFormProps {
   materialType: TMaterialType;

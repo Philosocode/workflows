@@ -1,5 +1,3 @@
-import { Icon, IconProps } from "@chakra-ui/react";
-import { IconType } from "react-icons";
 import { BiNetworkChart, BiNote } from "react-icons/bi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle } from "react-icons/io";

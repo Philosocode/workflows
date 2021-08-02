@@ -15,6 +15,7 @@ export function CardButton(props: IProps) {
       alignItems: "center",
       fontSize: "xl",
       padding: 10,
+      position: "relative",
       shadow: "sm",
       variant: "unstyled",
       w: "full",

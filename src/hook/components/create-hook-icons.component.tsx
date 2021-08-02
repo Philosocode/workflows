@@ -3,7 +3,6 @@ import { FaRandom } from "react-icons/fa";
 import { RiLightbulbFlashFill } from "react-icons/ri";
 
 import { getRandomHook } from "hook/shared/hook.helper";
-import { HoverIcon } from "icon/components/hover-icon.component";
 import { IconButton } from "shared/components/icon-button.component";
 
 interface IProps {

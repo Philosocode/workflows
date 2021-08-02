@@ -1,4 +1,4 @@
-import { Box, Heading, VStack } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 
 import { newMaterial, nextStudyBlock } from "consume/redux/consume.slice";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
@@ -20,7 +20,6 @@ export function SummaryScreen() {
         study block.
       </Message>
       <CardButtonGrid>
-
         <CardButton color="green" onClick={() => dispatch(nextStudyBlock())}>
           Next Block
         </CardButton>
