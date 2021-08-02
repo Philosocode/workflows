@@ -24,7 +24,7 @@ export function SummaryScreen() {
 
   function onNextStudyBlock() {
     dispatch(nextStudyBlock());
-    history.push(`/consume/${CONSUME_PAGE_NUMBERS.STUDY}`);
+    history.push(`/consume/${CONSUME_PAGE_NUMBERS.TIMER}`);
   }
 
   function onNewMaterial() {

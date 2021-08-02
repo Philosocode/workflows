@@ -44,4 +44,6 @@ export const consumeRoutes = _consumeRoutes.map((route, index) => (
 
 export const CONSUME_PAGE_NUMBERS = {
   STUDY: _consumeRoutes.findIndex((route) => route.component === Study) + 1,
+  TIMER:
+    _consumeRoutes.findIndex((route) => route.component === StudyTimer) + 1,
 };
