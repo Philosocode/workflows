@@ -28,12 +28,14 @@ export function StudyMenu(props: IProps) {
       <Message>
         <UnorderedList spacing={theme.spacing.messageBoxSpacing}>
           <ListItem>
-            Create hooks for ideas or concepts you're struggling with or want to
-            understand better.
+            If you want to better understand an idea or concept, choose "Hooks".
           </ListItem>
-          <ListItem>Create notes to summarize what you learned.</ListItem>
           <ListItem>
-            Stuck on a problem? Click on "I'm Stuck" or{" "}
+            If you want to summarize and reinforce what you've learned, choose
+            "Notes".
+          </ListItem>
+          <ListItem>
+            If you're stuck on a problem, choose "I'm Stuck" or click on{" "}
             <Icon as={IoMdHelpCircle} /> in the top-left corner.
           </ListItem>
         </UnorderedList>

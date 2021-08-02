@@ -46,16 +46,8 @@ const _consumeRoutes = [
     render: (props: RouteProps) => (
       <StudySummarize
         {...props}
-        message={
-          <>
-            <Box>
-              Summarize everything you've learned during this study block.
-            </Box>
-            <Box>
-              Try to do it from memory, without looking at the material.
-            </Box>
-          </>
-        }
+        message="Summarize everything you've learned during this study block.
+        Try to do it from memory, without looking at the material."
       />
     ),
   },
@@ -88,8 +80,13 @@ const _studyRoutes = [
         messageText={
           <Messages>
             <UnorderedList spacing={theme.spacing.messageBoxSpacing}>
-              <ListItem>Create hooks for abstract concepts and ideas.</ListItem>
-              <ListItem>Pause and think about the concept deeply.</ListItem>
+              <ListItem>
+                Pause and think deeply about the concept. Don't rush.
+              </ListItem>
+              <ListItem>
+                Create hooks for concepts and ideas you're struggling to
+                understand or want to understand better.
+              </ListItem>
               <ListItem>
                 Keep creating hooks until you have a solid understanding of the
                 concept.
