@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
 import { Draggable } from "react-beautiful-dnd";
 
 interface IProps {
@@ -6,12 +6,14 @@ interface IProps {
   draggableId: string;
   dragDisabled: boolean;
   index: number;
+  wrapperProps?: BoxProps;
 }
 export function DraggableWrapper({
   children,
   draggableId,
   dragDisabled,
   index,
+  wrapperProps,
 }: IProps) {
   return (
     <Draggable
@@ -25,6 +27,7 @@ export function DraggableWrapper({
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
+          {...wrapperProps}
         >
           {children}
         </Box>

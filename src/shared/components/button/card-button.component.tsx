@@ -1,12 +1,11 @@
 import { IconType } from "react-icons";
-
 import { Button, ButtonProps, Icon, useColorModeValue } from "@chakra-ui/react";
 
 export interface IProps extends ButtonProps {
   color?: "green" | "gray";
   icon?: IconType;
 }
-export function CardButton(props: IProps) {
+export function CardButton({ children, color, icon, ...rest }: IProps) {
   const styles: { [key: string]: ButtonProps } = {
     shared: {
       border: "1px solid",
@@ -37,22 +36,22 @@ export function CardButton(props: IProps) {
     },
   };
 
-  const color = props.color ?? "green";
+  const buttonColor = color ?? "green";
 
   return (
     <Button
       {...styles["shared"]}
-      {...styles[color]}
+      {...styles[buttonColor]}
       _disabled={{
         opacity: "0.4",
         cursor: "not-allowed",
         _hover: {
-          bg: styles[color].bg,
+          bg: styles[buttonColor].bg,
         },
       }}
-      {...props}
+      {...rest}
     >
-      {props.icon && <Icon mr={2} as={props.icon} />} {props.children}
+      {icon && <Icon mr={2} as={icon} />} {children}
     </Button>
   );
 }

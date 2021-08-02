@@ -1,4 +1,4 @@
-import { Divider, Heading, VStack } from "@chakra-ui/react";
+import { Box, Divider, Heading, VStack } from "@chakra-ui/react";
 import { DropResult } from "react-beautiful-dnd";
 
 import { IHook } from "hook/shared/hook.types";
@@ -45,18 +45,19 @@ export function HookList(props: IProps) {
         droppableId="hook-list-droppable"
         handleDragEnd={handleDragEnd}
       >
-        <VStack w="100%" spacing={5}>
+        <Box>
           {props.hooks.map((hook, index) => (
             <DraggableWrapper
               key={hook.id}
               draggableId={hook.id}
               dragDisabled={props.dragDisabled ?? false}
               index={index}
+              wrapperProps={{ mt: { base: 3, md: 5 } }}
             >
               <HookListItem key={hook.id} hook={hook} />
             </DraggableWrapper>
           ))}
-        </VStack>
+        </Box>
       </DragAndDropWrapper>
     </>
   );
