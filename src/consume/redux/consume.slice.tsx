@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IConsumeState, ISetMaterialDataPayload } from "./consume.types";
+import {
+  IConsumeState,
+  ISetMaterialDataPayload,
+  IUpdateSettingsPayload,
+} from "./consume.types";
 
 const initialState: IConsumeState = {
   materialType: "reading",
@@ -35,6 +39,9 @@ const consumeSlice = createSlice({
       state.studyBlockCount++;
       state.step = 8;
     },
+    updateSettings: (state, action: PayloadAction<IUpdateSettingsPayload>) => {
+      return { ...state, ...action.payload };
+    },
     newMaterial: () => {
       return initialState;
     },
@@ -48,4 +55,5 @@ export const {
   goToStudy,
   nextStudyBlock,
   newMaterial,
+  updateSettings,
 } = consumeSlice.actions;

@@ -12,6 +12,7 @@ import {
   NumberDecrementStepper,
   VStack,
   Switch,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { TMaterialType } from "consume/redux/consume.types";
@@ -21,7 +22,10 @@ import {
   nextStep,
   setMaterialData,
 } from "consume/redux/consume.slice";
-import { selectStudyBlockTime } from "consume/redux/consume.selectors";
+import {
+  selectShouldPlayAlarm,
+  selectStudyBlockTime,
+} from "consume/redux/consume.selectors";
 
 import { Message } from "message/components/message.component";
 import { CardButton } from "shared/components/button/card-button.component";
@@ -34,8 +38,10 @@ interface IFormProps {
   shouldPlayAlarm: boolean;
 }
 export function GetMaterialData() {
-  const studyBlockTime = useAppSelector(selectStudyBlockTime);
   const dispatch = useDispatch();
+  const studyBlockTime = useAppSelector(selectStudyBlockTime);
+  const shouldPlayAlarm = useAppSelector(selectShouldPlayAlarm);
+
   const { control, formState, handleSubmit, register, getValues } =
     useForm<IFormProps>({
       mode: "onChange",
@@ -50,6 +56,8 @@ export function GetMaterialData() {
     dispatch(setMaterialData(getValues()));
     dispatch(goToStudy());
   }
+
+  const focusBorderColor = useColorModeValue("green.500", "green.200");
 
   return (
     <>
@@ -88,7 +96,14 @@ export function GetMaterialData() {
               control={control}
               defaultValue={studyBlockTime}
               render={({ field }) => (
-                <NumberInput {...field} maxW="100px" mr="2rem" min={0} max={25}>
+                <NumberInput
+                  {...field}
+                  maxW="100px"
+                  mr="2rem"
+                  min={0}
+                  max={25}
+                  focusBorderColor={focusBorderColor}
+                >
                   <NumberInputField />
                   <NumberInputStepper>
                     <NumberIncrementStepper />
@@ -105,6 +120,7 @@ export function GetMaterialData() {
               colorScheme="green"
               size="lg"
               {...register("shouldPlayAlarm")}
+              defaultChecked={shouldPlayAlarm}
             />
           </FormControl>
 

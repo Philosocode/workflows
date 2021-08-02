@@ -36,7 +36,7 @@ export function Timer(props: IProps) {
       }, 1000);
     }
 
-    if (initialSeconds > 0 && shouldPlayAlarm && counter <= 0) {
+    if (initialSeconds > 0 && shouldPlayAlarm && counter === -1) {
       audio.play();
     }
 

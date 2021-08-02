@@ -20,7 +20,6 @@ export function StudyBlockCounter() {
       alignItems="center"
       rounded="lg"
       shadow="md"
-      className="study-block-count"
     >
       <Box fontSize="xl" fontWeight="medium">
         {studyBlockCount}

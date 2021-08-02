@@ -15,8 +15,8 @@ export function StudyTimer(props: IProps) {
   const studyBlockTime = useAppSelector(selectStudyBlockTime);
   const studyMessage =
     materialType === "reading"
-      ? `Read for ${studyBlockTime} minutes. Depending on the material, this may be a few paragraphs, or 1-2 pages`
-      : `Watch for ${studyBlockTime} minutes.`;
+      ? `Read for ${studyBlockTime} minute(s). Depending on the material, this may be a few paragraphs, or 1-2 pages`
+      : `Watch for ${studyBlockTime} minute(s).`;
 
   return (
     <>

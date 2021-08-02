@@ -14,3 +14,8 @@ export interface ISetMaterialDataPayload {
   studyBlockTime: number;
   shouldPlayAlarm: boolean;
 }
+
+export interface IUpdateSettingsPayload {
+  studyBlockTime?: number;
+  shouldPlayAlarm?: boolean;
+}
