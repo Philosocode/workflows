@@ -1,9 +1,8 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 
-import { ConsumePage } from "consume/pages/consume.page";
 import { ModalRoot } from "modal/components/modal-root.component";
+import { RootRouter } from "shared/routes/root-router.component";
 
 const App: React.FC = () => {
   return (
@@ -14,9 +13,7 @@ const App: React.FC = () => {
       w="95vw"
       pb={{ base: "12", md: "16" }}
     >
-      <Switch>
-        <Route path="/" component={ConsumePage} />
-      </Switch>
+      <RootRouter />
       <ModalRoot />
     </Box>
   );

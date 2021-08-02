@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { CONSUME_STUDY_PAGE_NUMBER } from "consume/routes/consume.routes";
 
 import {
   IConsumeState,
@@ -29,11 +30,13 @@ const consumeSlice = createSlice({
       state.shouldPlayAlarm = payload.shouldPlayAlarm;
     },
     goToStudy: (state) => {
-      // TODO: change this. This is bad
       state.step = 8;
     },
     nextStep: (state) => {
       state.step++;
+    },
+    setStep: (state, action: PayloadAction<number>) => {
+      state.step = action.payload;
     },
     nextStudyBlock: (state) => {
       state.studyBlockCount++;
@@ -52,6 +55,7 @@ export const consumeReducer = consumeSlice.reducer;
 export const {
   setMaterialData,
   nextStep,
+  setStep,
   goToStudy,
   nextStudyBlock,
   newMaterial,

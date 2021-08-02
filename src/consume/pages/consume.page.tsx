@@ -1,39 +1,33 @@
-import { Box } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-import { useAppSelector } from "shared/redux/store";
-import { selectStep } from "consume/redux/consume.selectors";
+import { useAppDispatch } from "shared/redux/store";
+import { setStep } from "consume/redux/consume.slice";
+import { consumeRoutes } from "consume/routes/consume.routes";
 
-import { GetMaterialData } from "consume/steps/get-material-data.component";
-import { SlowReminder } from "consume/steps/slow-reminder.component";
-import { TimerReminder } from "consume/steps/timer-reminder.component";
-import { SkimReminder } from "consume/steps/skim-reminder.component";
-import { SummaryReminder } from "consume/steps/summary-reminder.component";
-import { PracticeReminder } from "consume/steps/practice-reminder.component";
-import { Study } from "consume/steps/study.component";
-import { StudySummarize } from "consume/steps/study-summarize.component";
-import { SummaryScreen } from "consume/steps/summary-screen.component";
 import { ConsumeNav } from "consume/components/consume-nav.component";
 
-const steps = [
-  <GetMaterialData />,
-  <SlowReminder />,
-  <TimerReminder />,
-  <SkimReminder />,
-  <SummaryReminder />,
-  <PracticeReminder />,
-  <StudySummarize message="Summarize everything you've learned so far. Try to do it from memory, without looking at the material." />,
-  <Study />,
-  <StudySummarize message="Summarize everything you've learned during this study block. Try to do it from memory, without looking at the material." />,
-  <SummaryScreen />,
-];
-
 export function ConsumePage() {
-  const step = useAppSelector(selectStep);
+  const params = useParams<{ pageNumber: string }>();
+  const dispatch = useAppDispatch();
 
-  return (
-    <Box>
-      <ConsumeNav />
-      <Box>{steps[step - 1]}</Box>
-    </Box>
-  );
+  // whenever page number param changes, set it
+  useEffect(() => {
+    if (params.pageNumber) {
+      const pageParam = Number.parseInt(params.pageNumber);
+      let pageNumber = pageParam;
+
+      if (
+        typeof pageNumber !== "number" ||
+        pageNumber < 1 ||
+        pageNumber > consumeRoutes.length + 1
+      ) {
+        pageNumber = 1;
+      }
+
+      dispatch(setStep(pageNumber));
+    }
+  }, [dispatch, params]);
+
+  return <ConsumeNav />;
 }

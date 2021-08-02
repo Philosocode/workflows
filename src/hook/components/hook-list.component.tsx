@@ -1,4 +1,4 @@
-import { Box, Divider, Heading, VStack } from "@chakra-ui/react";
+import { Box, Divider, Heading } from "@chakra-ui/react";
 import { DropResult } from "react-beautiful-dnd";
 
 import { IHook } from "hook/shared/hook.types";

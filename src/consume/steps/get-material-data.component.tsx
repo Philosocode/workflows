@@ -17,11 +17,7 @@ import {
 
 import { TMaterialType } from "consume/redux/consume.types";
 import { useAppSelector } from "shared/redux/store";
-import {
-  goToStudy,
-  nextStep,
-  setMaterialData,
-} from "consume/redux/consume.slice";
+import { goToStudy, setMaterialData } from "consume/redux/consume.slice";
 import {
   selectShouldPlayAlarm,
   selectStudyBlockTime,
@@ -49,7 +45,6 @@ export function GetMaterialData() {
 
   function onSubmit(values: IFormProps) {
     dispatch(setMaterialData(values));
-    dispatch(nextStep());
   }
 
   function skipToStudy() {
