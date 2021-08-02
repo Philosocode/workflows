@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Box, ButtonGroup, Center, Image } from "@chakra-ui/react";
-import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { Button } from "shared/components/button/button.component";
