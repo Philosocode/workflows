@@ -65,6 +65,7 @@ export function GetMaterialData() {
                   {...register("materialType", { required: true })}
                   value="reading"
                   colorScheme="green"
+                  size="lg"
                 >
                   Reading
                 </Radio>
@@ -72,6 +73,7 @@ export function GetMaterialData() {
                   {...register("materialType", { required: true })}
                   value="watching"
                   colorScheme="green"
+                  size="lg"
                 >
                   Watching
                 </Radio>

@@ -13,7 +13,11 @@ import { Box } from "@chakra-ui/react";
 
 const notesText = (
   <>
-    <Box>Summarize what you learned during this study block.</Box>
+    <Box>
+      Create notes to summarize what what you've learned during this study
+      block.
+    </Box>
+    <br />
     <Box>Try to do this from memory without referring to the material.</Box>
   </>
 );

@@ -9,13 +9,6 @@ import { Message } from "message/components/message.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
 
-interface CardIconProps extends IconProps {
-  icon: IconType;
-}
-function CardIcon(props: CardIconProps) {
-  return <Icon as={props.icon} mr={2} {...props} />;
-}
-
 interface IProps {
   setView: (view: TStudyView) => void;
   goToSummary: () => void;
@@ -25,17 +18,33 @@ export function StudyMenu(props: IProps) {
     <>
       <Message>Choose an option:</Message>
       <CardButtonGrid>
-        <CardButton color="gray" onClick={() => props.setView("hooks")}>
-          <CardIcon icon={BiNetworkChart} /> Hooks
+        <CardButton
+          color="gray"
+          onClick={() => props.setView("hooks")}
+          icon={BiNetworkChart}
+        >
+          Hooks
         </CardButton>
-        <CardButton color="gray" onClick={() => props.setView("notes")}>
-          <CardIcon icon={BiNote} /> Notes
+        <CardButton
+          color="gray"
+          onClick={() => props.setView("notes")}
+          icon={BiNote}
+        >
+          Notes
         </CardButton>
-        <CardButton color="gray" onClick={() => props.setView("help")}>
-          <CardIcon icon={AiOutlineExclamationCircle} /> I'm Stuck
+        <CardButton
+          color="gray"
+          onClick={() => props.setView("help")}
+          icon={AiOutlineExclamationCircle}
+        >
+          I'm Stuck
         </CardButton>
-        <CardButton color="gray" onClick={props.goToSummary}>
-        <CardIcon icon={IoMdCheckmarkCircle} /> I'm Done
+        <CardButton
+          color="gray"
+          onClick={props.goToSummary}
+          icon={IoMdCheckmarkCircle}
+        >
+          I'm Done
         </CardButton>
       </CardButtonGrid>
     </>

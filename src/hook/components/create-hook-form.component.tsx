@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormControl, VStack } from "@chakra-ui/react";
+import { ButtonGroup, FormControl, VStack } from "@chakra-ui/react";
 
 import { useToggle } from "shared/hooks/use-toggle.hook";
 
@@ -10,6 +10,7 @@ import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { CreateHookIcons } from "./create-hook-icons.component";
 
 interface IProps {
+  goBack: () => void;
   onSubmit: (title: string, content: string) => void;
 
   showIcons?: boolean;
@@ -37,7 +38,7 @@ export function CreateHookForm(props: IProps) {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <VStack spacing={25} alignItems="start">
+        <VStack spacing={4} alignItems="start">
           <FormControl id="title">
             <InputWithLabel
               id="hookTitle"
@@ -64,9 +65,14 @@ export function CreateHookForm(props: IProps) {
             />
           </FormControl>
 
-          <Button disabled={buttonDisabled} type="submit">
-            Create
-          </Button>
+          <ButtonGroup spacing={5}>
+            <Button disabled={buttonDisabled} type="submit">
+              Create
+            </Button>
+            <Button color="gray" type="button" onClick={props.goBack}>
+              Go Back
+            </Button>
+          </ButtonGroup>
         </VStack>
       </form>
 

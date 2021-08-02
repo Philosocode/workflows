@@ -1,8 +1,11 @@
 import { ButtonHTMLAttributes } from "react";
-import { Button, ButtonProps, useColorModeValue } from "@chakra-ui/react";
+import { IconType } from "react-icons";
+
+import { Button, ButtonProps, Icon, useColorModeValue } from "@chakra-ui/react";
 
 export interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: "green" | "gray";
+  icon?: IconType;
 }
 export function CardButton(props: IProps) {
   const styles: { [key: string]: ButtonProps } = {
@@ -48,6 +51,8 @@ export function CardButton(props: IProps) {
         },
       }}
       {...props}
-    />
+    >
+      {props.icon && <Icon mr={2} as={props.icon} />} {props.children}
+    </Button>
   );
 }

@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/react";
+import { Divider, Heading, VStack } from "@chakra-ui/react";
 import { DropResult } from "react-beautiful-dnd";
 
 import { IHook } from "hook/shared/hook.types";
@@ -10,6 +10,7 @@ import { DraggableWrapper } from "shared/components/drag-and-drop/draggable-wrap
 import { HookListItem } from "hook/components/hook-list-item.component";
 
 interface IProps {
+  heading: string;
   hooks: IHook[];
 
   dragDisabled?: boolean;
@@ -35,22 +36,28 @@ export function HookList(props: IProps) {
   }
 
   return (
-    <DragAndDropWrapper
-      droppableId="hook-list-droppable"
-      handleDragEnd={handleDragEnd}
-    >
-      <VStack w="100%" spacing={5}>
-        {props.hooks.map((hook, index) => (
-          <DraggableWrapper
-            key={hook.id}
-            draggableId={hook.id}
-            dragDisabled={props.dragDisabled ?? false}
-            index={index}
-          >
-            <HookListItem key={hook.id} hook={hook} />
-          </DraggableWrapper>
-        ))}
-      </VStack>
-    </DragAndDropWrapper>
+    <>
+      <Divider my={10} />
+      <Heading textAlign="center" size="lg" mb={5}>
+        {props.heading}
+      </Heading>
+      <DragAndDropWrapper
+        droppableId="hook-list-droppable"
+        handleDragEnd={handleDragEnd}
+      >
+        <VStack w="100%" spacing={5}>
+          {props.hooks.map((hook, index) => (
+            <DraggableWrapper
+              key={hook.id}
+              draggableId={hook.id}
+              dragDisabled={props.dragDisabled ?? false}
+              index={index}
+            >
+              <HookListItem key={hook.id} hook={hook} />
+            </DraggableWrapper>
+          ))}
+        </VStack>
+      </DragAndDropWrapper>
+    </>
   );
 }

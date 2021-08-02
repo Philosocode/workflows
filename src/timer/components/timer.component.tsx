@@ -59,7 +59,7 @@ export function Timer(props: IProps) {
         shadow="md"
         rounded="md"
       >
-        <Box className="time" fontSize="6xl">
+        <Box className="time" fontSize="7xl" fontWeight="light">
           {timeString}
         </Box>
 

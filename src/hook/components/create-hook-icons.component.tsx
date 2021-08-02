@@ -4,6 +4,7 @@ import { RiLightbulbFlashFill } from "react-icons/ri";
 
 import { getRandomHook } from "hook/shared/hook.helper";
 import { HoverIcon } from "icon/components/hover-icon.component";
+import { IconButton } from "shared/components/icon-button.component";
 
 interface IProps {
   currentTitle: string;
@@ -12,12 +13,16 @@ interface IProps {
 }
 export function CreateHookIcons(props: IProps) {
   return (
-    <HStack spacing={5}>
-      <HoverIcon as={RiLightbulbFlashFill} onClick={props.toggleModal} />
-      <HoverIcon
-        as={FaRandom}
+    <HStack>
+      <IconButton
+        aria-label="Hook Select"
+        icon={<RiLightbulbFlashFill />}
+        onClick={props.toggleModal}
+      />
+      <IconButton
+        aria-label="Get Random Hook"
+        icon={<FaRandom />}
         onClick={() => props.setTitle(getRandomHook(props.currentTitle))}
-        boxSize={6}
       />
     </HStack>
   );

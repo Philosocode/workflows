@@ -1,4 +1,4 @@
-import { Box, Icon, Text } from "@chakra-ui/react";
+import { Box, Icon, Text, useColorModeValue } from "@chakra-ui/react";
 import { FaChevronDown, FaRegTrashAlt } from "react-icons/fa";
 
 // logic
@@ -43,15 +43,22 @@ export function HookListItem({ hook }: IProps) {
     );
   }
 
+  const styles = {
+    bg: useColorModeValue("gray.100", "gray.700"),
+    borderColor: useColorModeValue("gray.100", "gray.600"),
+    red: useColorModeValue("red.500", "red.200"),
+  };
+
   return (
     <Box
+      bg={styles.bg}
       border="1px solid"
-      borderColor="gray.100"
-      cursor={hook.isExpanded ? "default" : "pointer"}
-      shadow="md"
+      borderColor={styles.borderColor}
       borderRadius="md"
-      w="100%"
+      cursor={hook.isExpanded ? "default" : "pointer"}
       position="relative"
+      shadow="md"
+      w="100%"
     >
       {!hook.isExpanded && (
         <Box
@@ -83,7 +90,7 @@ export function HookListItem({ hook }: IProps) {
               top={5}
               right={5}
               boxSize={5}
-              _hover={{ color: "red.500" }}
+              _hover={{ color: styles.red }}
               onClick={(event) => {
                 event.stopPropagation();
                 handleDelete();

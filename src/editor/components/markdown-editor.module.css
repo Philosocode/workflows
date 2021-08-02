@@ -1,6 +1,6 @@
 .toolbar button:active,
 .toolbar button:focus {
-    outline: 1px solid lightgray;
+    outline: 1px solid var(--chakra-colors-gray-50);
 }
 
 .textarea {
@@ -10,11 +10,11 @@
 
 .textarea:active,
 .textarea:focus {
-    outline: 1px solid grey;
+    outline: 1px solid var(--chakra-colors-gray-500);
 }
 
 .textarea::placeholder {
-    color: #999;
+    color: var(--chakra-colors-gray-500);
 }
 
 .preview {

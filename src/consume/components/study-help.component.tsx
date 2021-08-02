@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Box, ButtonGroup, Center, Image } from "@chakra-ui/react";
+import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { Button } from "shared/components/button/button.component";
@@ -7,12 +8,15 @@ import { Button } from "shared/components/button/button.component";
 import duckImage from "consume/assets/timothy-dykes-LhqLdDPcSV8-unsplash.png";
 import { useStep } from "shared/hooks/use-step.hook";
 import { Message } from "message/components/message.component";
+import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
+import { CardButton } from "shared/components/button/card-button.component";
 
 const introMessage = (
   <>
     <Box>
       Hi, I'm Quackers the rubber duck. I'm here to help you get un-stuck!
     </Box>
+    <br />
     <Box>Just one question. Do you need help with programming?</Box>
   </>
 );
@@ -69,24 +73,31 @@ export function StudyHelp(props: IProps) {
         <Image src={duckImage} alt="Rubber Duck" />
       </Center>
       {isProgrammer === undefined ? (
-        <ButtonGroup spacing={"1rem"}>
-          <Button color="green" onClick={() => setIsProgrammer(true)}>
+        <CardButtonGrid>
+          <CardButton
+            color="gray"
+            onClick={() => setIsProgrammer(true)}
+            icon={FiThumbsUp}
+          >
             Yes
-          </Button>
-          <Button color="red" onClick={() => setIsProgrammer(false)}>
+          </CardButton>
+          <CardButton
+            color="gray"
+            onClick={() => setIsProgrammer(false)}
+            icon={FiThumbsDown}
+          >
             No
-          </Button>
-          <Button color="gray" onClick={props.goBack}>
-            Go Back
-          </Button>
-        </ButtonGroup>
+          </CardButton>
+        </CardButtonGrid>
       ) : (
         <>
           <MarkdownEditor value={text} setValue={setText} />
           <ButtonGroup mt={5}>
-            <Button color="green" onClick={onNext} disabled={isDone()}>
-              Next
-            </Button>
+            {!isDone() && (
+              <Button color="green" onClick={onNext} disabled={isDone()}>
+                Next
+              </Button>
+            )}
             <Button color="gray" onClick={props.goBack}>
               Return to Menu
             </Button>

@@ -1,4 +1,4 @@
-import { Box, Icon } from "@chakra-ui/react";
+import { Box, Icon, useColorModeValue } from "@chakra-ui/react";
 import { AiOutlineExpand } from "react-icons/ai";
 
 import { TStudyView } from "consume/redux/consume.types";
@@ -11,10 +11,15 @@ interface IProps {
 export function ExpandHooksButton({ view }: IProps) {
   const dispatch = useAppDispatch();
 
+  const styles = {
+    bg: useColorModeValue("green.500", "green.200"),
+    color: useColorModeValue("white", "black"),
+  };
+
   if (view === "timer" || view === "help") return null;
   return (
     <Box
-      bg="green.400"
+      bg={styles.bg}
       cursor="pointer"
       d="grid"
       placeItems="center"
@@ -26,7 +31,7 @@ export function ExpandHooksButton({ view }: IProps) {
       shadow="xl"
       onClick={() => dispatch(toggleAllHooks())}
     >
-      <Icon as={AiOutlineExpand} boxSize={7} color="white" />
+      <Icon as={AiOutlineExpand} boxSize={7} color={styles.color} />
     </Box>
   );
 }

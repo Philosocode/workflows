@@ -31,11 +31,7 @@ export function RandoHookModal() {
               <Text fontSize="md">{hook}</Text>
             </Box>
           }
-          footer={
-            <Button color="green" onClick={getRandomHook}>
-              New Hook
-            </Button>
-          }
+          footer={<Button onClick={getRandomHook}>Next</Button>}
         />
       </ModalWrapper>
     </>

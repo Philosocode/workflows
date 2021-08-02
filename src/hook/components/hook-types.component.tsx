@@ -6,6 +6,7 @@ import {
   ModalCloseButton,
   ModalBody,
   ModalFooter,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { BiNetworkChart } from "react-icons/bi";
@@ -53,11 +54,13 @@ function IconButton(props: {
   onClick: () => void;
   icon: IconType;
 }) {
+  const hoverBg = useColorModeValue("green.500", "gray.600");
+
   return (
     <Button
       color="gray"
       onClick={props.onClick}
-      _hover={{ bg: "green.500", color: "white" }}
+      _hover={{ bg: hoverBg, color: "white" }}
     >
       <Icon as={props.icon} boxSize={5} mr={2} />
       {props.children}

@@ -3,6 +3,7 @@ import {
   FormLabel,
   Input as InputBase,
   InputProps,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 export interface IProps extends InputProps {
@@ -12,18 +13,23 @@ export interface IProps extends InputProps {
   showLabel?: boolean;
 }
 export function InputWithLabel(props: IProps) {
+  const borderColor = useColorModeValue("gray.400", "gray.500");
+
   return (
     <FormControl id={props.id}>
       <FormLabel
         mb="-px"
-        sx={{
-          position: !props.showLabel && "absolute",
-          transform: !props.showLabel && "translateX(-9999px)",
-        }}
+        position={props.showLabel ? "relative" : "absolute"}
+        transform={props.showLabel ? "none" : "translateX(-9999px)"}
       >
         {props.label}
       </FormLabel>
-      <InputBase focusBorderColor="green.500" variant="flushed" {...props} />
+      <InputBase
+        autoComplete="off"
+        focusBorderColor={borderColor}
+        variant="flushed"
+        {...props}
+      />
     </FormControl>
   );
 }

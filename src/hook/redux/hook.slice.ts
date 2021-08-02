@@ -60,7 +60,7 @@ const hookSlice = createSlice({
       const newHook = { ...action.payload };
 
       state.hooks[newHook.id] = newHook;
-      state.currentHookIds.push(newHook.id);
+      state.currentHookIds.unshift(newHook.id);
     },
     updateHook: (state, action: PayloadAction<IUpdateHookPayload>) => {
       const { id, updates } = action.payload;
@@ -105,7 +105,7 @@ const hookSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(nextStudyBlock, (state) => {
       // move current hook ids into previous
-      state.previousHookIds.push(...state.currentHookIds);
+      state.previousHookIds.unshift(...state.currentHookIds);
       state.currentHookIds = [];
     });
   },

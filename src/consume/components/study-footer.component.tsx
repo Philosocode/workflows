@@ -23,27 +23,11 @@ export function StudyFooter({ view }: IProps) {
   return (
     <>
       {currentHooks.length > 0 && (
-        <>
-          <Divider my={10} />
-          <VStack spacing={5}>
-            <Heading textAlign="center" size="lg">
-              Current Hooks
-            </Heading>
-            <HookList hooks={currentHooks} />
-          </VStack>
-        </>
+        <HookList hooks={currentHooks} heading="Current Hooks" />
       )}
 
       {previousHooks.length > 0 && (
-        <>
-          <Divider my={10} />
-          <VStack spacing={5}>
-            <Heading textAlign="center" size="lg">
-              Past Hooks
-            </Heading>
-            <HookList hooks={previousHooks} isPrevious />
-          </VStack>
-        </>
+        <HookList hooks={previousHooks} heading="Previous Hooks" isPrevious />
       )}
 
       <ExpandHooksButton view={view} />
