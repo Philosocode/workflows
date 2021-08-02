@@ -62,7 +62,11 @@ const _consumeRoutes = [
 ];
 
 export const consumeRoutes = _consumeRoutes.map((route, index) => (
-  <Route {...route} path={`/consume/${index + 1}`} />
+  <Route
+    key={`/consume/${index + 1}`}
+    path={`/consume/${index + 1}`}
+    {...route}
+  />
 ));
 
 export const CONSUME_PAGE_NUMBERS = {
