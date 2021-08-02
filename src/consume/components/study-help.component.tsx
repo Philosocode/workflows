@@ -70,7 +70,11 @@ export function StudyHelp(props: IProps) {
     <>
       <Message>{getMessage()}</Message>
       <Center mb={10}>
-        <Image src={duckImage} alt="Rubber Duck" />
+        <Image
+          src={duckImage}
+          alt="Rubber Duck"
+          maxW={{ base: "40", md: "full" }}
+        />
       </Center>
       {isProgrammer === undefined ? (
         <CardButtonGrid>

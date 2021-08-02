@@ -16,10 +16,11 @@ export function HookSelectGridItem(props: IProps) {
         bg={styles.bg}
         cursor="pointer"
         h="100%"
-        py={3}
-        px={5}
+        py={{ base: 3, md: 3 }}
+        px={{ base: 3, md: 5 }}
         fontWeight="medium"
         rounded="md"
+        fontSize={{ base: "sm", md: "md" }}
         onClick={props.onClick}
         _hover={{ bg: styles.hoverBg, color: "white" }}
       >

@@ -20,8 +20,8 @@ export function Message(props: IProps) {
         maxW="full"
         rounded="lg"
         shadow="md"
-        p={10}
-        fontSize="3xl"
+        p={{ base: 5, md: 10 }}
+        fontSize={{ base: "xl", sm: "2xl", md: "3xl" }}
       >
         {props.children}
       </Box>

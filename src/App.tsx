@@ -7,7 +7,13 @@ import { ModalRoot } from "modal/components/modal-root.component";
 
 const App: React.FC = () => {
   return (
-    <Box as="main" maxW="800px" mx="auto" w="90vw" pb="16">
+    <Box
+      as="main"
+      maxW="800px"
+      mx="auto"
+      w="95vw"
+      pb={{ base: "12", md: "16" }}
+    >
       <Switch>
         <Route path="/" component={ConsumePage} />
       </Switch>

@@ -15,8 +15,8 @@ export function StudyBlockCounter() {
       bg={bg}
       color={color}
       d="flex"
-      px={3}
-      py={2}
+      px={{ base: 2, md: 3 }}
+      py={{ base: 1, md: 2 }}
       alignItems="center"
       rounded="lg"
       shadow="md"

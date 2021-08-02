@@ -24,14 +24,18 @@ export function ExpandHooksButton({ view }: IProps) {
       d="grid"
       placeItems="center"
       position="fixed"
-      bottom={10}
-      right={10}
-      p={4}
+      bottom={{ base: 5, md: 10 }}
+      right={{ base: 5, md: 10 }}
+      p={{ base: 3, md: 4 }}
       borderRadius="50%"
       shadow="xl"
       onClick={() => dispatch(toggleAllHooks())}
     >
-      <Icon as={AiOutlineExpand} boxSize={7} color={styles.color} />
+      <Icon
+        as={AiOutlineExpand}
+        boxSize={{ base: 5, md: 7 }}
+        color={styles.color}
+      />
     </Box>
   );
 }

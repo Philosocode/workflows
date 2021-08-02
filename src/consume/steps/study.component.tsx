@@ -25,7 +25,9 @@ const notesText = (
 const hooksText = (
   <>
     <Box>Create hooks for abstract concepts and ideas.</Box>
+    <br />
     <Box>Think about the concept deeply.</Box>
+    <br />
     <Box>
       Keep creating hooks until you have a solid understanding of the concept.
     </Box>

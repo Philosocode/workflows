@@ -34,7 +34,7 @@ export function HookSelectGrid(props: IProps) {
         placeholder="Type to filter hooks..."
       />
 
-      <Grid mt={5} templateColumns="repeat(3, 1fr)" gap={5}>
+      <Grid mt={5} templateColumns={{ md: "repeat(3, 1fr)" }} gap={5}>
         {getFilteredHooks().length === 0 && (
           <Heading size="sm" fontWeight="medium">
             No hooks found.

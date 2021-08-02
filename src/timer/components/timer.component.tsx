@@ -69,13 +69,21 @@ export function Timer(props: IProps) {
         shadow="md"
         rounded="md"
       >
-        <Box className="time" fontSize="7xl" fontWeight="light">
+        <Box
+          className="time"
+          fontSize={{ base: "6xl", md: "7xl" }}
+          fontWeight="light"
+        >
           {timeString}
         </Box>
 
         {counter > 0 && (
           <ButtonGroup mt={3} spacing={3}>
-            <Button onClick={() => setIsActive(!isActive)} type="button">
+            <Button
+              color={isActive ? "gray" : "green"}
+              onClick={() => setIsActive(!isActive)}
+              type="button"
+            >
               {isActive ? "Pause" : "Start"}
             </Button>
             <Button color="gray" onClick={props.goToMenu}>

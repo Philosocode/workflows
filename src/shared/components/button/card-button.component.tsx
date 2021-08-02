@@ -1,4 +1,3 @@
-import { ButtonHTMLAttributes } from "react";
 import { IconType } from "react-icons";
 
 import { Button, ButtonProps, Icon, useColorModeValue } from "@chakra-ui/react";
@@ -13,8 +12,8 @@ export function CardButton(props: IProps) {
       border: "1px solid",
       d: "flex",
       alignItems: "center",
-      fontSize: "xl",
-      padding: 10,
+      fontSize: { base: "lg", md: "xl" },
+      p: { base: 7, md: 10 },
       position: "relative",
       shadow: "sm",
       variant: "unstyled",
