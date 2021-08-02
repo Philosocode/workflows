@@ -6,6 +6,7 @@ import { TStudyView } from "consume/redux/consume.types";
 import { Message } from "message/components/message.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
+import { Tooltip } from "@chakra-ui/react";
 
 interface IProps {
   setView: (view: TStudyView) => void;
@@ -16,20 +17,34 @@ export function StudyMenu(props: IProps) {
     <>
       <Message>Choose an option:</Message>
       <CardButtonGrid>
-        <CardButton
-          color="gray"
-          onClick={() => props.setView("hooks")}
-          icon={BiNetworkChart}
+        <Tooltip
+          label="Create hooks for abstract ideas or concepts"
+          hasArrow
+          shouldWrapChildren
+          placement="top"
         >
-          Hooks
-        </CardButton>
-        <CardButton
-          color="gray"
-          onClick={() => props.setView("notes")}
-          icon={BiNote}
+          <CardButton
+            color="gray"
+            onClick={() => props.setView("hooks")}
+            icon={BiNetworkChart}
+          >
+            Hooks
+          </CardButton>
+        </Tooltip>
+        <Tooltip
+          label="Create notes to summarize info"
+          hasArrow
+          shouldWrapChildren
+          placement="top"
         >
-          Notes
-        </CardButton>
+          <CardButton
+            color="gray"
+            onClick={() => props.setView("notes")}
+            icon={BiNote}
+          >
+            Notes
+          </CardButton>
+        </Tooltip>
         <CardButton
           color="gray"
           onClick={() => props.setView("help")}

@@ -3,7 +3,7 @@ import { IconType } from "react-icons";
 
 import { Button, ButtonProps, Icon, useColorModeValue } from "@chakra-ui/react";
 
-export interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IProps extends ButtonProps {
   color?: "green" | "gray";
   icon?: IconType;
 }
