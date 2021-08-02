@@ -1,14 +1,10 @@
 import { Box, Icon, useColorModeValue } from "@chakra-ui/react";
 import { AiOutlineExpand } from "react-icons/ai";
 
-import { TStudyView } from "consume/redux/consume.types";
 import { useAppDispatch } from "shared/redux/store";
 import { toggleAllHooks } from "hook/redux/hook.slice";
 
-interface IProps {
-  view: TStudyView;
-}
-export function ExpandHooksButton({ view }: IProps) {
+export function ExpandHooksButton() {
   const dispatch = useAppDispatch();
 
   const styles = {
@@ -16,7 +12,6 @@ export function ExpandHooksButton({ view }: IProps) {
     color: useColorModeValue("white", "black"),
   };
 
-  if (view === "help") return null;
   return (
     <Box
       bg={styles.bg}

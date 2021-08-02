@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ButtonGroup } from "@chakra-ui/react";
 
-import { theme } from "theme";
+import { theme } from "shared/styles/theme";
 import { nextStep } from "consume/redux/consume.slice";
 
 import { Button } from "shared/components/button/button.component";
@@ -23,7 +23,10 @@ export function StudySummarize(props: IProps) {
     <ConsumeMessageButtonStep
       message={props.message}
       keyPressDisabled
-      buttonProps={{ disabled: summary.trim() === "" }}
+      buttonProps={{
+        disabled: summary.trim() === "",
+        mt: theme.spacing.nextButtonMarginTop,
+      }}
     >
       <MarkdownEditor
         value={summary}

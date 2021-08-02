@@ -2,7 +2,7 @@ import { Icon, IconProps } from "@chakra-ui/icons";
 import { useColorModeValue } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 
-import { theme } from "theme";
+import { theme } from "shared/styles/theme";
 
 interface IProps extends IconProps {
   as: IconType;

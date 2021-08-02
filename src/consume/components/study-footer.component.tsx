@@ -1,4 +1,3 @@
-import { TStudyView } from "consume/redux/consume.types";
 import {
   selectCurrentHooks,
   selectPreviousHooks,
@@ -8,15 +7,9 @@ import { useAppSelector } from "shared/redux/store";
 import { HookList } from "hook/components/hook-list.component";
 import { ExpandHooksButton } from "./expand-hooks-button.component";
 
-interface IProps {
-  view: TStudyView;
-}
-export function StudyFooter({ view }: IProps) {
+export function StudyFooter() {
   const currentHooks = useAppSelector(selectCurrentHooks);
   const previousHooks = useAppSelector(selectPreviousHooks);
-
-  const shouldShowHooks = view !== "help";
-  if (!shouldShowHooks) return null;
 
   return (
     <>
@@ -28,7 +21,7 @@ export function StudyFooter({ view }: IProps) {
         <HookList hooks={previousHooks} heading="Previous Hooks" isPrevious />
       )}
 
-      <ExpandHooksButton view={view} />
+      <ExpandHooksButton />
     </>
   );
 }

@@ -1,52 +1,52 @@
 import { Box, VStack } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
 
-import { newMaterial, nextStudyBlock } from "consume/redux/consume.slice";
-import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { selectCurrentHooks } from "hook/redux/hook.selectors";
-import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
+import { useAppSelector } from "shared/redux/store";
+import { useNextPage } from "shared/hooks/use-next-page.hook";
+import { selectStep } from "consume/redux/consume.selectors";
 
-import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
-import { CardButton } from "shared/components/button/card-button.component";
 import { Message } from "message/components/message.component";
 import { HookList } from "hook/components/hook-list.component";
+import { Link } from "typography/components/link.component";
+import { Button } from "shared/components/button/button.component";
+import { theme } from "shared/styles/theme";
 
 export function SummaryScreen() {
-  const dispatch = useAppDispatch();
-  const history = useHistory();
+  const step = useAppSelector(selectStep);
   const currentHooks = useAppSelector(selectCurrentHooks);
+  const nextPage = useNextPage("/consume", step);
 
-  const message =
-    currentHooks.length === 0
-      ? "You didn't create any hooks/notes during this study block."
-      : `You created ${currentHooks.length} hooks/notes during this study block.
-    Well done!`;
-
-  function onNextStudyBlock() {
-    dispatch(nextStudyBlock());
-    history.push(`/consume/${CONSUME_PAGE_NUMBERS.TIMER}`);
-  }
-
-  function onNewMaterial() {
-    dispatch(newMaterial());
-    history.push("/consume/1");
-  }
+  if (currentHooks.length === 0) nextPage();
 
   return (
-    <VStack spacing={5}>
-      <Message>{message}</Message>
-      <CardButtonGrid>
-        <CardButton color="green" onClick={onNextStudyBlock}>
-          Next Block
-        </CardButton>
-        <CardButton color="gray" onClick={onNewMaterial}>
-          New Material
-        </CardButton>
-      </CardButtonGrid>
+    <>
+      <Message>
+        <VStack
+          spacing={theme.spacing.messageBoxSpacing}
+          alignItems="flex-start"
+        >
+          <Box>
+            Look at your hooks below. Is there anything you'd like to remember
+            in the long-term?
+          </Box>
+          <Box>
+            Create flashcards using tools like{" "}
+            <Link href="https://apps.ankiweb.net/">Anki</Link> or{" "}
+            <Link href="https://quizlet.com/">Quizlet</Link>.
+          </Box>
+          <Box>
+            <Link href="https://www.supermemo.com/en/archives1990-2015/articles/20rules">
+              Visit this link
+            </Link>{" "}
+            for tips on creating effective flashcards.
+          </Box>
+        </VStack>
+      </Message>
+      <Button onClick={nextPage}>Next</Button>
 
       <Box w="full">
         <HookList hooks={currentHooks} heading="Current Hooks" dragDisabled />
       </Box>
-    </VStack>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import { Box, Fade, useColorModeValue } from "@chakra-ui/react";
 
-import { theme } from "theme";
+import { theme } from "shared/styles/theme";
 export interface IProps {
   children: React.ReactNode;
 }

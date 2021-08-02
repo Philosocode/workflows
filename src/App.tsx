@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 
 import { ModalRoot } from "modal/components/modal-root.component";
 import { RootRouter } from "shared/routes/root-router.component";
-import { ScrollToTop } from "shared/hooks/use-scroll-to-top.hook";
+import { ScrollToTop } from "shared/components/scroll-to-top.component";
 
 const App: React.FC = () => {
   return (

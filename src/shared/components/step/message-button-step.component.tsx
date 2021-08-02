@@ -4,7 +4,7 @@ import { ButtonProps } from "@chakra-ui/react";
 import { Button } from "shared/components/button/button.component";
 import { Message } from "message/components/message.component";
 import { useKeypress } from "shared/hooks/use-key-press.hook";
-import { theme } from "theme";
+import { theme } from "shared/styles/theme";
 
 export interface IMessageButtonStepProps {
   message: ReactNode;
@@ -23,12 +23,7 @@ export function MessageButtonStep(props: IProps) {
     <>
       <Message>{props.message}</Message>
       {props.children}
-      <Button
-        children="Next"
-        onClick={props.onNext}
-        mt={theme.spacing.nextButtonMarginTop}
-        {...props.buttonProps}
-      />
+      <Button children="Next" onClick={props.onNext} {...props.buttonProps} />
     </>
   );
 }

@@ -1,12 +1,13 @@
-import { Box, VStack } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import { ConsumeMessageButtonStep } from "consume/components/consume-message-button-step.component";
+import { Messages } from "message/components/messages.component";
 
 export function PracticeReminder() {
   return (
     <ConsumeMessageButtonStep
       message={
-        <VStack spacing={10}>
+        <Messages>
           <Box>
             Is this your first time encountering this subject or topic? If so,
             find some practice problems and do them.
@@ -18,7 +19,7 @@ export function PracticeReminder() {
             That's okay! Even if you get all the questions wrong, it prepares
             your mind for learning the new information.
           </Box>
-        </VStack>
+        </Messages>
       }
     />
   );

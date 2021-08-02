@@ -3,13 +3,12 @@ import { selectConsumeState } from "consume/redux/consume.selectors";
 
 import { Message } from "message/components/message.component";
 import { Timer } from "timer/components/timer.component";
-import { useNextPage } from "shared/hooks/use-next-page.hook";
+import { useHistory } from "react-router-dom";
 
 export function StudyTimer() {
+  const history = useHistory();
   const { materialType, step, studyBlockTime } =
     useAppSelector(selectConsumeState);
-
-  const nextStep = useNextPage("/consume", step);
 
   const studyMessage =
     materialType === "reading"
@@ -19,7 +18,10 @@ export function StudyTimer() {
   return (
     <>
       <Message>{studyMessage}</Message>
-      <Timer duration={studyBlockTime} onDone={nextStep} />
+      <Timer
+        duration={studyBlockTime}
+        onDone={() => history.push(`/consume/${step + 1}/menu`)}
+      />
     </>
   );
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Box, ButtonGroup, useColorModeValue } from "@chakra-ui/react";
 
 import { Button } from "shared/components/button/button.component";
-import { theme } from "theme";
+import { theme } from "shared/styles/theme";
 import { useAppSelector } from "shared/redux/store";
 import { selectShouldPlayAlarm } from "consume/redux/consume.selectors";
 
