@@ -11,6 +11,7 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   VStack,
+  Switch,
 } from "@chakra-ui/react";
 
 import { TMaterialType } from "consume/redux/consume.types";
@@ -30,6 +31,7 @@ import { FormLabel } from "form/components/form-label.component";
 interface IFormProps {
   materialType: TMaterialType;
   studyBlockTime: number;
+  shouldPlayAlarm: boolean;
 }
 export function GetMaterialData() {
   const studyBlockTime = useAppSelector(selectStudyBlockTime);
@@ -94,6 +96,15 @@ export function GetMaterialData() {
                   </NumberInputStepper>
                 </NumberInput>
               )}
+            />
+          </FormControl>
+
+          <FormControl id="shouldPlayAlarm">
+            <FormLabel>Should Play Alarm:</FormLabel>
+            <Switch
+              colorScheme="green"
+              size="lg"
+              {...register("shouldPlayAlarm")}
             />
           </FormControl>
 

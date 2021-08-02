@@ -6,9 +6,11 @@ export interface IConsumeState {
   step: number;
   studyBlockCount: number;
   studyBlockTime: number;
+  shouldPlayAlarm: boolean;
 }
 
 export interface ISetMaterialDataPayload {
   materialType: TMaterialType;
   studyBlockTime: number;
+  shouldPlayAlarm: boolean;
 }

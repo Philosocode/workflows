@@ -23,7 +23,7 @@ const steps = [
   <PracticeReminder />,
   <StudySummarize message="Summarize everything you've learned so far. Try to do it from memory, without looking at the material." />,
   <Study />,
-  <StudySummarize message="Summarize everything you've learned in this study block. Try to do it from memory, without looking at the material." />,
+  <StudySummarize message="Summarize everything you've learned during this study block. Try to do it from memory, without looking at the material." />,
   <SummaryScreen />,
 ];
 

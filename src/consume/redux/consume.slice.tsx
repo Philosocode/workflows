@@ -7,6 +7,7 @@ const initialState: IConsumeState = {
   step: 1,
   studyBlockCount: 0,
   studyBlockTime: 5,
+  shouldPlayAlarm: false,
 };
 
 const consumeSlice = createSlice({
@@ -21,6 +22,7 @@ const consumeSlice = createSlice({
 
       state.materialType = payload.materialType;
       state.studyBlockTime = payload.studyBlockTime;
+      state.shouldPlayAlarm = payload.shouldPlayAlarm;
     },
     goToStudy: (state) => {
       // TODO: change this. This is bad

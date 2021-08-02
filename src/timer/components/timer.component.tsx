@@ -3,6 +3,10 @@ import { Box, ButtonGroup, useColorModeValue } from "@chakra-ui/react";
 
 import { Button } from "shared/components/button/button.component";
 import { theme } from "theme";
+import { useAppSelector } from "shared/redux/store";
+import { selectShouldPlayAlarm } from "consume/redux/consume.selectors";
+
+const audio = new Audio("/alarm-beep.mp3");
 
 interface IProps {
   duration: number;
@@ -20,6 +24,8 @@ export function Timer(props: IProps) {
   const [counter, setCounter] = useState(initialSeconds);
   const [isActive, setIsActive] = useState(props.startAutomatically ?? true);
 
+  const shouldPlayAlarm = useAppSelector(selectShouldPlayAlarm);
+
   useEffect(() => {
     let intervalId: ReturnType<typeof setInterval>;
 
@@ -30,8 +36,12 @@ export function Timer(props: IProps) {
       }, 1000);
     }
 
+    if (initialSeconds > 0 && shouldPlayAlarm && counter <= 0) {
+      audio.play();
+    }
+
     return () => clearInterval(intervalId);
-  }, [isActive, counter]);
+  }, [counter, isActive, initialSeconds, shouldPlayAlarm]);
 
   function secondsToTimeString(seconds: number) {
     const secondsCounter = seconds % 60;
