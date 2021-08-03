@@ -1,14 +1,13 @@
 import { Avatar, Box, Fade, useColorModeValue, HStack } from "@chakra-ui/react";
 
-import { soul } from "avatars/data/soul.avatar";
 import { IAvatarConfig } from "avatars/shared/avatar.type";
-
+import { soul } from "avatars/data/soul.avatar";
 import { theme } from "shared/styles/theme";
-export interface IProps {
-  children: React.ReactNode;
-
+interface IProps {
   avatar?: IAvatarConfig;
+  children?: React.ReactNode;
 }
+export interface IMessageProps extends IProps {}
 export function Message(props: IProps) {
   const avatar = props.avatar ?? soul;
 

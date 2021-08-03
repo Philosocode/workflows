@@ -19,7 +19,7 @@ export const quackers: IAvatarConfig = {
     light: "yellow.800",
     dark: "yellow.100",
   },
-  name: "Quackers",
+  name: "Mr. Quackers",
   imageSrc: quackersImage,
   fontFamily: "Comfortaa, Helvetica, sans-serif",
 };
