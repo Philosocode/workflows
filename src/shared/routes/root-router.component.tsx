@@ -8,6 +8,7 @@ export function RootRouter() {
     <>
       <Route path="/consume/:pageNumber" component={ConsumePage} />
       <Switch>
+        <Route path="/" exact render={() => <Redirect to="/consume/1" />} />
         {consumeRoutes.map((route) => route)}
         <Route path="/consume" render={() => <Redirect to="/consume/1" />} />
       </Switch>

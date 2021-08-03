@@ -1,7 +1,6 @@
 import { Route, RouteProps } from "react-router-dom";
 import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 
-import { StudyHelp } from "consume/components/study-help.component";
 import { StudyHooks } from "consume/components/study-hooks.component";
 import { StudyMenu } from "consume/components/study-menu.component";
 import { ConsumeFinish } from "consume/steps/consume-finish.component";
@@ -71,7 +70,6 @@ export const CONSUME_PAGE_NUMBERS = {
 
 const _studyRoutes = [
   { path: "menu", component: StudyMenu },
-  { path: "help", component: StudyHelp },
   {
     path: "hooks",
     render: () => (
