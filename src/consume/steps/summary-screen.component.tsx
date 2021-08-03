@@ -3,7 +3,7 @@ import { Box, VStack } from "@chakra-ui/react";
 import { selectCurrentHooks } from "hook/redux/hook.selectors";
 import { useAppSelector } from "shared/redux/store";
 import { useNextPage } from "shared/hooks/use-next-page.hook";
-import { selectStep } from "consume/redux/consume.selectors";
+import { selectConsumeStep } from "consume/redux/consume.selectors";
 
 import { Message } from "message/components/message.component";
 import { HookList } from "hook/components/hook-list.component";
@@ -12,9 +12,9 @@ import { Button } from "shared/components/button/button.component";
 import { theme } from "shared/styles/theme";
 
 export function SummaryScreen() {
-  const step = useAppSelector(selectStep);
+  const currentStep = useAppSelector(selectConsumeStep);
   const currentHooks = useAppSelector(selectCurrentHooks);
-  const nextPage = useNextPage("/consume", step);
+  const nextPage = useNextPage("/consume", currentStep);
 
   if (currentHooks.length === 0) nextPage();
 

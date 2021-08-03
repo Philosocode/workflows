@@ -3,7 +3,7 @@ export type TStudyView = "menu" | "hooks" | "notes" | "help";
 
 export interface IConsumeState {
   materialType: TMaterialType;
-  step: number;
+  currentStep: number;
   studyBlockCount: number;
   studyBlockTime: number;
   shouldPlayAlarm: boolean;

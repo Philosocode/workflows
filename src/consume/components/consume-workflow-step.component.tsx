@@ -1,5 +1,5 @@
 import { useAppSelector } from "shared/redux/store";
-import { selectStep } from "consume/redux/consume.selectors";
+import { selectConsumeStep } from "consume/redux/consume.selectors";
 
 import {
   IWorkflowStepProps,
@@ -8,8 +8,8 @@ import {
 import { useNextPage } from "shared/hooks/use-next-page.hook";
 
 export function ConsumeWorkflowStep(props: IWorkflowStepProps) {
-  const step = useAppSelector(selectStep);
-  const nextPage = useNextPage("/consume", step);
+  const currentStep = useAppSelector(selectConsumeStep);
+  const nextPage = useNextPage("/consume", currentStep);
 
   return (
     <WorkflowStep onNext={nextPage} {...props}>

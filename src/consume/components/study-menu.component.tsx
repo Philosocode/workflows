@@ -7,7 +7,7 @@ import { IoMdCheckmarkCircle, IoMdHelpCircle } from "react-icons/io";
 import { useAppSelector } from "shared/redux/store";
 import { TStudyView } from "consume/redux/consume.types";
 import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
-import { selectStep } from "consume/redux/consume.selectors";
+import { selectConsumeStep } from "consume/redux/consume.selectors";
 
 import { Message } from "message/components/message.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
@@ -21,7 +21,7 @@ interface IProps {
 export function StudyMenu(props: IProps) {
   const history = useHistory();
   const basePath = `/consume/${CONSUME_PAGE_NUMBERS.STUDY}`;
-  const step = useAppSelector(selectStep);
+  const currentStep = useAppSelector(selectConsumeStep);
 
   return (
     <>
@@ -78,7 +78,7 @@ export function StudyMenu(props: IProps) {
         </CardButton>
         <CardButton
           color="gray"
-          onClick={() => history.push(`/consume/${step + 1}`)}
+          onClick={() => history.push(`/consume/${currentStep + 1}`)}
           icon={IoMdCheckmarkCircle}
         >
           I'm Done

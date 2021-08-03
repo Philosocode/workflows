@@ -36,7 +36,7 @@ export function GetMaterialData() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const { step, studyBlockTime, shouldPlayAlarm } =
+  const { currentStep, studyBlockTime, shouldPlayAlarm } =
     useAppSelector(selectConsumeState);
 
   const { control, formState, handleSubmit, register, getValues } =
@@ -46,7 +46,7 @@ export function GetMaterialData() {
 
   function onSubmit(values: IFormProps) {
     dispatch(setMaterialData(values));
-    history.push(`/consume/${step + 1}`);
+    history.push(`/consume/${currentStep + 1}`);
   }
 
   function skipToStudy() {

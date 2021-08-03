@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 export function StudyTimer() {
   const history = useHistory();
-  const { materialType, step, studyBlockTime } =
+  const { materialType, currentStep, studyBlockTime } =
     useAppSelector(selectConsumeState);
 
   const studyMessage =
@@ -20,7 +20,7 @@ export function StudyTimer() {
       <Message>{studyMessage}</Message>
       <Timer
         duration={studyBlockTime}
-        onDone={() => history.push(`/consume/${step + 1}/menu`)}
+        onDone={() => history.push(`/consume/${currentStep + 1}/menu`)}
       />
     </>
   );

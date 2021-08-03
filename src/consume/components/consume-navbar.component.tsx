@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectStep } from "consume/redux/consume.selectors";
+import { selectConsumeStep } from "consume/redux/consume.selectors";
 
 import { AppNavbar } from "navbar/components/app-navbar.component";
 import { ConsumeSettings } from "./consume-settings.component";
@@ -10,7 +10,7 @@ import { StudyBlockCounter } from "consume/components/study-block-counter.compon
 import { ToggleThemeButton } from "navbar/components/toggle-theme-button.component";
 
 export function ConsumeNavbar() {
-  const step = useSelector(selectStep);
+  const currentStep = useSelector(selectConsumeStep);
 
   return (
     <AppNavbar
@@ -18,12 +18,12 @@ export function ConsumeNavbar() {
         <>
           <RandoHookModal />
           <GetUnstuckModal />
-          {step > 1 && <ConsumeResetModal />}
+          {currentStep > 1 && <ConsumeResetModal />}
         </>
       }
       rightSlot={
         <>
-          {step > 1 && <ConsumeSettings />}
+          {currentStep > 1 && <ConsumeSettings />}
           <ToggleThemeButton />
           <StudyBlockCounter />
         </>
