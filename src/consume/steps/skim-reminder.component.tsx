@@ -1,10 +1,10 @@
 import { Box } from "@chakra-ui/react";
 
-import { ConsumeMessageButtonStep } from "consume/components/consume-message-button-step.component";
+import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 
 export function SkimReminder() {
   return (
-    <ConsumeMessageButtonStep
+    <ConsumeWorkflowStep
       message={
         <>
           <Box>Skim through the material.</Box>

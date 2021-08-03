@@ -28,6 +28,7 @@ interface IProps {
   setValue?: (value: string) => void;
   placeholder?: string;
 }
+export interface IMarkdownEditorProps extends IProps {}
 export const MarkdownEditor: React.FC<IProps> = ({
   initialTab,
   value,

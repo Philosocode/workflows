@@ -2,18 +2,18 @@ import { useAppSelector } from "shared/redux/store";
 import { selectStep } from "consume/redux/consume.selectors";
 
 import {
-  IMessageButtonStepProps,
-  MessageButtonStep,
-} from "shared/components/step/message-button-step.component";
+  IWorkflowStepProps,
+  WorkflowStep,
+} from "shared/components/step/workflow-step.component";
 import { useNextPage } from "shared/hooks/use-next-page.hook";
 
-export function ConsumeMessageButtonStep(props: IMessageButtonStepProps) {
+export function ConsumeWorkflowStep(props: IWorkflowStepProps) {
   const step = useAppSelector(selectStep);
   const nextPage = useNextPage("/consume", step);
 
   return (
-    <MessageButtonStep onNext={nextPage} {...props}>
+    <WorkflowStep onNext={nextPage} {...props}>
       {props.children}
-    </MessageButtonStep>
+    </WorkflowStep>
   );
 }

@@ -1,11 +1,11 @@
 import { Box } from "@chakra-ui/react";
 
-import { ConsumeMessageButtonStep } from "consume/components/consume-message-button-step.component";
+import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 import { Messages } from "message/components/messages.component";
 
 export function PracticeReminder() {
   return (
-    <ConsumeMessageButtonStep
+    <ConsumeWorkflowStep
       message={
         <Messages>
           <Box>

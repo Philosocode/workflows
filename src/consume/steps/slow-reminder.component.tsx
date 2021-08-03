@@ -3,14 +3,14 @@ import { Box } from "@chakra-ui/react";
 import { useAppSelector } from "shared/redux/store";
 import { selectMaterialType } from "consume/redux/consume.selectors";
 
-import { ConsumeMessageButtonStep } from "consume/components/consume-message-button-step.component";
+import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 
 export function SlowReminder() {
   const materialType = useAppSelector(selectMaterialType);
   const word = materialType === "reading" ? "Read" : "Watch";
 
   return (
-    <ConsumeMessageButtonStep
+    <ConsumeWorkflowStep
       message={
         <>
           <Box>{word} the material slowly. Don't rush through it.</Box>

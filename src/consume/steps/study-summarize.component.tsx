@@ -2,7 +2,7 @@ import { useState, ReactNode } from "react";
 
 import { theme } from "shared/styles/theme";
 
-import { ConsumeMessageButtonStep } from "consume/components/consume-message-button-step.component";
+import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 
 interface IProps {
@@ -12,7 +12,7 @@ export function StudySummarize(props: IProps) {
   const [summary, setSummary] = useState("");
 
   return (
-    <ConsumeMessageButtonStep
+    <ConsumeWorkflowStep
       message={props.message}
       keyPressDisabled
       buttonProps={{
@@ -25,6 +25,6 @@ export function StudySummarize(props: IProps) {
         setValue={setSummary}
         placeholder="Enter summary"
       />
-    </ConsumeMessageButtonStep>
+    </ConsumeWorkflowStep>
   );
 }
