@@ -11,8 +11,8 @@ const duckDebugSlice = createSlice({
   name: "duckDebug",
   initialState,
   reducers: {
-    nextStep: (state) => {
-      state.currentStep++;
+    setIsProgrammer: (state, action: PayloadAction<boolean>) => {
+      state.isProgrammer = action.payload;
     },
     setStep: (state, action: PayloadAction<number>) => {
       state.currentStep = action.payload;
@@ -21,4 +21,4 @@ const duckDebugSlice = createSlice({
 });
 
 export const duckDebugReducer = duckDebugSlice.reducer;
-export const { nextStep, setStep } = duckDebugSlice.actions;
+export const { setStep } = duckDebugSlice.actions;

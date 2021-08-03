@@ -28,12 +28,6 @@ const consumeSlice = createSlice({
       state.studyBlockTime = payload.studyBlockTime;
       state.shouldPlayAlarm = payload.shouldPlayAlarm;
     },
-    goToStudy: (state) => {
-      state.currentStep = 8;
-    },
-    nextStep: (state) => {
-      state.currentStep++;
-    },
     setStep: (state, action: PayloadAction<number>) => {
       state.currentStep = action.payload;
     },
@@ -53,9 +47,7 @@ const consumeSlice = createSlice({
 export const consumeReducer = consumeSlice.reducer;
 export const {
   setMaterialData,
-  nextStep,
   setStep,
-  goToStudy,
   nextStudyBlock,
   newMaterial,
   updateSettings,

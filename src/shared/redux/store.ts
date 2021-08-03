@@ -4,10 +4,12 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { consumeReducer } from "consume/redux/consume.slice";
 import { hookReducer } from "hook/redux/hook.slice";
 import { modalReducer } from "modal/redux/modal.slice";
+import { duckDebugReducer } from "duck-debug/redux/duck-debug.slice";
 
 export const store = configureStore({
   reducer: {
     consume: consumeReducer,
+    duckDebug: duckDebugReducer,
     hook: hookReducer,
     modal: modalReducer,
   },
