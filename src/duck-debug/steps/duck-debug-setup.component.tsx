@@ -1,13 +1,11 @@
 import { Box } from "@chakra-ui/react";
 
 import { Messages } from "message/components/messages.component";
-import { quackers } from "avatars/data/quackers.avatar";
-import { WorkflowStep } from "shared/components/step/workflow-step.component";
+import { DuckDebugStep } from "./duck-debug-step.component";
 
 export function DuckDebugSetup() {
   return (
-    <WorkflowStep
-      onNext={() => {}}
+    <DuckDebugStep
       message={
         <Messages>
           <Box>
@@ -17,7 +15,6 @@ export function DuckDebugSetup() {
           <Box>Just one question. Do you need help with programming?</Box>
         </Messages>
       }
-      messageProps={{ avatar: quackers }}
-    ></WorkflowStep>
+    ></DuckDebugStep>
   );
 }

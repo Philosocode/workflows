@@ -5,6 +5,7 @@ import { IMessageProps, Message } from "message/components/message.component";
 import { useKeypress } from "shared/hooks/use-key-press.hook";
 import { Button } from "shared/components/button/button.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
+import { theme } from "shared/styles/theme";
 
 export interface IWorkflowStepProps {
   message: ReactNode;
@@ -28,13 +29,18 @@ export function WorkflowStep(props: IProps) {
   const [text, setText] = useState("");
   useKeypress("ArrowRight", props.onNext, props.keyPressDisabled ?? false);
 
+  const editorValue = props.editor?.value ?? text;
+  let buttonDisabled = false;
+  if (props.editor?.showEditor && editorValue.trim() === "")
+    buttonDisabled = true;
+
   return (
     <>
       <Message {...props.messageProps}>{props.message}</Message>
 
       {props.editor && props.editor.showEditor && (
         <MarkdownEditor
-          value={props.editor.value ?? text}
+          value={editorValue}
           setValue={props.editor.setValue ?? setText}
           placeholder={props.editor.placeholder}
         />
@@ -44,7 +50,13 @@ export function WorkflowStep(props: IProps) {
 
       {props.buttons}
       {!props.buttons && (
-        <Button children="Next" onClick={props.onNext} {...props.buttonProps} />
+        <Button
+          children="Next"
+          onClick={props.onNext}
+          mt={props.editor?.showEditor && theme.spacing.nextButtonMarginTop}
+          disabled={buttonDisabled}
+          {...props.buttonProps}
+        />
       )}
     </>
   );

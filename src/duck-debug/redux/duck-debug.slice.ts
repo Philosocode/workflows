@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IDuckDebugState } from "./duck-debug.types";
 
 const initialState: IDuckDebugState = {
-  currentStep: 1,
+  currentStep: 0,
   isProgrammer: false,
 };
 
