@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 
-export function useNextPage(basePath: string, currentStep: number) {
+export function useNextStep(basePath: string, currentStep: number) {
   const history = useHistory();
 
   function next() {

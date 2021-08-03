@@ -6,7 +6,7 @@ import { ConsumePage } from "consume/pages/consume.page";
 export function RootRouter() {
   return (
     <>
-      <Route path="/consume/:pageNumber" component={ConsumePage} />
+      <Route path="/consume/:currentStep" component={ConsumePage} />
       <Switch>
         <Route path="/" exact render={() => <Redirect to="/consume/1" />} />
         {consumeRoutes.map((route) => route)}

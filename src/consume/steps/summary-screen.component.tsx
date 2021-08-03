@@ -2,7 +2,7 @@ import { Box, VStack } from "@chakra-ui/react";
 
 import { selectCurrentHooks } from "hook/redux/hook.selectors";
 import { useAppSelector } from "shared/redux/store";
-import { useNextPage } from "shared/hooks/use-next-page.hook";
+import { useNextStep } from "shared/hooks/use-next-step.hook";
 import { selectConsumeStep } from "consume/redux/consume.selectors";
 
 import { Message } from "message/components/message.component";
@@ -14,9 +14,9 @@ import { theme } from "shared/styles/theme";
 export function SummaryScreen() {
   const currentStep = useAppSelector(selectConsumeStep);
   const currentHooks = useAppSelector(selectCurrentHooks);
-  const nextPage = useNextPage("/consume", currentStep);
+  const nextStep = useNextStep("/consume", currentStep);
 
-  if (currentHooks.length === 0) nextPage();
+  if (currentHooks.length === 0) nextStep();
 
   return (
     <>
@@ -42,7 +42,7 @@ export function SummaryScreen() {
           </Box>
         </VStack>
       </Message>
-      <Button onClick={nextPage}>Next</Button>
+      <Button onClick={nextStep}>Next</Button>
 
       <Box w="full">
         <HookList hooks={currentHooks} heading="Current Hooks" dragDisabled />

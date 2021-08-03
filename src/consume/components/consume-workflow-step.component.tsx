@@ -5,14 +5,14 @@ import {
   IWorkflowStepProps,
   WorkflowStep,
 } from "shared/components/step/workflow-step.component";
-import { useNextPage } from "shared/hooks/use-next-page.hook";
+import { useNextStep } from "shared/hooks/use-next-step.hook";
 
 export function ConsumeWorkflowStep(props: IWorkflowStepProps) {
   const currentStep = useAppSelector(selectConsumeStep);
-  const nextPage = useNextPage("/consume", currentStep);
+  const nextStep = useNextStep("/consume", currentStep);
 
   return (
-    <WorkflowStep onNext={nextPage} {...props}>
+    <WorkflowStep onNext={nextStep} {...props}>
       {props.children}
     </WorkflowStep>
   );
