@@ -4,7 +4,7 @@ import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 import { StudyHooks } from "consume/components/study-hooks.component";
 import { StudyMenu } from "consume/components/study-menu.component";
 import { ConsumeFinish } from "consume/steps/consume-finish.component";
-import { GetMaterialData } from "consume/steps/get-material-data.component";
+import { ConsumeSetup } from "consume/steps/consume-setup.component";
 import { PracticeReminder } from "consume/steps/practice-reminder.component";
 import { SkimReminder } from "consume/steps/skim-reminder.component";
 import { SlowReminder } from "consume/steps/slow-reminder.component";
@@ -18,7 +18,7 @@ import { Messages } from "message/components/messages.component";
 import { theme } from "shared/styles/theme";
 
 const _consumeRoutes = [
-  { component: GetMaterialData },
+  { component: ConsumeSetup },
   { component: SlowReminder },
   { component: TimerReminder },
   { component: SkimReminder },
