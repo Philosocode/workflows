@@ -8,10 +8,13 @@ import { CardButton } from "shared/components/button/card-button.component";
 import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.route";
 import { Message } from "message/components/message.component";
 import { Messages } from "message/components/messages.component";
+import { AppNavbar } from "navbar/components/app-navbar.component";
+import { ToggleThemeButton } from "navbar/components/toggle-theme-button.component";
 
 export function HomePage() {
   return (
     <>
+      <AppNavbar rightSlot={<ToggleThemeButton />} />
       <HomeMessage />
       <VStack spacing={{ base: 10, md: 12 }} alignItems="start">
         <Box>
@@ -47,7 +50,7 @@ export function HomePage() {
 
 function HomeMessage() {
   return (
-    <Box mt={10} w="full">
+    <Box w="full">
       <Message>
         <Messages>
           <Box>

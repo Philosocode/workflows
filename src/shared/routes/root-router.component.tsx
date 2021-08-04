@@ -31,6 +31,8 @@ export function RootRouter() {
           path="/duck-debug"
           render={() => <Redirect to="/duck-debug/1" />}
         />
+
+        <Route path="*" render={() => <Redirect to="/" />} />
       </Switch>
     </>
   );
