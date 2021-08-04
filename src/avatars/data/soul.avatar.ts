@@ -4,7 +4,7 @@ import soulImage from "../assets/soul.png";
 
 export const soul: IAvatarConfig = {
   bg: {
-    light: "gray.50",
+    light: "gray.100",
     dark: "gray.700",
   },
   borderColor: {
@@ -19,7 +19,7 @@ export const soul: IAvatarConfig = {
     light: "gray.500",
     dark: "gray.400",
   },
-  name: "Professor Soul",
+  name: "The Professor",
   imageSrc: soulImage,
   fontFamily: "Open Sans, Helvetica, sans-serif",
 };

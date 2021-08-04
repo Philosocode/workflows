@@ -4,6 +4,7 @@ import { consumeRoutes } from "consume/routes/consume.routes";
 import { ConsumePage } from "consume/pages/consume.page";
 import { duckDebugRoutes } from "duck-debug/routes/duck-debug.route";
 import { DuckDebugPage } from "duck-debug/pages/duck-debug.page";
+import { HomePage } from "shared/pages/home.page";
 
 const _pageRoutes = [
   { path: "/consume", component: ConsumePage },
@@ -20,7 +21,7 @@ export function RootRouter() {
       {pageRoutes.map((route) => route)}
 
       <Switch>
-        <Route path="/" exact render={() => <Redirect to="/consume/1" />} />
+        <Route path="/" exact component={HomePage} />
 
         {consumeRoutes.map((route) => route)}
         <Route path="/consume" render={() => <Redirect to="/consume/1" />} />
