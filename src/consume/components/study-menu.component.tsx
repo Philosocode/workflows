@@ -79,7 +79,7 @@ export function StudyMenu(props: IProps) {
           color="gray"
           onClick={() =>
             history.push({
-              pathname: `${DUCK_DEBUG_BASE_PATH}/1`,
+              pathname: `${DUCK_DEBUG_BASE_PATH}/setup`,
               state: { from: location.pathname },
             })
           }

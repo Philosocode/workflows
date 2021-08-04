@@ -6,6 +6,7 @@ import { useKeypress } from "shared/hooks/use-key-press.hook";
 import { Button } from "shared/components/button/button.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { theme } from "shared/styles/theme";
+import { Link, useHistory } from "react-router-dom";
 
 export interface IWorkflowStepProps {
   message: ReactNode;
@@ -21,13 +22,18 @@ export interface IWorkflowStepProps {
   };
   keyPressDisabled?: boolean;
   messageProps?: IMessageProps;
+  nextUrl?: string;
 }
-interface IProps extends IWorkflowStepProps {
-  onNext: () => void;
-}
+interface IProps extends IWorkflowStepProps {}
 export function WorkflowStep(props: IProps) {
   const [text, setText] = useState("");
-  useKeypress("ArrowRight", props.onNext, props.keyPressDisabled ?? false);
+  const history = useHistory();
+
+  useKeypress(
+    "ArrowRight",
+    () => history.push(props.nextUrl ?? "/"),
+    props.keyPressDisabled ?? false,
+  );
 
   const editorValue = props.editor?.value ?? text;
   let buttonDisabled = false;
@@ -49,14 +55,15 @@ export function WorkflowStep(props: IProps) {
       {props.children}
 
       {props.buttons}
-      {!props.buttons && (
-        <Button
-          children="Next"
-          onClick={props.onNext}
-          mt={props.editor?.showEditor && theme.spacing.nextButtonMarginTop}
-          disabled={buttonDisabled}
-          {...props.buttonProps}
-        />
+      {props.nextUrl && (
+        <Link to={props.nextUrl}>
+          <Button
+            children="Next"
+            mt={props.editor?.showEditor && theme.spacing.nextButtonMarginTop}
+            disabled={buttonDisabled}
+            {...props.buttonProps}
+          />
+        </Link>
       )}
     </>
   );

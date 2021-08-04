@@ -3,12 +3,12 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { consumeRoutes } from "consume/routes/consume.routes";
 import { ConsumePage } from "consume/pages/consume.page";
 import { duckDebugRoutes } from "duck-debug/routes/duck-debug.route";
-import { DuckDebugPage } from "duck-debug/pages/duck-debug.page";
 import { HomePage } from "shared/pages/home.page";
+import { DuckDebugNavbar } from "duck-debug/components/duck-debug-navbar.component";
 
 const _pageRoutes = [
   { path: "/consume", component: ConsumePage },
-  { path: "/duck-debug", component: DuckDebugPage },
+  { path: "/duck-debug", component: DuckDebugNavbar },
 ];
 
 const pageRoutes = _pageRoutes.map((route) => (

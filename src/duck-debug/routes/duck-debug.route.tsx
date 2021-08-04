@@ -20,41 +20,47 @@ const progPrompts = [
 ];
 
 export const DUCK_DEBUG_BASE_PATH = "/duck-debug";
+const regularUrl = `${DUCK_DEBUG_BASE_PATH}/regular`;
+const progUrl = `${DUCK_DEBUG_BASE_PATH}/prog`;
 
 export const duckDebugRoutes = [
-  <Route path={`${DUCK_DEBUG_BASE_PATH}/1`} component={DuckDebugSetup} />,
+  <Route path={`${DUCK_DEBUG_BASE_PATH}/setup`} component={DuckDebugSetup} />,
+
   ...regularPrompts.map((prompt, index) => (
     <Route
-      key={`${DUCK_DEBUG_BASE_PATH}/${index + 1}/regular`}
-      path={`${DUCK_DEBUG_BASE_PATH}/${index + 1}/regular`}
+      key={`${regularUrl}/${index + 1}`}
+      path={`${regularUrl}/${index + 1}`}
       render={() => (
         <DuckDebugWorkflowStep
           message={prompt}
           editor={{ showEditor: index < regularPrompts.length }}
+          nextUrl={`${regularUrl}/${index + 2}`}
         />
       )}
     />
   )),
+
   <Route
-    path={`${DUCK_DEBUG_BASE_PATH}/${regularPrompts.length + 1}/regular`}
+    path={`${regularUrl}/${regularPrompts.length + 1}`}
     component={DuckDebugFinish}
   />,
 
   ...progPrompts.map((prompt, index) => (
     <Route
-      key={`${DUCK_DEBUG_BASE_PATH}/${index + 1}/prog`}
-      path={`${DUCK_DEBUG_BASE_PATH}/${index + 1}/prog`}
+      key={`${progUrl}/${index + 1}`}
+      path={`${progUrl}/${index + 1}`}
       render={() => (
         <DuckDebugWorkflowStep
           message={prompt}
           editor={{ showEditor: index < progPrompts.length }}
+          nextUrl={`${progUrl}/${index + 2}`}
         />
       )}
     />
   )),
 
   <Route
-    path={`${DUCK_DEBUG_BASE_PATH}/${progPrompts.length + 1}/prog`}
+    path={`${progUrl}/${progPrompts.length + 1}`}
     component={DuckDebugFinish}
   />,
 ];
