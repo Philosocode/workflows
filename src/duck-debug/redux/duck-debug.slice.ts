@@ -3,8 +3,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IDuckDebugState } from "./duck-debug.types";
 
 const initialState: IDuckDebugState = {
-  currentStep: 0,
+  currentStep: 1,
   isProgrammer: false,
+  redirectUrl: "/",
 };
 
 const duckDebugSlice = createSlice({
@@ -17,8 +18,12 @@ const duckDebugSlice = createSlice({
     setStep: (state, action: PayloadAction<number>) => {
       state.currentStep = action.payload;
     },
+    setRedirectUrl: (state, action: PayloadAction<string>) => {
+      state.redirectUrl = action.payload;
+    },
   },
 });
 
 export const duckDebugReducer = duckDebugSlice.reducer;
-export const { setStep } = duckDebugSlice.actions;
+export const { setStep, setIsProgrammer, setRedirectUrl } =
+  duckDebugSlice.actions;

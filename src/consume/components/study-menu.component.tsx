@@ -1,27 +1,33 @@
 import { Icon, ListItem, Tooltip, UnorderedList } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory, useLocation } from "react-router-dom";
 import { BiNetworkChart, BiNote } from "react-icons/bi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle, IoMdHelpCircle } from "react-icons/io";
 
-import { useAppSelector } from "shared/redux/store";
 import { TStudyView } from "consume/redux/consume.types";
 import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
-import { selectConsumeStep } from "consume/redux/consume.selectors";
 
 import { Message } from "message/components/message.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
 import { theme } from "shared/styles/theme";
+import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.route";
+import { useToggle } from "shared/hooks/use-toggle.hook";
+import { useNextStep } from "shared/hooks/use-next-step.hook";
+import { useAppSelector } from "shared/redux/store";
+import { selectConsumeStep } from "consume/redux/consume.selectors";
 
 interface IProps {
   setView: (view: TStudyView) => void;
   goToSummary: () => void;
 }
 export function StudyMenu(props: IProps) {
+  const location = useLocation();
   const history = useHistory();
-  const basePath = `/consume/${CONSUME_PAGE_NUMBERS.STUDY}`;
   const currentStep = useAppSelector(selectConsumeStep);
+
+  const nextStep = useNextStep("/consume", currentStep);
+  const basePath = `/consume/${CONSUME_PAGE_NUMBERS.STUDY}`;
 
   return (
     <>
@@ -40,6 +46,7 @@ export function StudyMenu(props: IProps) {
           </ListItem>
         </UnorderedList>
       </Message>
+
       <CardButtonGrid>
         <Tooltip
           label="Create hooks for abstract ideas or concepts"
@@ -71,16 +78,17 @@ export function StudyMenu(props: IProps) {
         </Tooltip>
         <CardButton
           color="gray"
-          onClick={() => history.push(`${basePath}/help`)}
+          onClick={() =>
+            history.push({
+              pathname: `${DUCK_DEBUG_BASE_PATH}/1`,
+              state: { from: location.pathname },
+            })
+          }
           icon={AiOutlineExclamationCircle}
         >
           I'm Stuck
         </CardButton>
-        <CardButton
-          color="gray"
-          onClick={() => history.push(`/consume/${currentStep + 1}`)}
-          icon={IoMdCheckmarkCircle}
-        >
+        <CardButton color="gray" onClick={nextStep} icon={IoMdCheckmarkCircle}>
           I'm Done
         </CardButton>
       </CardButtonGrid>

@@ -13,3 +13,8 @@ export const selectIsProgrammer = createSelector(
   [selectDuckDebugState],
   (state) => state.isProgrammer,
 );
+
+export const selectRedirectUrl = createSelector(
+  [selectDuckDebugState],
+  (state) => state.redirectUrl,
+);

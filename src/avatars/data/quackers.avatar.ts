@@ -5,11 +5,11 @@ import quackersImage from "../assets/quackers.png";
 export const quackers: IAvatarConfig = {
   bg: {
     light: "yellow.100",
-    dark: "yellow.600",
+    dark: "yellow.700",
   },
   borderColor: {
     light: "yellow.300",
-    dark: "yellow.400",
+    dark: "yellow.500",
   },
   titleColor: {
     light: "yellow.800",

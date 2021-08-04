@@ -9,23 +9,24 @@ import {
   selectIsProgrammer,
 } from "duck-debug/redux/duck-debug.selectors";
 import { quackers } from "avatars/data/quackers.avatar";
+import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.route";
 
 interface IProps extends IWorkflowStepProps {}
 export function DuckDebugWorkflowStep(props: IProps) {
   const currentStep = useAppSelector(selectDuckDebugStep);
   const isProgrammer = useAppSelector(selectIsProgrammer);
-
-  const basePath = isProgrammer ? "/duck-debug/prog" : "/duck-debug/regular";
-  const nextStep = useNextStep(basePath, currentStep);
+  const suffix = isProgrammer ? "prog" : "regular";
+  const nextStep = useNextStep(DUCK_DEBUG_BASE_PATH, currentStep, suffix);
 
   return (
     <WorkflowStep
       onNext={nextStep}
-      {...props}
       messageProps={{ avatar: quackers }}
       editor={{
         showEditor: true,
       }}
+      keyPressDisabled
+      {...props}
     >
       {props.children}
     </WorkflowStep>
