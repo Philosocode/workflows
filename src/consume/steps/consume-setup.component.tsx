@@ -20,7 +20,7 @@ import { TMaterialType } from "consume/redux/consume.types";
 import { useAppSelector } from "shared/redux/store";
 import { setMaterialData } from "consume/redux/consume.slice";
 import { selectConsumeState } from "consume/redux/consume.selectors";
-import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.route";
+import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 
 import { Message } from "message/components/message.component";
 import { CardButton } from "shared/components/button/card-button.component";

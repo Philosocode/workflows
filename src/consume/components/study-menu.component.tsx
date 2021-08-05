@@ -6,7 +6,7 @@ import { IoMdCheckmarkCircle, IoMdHelpCircle } from "react-icons/io";
 
 import { TStudyView } from "consume/redux/consume.types";
 import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
-import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.route";
+import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
 import { theme } from "shared/styles/theme";
 import { useNextStep } from "shared/hooks/use-next-step.hook";
 import { useAppSelector } from "shared/redux/store";

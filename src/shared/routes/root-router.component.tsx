@@ -1,24 +1,22 @@
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import { consumeRoutes } from "consume/routes/consume.routes";
-import { ConsumePage } from "consume/pages/consume.page";
-import { duckDebugRoutes } from "duck-debug/routes/duck-debug.route";
+import { duckDebugRoutes } from "duck-debug/routes/duck-debug.routes";
+import { ConsumeNavbar } from "consume/components/consume-navbar.component";
 import { HomePage } from "shared/pages/home.page";
 import { DuckDebugNavbar } from "duck-debug/components/duck-debug-navbar.component";
 
-const _pageRoutes = [
-  { path: "/consume", component: ConsumePage },
+const navbarRoutes = [
+  { path: "/consume", component: ConsumeNavbar },
   { path: "/duck-debug", component: DuckDebugNavbar },
 ];
-
-const pageRoutes = _pageRoutes.map((route) => (
-  <Route path={`${route.path}/:currentStep`} component={route.component} />
-));
 
 export function RootRouter() {
   return (
     <>
-      {pageRoutes.map((route) => route)}
+      {navbarRoutes.map((route) => (
+        <Route path={route.path} component={route.component} key={route.path} />
+      ))}
 
       <Switch>
         <Route path="/" exact component={HomePage} />

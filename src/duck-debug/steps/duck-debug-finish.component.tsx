@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import { useAppSelector } from "shared/redux/store";
 import { selectRedirectUrl } from "duck-debug/redux/duck-debug.selectors";
-import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.route";
+import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
 
 import { Button } from "shared/components/button/button.component";
 import { DuckDebugWorkflowStep } from "duck-debug/components/duck-debug-workflow-step.component";

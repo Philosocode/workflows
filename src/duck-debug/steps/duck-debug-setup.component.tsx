@@ -9,7 +9,7 @@ import { CardButtonGrid } from "shared/components/button/card-button-grid.compon
 import { CardButton } from "shared/components/button/card-button.component";
 import { DuckDebugWorkflowStep } from "duck-debug/components/duck-debug-workflow-step.component";
 import { Messages } from "message/components/messages.component";
-import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.route";
+import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
 
 export function DuckDebugSetup() {
   const dispatch = useAppDispatch();

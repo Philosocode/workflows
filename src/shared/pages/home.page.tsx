@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
-import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.route";
+import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
 import { Message } from "message/components/message.component";
 import { Messages } from "message/components/messages.component";
 import { AppNavbar } from "navbar/components/app-navbar.component";
