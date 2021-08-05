@@ -1,6 +1,7 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
-import { IoMdSchool } from "react-icons/io";
+import { FaSeedling } from "react-icons/fa";
 import { GiPlasticDuck } from "react-icons/gi";
+import { IoMdSchool } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
@@ -17,10 +18,15 @@ export function HomePage() {
       <AppNavbar rightSlot={<ToggleThemeButton />} />
       <HomeMessage />
       <VStack spacing={{ base: 10, md: 12 }} alignItems="start">
-        <Box>
+        <Box w="full">
           <Heading size="lg">Study</Heading>
           <CardButtonGrid mt={5}>
-            <Link to="/consume/1">
+            <Link to="/pre-study/1">
+              <CardButton color="gray" icon={FaSeedling}>
+                Pre-Study
+              </CardButton>
+            </Link>
+            <Link to="/consume/setup">
               <CardButton color="gray" icon={IoMdSchool}>
                 Read / Watch
               </CardButton>
@@ -28,7 +34,7 @@ export function HomePage() {
           </CardButtonGrid>
         </Box>
 
-        <Box>
+        <Box w="full">
           <Heading size="lg">Help</Heading>
           <CardButtonGrid mt={5}>
             <Link
