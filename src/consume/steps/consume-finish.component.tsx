@@ -22,7 +22,7 @@ export function ConsumeFinish() {
 
   function onNewMaterial() {
     dispatch(newMaterial());
-    history.push("/consume/1");
+    history.push("/consume/setup");
   }
 
   const message =

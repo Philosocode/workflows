@@ -32,7 +32,7 @@ export function WorkflowStep(props: IProps) {
   useKeypress(
     "ArrowRight",
     () => history.push(props.nextUrl ?? "/"),
-    props.keyPressDisabled ?? false,
+    (props.editor?.showEditor || props.keyPressDisabled) ?? false,
   );
 
   const editorValue = props.editor?.value ?? text;

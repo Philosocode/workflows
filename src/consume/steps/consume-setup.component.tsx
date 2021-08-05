@@ -36,7 +36,7 @@ export function ConsumeSetup() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const { currentStep, studyBlockTime, shouldPlayAlarm } =
+  const { studyBlockTime, shouldPlayAlarm } =
     useAppSelector(selectConsumeState);
 
   const { control, formState, handleSubmit, register, getValues } =
@@ -46,7 +46,7 @@ export function ConsumeSetup() {
 
   function onSubmit(values: IFormProps) {
     dispatch(setMaterialData(values));
-    history.push(`/consume/${currentStep + 1}`);
+    history.push(`/consume/1`);
   }
 
   function skipToStudy() {

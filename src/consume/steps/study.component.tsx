@@ -12,7 +12,13 @@ export function Study() {
   return (
     <>
       <Switch>
-        {studyRoutes.map((route) => route)}
+        {studyRoutes.map((route) => (
+          <Route
+            {...route}
+            key={route.path}
+            path={`/consume/${CONSUME_PAGE_NUMBERS.STUDY}/${route.path}`}
+          />
+        ))}
         <Route
           path={basePath}
           render={() => <Redirect to={`${basePath}/menu`} />}

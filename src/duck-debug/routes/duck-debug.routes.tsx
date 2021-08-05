@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import { DuckDebugSetup } from "duck-debug/steps/duck-debug-setup.component";
 import { DuckDebugWorkflowStep } from "duck-debug/components/duck-debug-workflow-step.component";
@@ -24,43 +24,39 @@ const regularUrl = `${DUCK_DEBUG_BASE_PATH}/regular`;
 const progUrl = `${DUCK_DEBUG_BASE_PATH}/prog`;
 
 export const duckDebugRoutes = [
-  <Route path={`${DUCK_DEBUG_BASE_PATH}/setup`} component={DuckDebugSetup} />,
+  { component: DuckDebugSetup, path: "duck-debug/setup" },
 
-  ...regularPrompts.map((prompt, index) => (
-    <Route
-      key={`${regularUrl}/${index + 1}`}
-      path={`${regularUrl}/${index + 1}`}
-      render={() => (
-        <DuckDebugWorkflowStep
-          message={prompt}
-          editor={{ showEditor: index < regularPrompts.length }}
-          nextUrl={`${regularUrl}/${index + 2}`}
-        />
-      )}
-    />
-  )),
+  ...regularPrompts.map((prompt, index) => ({
+    path: `${regularUrl}/${index + 1}`,
+    render: () => (
+      <DuckDebugWorkflowStep
+        message={prompt}
+        editor={{ showEditor: index < regularPrompts.length }}
+        nextUrl={`${regularUrl}/${index + 2}`}
+      />
+    ),
+  })),
+  {
+    component: DuckDebugFinish,
+    path: `${regularUrl}/${regularPrompts.length + 1}`,
+  },
 
-  <Route
-    path={`${regularUrl}/${regularPrompts.length + 1}`}
-    component={DuckDebugFinish}
-  />,
+  ...progPrompts.map((prompt, index) => ({
+    path: `${progUrl}/${index + 1}`,
+    render: () => (
+      <DuckDebugWorkflowStep
+        message={prompt}
+        editor={{ showEditor: index < progPrompts.length }}
+        nextUrl={`${progUrl}/${index + 2}`}
+      />
+    ),
+  })),
+  { component: DuckDebugFinish, path: `${progUrl}/${progPrompts.length + 1}` },
 
-  ...progPrompts.map((prompt, index) => (
-    <Route
-      key={`${progUrl}/${index + 1}`}
-      path={`${progUrl}/${index + 1}`}
-      render={() => (
-        <DuckDebugWorkflowStep
-          message={prompt}
-          editor={{ showEditor: index < progPrompts.length }}
-          nextUrl={`${progUrl}/${index + 2}`}
-        />
-      )}
-    />
-  )),
-
-  <Route
-    path={`${progUrl}/${progPrompts.length + 1}`}
-    component={DuckDebugFinish}
-  />,
+  // catch-all
+  {
+    component: DuckDebugSetup,
+    path: "/duck-debug",
+    render: () => <Redirect to="/duck-debug/setup" />,
+  },
 ];

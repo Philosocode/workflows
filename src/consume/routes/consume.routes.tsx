@@ -1,5 +1,5 @@
-import { Route, RouteProps } from "react-router-dom";
-import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Redirect, RouteProps } from "react-router-dom";
+import { ListItem, UnorderedList } from "@chakra-ui/react";
 
 import { StudyHooks } from "consume/components/study-hooks.component";
 import { StudyMenu } from "consume/components/study-menu.component";
@@ -17,8 +17,8 @@ import { TimerReminder } from "consume/steps/timer-reminder.component";
 import { Messages } from "message/components/messages.component";
 import { theme } from "shared/styles/theme";
 
-const _consumeRoutes = [
-  { component: ConsumeSetup },
+export const consumeRoutes = [
+  { component: ConsumeSetup, path: "/consume/setup" },
   { component: SlowReminder },
   { component: TimerReminder },
   { component: SkimReminder },
@@ -28,14 +28,8 @@ const _consumeRoutes = [
     render: (props: RouteProps) => (
       <StudySummarize
         {...props}
-        message={
-          <>
-            <Box>Summarize everything you've learned so far.</Box>
-            <Box>
-              Try to do it from memory, without looking at the material.
-            </Box>
-          </>
-        }
+        message="Summarize everything you've learned so far. Try to do it from 
+        memory, without looking at the material."
       />
     ),
   },
@@ -52,23 +46,16 @@ const _consumeRoutes = [
   },
   { component: SummaryScreen },
   { component: ConsumeFinish },
+  // catch-all
+  { path: "/consume", render: () => <Redirect to="/consume/setup" /> },
 ];
 
-export const consumeRoutes = _consumeRoutes.map((route, index) => (
-  <Route
-    key={`/consume/${index + 1}`}
-    path={`/consume/${index + 1}`}
-    {...route}
-  />
-));
-
 export const CONSUME_PAGE_NUMBERS = {
-  STUDY: _consumeRoutes.findIndex((route) => route.component === Study) + 1,
-  TIMER:
-    _consumeRoutes.findIndex((route) => route.component === StudyTimer) + 1,
+  STUDY: consumeRoutes.findIndex((route) => route.component === Study),
+  TIMER: consumeRoutes.findIndex((route) => route.component === StudyTimer),
 };
 
-const _studyRoutes = [
+export const studyRoutes = [
   { path: "menu", component: StudyMenu },
   {
     path: "hooks",
@@ -116,10 +103,3 @@ const _studyRoutes = [
     ),
   },
 ];
-
-export const studyRoutes = _studyRoutes.map((route) => (
-  <Route
-    {...route}
-    path={`/consume/${CONSUME_PAGE_NUMBERS.STUDY}/${route.path}`}
-  />
-));

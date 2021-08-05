@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-export function useCurrentStepParam(callback: (page: number) => void) {
+export function useCurrentStepParam(callback: (step: number) => void) {
   const params = useParams<{ currentStep?: string }>();
 
   // whenever page number param changes, run the callback

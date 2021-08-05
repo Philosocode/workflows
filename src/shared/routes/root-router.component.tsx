@@ -7,7 +7,7 @@ import { HomePage } from "shared/pages/home.page";
 import { DuckDebugNavbar } from "duck-debug/components/duck-debug-navbar.component";
 
 const navbarRoutes = [
-  { path: "/consume", component: ConsumeNavbar },
+  { path: "/consume/:currentStep", component: ConsumeNavbar },
   { path: "/duck-debug", component: DuckDebugNavbar },
 ];
 
@@ -21,14 +21,17 @@ export function RootRouter() {
       <Switch>
         <Route path="/" exact component={HomePage} />
 
-        {consumeRoutes.map((route) => route)}
-        <Route path="/consume" render={() => <Redirect to="/consume/1" />} />
+        {consumeRoutes.map((route, index) => (
+          <Route
+            key={`/consume/${index}`}
+            path={route.path ?? `/consume/${index}`}
+            {...route}
+          />
+        ))}
 
-        {duckDebugRoutes.map((route) => route)}
-        <Route
-          path="/duck-debug"
-          render={() => <Redirect to="/duck-debug/1" />}
-        />
+        {duckDebugRoutes.map((route, index) => (
+          <Route key={route.path} {...route} />
+        ))}
 
         <Route path="*" render={() => <Redirect to="/" />} />
       </Switch>

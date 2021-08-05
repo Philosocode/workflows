@@ -8,7 +8,7 @@ import {
 
 const initialState: IConsumeState = {
   materialType: "reading",
-  currentStep: 1,
+  currentStep: 0,
   studyBlockCount: 0,
   studyBlockTime: 5,
   shouldPlayAlarm: true,
