@@ -10,46 +10,9 @@ import {
 import { nextStudyBlock } from "consume/redux/consume.slice";
 
 const initialState: IHookState = {
-  hooks: {
-    a: {
-      id: "a",
-      content: "a",
-      isExpanded: false,
-      title: "a",
-    },
-    b: {
-      id: "b",
-      content: "b",
-      isExpanded: false,
-      title: "b",
-    },
-    c: {
-      id: "c",
-      content: "c",
-      isExpanded: false,
-      title: "c",
-    },
-    d: {
-      id: "d",
-      content: "d",
-      isExpanded: false,
-      title: "d",
-    },
-    e: {
-      id: "e",
-      content: "e",
-      isExpanded: false,
-      title: "e",
-    },
-    f: {
-      id: "f",
-      content: "f",
-      isExpanded: false,
-      title: "f",
-    },
-  },
-  currentHookIds: ["a", "b", "c"],
-  previousHookIds: ["d", "e", "f"],
+  hooks: {},
+  currentHookIds: [],
+  previousHookIds: [],
 };
 
 const hookSlice = createSlice({

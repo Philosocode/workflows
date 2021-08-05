@@ -9,20 +9,15 @@ import {
 interface IProps extends IconButtonProps {}
 export function IconButton(props: IProps) {
   const color = useColorModeValue("green.500", "green.200");
-  const [isSmall, isMedium] = useMediaQuery([
-    `(max-width: ${theme.breakpoints.sm})`,
-    `(max-width: ${theme.breakpoints.md})`,
-  ]);
+  const [isSmall] = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
 
-  let size = "lg";
-  if (isMedium) size = "md";
-  if (isSmall) size = "sm";
+  let size = isSmall ? "xs" : "lg";
 
   return (
     <IconButtonChakra
       variant="ghost"
       size={size}
-      fontSize={{ base: 20, md: 24 }}
+      fontSize={{ base: 18, sm: 24 }}
       _hover={{ color }}
       {...props}
     />

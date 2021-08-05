@@ -5,6 +5,7 @@ import { Logo } from "shared/components/logo.component";
 
 interface IProps {
   leftSlot?: ReactNode;
+  middleSlot?: ReactNode;
   rightSlot?: ReactNode;
 }
 export function AppNavbar(props: IProps) {
