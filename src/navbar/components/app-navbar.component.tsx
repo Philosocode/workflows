@@ -9,7 +9,12 @@ interface IProps {
 }
 export function AppNavbar(props: IProps) {
   return (
-    <Grid as="nav" templateColumns="repeat(3, 1fr)" mt={5} mb={10}>
+    <Grid
+      as="nav"
+      templateColumns="repeat(3, 1fr)"
+      mt={{ base: 3, md: 5 }}
+      mb={{ base: 5, md: 10 }}
+    >
       <HStack>{props.leftSlot}</HStack>
       <Box w="max-content" m="auto">
         <Logo />

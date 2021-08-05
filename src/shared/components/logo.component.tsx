@@ -18,10 +18,10 @@ export function Logo() {
       <Text
         bg={styles.bg}
         textColor={styles.textColor}
-        px={3}
-        py={1}
-        fontSize="2xl"
-        rounded="lg"
+        px="0.5em"
+        py="0.2em"
+        fontSize={{ base: "lg", md: "2xl" }}
+        rounded="0.3em"
         fontWeight="bold"
         transition={`${transition("border-radius")}, ${transition(
           "background",

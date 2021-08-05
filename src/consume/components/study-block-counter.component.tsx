@@ -15,15 +15,14 @@ export function StudyBlockCounter() {
       bg={bg}
       color={color}
       d="flex"
-      px={{ base: 2, md: 3 }}
-      py={{ base: 1, md: 2 }}
+      px="0.5em"
+      py="0.3em"
+      fontSize={{ base: "lg", md: "xl" }}
       alignItems="center"
       rounded="lg"
       shadow="md"
     >
-      <Box fontSize="xl" fontWeight="medium">
-        {studyBlockCount}
-      </Box>
+      <Box fontWeight="medium">{studyBlockCount}</Box>
       <Icon as={AiFillStar} boxSize={5} ml={1} />
     </Box>
   );
