@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, Grid, HStack } from "@chakra-ui/react";
 
 import { Logo } from "shared/components/logo.component";
 
@@ -9,12 +9,12 @@ interface IProps {
 }
 export function AppNavbar(props: IProps) {
   return (
-    <HStack as="nav" justify="space-between" mt={5} mb={10}>
+    <Grid as="nav" templateColumns="repeat(3, 1fr)" mt={5} mb={10}>
       <HStack>{props.leftSlot}</HStack>
-      <Box>
+      <Box w="max-content" m="auto">
         <Logo />
       </Box>
-      <HStack>{props.rightSlot}</HStack>
-    </HStack>
+      <HStack justifyContent="flex-end">{props.rightSlot}</HStack>
+    </Grid>
   );
 }
