@@ -1,5 +1,5 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
-import { FaSeedling } from "react-icons/fa";
+import { FaSearch, FaSeedling } from "react-icons/fa";
 import { GiPlasticDuck } from "react-icons/gi";
 import { IoMdSchool } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -35,11 +35,19 @@ export function HomePage() {
           <CardButtonGrid mt={5}>
             <Link
               to={{
-                pathname: `${DUCK_DEBUG_BASE_PATH}/1`,
+                pathname: `duck-debug/1`,
                 state: { from: "/" },
               }}
             >
               <CardButton icon={GiPlasticDuck}>Rubber Duck Debug</CardButton>
+            </Link>
+            <Link
+              to={{
+                pathname: `problem-solving/1`,
+                state: { from: "/" },
+              }}
+            >
+              <CardButton icon={FaSearch}>Problem Solving</CardButton>
             </Link>
           </CardButtonGrid>
         </Box>

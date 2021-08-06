@@ -9,6 +9,8 @@ import { CurrentStep } from "step/current-step.component";
 import { HomePage } from "shared/pages/home.page";
 import { DuckDebugNavbar } from "duck-debug/components/duck-debug-navbar.component";
 import { PreStudyNavbar } from "pre-study/components/pre-study-navbar.component";
+import { problemSolvingMessages } from "problem-solving/assets/problem-solving.data";
+import { ProblemSolvingWorkflowStep } from "problem-solving/components/problem-solving-workflow.component";
 
 const navbarRoutes = [
   { path: "/consume/:currentStep", component: ConsumeNavbar },
@@ -28,6 +30,14 @@ export function RootRouter() {
       <Switch>
         <Route path="/" exact component={HomePage} />
 
+        {preStudyComponents.map((component, index) => (
+          <Route
+            key={`/pre-study/${index + 1}`}
+            path={`/pre-study/${index + 1}`}
+            component={component}
+          />
+        ))}
+
         {consumeRoutes.map((route, index) => (
           <Route
             key={`/consume/${index + 1}`}
@@ -40,11 +50,11 @@ export function RootRouter() {
           <Route key={route.path} {...route} />
         ))}
 
-        {preStudyComponents.map((component, index) => (
+        {problemSolvingMessages.map((data, index) => (
           <Route
-            key={`/pre-study/${index + 1}`}
-            path={`/pre-study/${index + 1}`}
-            component={component}
+            key={`/problem-solving/${index + 1}`}
+            path={`/problem-solving/${index + 1}`}
+            render={() => <ProblemSolvingWorkflowStep />}
           />
         ))}
 
