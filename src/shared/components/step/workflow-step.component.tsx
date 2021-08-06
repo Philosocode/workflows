@@ -59,7 +59,10 @@ export function WorkflowStep(props: IProps) {
         <Link to={props.nextUrl}>
           <Button
             children="Next"
-            mt={props.editor?.showEditor && theme.spacing.nextButtonMarginTop}
+            mt={
+              props.editor?.showEditor &&
+              theme.spacing.workflowStepButtonSpacing
+            }
             disabled={buttonDisabled}
             {...props.buttonProps}
           />

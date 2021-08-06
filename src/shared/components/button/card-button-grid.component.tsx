@@ -1,16 +1,16 @@
-import { Grid, GridProps } from "@chakra-ui/react";
+import { SimpleGrid, SimpleGridProps } from "@chakra-ui/react";
 
-interface IProps extends GridProps {
+interface IProps extends SimpleGridProps {
   children: React.ReactNode;
 }
 export function CardButtonGrid(props: IProps) {
   return (
-    <Grid
-      templateColumns="repeat(2, 1fr)"
+    <SimpleGrid
+      columns={2}
       columnGap={{ base: 5, md: 10 }}
       rowGap={5}
-      {...props}
       w="full"
+      {...props}
     />
   );
 }

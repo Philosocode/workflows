@@ -5,6 +5,7 @@ import { consumeReducer } from "consume/redux/consume.slice";
 import { hookReducer } from "hook/redux/hook.slice";
 import { modalReducer } from "modal/redux/modal.slice";
 import { duckDebugReducer } from "duck-debug/redux/duck-debug.slice";
+import { stepReducer } from "../../step/step.slice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     duckDebug: duckDebugReducer,
     hook: hookReducer,
     modal: modalReducer,
+    step: stepReducer,
   },
 });
 

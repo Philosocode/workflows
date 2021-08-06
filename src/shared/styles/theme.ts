@@ -6,13 +6,16 @@ export const theme: ThemeOverride = {
   },
   spacing: {
     messageBoxSpacing: { base: 5, md: 7 },
-    nextButtonMarginTop: 10,
+    workflowStepButtonSpacing: { base: 7, md: 10 },
   },
   typography: {
     condensed: {
       textTransform: "uppercase",
       letterSpacing: "1px",
       fontWeight: "bold",
+    },
+    fontSize: {
+      messageAside: { base: "sm", md: "lg" },
     },
   },
 };
