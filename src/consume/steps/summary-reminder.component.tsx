@@ -31,12 +31,8 @@ export function SummaryReminder() {
     >
       {!hasSummary && (
         <CardButtonGrid>
-          <CardButton color="gray" onClick={() => setHasSummary(true)}>
-            Yes
-          </CardButton>
-          <CardButton color="gray" onClick={() => setHasSummary(false)}>
-            No
-          </CardButton>
+          <CardButton onClick={() => setHasSummary(true)}>Yes</CardButton>
+          <CardButton onClick={() => setHasSummary(false)}>No</CardButton>
         </CardButtonGrid>
       )}
     </ConsumeWorkflowStep>

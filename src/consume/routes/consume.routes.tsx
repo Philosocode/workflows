@@ -50,8 +50,8 @@ export const consumeRoutes = [
 ];
 
 export const CONSUME_PAGE_NUMBERS = {
-  STUDY: consumeRoutes.findIndex((route) => route.component === Study),
-  TIMER: consumeRoutes.findIndex((route) => route.component === StudyTimer),
+  STUDY: consumeRoutes.findIndex((route) => route.component === Study) + 1,
+  TIMER: consumeRoutes.findIndex((route) => route.component === StudyTimer) + 1,
 };
 
 export const studyRoutes = [

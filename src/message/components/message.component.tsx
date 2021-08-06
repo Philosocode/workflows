@@ -38,7 +38,7 @@ export function Message(props: IProps) {
         pt={{ base: 12, md: 16 }}
         pb={{ base: 5, md: 7 }}
         position="relative"
-        fontSize={{ base: "xl", sm: "2xl", md: "3xl" }}
+        fontSize={{ base: "lg", sm: "xl", md: "2xl" }}
         fontFamily={avatar.fontFamily ?? "sans-serif"}
         textColor={styles.textColor}
       >

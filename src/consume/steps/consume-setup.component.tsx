@@ -131,11 +131,7 @@ export function ConsumeSetup() {
             <CardButton disabled={!formState.isValid} type="submit">
               Next
             </CardButton>
-            <CardButton
-              disabled={!formState.isValid}
-              color="gray"
-              onClick={skipToStudy}
-            >
+            <CardButton disabled={!formState.isValid} onClick={skipToStudy}>
               Skip to Study
             </CardButton>
           </CardButtonGrid>

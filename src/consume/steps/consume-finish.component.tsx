@@ -50,9 +50,7 @@ export function ConsumeFinish() {
         <CardButton color="green" onClick={onNextStudyBlock}>
           Next Block
         </CardButton>
-        <CardButton color="gray" onClick={onNewMaterial}>
-          New Material
-        </CardButton>
+        <CardButton onClick={onNewMaterial}>New Material</CardButton>
       </CardButtonGrid>
     </>
   );

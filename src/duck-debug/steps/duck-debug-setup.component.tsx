@@ -39,13 +39,11 @@ export function DuckDebugSetup() {
       buttons={
         <CardButtonGrid mt={10}>
           <CardButton
-            color="gray"
             onClick={() => setNextUrl(`${DUCK_DEBUG_BASE_PATH}/prog/1`)}
           >
             Yes
           </CardButton>
           <CardButton
-            color="gray"
             onClick={() => setNextUrl(`${DUCK_DEBUG_BASE_PATH}/regular/1`)}
           >
             No

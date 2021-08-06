@@ -16,7 +16,7 @@ export function Study() {
           <Route
             {...route}
             key={route.path}
-            path={`/consume/${CONSUME_PAGE_NUMBERS.STUDY}/${route.path}`}
+            path={`${basePath}/${route.path}`}
           />
         ))}
         <Route

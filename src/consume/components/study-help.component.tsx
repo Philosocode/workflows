@@ -77,12 +77,8 @@ export function StudyHelp(props: IProps) {
       </Center>
       {isProgrammer === undefined ? (
         <CardButtonGrid>
-          <CardButton color="gray" onClick={() => setIsProgrammer(true)}>
-            Yes
-          </CardButton>
-          <CardButton color="gray" onClick={() => setIsProgrammer(false)}>
-            No
-          </CardButton>
+          <CardButton onClick={() => setIsProgrammer(true)}>Yes</CardButton>
+          <CardButton onClick={() => setIsProgrammer(false)}>No</CardButton>
         </CardButtonGrid>
       ) : (
         <>

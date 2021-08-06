@@ -4,24 +4,21 @@ import { BiNetworkChart, BiNote } from "react-icons/bi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle, IoMdHelpCircle } from "react-icons/io";
 
-import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
+import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 import { theme } from "shared/styles/theme";
-import { useNextStep } from "shared/hooks/use-next-step.hook";
-import { useAppSelector } from "shared/redux/store";
-import { selectCurrentStep } from "step/step.slice";
 
-import { Message } from "message/components/message.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
+import { Message } from "message/components/message.component";
 
 export function StudyMenu() {
   const location = useLocation();
   const history = useHistory();
-  const currentStep = useAppSelector(selectCurrentStep);
 
-  const nextStep = useNextStep("/consume", currentStep);
-  const basePath = `/consume/${CONSUME_PAGE_NUMBERS.STUDY}`;
+  const currentStep = CONSUME_PAGE_NUMBERS.STUDY;
+  const basePath = `/consume/${currentStep}`;
+  const nextStep = currentStep + 1;
 
   return (
     <>
@@ -49,7 +46,6 @@ export function StudyMenu() {
           placement="top"
         >
           <CardButton
-            color="gray"
             onClick={() => history.push(`${basePath}/hooks`)}
             icon={BiNetworkChart}
           >
@@ -63,7 +59,6 @@ export function StudyMenu() {
           placement="top"
         >
           <CardButton
-            color="gray"
             onClick={() => history.push(`${basePath}/notes`)}
             icon={BiNote}
           >
@@ -71,7 +66,6 @@ export function StudyMenu() {
           </CardButton>
         </Tooltip>
         <CardButton
-          color="gray"
           onClick={() =>
             history.push({
               pathname: `${DUCK_DEBUG_BASE_PATH}/setup`,
@@ -82,7 +76,10 @@ export function StudyMenu() {
         >
           I'm Stuck
         </CardButton>
-        <CardButton color="gray" onClick={nextStep} icon={IoMdCheckmarkCircle}>
+        <CardButton
+          onClick={() => history.push(`/consume/${nextStep}`)}
+          icon={IoMdCheckmarkCircle}
+        >
           I'm Done
         </CardButton>
       </CardButtonGrid>

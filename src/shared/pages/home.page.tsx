@@ -22,14 +22,10 @@ export function HomePage() {
           <Heading size="lg">Study</Heading>
           <CardButtonGrid mt={5}>
             <Link to="/pre-study/1">
-              <CardButton color="gray" icon={FaSeedling}>
-                Pre-Study
-              </CardButton>
+              <CardButton icon={FaSeedling}>Pre-Study</CardButton>
             </Link>
             <Link to="/consume/1">
-              <CardButton color="gray" icon={IoMdSchool}>
-                Read / Watch
-              </CardButton>
+              <CardButton icon={IoMdSchool}>Read / Watch</CardButton>
             </Link>
           </CardButtonGrid>
         </Box>
@@ -43,9 +39,7 @@ export function HomePage() {
                 state: { from: "/" },
               }}
             >
-              <CardButton color="gray" icon={GiPlasticDuck}>
-                Rubber Duck Debug
-              </CardButton>
+              <CardButton icon={GiPlasticDuck}>Rubber Duck Debug</CardButton>
             </Link>
           </CardButtonGrid>
         </Box>

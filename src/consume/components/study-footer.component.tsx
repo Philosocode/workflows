@@ -21,7 +21,8 @@ export function StudyFooter() {
         <HookList hooks={previousHooks} heading="Previous Hooks" isPrevious />
       )}
 
-      <ExpandHooksButton />
+      {currentHooks.length > 0 ||
+        (previousHooks.length > 0 && <ExpandHooksButton />)}
     </>
   );
 }
