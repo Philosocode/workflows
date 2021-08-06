@@ -1,6 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {
   FormControl,
   Radio,
@@ -21,11 +21,14 @@ import { useAppSelector } from "shared/redux/store";
 import { setMaterialData } from "consume/redux/consume.slice";
 import { selectConsumeState } from "consume/redux/consume.selectors";
 import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
+import { theme } from "shared/styles/theme";
+import { selectNextStep } from "step/step.slice";
+import { useState } from "react";
 
-import { Message } from "message/components/message.component";
 import { CardButton } from "shared/components/button/card-button.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { FormLabel } from "form/components/form-label.component";
+import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 
 interface IFormProps {
   materialType: TMaterialType;
@@ -33,11 +36,12 @@ interface IFormProps {
   shouldPlayAlarm: boolean;
 }
 export function ConsumeSetup() {
-  const history = useHistory();
+  const [redirectUrl, setRedirectUrl] = useState("");
   const dispatch = useDispatch();
-
   const { studyBlockTime, shouldPlayAlarm } =
     useAppSelector(selectConsumeState);
+
+  const nextStep = useAppSelector(selectNextStep);
 
   const { control, formState, handleSubmit, register, getValues } =
     useForm<IFormProps>({
@@ -46,20 +50,23 @@ export function ConsumeSetup() {
 
   function onSubmit(values: IFormProps) {
     dispatch(setMaterialData(values));
-    history.push(`/consume/1`);
+    setRedirectUrl(`/consume/${nextStep}`);
   }
 
   function skipToStudy() {
     dispatch(setMaterialData(getValues()));
-    history.push(`/consume/${CONSUME_PAGE_NUMBERS.STUDY}`);
+    setRedirectUrl(`/consume/${CONSUME_PAGE_NUMBERS.TIMER}`);
   }
 
   const focusBorderColor = useColorModeValue("green.500", "green.200");
 
-  return (
-    <>
-      <Message>What are you studying today?</Message>
+  if (redirectUrl) return <Redirect to={redirectUrl} />;
 
+  return (
+    <ConsumeWorkflowStep
+      message="What are you studying today?"
+      showButton={false}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <VStack spacing={7} alignItems="start">
           <FormControl id="materialType">
@@ -120,8 +127,7 @@ export function ConsumeSetup() {
               defaultChecked={shouldPlayAlarm}
             />
           </FormControl>
-
-          <CardButtonGrid>
+          <CardButtonGrid mt={theme.spacing.workflowStepButtonSpacing}>
             <CardButton disabled={!formState.isValid} type="submit">
               Next
             </CardButton>
@@ -135,6 +141,6 @@ export function ConsumeSetup() {
           </CardButtonGrid>
         </VStack>
       </form>
-    </>
+    </ConsumeWorkflowStep>
   );
 }

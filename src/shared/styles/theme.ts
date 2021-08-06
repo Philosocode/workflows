@@ -1,6 +1,4 @@
-import { ThemeOverride } from "@chakra-ui/react";
-
-export const theme: ThemeOverride = {
+export const theme = {
   animations: {
     transition: (property: string) => `${property} 300ms ease-in-out`,
   },

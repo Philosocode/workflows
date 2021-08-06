@@ -4,26 +4,21 @@ import { BiNetworkChart, BiNote } from "react-icons/bi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle, IoMdHelpCircle } from "react-icons/io";
 
-import { TStudyView } from "consume/redux/consume.types";
 import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
 import { theme } from "shared/styles/theme";
 import { useNextStep } from "shared/hooks/use-next-step.hook";
 import { useAppSelector } from "shared/redux/store";
-import { selectConsumeStep } from "consume/redux/consume.selectors";
+import { selectCurrentStep } from "step/step.slice";
 
 import { Message } from "message/components/message.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
 
-interface IProps {
-  setView: (view: TStudyView) => void;
-  goToSummary: () => void;
-}
-export function StudyMenu(props: IProps) {
+export function StudyMenu() {
   const location = useLocation();
   const history = useHistory();
-  const currentStep = useAppSelector(selectConsumeStep);
+  const currentStep = useAppSelector(selectCurrentStep);
 
   const nextStep = useNextStep("/consume", currentStep);
   const basePath = `/consume/${CONSUME_PAGE_NUMBERS.STUDY}`;

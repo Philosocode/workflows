@@ -8,10 +8,9 @@ import {
 
 const initialState: IConsumeState = {
   materialType: "reading",
-  currentStep: 0,
   studyBlockCount: 0,
   studyBlockTime: 5,
-  shouldPlayAlarm: true,
+  shouldPlayAlarm: false,
 };
 
 const consumeSlice = createSlice({
@@ -28,12 +27,8 @@ const consumeSlice = createSlice({
       state.studyBlockTime = payload.studyBlockTime;
       state.shouldPlayAlarm = payload.shouldPlayAlarm;
     },
-    setStep: (state, action: PayloadAction<number>) => {
-      state.currentStep = action.payload;
-    },
     nextStudyBlock: (state) => {
       state.studyBlockCount++;
-      state.currentStep = 8;
     },
     updateSettings: (state, action: PayloadAction<IUpdateSettingsPayload>) => {
       return { ...state, ...action.payload };
@@ -45,10 +40,5 @@ const consumeSlice = createSlice({
 });
 
 export const consumeReducer = consumeSlice.reducer;
-export const {
-  setMaterialData,
-  setStep,
-  nextStudyBlock,
-  newMaterial,
-  updateSettings,
-} = consumeSlice.actions;
+export const { setMaterialData, nextStudyBlock, newMaterial, updateSettings } =
+  consumeSlice.actions;

@@ -30,8 +30,8 @@ export function RootRouter() {
 
         {consumeRoutes.map((route, index) => (
           <Route
-            key={`/consume/${index}`}
-            path={route.path ?? `/consume/${index}`}
+            key={`/consume/${index + 1}`}
+            path={`/consume/${index + 1}`}
             {...route}
           />
         ))}
@@ -42,9 +42,9 @@ export function RootRouter() {
 
         {preStudyRoutes.map((route, index) => (
           <Route
-            {...route}
             key={`/pre-study/${index + 1}`}
             path={`/pre-study/${index + 1}`}
+            {...route}
           />
         ))}
 

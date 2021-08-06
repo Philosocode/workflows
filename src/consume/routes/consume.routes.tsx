@@ -13,14 +13,12 @@ import { StudyTimer } from "consume/steps/study-timer.component";
 import { Study } from "consume/steps/study.component";
 import { SummaryReminder } from "consume/steps/summary-reminder.component";
 import { SummaryScreen } from "consume/steps/summary-screen.component";
-import { TimerReminder } from "consume/steps/timer-reminder.component";
 import { Messages } from "message/components/messages.component";
 import { theme } from "shared/styles/theme";
 
 export const consumeRoutes = [
-  { component: ConsumeSetup, path: "/consume/setup" },
+  { component: ConsumeSetup },
   { component: SlowReminder },
-  { component: TimerReminder },
   { component: SkimReminder },
   { component: SummaryReminder },
   { component: PracticeReminder },
@@ -46,8 +44,9 @@ export const consumeRoutes = [
   },
   { component: SummaryScreen },
   { component: ConsumeFinish },
+
   // catch-all
-  { path: "/consume", render: () => <Redirect to="/consume/setup" /> },
+  { path: "/consume", render: () => <Redirect to="/consume/1" /> },
 ];
 
 export const CONSUME_PAGE_NUMBERS = {

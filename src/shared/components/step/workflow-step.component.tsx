@@ -12,7 +12,9 @@ export interface IWorkflowStepProps {
   message: ReactNode;
 
   buttons?: ReactNode;
+  buttonText?: string;
   buttonProps?: ButtonProps;
+  showButton?: boolean;
   children?: ReactNode;
   editor?: {
     showEditor?: boolean;
@@ -28,6 +30,7 @@ interface IProps extends IWorkflowStepProps {}
 export function WorkflowStep(props: IProps) {
   const [text, setText] = useState("");
   const history = useHistory();
+  const showDefaultButton = props.showButton ?? true;
 
   useKeypress(
     "ArrowRight",
@@ -55,13 +58,14 @@ export function WorkflowStep(props: IProps) {
       {props.children}
 
       {props.buttons}
-      {props.nextUrl && (
+      {showDefaultButton && props.nextUrl && (
         <Link to={props.nextUrl}>
           <Button
-            children="Next"
+            children={props.buttonText ?? "Next"}
             mt={
-              props.editor?.showEditor &&
-              theme.spacing.workflowStepButtonSpacing
+              props.editor?.showEditor
+                ? theme.spacing.workflowStepButtonSpacing
+                : 0
             }
             disabled={buttonDisabled}
             {...props.buttonProps}

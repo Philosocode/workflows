@@ -26,7 +26,7 @@ export function HomePage() {
                 Pre-Study
               </CardButton>
             </Link>
-            <Link to="/consume/setup">
+            <Link to="/consume/1">
               <CardButton color="gray" icon={IoMdSchool}>
                 Read / Watch
               </CardButton>

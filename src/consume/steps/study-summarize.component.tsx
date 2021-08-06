@@ -17,7 +17,7 @@ export function StudySummarize(props: IProps) {
       keyPressDisabled
       buttonProps={{
         disabled: summary.trim() === "",
-        mt: theme.spacing.nextButtonMarginTop,
+        mt: theme.spacing.workflowStepButtonSpacing,
       }}
     >
       <MarkdownEditor

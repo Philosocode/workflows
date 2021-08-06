@@ -1,16 +1,16 @@
 import { useAppSelector } from "shared/redux/store";
-import { selectConsumeStep } from "consume/redux/consume.selectors";
 
 import {
   IWorkflowStepProps,
   WorkflowStep,
 } from "shared/components/step/workflow-step.component";
+import { selectNextStep } from "step/step.slice";
 
 export function ConsumeWorkflowStep(props: IWorkflowStepProps) {
-  const currentStep = useAppSelector(selectConsumeStep);
+  const nextStep = useAppSelector(selectNextStep);
 
   return (
-    <WorkflowStep nextUrl={`/consume/${currentStep + 1}`} {...props}>
+    <WorkflowStep nextUrl={`/consume/${nextStep}`} {...props}>
       {props.children}
     </WorkflowStep>
   );

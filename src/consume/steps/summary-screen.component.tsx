@@ -3,16 +3,16 @@ import { Box, VStack } from "@chakra-ui/react";
 import { selectCurrentHooks } from "hook/redux/hook.selectors";
 import { useAppSelector } from "shared/redux/store";
 import { useNextStep } from "shared/hooks/use-next-step.hook";
-import { selectConsumeStep } from "consume/redux/consume.selectors";
 
 import { Message } from "message/components/message.component";
 import { HookList } from "hook/components/hook-list.component";
 import { Link } from "typography/components/link.component";
 import { Button } from "shared/components/button/button.component";
 import { theme } from "shared/styles/theme";
+import { selectCurrentStep } from "step/step.slice";
 
 export function SummaryScreen() {
-  const currentStep = useAppSelector(selectConsumeStep);
+  const currentStep = useAppSelector(selectCurrentStep);
   const currentHooks = useAppSelector(selectCurrentHooks);
   const nextStep = useNextStep("/consume", currentStep);
 

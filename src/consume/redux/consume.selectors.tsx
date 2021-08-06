@@ -9,11 +9,6 @@ export const selectMaterialType = createSelector(
   (state) => state.materialType,
 );
 
-export const selectConsumeStep = createSelector(
-  [selectConsumeState],
-  (state) => state.currentStep,
-);
-
 export const selectStudyBlockCount = createSelector(
   [selectConsumeState],
   (state) => state.studyBlockCount,

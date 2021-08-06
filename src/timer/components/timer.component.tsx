@@ -81,7 +81,7 @@ export function Timer(props: IProps) {
           {timeString}
         </Box>
 
-        {counter > 0 && (
+        {counter >= 0 && (
           <ButtonGroup mt={3} spacing={3}>
             <Button
               colorScheme={isActive ? "gray" : "green"}
@@ -98,7 +98,10 @@ export function Timer(props: IProps) {
       </Box>
 
       {counter <= -1 && (
-        <Button onClick={props.onDone} mt={theme.spacing.nextButtonMarginTop}>
+        <Button
+          onClick={props.onDone}
+          mt={theme.spacing.workflowStepButtonSpacing}
+        >
           Next
         </Button>
       )}

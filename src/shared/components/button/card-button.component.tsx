@@ -2,11 +2,16 @@ import { IconType } from "react-icons";
 import { Button, ButtonProps, Icon, useColorModeValue } from "@chakra-ui/react";
 import { theme } from "shared/styles/theme";
 
-export interface IProps extends ButtonProps {
+export interface CardButtonProps extends ButtonProps {
   color?: "green" | "gray";
   icon?: IconType;
 }
-export function CardButton({ children, color, icon, ...rest }: IProps) {
+export function CardButton({
+  children,
+  color,
+  icon,
+  ...rest
+}: CardButtonProps) {
   const styles: { [key: string]: ButtonProps } = {
     shared: {
       border: "1px solid",
@@ -37,11 +42,11 @@ export function CardButton({ children, color, icon, ...rest }: IProps) {
     },
   };
 
-  const buttonColor = color ?? "green";
+  const buttonColor = color ?? "gray";
 
   return (
     <Button
-      {...theme.typography.condensed}
+      sx={{ ...theme.typography.condensed }}
       {...styles["shared"]}
       {...styles[buttonColor]}
       _disabled={{
