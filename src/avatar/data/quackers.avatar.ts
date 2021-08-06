@@ -1,4 +1,4 @@
-import { IAvatarConfig } from "avatars/shared/avatar.type";
+import { IAvatarConfig } from "avatar/shared/avatar.type";
 
 import quackersImage from "../assets/quackers.png";
 

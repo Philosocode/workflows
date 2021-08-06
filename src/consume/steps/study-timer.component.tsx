@@ -1,4 +1,4 @@
-import { Box, ListItem, UnorderedList, Text } from "@chakra-ui/react";
+import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 
 import { useAppSelector } from "shared/redux/store";

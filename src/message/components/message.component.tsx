@@ -1,7 +1,7 @@
 import { Avatar, Box, Fade, useColorModeValue, HStack } from "@chakra-ui/react";
 
-import { IAvatarConfig } from "avatars/shared/avatar.type";
-import { soul } from "avatars/data/soul.avatar";
+import { IAvatarConfig } from "avatar/shared/avatar.type";
+import { soul } from "avatar/data/soul.avatar";
 import { theme } from "shared/styles/theme";
 interface IProps {
   avatar?: IAvatarConfig;
