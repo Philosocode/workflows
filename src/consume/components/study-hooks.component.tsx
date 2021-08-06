@@ -1,11 +1,11 @@
 import { useHistory } from "react-router-dom";
 
-import { useAppDispatch } from "shared/redux/store";
+import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { createHook } from "hook/redux/hook.slice";
+import { selectCurrentStep } from "step/step.slice";
 
 import { CreateHookForm } from "hook/components/create-hook-form.component";
 import { Message } from "message/components/message.component";
-import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 
 interface IProps {
   messageText: React.ReactNode;
@@ -14,6 +14,7 @@ interface IProps {
 export function StudyHooks(props: IProps) {
   const history = useHistory();
   const dispatch = useAppDispatch();
+  const currentStep = useAppSelector(selectCurrentStep);
 
   function handleCreateHook(title: string, content: string) {
     dispatch(
@@ -30,9 +31,7 @@ export function StudyHooks(props: IProps) {
     <>
       <Message>{props.messageText}</Message>
       <CreateHookForm
-        goBack={() =>
-          history.push(`/consume/${CONSUME_PAGE_NUMBERS.STUDY}/menu`)
-        }
+        goBack={() => history.push(`/consume/${currentStep}/menu`)}
         onSubmit={handleCreateHook}
         showIcons={props.showIcons}
       />

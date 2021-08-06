@@ -21,7 +21,7 @@ export function DuckDebugFinish() {
           <ButtonGroup spacing={5}>
             <Button onClick={() => history.push(redirectUrl)}>Done</Button>
             <Button
-              onClick={() => history.push(`${DUCK_DEBUG_BASE_PATH}/setup`)}
+              onClick={() => history.push(`${DUCK_DEBUG_BASE_PATH}/1`)}
               colorScheme="gray"
             >
               Restart

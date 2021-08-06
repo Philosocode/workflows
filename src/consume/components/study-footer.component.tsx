@@ -11,18 +11,20 @@ export function StudyFooter() {
   const currentHooks = useAppSelector(selectCurrentHooks);
   const previousHooks = useAppSelector(selectPreviousHooks);
 
+  const hasCurrentHooks = currentHooks.length > 0;
+  const hasPreviousHooks = previousHooks.length > 0;
+
   return (
     <>
-      {currentHooks.length > 0 && (
+      {hasCurrentHooks && (
         <HookList hooks={currentHooks} heading="Current Hooks" />
       )}
 
-      {previousHooks.length > 0 && (
+      {hasPreviousHooks && (
         <HookList hooks={previousHooks} heading="Previous Hooks" isPrevious />
       )}
 
-      {currentHooks.length > 0 ||
-        (previousHooks.length > 0 && <ExpandHooksButton />)}
+      {(hasPreviousHooks || hasCurrentHooks) && <ExpandHooksButton />}
     </>
   );
 }

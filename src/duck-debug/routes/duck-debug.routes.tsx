@@ -24,39 +24,38 @@ const regularUrl = `${DUCK_DEBUG_BASE_PATH}/regular`;
 const progUrl = `${DUCK_DEBUG_BASE_PATH}/prog`;
 
 export const duckDebugRoutes = [
-  { component: DuckDebugSetup, path: "duck-debug/setup" },
+  { component: DuckDebugSetup, path: `${DUCK_DEBUG_BASE_PATH}/1` },
 
   ...regularPrompts.map((prompt, index) => ({
-    path: `${regularUrl}/${index + 1}`,
+    path: `${regularUrl}/${index + 2}`,
     render: () => (
       <DuckDebugWorkflowStep
         message={prompt}
         editor={{ showEditor: index < regularPrompts.length }}
-        nextUrl={`${regularUrl}/${index + 2}`}
+        nextUrl={`${regularUrl}/${index + 3}`}
       />
     ),
   })),
   {
     component: DuckDebugFinish,
-    path: `${regularUrl}/${regularPrompts.length + 1}`,
+    path: `${regularUrl}/${regularPrompts.length + 2}`,
   },
 
   ...progPrompts.map((prompt, index) => ({
-    path: `${progUrl}/${index + 1}`,
+    path: `${progUrl}/${index + 2}`,
     render: () => (
       <DuckDebugWorkflowStep
         message={prompt}
         editor={{ showEditor: index < progPrompts.length }}
-        nextUrl={`${progUrl}/${index + 2}`}
+        nextUrl={`${progUrl}/${index + 3}`}
       />
     ),
   })),
-  { component: DuckDebugFinish, path: `${progUrl}/${progPrompts.length + 1}` },
+  { component: DuckDebugFinish, path: `${progUrl}/${progPrompts.length + 2}` },
 
   // catch-all
   {
-    component: DuckDebugSetup,
     path: "/duck-debug",
-    render: () => <Redirect to="/duck-debug/setup" />,
+    render: () => <Redirect to="/duck-debug/1" />,
   },
 ];

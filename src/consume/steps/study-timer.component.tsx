@@ -12,7 +12,6 @@ import { theme } from "shared/styles/theme";
 export function StudyTimer() {
   const history = useHistory();
   const { materialType, studyBlockTime } = useAppSelector(selectConsumeState);
-
   const currentStep = useAppSelector(selectCurrentStep);
 
   const studyMessage =
@@ -41,6 +40,7 @@ export function StudyTimer() {
       <Timer
         duration={studyBlockTime}
         onDone={() => history.push(`/consume/${currentStep + 1}/menu`)}
+        startAutomatically={false}
       />
     </ConsumeWorkflowStep>
   );

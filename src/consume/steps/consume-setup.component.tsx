@@ -128,7 +128,11 @@ export function ConsumeSetup() {
             />
           </FormControl>
           <CardButtonGrid mt={theme.spacing.workflowStepButtonSpacing}>
-            <CardButton disabled={!formState.isValid} type="submit">
+            <CardButton
+              color="green"
+              disabled={!formState.isValid}
+              type="submit"
+            >
               Next
             </CardButton>
             <CardButton disabled={!formState.isValid} onClick={skipToStudy}>

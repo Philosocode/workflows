@@ -22,7 +22,11 @@ export function PracticeReminder() {
       showButton={firstTime === true}
       message={
         <Messages>
-          <Box>Is this your first time encountering this subject or topic?</Box>
+          {firstTime === undefined && (
+            <Box>
+              Is this your first time encountering this subject or topic?
+            </Box>
+          )}
           {firstTime && (
             <Messages>
               <Box>Great! Find some practice problems and do them.</Box>

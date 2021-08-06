@@ -22,11 +22,12 @@ export function SummaryReminder() {
     <ConsumeWorkflowStep
       message={
         <Messages>
-          <Box>Is there a summary page?</Box>
-          {hasSummary && <Box>{word} it if you haven't already done so.</Box>}
+          {hasSummary === undefined && <Box>Is there a summary page?</Box>}
+          {hasSummary && (
+            <Box>{word} the summary if you haven't already done so.</Box>
+          )}
         </Messages>
       }
-      buttonText="Done Reading"
       showButton={hasSummary === true}
     >
       {!hasSummary && (

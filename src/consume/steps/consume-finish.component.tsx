@@ -1,28 +1,30 @@
+import { useState } from "react";
+import { Redirect } from "react-router-dom";
+import { Box } from "@chakra-ui/react";
+
 import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 import { nextStudyBlock, newMaterial } from "consume/redux/consume.slice";
-import { useHistory } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
+import { selectCurrentHooks } from "hook/redux/hook.selectors";
+import { theme } from "shared/styles/theme";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
 import { Message } from "message/components/message.component";
-import { Box, VStack } from "@chakra-ui/react";
-import { selectCurrentHooks } from "hook/redux/hook.selectors";
-import { theme } from "shared/styles/theme";
 
 export function ConsumeFinish() {
   const dispatch = useAppDispatch();
-  const history = useHistory();
   const currentHooks = useAppSelector(selectCurrentHooks);
+  const [redirectUrl, setRedirectUrl] = useState("");
 
   function onNextStudyBlock() {
     dispatch(nextStudyBlock());
-    history.push(`/consume/${CONSUME_PAGE_NUMBERS.TIMER}`);
+    setRedirectUrl(`/consume/${CONSUME_PAGE_NUMBERS.TIMER}`);
   }
 
   function onNewMaterial() {
     dispatch(newMaterial());
-    history.push("/consume/setup");
+    setRedirectUrl("/consume/0");
   }
 
   const message =
@@ -30,21 +32,20 @@ export function ConsumeFinish() {
       <Box>You didn't create any hooks/notes during this study block.</Box>
     ) : (
       <Box>
-        Well done! You created {currentHooks.length} hooks/notes during this
-        study block.
+        Well done! You created {currentHooks.length} hook(s) during this study
+        block.
       </Box>
     );
 
   return (
     <>
+      {redirectUrl && <Redirect to={redirectUrl} />}
       <Message>
-        <VStack spacing={theme.spacing.messageBoxSpacing} alignItems="start">
-          {message}
-          <Box>
-            Click on "Next Block" to continue studying your current material.
-          </Box>
-          <Box>Click on "New Material" to start fresh with a new material.</Box>
-        </VStack>
+        {message}
+        <Box mt={theme.spacing.messageBoxSpacing}>
+          Click on "Next Block" to continue studying your current material.
+        </Box>
+        <Box>Click on "New Material" to start fresh with a new material.</Box>
       </Message>
       <CardButtonGrid>
         <CardButton color="green" onClick={onNextStudyBlock}>

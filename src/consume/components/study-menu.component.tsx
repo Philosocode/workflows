@@ -5,8 +5,9 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle, IoMdHelpCircle } from "react-icons/io";
 
 import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
-import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 import { theme } from "shared/styles/theme";
+import { useAppSelector } from "shared/redux/store";
+import { selectCurrentStep } from "step/step.slice";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
@@ -16,7 +17,7 @@ export function StudyMenu() {
   const location = useLocation();
   const history = useHistory();
 
-  const currentStep = CONSUME_PAGE_NUMBERS.STUDY;
+  const currentStep = useAppSelector(selectCurrentStep);
   const basePath = `/consume/${currentStep}`;
   const nextStep = currentStep + 1;
 
@@ -68,7 +69,7 @@ export function StudyMenu() {
         <CardButton
           onClick={() =>
             history.push({
-              pathname: `${DUCK_DEBUG_BASE_PATH}/setup`,
+              pathname: `${DUCK_DEBUG_BASE_PATH}/1`,
               state: { from: location.pathname },
             })
           }

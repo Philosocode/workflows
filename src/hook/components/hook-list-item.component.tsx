@@ -106,7 +106,7 @@ export function HookListItem({ hook }: IProps) {
             </Box>
 
             <InputWithLabel
-              id="hookTitle"
+              id={hook.id}
               label="Hook Title"
               mb={5}
               value={hook.title}
