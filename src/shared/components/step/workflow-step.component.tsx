@@ -58,7 +58,7 @@ export function WorkflowStep(props: IProps) {
       {props.children}
 
       {props.buttons}
-      {showDefaultButton && props.nextUrl && (
+      {!props.buttons && showDefaultButton && props.nextUrl && (
         <Link to={props.nextUrl}>
           <Button
             children={props.buttonText ?? "Next"}

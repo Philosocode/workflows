@@ -3,12 +3,13 @@ import { IoMdReturnLeft } from "react-icons/io";
 import { useHistory } from "react-router-dom";
 
 import { useToggle } from "shared/hooks/use-toggle.hook";
+import { useAppSelector } from "shared/redux/store";
+import { selectRedirectUrl } from "step/step.slice";
+
 import { Button } from "shared/components/button/button.component";
 import { IconButton } from "shared/components/icon-button.component";
 import { ModalContent } from "modal/components/modal-content.component";
 import { ModalWrapper } from "modal/components/modal-wrapper.component";
-import { useAppSelector } from "shared/redux/store";
-import { selectRedirectUrl } from "duck-debug/redux/duck-debug.selectors";
 
 export function DuckDebugGoBack() {
   const history = useHistory();

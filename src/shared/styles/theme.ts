@@ -14,6 +14,7 @@ export const theme = {
     },
     fontSize: {
       messageAside: { base: "sm", md: "lg" },
+      nextButton: { base: "xs", md: "sm" },
     },
   },
 };

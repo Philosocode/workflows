@@ -1,22 +1,15 @@
-import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
-
-import { theme } from "shared/styles/theme";
+import { PreStudyAvoid } from "pre-study/steps/pre-study-avoid.component";
+import { PreStudyFinish } from "pre-study/steps/pre-study-finish.component";
 import { PreStudyFocus } from "pre-study/steps/pre-study-focus.component";
 import { PreStudyRelax } from "pre-study/steps/pre-study-relax.component";
 import { PreStudyTimer } from "pre-study/steps/pre-study-timer.component";
+import { PreStudyTips } from "pre-study/steps/pre-study-tips.component";
 
-export const preStudyRoutes = [
-  { component: PreStudyFocus },
-  { component: PreStudyRelax },
-  { component: PreStudyTimer },
-];
-
-export const preStudyMessages = [
-  <>
-    <Box>When it comes to studying, here are some don'ts:</Box>
-    <UnorderedList mb={theme.spacing.messageBoxSpacing}>
-      <ListItem>Don't study for hours on end without a break.</ListItem>
-      <ListItem>Don't highlight or underline text.</ListItem>
-    </UnorderedList>
-  </>,
+export const preStudyComponents = [
+  PreStudyFocus,
+  PreStudyRelax,
+  PreStudyAvoid,
+  PreStudyTips,
+  PreStudyTimer,
+  PreStudyFinish,
 ];

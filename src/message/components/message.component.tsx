@@ -35,7 +35,7 @@ export function Message(props: IProps) {
         rounded="lg"
         shadow="md"
         px={{ base: 5, md: 10 }}
-        pt={{ base: 12, md: 16 }}
+        pt={{ base: 14, md: 16 }}
         pb={{ base: 5, md: 7 }}
         position="relative"
         fontSize={{ base: "lg", sm: "xl", md: "2xl" }}

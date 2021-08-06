@@ -9,8 +9,8 @@ export function PreStudyFocus() {
     <PreStudyWorkflowStep
       message={
         <>
-          <Box>Find a quiet, distraction-free place to study.</Box>
-          <UnorderedList my={theme.spacing.messageBoxSpacing}>
+          <UnorderedList mb={theme.spacing.messageBoxSpacing}>
+            <ListItem>Find a quiet, distraction-free place to study</ListItem>
             <ListItem>
               Remove all distractions. Put your phone somewhere else. Avoid
               social media.
@@ -30,8 +30,8 @@ export function PreStudyFocus() {
             If you want to learn more, check out {}
             <Link href="https://www.youtube.com/watch?v=2ybOJMibAbA" isExternal>
               this video.
-            </Link>{" "}
-            Better yet, {}
+            </Link>
+            {} Better yet, {}
             <Link
               href="https://www.amazon.ca/Deep-Work-Focused-Success-Distracted/dp/1455586692"
               isExternal

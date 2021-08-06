@@ -2,7 +2,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import { consumeRoutes } from "consume/routes/consume.routes";
 import { duckDebugRoutes } from "duck-debug/routes/duck-debug.routes";
-import { preStudyRoutes } from "pre-study/routes/pre-study.routes";
+import { preStudyComponents } from "pre-study/routes/pre-study.routes";
 
 import { ConsumeNavbar } from "consume/components/consume-navbar.component";
 import { CurrentStep } from "step/current-step.component";
@@ -40,11 +40,11 @@ export function RootRouter() {
           <Route key={route.path} {...route} />
         ))}
 
-        {preStudyRoutes.map((route, index) => (
+        {preStudyComponents.map((component, index) => (
           <Route
             key={`/pre-study/${index + 1}`}
             path={`/pre-study/${index + 1}`}
-            {...route}
+            component={component}
           />
         ))}
 
