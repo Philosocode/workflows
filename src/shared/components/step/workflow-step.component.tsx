@@ -62,7 +62,7 @@ export function WorkflowStep(props: IWorkflowStepProps) {
         <ProgressBar
           currentValue={props.progress.currentValue}
           maxValue={props.progress.maxValue}
-          mb={4}
+          mb={{ base: 3, md: 5 }}
         />
       )}
       <Message {...props.messageProps}>{props.message}</Message>
