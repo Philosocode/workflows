@@ -1,12 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 
 import { useAppSelector } from "shared/redux/store";
 import { selectRedirectUrl } from "step/step.slice";
 
 import { Messages } from "message/components/messages.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
-import { CardButton } from "shared/components/button/card-button.component";
 import { ProblemSolvingWorkflowStep } from "./problem-solving-workflow-step.component";
 
 export function ProblemSolvingStart() {
@@ -16,14 +14,12 @@ export function ProblemSolvingStart() {
     <ProblemSolvingWorkflowStep
       editor={{ showEditor: false }}
       buttons={
-        <CardButtonGrid>
-          <Link to="/problem-solving/2">
-            <CardButton color="green">Begin</CardButton>
-          </Link>
-          <Link to={redirectUrl}>
-            <CardButton>Go Back</CardButton>
-          </Link>
-        </CardButtonGrid>
+        <CardButtonGrid
+          buttons={[
+            { text: "Begin", color: "green", to: "/problem-solving/2" },
+            { text: "Go Back", to: redirectUrl },
+          ]}
+        />
       }
       message={
         <Messages>

@@ -1,29 +1,25 @@
-import { useState } from "react";
-import { Redirect } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 
 import { theme } from "shared/styles/theme";
 import { useAppSelector } from "shared/redux/store";
+import { useToggle } from "shared/hooks/use-toggle.hook";
 import { selectNextStep } from "step/step.slice";
 
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 import { Messages } from "message/components/messages.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
-import { CardButton } from "shared/components/button/card-button.component";
 import { Link } from "typography/components/link.component";
 
 export function PracticeReminder() {
-  const [firstTime, setFirstTime] = useState<boolean>();
+  const [firstTime, toggleFirstTime] = useToggle();
   const nextStep = useAppSelector(selectNextStep);
-
-  if (firstTime === false) return <Redirect to={`/consume/${nextStep}`} />;
 
   return (
     <ConsumeWorkflowStep
       showButton={firstTime === true}
       message={
         <Messages>
-          {firstTime === undefined && (
+          {!firstTime && (
             <Box>
               Is this your first time encountering this subject or topic?
             </Box>
@@ -47,10 +43,13 @@ export function PracticeReminder() {
       }
     >
       {!firstTime && (
-        <CardButtonGrid mt={theme.spacing.workflowStepButtonSpacing}>
-          <CardButton onClick={() => setFirstTime(true)}>Yes</CardButton>
-          <CardButton onClick={() => setFirstTime(false)}>No</CardButton>
-        </CardButtonGrid>
+        <CardButtonGrid
+          mt={theme.spacing.workflowStepButtonSpacing}
+          buttons={[
+            { text: "Yes", onClick: toggleFirstTime },
+            { text: "No", to: `/consume/${nextStep}` },
+          ]}
+        />
       )}
     </ConsumeWorkflowStep>
   );

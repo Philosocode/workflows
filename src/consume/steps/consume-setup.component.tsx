@@ -24,7 +24,6 @@ import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 import { theme } from "shared/styles/theme";
 import { selectNextStep } from "step/step.slice";
 
-import { CardButton } from "shared/components/button/card-button.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { FormLabel } from "form/components/form-label.component";
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
@@ -124,18 +123,22 @@ export function ConsumeSetup() {
               defaultChecked={shouldPlayAlarm}
             />
           </FormControl>
-          <CardButtonGrid mt={theme.spacing.workflowStepButtonSpacing}>
-            <CardButton
-              color="green"
-              disabled={!formState.isValid}
-              type="submit"
-            >
-              Next
-            </CardButton>
-            <CardButton disabled={!formState.isValid} onClick={skipToStudy}>
-              Skip to Study
-            </CardButton>
-          </CardButtonGrid>
+          <CardButtonGrid
+            mt={theme.spacing.workflowStepButtonSpacing}
+            buttons={[
+              {
+                text: "Next",
+                color: "green",
+                disabled: !formState.isValid,
+                type: "submit",
+              },
+              {
+                text: "Skip To Study",
+                disabled: !formState.isValid,
+                onClick: skipToStudy,
+              },
+            ]}
+          />
         </VStack>
       </form>
     </ConsumeWorkflowStep>

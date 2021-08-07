@@ -19,14 +19,13 @@ export function HomePage() {
       <VStack spacing={{ base: 10, md: 12 }} alignItems="start">
         <Box w="full">
           <Heading size="lg">Study</Heading>
-          <CardButtonGrid mt={5}>
-            <Link to="/pre-study/1">
-              <CardButton icon={FaSeedling}>Pre-Study</CardButton>
-            </Link>
-            <Link to="/consume/1">
-              <CardButton icon={IoMdSchool}>Read / Watch</CardButton>
-            </Link>
-          </CardButtonGrid>
+          <CardButtonGrid
+            mt={5}
+            buttons={[
+              { text: "Pre-Study", to: "/pre-study/1", icon: FaSeedling },
+              { text: "Read / Watch", to: "/consume/1", icon: IoMdSchool },
+            ]}
+          />
         </Box>
 
         <Box w="full">

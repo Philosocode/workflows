@@ -1,10 +1,9 @@
 import { Icon, ListItem, Tooltip, UnorderedList } from "@chakra-ui/react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BiNetworkChart, BiNote } from "react-icons/bi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle, IoMdHelpCircle } from "react-icons/io";
 
-import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
 import { theme } from "shared/styles/theme";
 import { useAppSelector } from "shared/redux/store";
 import { selectCurrentStep } from "step/step.slice";
@@ -15,7 +14,6 @@ import { ConsumeWorkflowStep } from "./consume-workflow-step.component";
 
 export function StudyMenu() {
   const location = useLocation();
-  const history = useHistory();
 
   const currentStep = useAppSelector(selectCurrentStep);
   const basePath = `/consume/${currentStep}`;

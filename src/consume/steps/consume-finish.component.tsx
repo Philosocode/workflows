@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 
@@ -9,7 +8,6 @@ import { selectCurrentHooks } from "hook/redux/hook.selectors";
 import { theme } from "shared/styles/theme";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
-import { CardButton } from "shared/components/button/card-button.component";
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 
 export function ConsumeFinish() {
@@ -40,12 +38,12 @@ export function ConsumeFinish() {
   return (
     <ConsumeWorkflowStep
       buttons={
-        <CardButtonGrid>
-          <CardButton color="green" onClick={onNextStudyBlock}>
-            Next Block
-          </CardButton>
-          <CardButton onClick={onNewMaterial}>New Material</CardButton>
-        </CardButtonGrid>
+        <CardButtonGrid
+          buttons={[
+            { text: "Next Block", onClick: onNextStudyBlock },
+            { text: "New Material", onClick: onNewMaterial },
+          ]}
+        />
       }
       message={
         <>

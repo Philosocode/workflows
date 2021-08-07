@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 
 import { useAppDispatch } from "shared/redux/store";
@@ -7,7 +7,6 @@ import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
 import { setRedirectUrl } from "step/step.slice";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
-import { CardButton } from "shared/components/button/card-button.component";
 import { DuckDebugWorkflowStep } from "duck-debug/components/duck-debug-workflow-step.component";
 import { Messages } from "message/components/messages.component";
 
@@ -34,14 +33,12 @@ export function DuckDebugSetup() {
         </Messages>
       }
       buttons={
-        <CardButtonGrid mt={10}>
-          <Link to={`${DUCK_DEBUG_BASE_PATH}/prog/2`}>
-            <CardButton>Yes</CardButton>
-          </Link>
-          <Link to={`${DUCK_DEBUG_BASE_PATH}/regular/2`}>
-            <CardButton>No</CardButton>
-          </Link>
-        </CardButtonGrid>
+        <CardButtonGrid
+          buttons={[
+            { text: "Yes", to: `${DUCK_DEBUG_BASE_PATH}/prog/2` },
+            { text: "No", to: `${DUCK_DEBUG_BASE_PATH}/regular/2` },
+          ]}
+        />
       }
     />
   );

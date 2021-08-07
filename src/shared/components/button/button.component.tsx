@@ -8,7 +8,7 @@ export function Button({ color, children, ...rest }: IProps) {
   return (
     <ButtonChakra
       colorScheme="green"
-      sx={{ ...theme.typography.condensed }}
+      sx={theme.typography.condensed}
       fontSize={theme.typography.fontSize.nextButton}
       minW={20}
       {...rest}

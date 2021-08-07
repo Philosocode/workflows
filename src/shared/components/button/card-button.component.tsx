@@ -46,7 +46,7 @@ export function CardButton({
 
   return (
     <Button
-      sx={{ ...theme.typography.condensed }}
+      sx={theme.typography.condensed}
       {...styles["shared"]}
       {...styles[buttonColor]}
       _disabled={{

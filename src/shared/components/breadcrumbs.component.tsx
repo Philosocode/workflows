@@ -2,7 +2,6 @@ import { Box, useColorModeValue, Link, Text } from "@chakra-ui/react";
 import { theme } from "shared/styles/theme";
 
 import { Link as RRLink } from "react-router-dom";
-import { ChevronRightIcon } from "@chakra-ui/icons";
 
 export interface IBreadcrumbLink {
   to: string;

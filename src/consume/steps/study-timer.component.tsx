@@ -1,5 +1,4 @@
 import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
 
 import { useAppSelector } from "shared/redux/store";
 import { selectConsumeState } from "consume/redux/consume.selectors";
@@ -10,7 +9,6 @@ import { Timer } from "timer/components/timer.component";
 import { theme } from "shared/styles/theme";
 
 export function StudyTimer() {
-  const history = useHistory();
   const { materialType, studyBlockTime } = useAppSelector(selectConsumeState);
   const currentStep = useAppSelector(selectCurrentStep);
 

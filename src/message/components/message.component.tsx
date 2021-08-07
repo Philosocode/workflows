@@ -45,7 +45,7 @@ export function Message(props: IProps) {
         <HStack className="header" position="absolute" top={3} left={3}>
           <Avatar size="sm" src={avatar.imageSrc} />
           <Box
-            sx={{ ...theme.typography.condensed }}
+            sx={theme.typography.condensed}
             fontSize={{ base: 8, md: 11 }}
             fontFamily="sans-serif"
             textColor={styles.titleColor}

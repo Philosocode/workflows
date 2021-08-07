@@ -1,11 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+
+import { useAppSelector } from "shared/redux/store";
+import { selectRedirectUrl } from "step/step.slice";
 
 import { PreStudyWorkflowStep } from "pre-study/components/pre-study-workflow-step.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
-import { CardButton } from "shared/components/button/card-button.component";
-import { useAppSelector } from "shared/redux/store";
-import { selectRedirectUrl } from "step/step.slice";
 
 export function PreStudyFinish() {
   const redirectUrl = useAppSelector(selectRedirectUrl);
@@ -14,14 +13,12 @@ export function PreStudyFinish() {
     <PreStudyWorkflowStep
       keyPressDisabled
       buttons={
-        <CardButtonGrid>
-          <Link to={redirectUrl}>
-            <CardButton color="green">Exit</CardButton>
-          </Link>
-          <Link to="/pre-study/1">
-            <CardButton>Restart</CardButton>
-          </Link>
-        </CardButtonGrid>
+        <CardButtonGrid
+          buttons={[
+            { text: "Exit", color: "green", to: redirectUrl },
+            { text: "Restart", to: "/pre-study/1" },
+          ]}
+        />
       }
       message={
         <>
