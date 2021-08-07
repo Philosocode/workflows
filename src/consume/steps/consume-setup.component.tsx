@@ -1,6 +1,6 @@
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   FormControl,
   Radio,
@@ -23,7 +23,6 @@ import { selectConsumeState } from "consume/redux/consume.selectors";
 import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 import { theme } from "shared/styles/theme";
 import { selectNextStep } from "step/step.slice";
-import { useState } from "react";
 
 import { CardButton } from "shared/components/button/card-button.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
@@ -36,7 +35,7 @@ interface IFormProps {
   shouldPlayAlarm: boolean;
 }
 export function ConsumeSetup() {
-  const [redirectUrl, setRedirectUrl] = useState("");
+  const history = useHistory();
   const dispatch = useDispatch();
   const { studyBlockTime, shouldPlayAlarm } =
     useAppSelector(selectConsumeState);
@@ -50,17 +49,15 @@ export function ConsumeSetup() {
 
   function onSubmit(values: IFormProps) {
     dispatch(setMaterialData(values));
-    setRedirectUrl(`/consume/${nextStep}`);
+    history.push(`/consume/${nextStep}`);
   }
 
   function skipToStudy() {
     dispatch(setMaterialData(getValues()));
-    setRedirectUrl(`/consume/${CONSUME_PAGE_NUMBERS.TIMER}`);
+    history.push(`/consume/${CONSUME_PAGE_NUMBERS.TIMER}`);
   }
 
   const focusBorderColor = useColorModeValue("green.500", "green.200");
-
-  if (redirectUrl) return <Redirect to={redirectUrl} />;
 
   return (
     <ConsumeWorkflowStep

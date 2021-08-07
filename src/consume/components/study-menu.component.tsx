@@ -1,5 +1,5 @@
 import { Icon, ListItem, Tooltip, UnorderedList } from "@chakra-ui/react";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { BiNetworkChart, BiNote } from "react-icons/bi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle, IoMdHelpCircle } from "react-icons/io";
@@ -47,12 +47,9 @@ export function StudyMenu() {
           shouldWrapChildren
           placement="top"
         >
-          <CardButton
-            onClick={() => history.push(`${basePath}/hooks`)}
-            icon={BiNetworkChart}
-          >
-            Hooks
-          </CardButton>
+          <Link to={`${basePath}/hooks`}>
+            <CardButton icon={BiNetworkChart}>Hooks</CardButton>
+          </Link>
         </Tooltip>
         <Tooltip
           label="Create notes to summarize info"
@@ -60,30 +57,18 @@ export function StudyMenu() {
           shouldWrapChildren
           placement="top"
         >
-          <CardButton
-            onClick={() => history.push(`${basePath}/notes`)}
-            icon={BiNote}
-          >
-            Notes
-          </CardButton>
+          <Link to={`${basePath}/notes`}>
+            <CardButton icon={BiNote}>Notes</CardButton>
+          </Link>
         </Tooltip>
-        <CardButton
-          onClick={() =>
-            history.push({
-              pathname: `${DUCK_DEBUG_BASE_PATH}/1`,
-              state: { from: location.pathname },
-            })
-          }
-          icon={AiOutlineExclamationCircle}
+        <Link
+          to={{ pathname: "/duck-debug/1", state: { from: location.pathname } }}
         >
-          I'm Stuck
-        </CardButton>
-        <CardButton
-          onClick={() => history.push(`/consume/${nextStep}`)}
-          icon={IoMdCheckmarkCircle}
-        >
-          I'm Done
-        </CardButton>
+          <CardButton icon={AiOutlineExclamationCircle}>I'm Stuck</CardButton>
+        </Link>
+        <Link to={`/consume/${nextStep}`}>
+          <CardButton icon={IoMdCheckmarkCircle}>I'm Done</CardButton>
+        </Link>
       </CardButtonGrid>
     </ConsumeWorkflowStep>
   );

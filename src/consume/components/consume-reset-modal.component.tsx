@@ -1,5 +1,6 @@
 import { Box, ButtonGroup } from "@chakra-ui/react";
 import { BiReset } from "react-icons/bi";
+import { useHistory } from "react-router-dom";
 
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { useAppDispatch } from "shared/redux/store";
@@ -9,20 +10,19 @@ import { IconButton } from "shared/components/icon-button.component";
 import { ModalContent } from "modal/components/modal-content.component";
 import { ModalWrapper } from "modal/components/modal-wrapper.component";
 import { newMaterial } from "consume/redux/consume.slice";
-import { Redirect } from "react-router-dom";
 
 interface IProps {
   redirectUrl: string;
 }
 export function ConsumeResetModal(props: IProps) {
+  const history = useHistory();
   const dispatch = useAppDispatch();
   const [modalShowing, toggleModal] = useToggle(false);
-  const [shouldRedirect, toggleRedirect] = useToggle(false);
 
   function onReset() {
     dispatch(newMaterial());
     toggleModal();
-    toggleRedirect();
+    history.push(props.redirectUrl);
   }
 
   const footer = (
@@ -38,7 +38,6 @@ export function ConsumeResetModal(props: IProps) {
 
   return (
     <>
-      {shouldRedirect && <Redirect to={props.redirectUrl} />}
       <Box>
         <IconButton
           aria-label="Reset Workflow"

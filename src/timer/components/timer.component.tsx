@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Box, ButtonGroup, useColorModeValue } from "@chakra-ui/react";
 
 import { Button } from "shared/components/button/button.component";
@@ -10,7 +11,7 @@ const audio = new Audio("/alarm-beep.mp3");
 
 interface IProps {
   duration: number;
-  onDone: () => void;
+  nextUrl: string;
 
   startAutomatically?: boolean;
 }
@@ -90,20 +91,17 @@ export function Timer(props: IProps) {
             >
               {isActive ? "Pause" : "Start"}
             </Button>
-            <Button colorScheme="gray" onClick={props.onDone}>
-              Skip Timer
-            </Button>
+            <Link to={props.nextUrl}>
+              <Button colorScheme="gray">Skip Timer</Button>
+            </Link>
           </ButtonGroup>
         )}
       </Box>
 
       {counter <= -1 && (
-        <Button
-          onClick={props.onDone}
-          mt={theme.spacing.workflowStepButtonSpacing}
-        >
-          Next
-        </Button>
+        <Link to={props.nextUrl}>
+          <Button mt={theme.spacing.workflowStepButtonSpacing}>Next</Button>
+        </Link>
       )}
     </>
   );

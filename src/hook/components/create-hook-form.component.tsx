@@ -8,9 +8,10 @@ import { HookSelectModal } from "./hook-select-modal.component";
 import { InputWithLabel } from "form/components/input-with-label.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { CreateHookIcons } from "./create-hook-icons.component";
+import { Link } from "react-router-dom";
 
 interface IProps {
-  goBack: () => void;
+  backUrl: string;
   onSubmit: (title: string, content: string) => void;
 
   showIcons?: boolean;
@@ -69,9 +70,11 @@ export function CreateHookForm(props: IProps) {
             <Button disabled={buttonDisabled} type="submit">
               Create
             </Button>
-            <Button colorScheme="gray" type="button" onClick={props.goBack}>
-              Go Back
-            </Button>
+            <Link to={props.backUrl}>
+              <Button colorScheme="gray" type="button">
+                Go Back
+              </Button>
+            </Link>
           </ButtonGroup>
         </VStack>
       </form>

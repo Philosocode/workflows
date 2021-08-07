@@ -39,7 +39,7 @@ export function StudyTimer() {
     >
       <Timer
         duration={studyBlockTime}
-        onDone={() => history.push(`/consume/${currentStep + 1}/menu`)}
+        nextUrl={`/consume/${currentStep + 1}/menu`}
         startAutomatically={false}
       />
     </ConsumeWorkflowStep>

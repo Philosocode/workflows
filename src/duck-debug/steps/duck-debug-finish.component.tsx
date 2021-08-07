@@ -1,6 +1,5 @@
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
 import { useAppSelector } from "shared/redux/store";
 import { selectRedirectUrl } from "step/step.slice";
 
@@ -9,7 +8,6 @@ import { CardButtonGrid } from "shared/components/button/card-button-grid.compon
 import { CardButton } from "shared/components/button/card-button.component";
 
 export function DuckDebugFinish() {
-  const history = useHistory();
   const redirectUrl = useAppSelector(selectRedirectUrl);
 
   return (
@@ -19,15 +17,12 @@ export function DuckDebugFinish() {
         editor={{ showEditor: false }}
         buttons={
           <CardButtonGrid>
-            <CardButton color="green" onClick={() => history.push(redirectUrl)}>
-              Exit
-            </CardButton>
-            <CardButton
-              onClick={() => history.push(`${DUCK_DEBUG_BASE_PATH}/1`)}
-              colorScheme="gray"
-            >
-              Restart
-            </CardButton>
+            <Link to={redirectUrl}>
+              <CardButton color="green">Exit</CardButton>
+            </Link>
+            <Link to={"duck-debug/1"}>
+              <CardButton colorScheme="gray">Restart</CardButton>
+            </Link>
           </CardButtonGrid>
         }
       />

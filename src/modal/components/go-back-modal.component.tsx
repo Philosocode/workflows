@@ -1,7 +1,6 @@
 import { Box, ButtonGroup } from "@chakra-ui/react";
 import { IoMdReturnLeft } from "react-icons/io";
-import { useHistory } from "react-router-dom";
-import { IconType } from "react-icons";
+import { Link } from "react-router-dom";
 
 import { useToggle } from "shared/hooks/use-toggle.hook";
 
@@ -18,12 +17,7 @@ interface IProps {
   header?: string;
 }
 export function GoBackModal(props: IProps) {
-  const history = useHistory();
   const [modalShowing, toggleModal] = useToggle(false);
-
-  function onExit() {
-    history.push(props.redirectUrl);
-  }
 
   return (
     <>
@@ -40,7 +34,9 @@ export function GoBackModal(props: IProps) {
           body={props.text}
           footer={
             <ButtonGroup spacing={5}>
-              <Button onClick={onExit}>Yes</Button>
+              <Link to={props.redirectUrl}>
+                <Button>Yes</Button>
+              </Link>
               <Button colorScheme="gray" onClick={toggleModal}>
                 Cancel
               </Button>
