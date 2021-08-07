@@ -1,4 +1,5 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
+import { BsQuestionSquareFill } from "react-icons/bs";
 import { FaSearch, FaSeedling } from "react-icons/fa";
 import { GiPlasticDuck } from "react-icons/gi";
 import { IoMdSchool } from "react-icons/io";
@@ -24,6 +25,11 @@ export function HomePage() {
             buttons={[
               { text: "Pre-Study", to: "/pre-study/1", icon: FaSeedling },
               { text: "Read / Watch", to: "/consume/1", icon: IoMdSchool },
+              {
+                text: "Practice Questions",
+                to: "/practice-questions/1",
+                icon: BsQuestionSquareFill,
+              },
             ]}
           />
         </Box>

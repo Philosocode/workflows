@@ -4,13 +4,15 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { consumeReducer } from "consume/redux/consume.slice";
 import { hookReducer } from "hook/redux/hook.slice";
 import { modalReducer } from "modal/redux/modal.slice";
-import { stepReducer } from "../../step/step.slice";
+import { stepReducer } from "step/step.slice";
+import { practiceQuestionsReducer } from "practice-questions/redux/practice-questions.slice";
 
 export const store = configureStore({
   reducer: {
     consume: consumeReducer,
     hook: hookReducer,
     modal: modalReducer,
+    practiceQuestions: practiceQuestionsReducer,
     step: stepReducer,
   },
 });

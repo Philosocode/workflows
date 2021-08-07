@@ -11,12 +11,14 @@ import { HomePage } from "shared/pages/home.page";
 import { DuckDebugNavbar } from "duck-debug/components/duck-debug-navbar.component";
 import { PreStudyNavbar } from "pre-study/components/pre-study-navbar.component";
 import { ProblemSolvingNavbar } from "problem-solving/components/problem-solving-navbar.component";
+import { practiceQuestionsRoutes } from "practice-questions/shared/practice-questions.routes";
 
 const navbarRoutes = [
   { path: "/consume/:currentStep", component: ConsumeNavbar },
   { path: "/duck-debug/:currentStep", component: DuckDebugNavbar },
   { path: "/pre-study/:currentStep", component: PreStudyNavbar },
   { path: "/problem-solving/:currentStep", component: ProblemSolvingNavbar },
+  { path: "/practice-questions/:currentStep", component: ProblemSolvingNavbar },
 ];
 
 export function RootRouter() {
@@ -48,6 +50,14 @@ export function RootRouter() {
           <Route
             key={`/consume/${index + 1}`}
             path={`/consume/${index + 1}`}
+            {...route}
+          />
+        ))}
+
+        {practiceQuestionsRoutes.map((route, index) => (
+          <Route
+            key={`/practice-questions/${index + 1}`}
+            path={`/practice-questions/${index + 1}`}
             {...route}
           />
         ))}
