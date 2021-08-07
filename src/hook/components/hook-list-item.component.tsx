@@ -12,7 +12,7 @@ import { IHook } from "hook/shared/hook.types";
 import { updateHook } from "hook/redux/hook.slice";
 import { useAppDispatch } from "shared/redux/store";
 
-import { InputWithLabel } from "form/components/input-with-label.component";
+import { InputGroup } from "form/components/input-group.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { showModal } from "modal/redux/modal.slice";
 
@@ -105,13 +105,14 @@ export function HookListItem({ hook }: IProps) {
               />
             </Box>
 
-            <InputWithLabel
+            <InputGroup
               id={hook.id}
               label="Hook Title"
               mb={5}
               value={hook.title}
               onChange={handleTitleUpdate}
             />
+
             <MarkdownEditor
               value={hook.content}
               setValue={handleContentUpdate}

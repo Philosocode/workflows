@@ -3,16 +3,12 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   FormControl,
-  Radio,
-  RadioGroup,
-  Stack,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
   VStack,
-  Switch,
   useColorModeValue,
 } from "@chakra-ui/react";
 
@@ -27,6 +23,8 @@ import { selectNextStep } from "step/step.slice";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { FormLabel } from "form/components/form-label.component";
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
+import { RadioButtonGroup } from "form/components/radio-button-group.component";
+import { SwitchGroup } from "form/components/switch-group.component";
 
 interface IFormProps {
   materialType: TMaterialType;
@@ -65,29 +63,22 @@ export function ConsumeSetup() {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <VStack spacing={7} alignItems="start">
-          <FormControl id="materialType">
-            <FormLabel>Material Type:</FormLabel>
-            <RadioGroup>
-              <Stack>
-                <Radio
-                  {...register("materialType", { required: true })}
-                  value="reading"
-                  colorScheme="green"
-                  size="lg"
-                >
-                  Reading
-                </Radio>
-                <Radio
-                  {...register("materialType", { required: true })}
-                  value="watching"
-                  colorScheme="green"
-                  size="lg"
-                >
-                  Watching
-                </Radio>
-              </Stack>
-            </RadioGroup>
-          </FormControl>
+          <RadioButtonGroup
+            id="materialType"
+            labelText="Material Type:"
+            values={[
+              {
+                text: "Reading",
+                value: "reading",
+                props: { ...register("materialType", { required: true }) },
+              },
+              {
+                text: "Watching",
+                value: "watching",
+                props: { ...register("materialType", { required: true }) },
+              },
+            ]}
+          />
 
           <FormControl id="studyBlockTime">
             <FormLabel>Study Block Time (minutes):</FormLabel>
@@ -114,15 +105,13 @@ export function ConsumeSetup() {
             />
           </FormControl>
 
-          <FormControl id="shouldPlayAlarm">
-            <FormLabel>Should Play Alarm:</FormLabel>
-            <Switch
-              colorScheme="green"
-              size="lg"
-              {...register("shouldPlayAlarm")}
-              defaultChecked={shouldPlayAlarm}
-            />
-          </FormControl>
+          <SwitchGroup
+            id="shouldPlayAlarm"
+            labelText="Should Play Alarm:"
+            {...register("shouldPlayAlarm")}
+            defaultChecked={shouldPlayAlarm}
+          />
+
           <CardButtonGrid
             mt={theme.spacing.workflowStepButtonSpacing}
             buttons={[

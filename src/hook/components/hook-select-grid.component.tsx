@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Grid, Heading } from "@chakra-ui/react";
 
-import { InputWithLabel } from "form/components/input-with-label.component";
+import { InputGroup } from "form/components/input-group.component";
 import { HookSelectGridItem } from "./hook-select-grid-item.component";
 
 interface IProps {
@@ -27,7 +27,7 @@ export function HookSelectGrid(props: IProps) {
 
   return (
     <div>
-      <InputWithLabel
+      <InputGroup
         id="filterHooks"
         label="Filter Hooks"
         onChange={handleInputChange}

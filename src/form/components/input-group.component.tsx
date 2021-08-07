@@ -12,7 +12,7 @@ export interface IProps extends InputProps {
 
   showLabel?: boolean;
 }
-export function InputWithLabel(props: IProps) {
+export function InputGroup(props: IProps) {
   const borderColor = useColorModeValue("gray.400", "gray.500");
 
   return (
