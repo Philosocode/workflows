@@ -6,6 +6,7 @@ import { selectCurrentStep } from "step/step.slice";
 
 import { CreateHookForm } from "hook/components/create-hook-form.component";
 import { Message } from "message/components/message.component";
+import { ConsumeWorkflowStep } from "./consume-workflow-step.component";
 
 interface IProps {
   messageText: React.ReactNode;
@@ -28,13 +29,12 @@ export function StudyHooks(props: IProps) {
   }
 
   return (
-    <>
-      <Message>{props.messageText}</Message>
+    <ConsumeWorkflowStep message={props.messageText} showButton={false}>
       <CreateHookForm
         goBack={() => history.push(`/consume/${currentStep}/menu`)}
         onSubmit={handleCreateHook}
         showIcons={props.showIcons}
       />
-    </>
+    </ConsumeWorkflowStep>
   );
 }

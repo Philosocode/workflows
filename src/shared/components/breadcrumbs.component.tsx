@@ -5,13 +5,14 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { theme } from "shared/styles/theme";
 
 export interface IBreadcrumbLink {
   to: string;
   text: string;
 }
 interface IProps {
-  links: IBreadcrumbLink[];
+  breadcrumbLinks: IBreadcrumbLink[];
 }
 
 export function Breadcrumbs(props: IProps) {
@@ -20,12 +21,13 @@ export function Breadcrumbs(props: IProps) {
 
   return (
     <Breadcrumb
-      fontSize={{ base: "sm", md: "md" }}
+      fontSize="xs"
       mb={2}
       textColor={textColor}
+      sx={theme.typography.condensed}
     >
-      {props.links.map((link, index) => {
-        const isLast = index === props.links.length - 1;
+      {props.breadcrumbLinks.map((link, index) => {
+        const isLast = index === props.breadcrumbLinks.length - 1;
 
         return (
           <BreadcrumbItem>

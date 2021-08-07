@@ -59,3 +59,6 @@ export const duckDebugRoutes = [
     render: () => <Redirect to="/duck-debug/1" />,
   },
 ];
+
+export const DUCK_DEBUG_NUM_PROG_ROUTES = progPrompts.length + 2;
+export const DUCK_DEBUG_NUM_REGULAR_ROUTES = regularPrompts.length + 2;

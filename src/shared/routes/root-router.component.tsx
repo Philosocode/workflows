@@ -11,6 +11,7 @@ import { HomePage } from "shared/pages/home.page";
 import { DuckDebugNavbar } from "duck-debug/components/duck-debug-navbar.component";
 import { PreStudyNavbar } from "pre-study/components/pre-study-navbar.component";
 import { ProblemSolvingNavbar } from "problem-solving/components/problem-solving-navbar.component";
+import { PreStudyFocus } from "pre-study/steps/pre-study-focus.component";
 
 const navbarRoutes = [
   { path: "/consume/:currentStep", component: ConsumeNavbar },
@@ -38,6 +39,11 @@ export function RootRouter() {
             component={component}
           />
         ))}
+
+        <Route
+          path="/pre-study"
+          render={() => <Redirect to="/pre-study/1" />}
+        />
 
         {consumeRoutes.map((route, index) => (
           <Route

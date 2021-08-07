@@ -11,7 +11,7 @@ import { selectCurrentStep } from "step/step.slice";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
-import { Message } from "message/components/message.component";
+import { ConsumeWorkflowStep } from "./consume-workflow-step.component";
 
 export function StudyMenu() {
   const location = useLocation();
@@ -22,8 +22,9 @@ export function StudyMenu() {
   const nextStep = currentStep + 1;
 
   return (
-    <>
-      <Message>
+    <ConsumeWorkflowStep
+      showButton={false}
+      message={
         <UnorderedList spacing={theme.spacing.messageBoxSpacing}>
           <ListItem>
             If you want to better understand an idea or concept, choose "Hooks".
@@ -37,8 +38,8 @@ export function StudyMenu() {
             <Icon as={IoMdHelpCircle} /> in the top-left corner.
           </ListItem>
         </UnorderedList>
-      </Message>
-
+      }
+    >
       <CardButtonGrid>
         <Tooltip
           label="Create hooks for abstract ideas or concepts"
@@ -84,6 +85,6 @@ export function StudyMenu() {
           I'm Done
         </CardButton>
       </CardButtonGrid>
-    </>
+    </ConsumeWorkflowStep>
   );
 }

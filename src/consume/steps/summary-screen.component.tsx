@@ -24,7 +24,7 @@ export function SummaryScreen() {
         message={
           <Messages>
             <Box>
-              Look at your hooks below. Is there anything you'd like to remember
+              Look at your hook(s) below. Is there anything you want to remember
               in the long-term?
             </Box>
             <Box>

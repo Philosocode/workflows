@@ -6,6 +6,7 @@ import {
 import { quackers } from "avatar/data/quackers.avatar";
 import { useAppSelector } from "shared/redux/store";
 import { selectCurrentStep } from "step/step.slice";
+import { problemSolvingRoutes } from "problem-solving/assets/problem-solving.data";
 
 export function ProblemSolvingWorkflowStep(props: IWorkflowStepProps) {
   const currentStep = useAppSelector(selectCurrentStep);
@@ -20,6 +21,10 @@ export function ProblemSolvingWorkflowStep(props: IWorkflowStepProps) {
       nextUrl={`/problem-solving/${currentStep + 1}`}
       editor={{ showEditor: true }}
       keyPressDisabled
+      progress={{
+        currentValue: currentStep,
+        maxValue: problemSolvingRoutes.length,
+      }}
       {...props}
     />
   );

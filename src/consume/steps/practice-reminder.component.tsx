@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 
 import { theme } from "shared/styles/theme";
@@ -9,7 +10,7 @@ import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.co
 import { Messages } from "message/components/messages.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
-import { Redirect } from "react-router-dom";
+import { Link } from "typography/components/link.component";
 
 export function PracticeReminder() {
   const [firstTime, setFirstTime] = useState<boolean>();
@@ -29,13 +30,16 @@ export function PracticeReminder() {
           )}
           {firstTime && (
             <Messages>
-              <Box>Great! Find some practice problems and do them.</Box>
+              <Box>
+                Great! Find some practice problems and do them. It's okay if you
+                have no idea and get all the questions wrong. Try your best.
+              </Box>
               <Box fontSize={theme.typography.fontSize.messageAside}>
-                You might be thinking, "I don't know anything about this
-                subject!"
-                <br />
-                That's okay! Even if you get all the questions wrong, it
-                prepares your mind to learn the new information.
+                This strategy is called "generation". You can learn more by
+                reading {}
+                <Link href="https://betterhumans.pub/how-to-unlock-the-amazing-power-of-your-brain-and-become-a-top-student-369e5ba59484#6b3d">
+                  this article.
+                </Link>
               </Box>
             </Messages>
           )}

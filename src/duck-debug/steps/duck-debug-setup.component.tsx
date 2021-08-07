@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
-import { Redirect, useLocation } from "react-router-dom";
 
 import { useAppDispatch } from "shared/redux/store";
 import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
@@ -15,15 +15,12 @@ export function DuckDebugSetup() {
   const dispatch = useAppDispatch();
   const location = useLocation<{ from: string }>();
 
-  const [nextUrl, setNextUrl] = useState("");
-
   useEffect(() => {
     if (location.state?.from) {
       dispatch(setRedirectUrl(location.state?.from));
     }
   }, [dispatch, location.state]);
 
-  if (nextUrl) return <Redirect to={nextUrl} />;
   return (
     <DuckDebugWorkflowStep
       editor={{ showEditor: false }}
@@ -38,16 +35,12 @@ export function DuckDebugSetup() {
       }
       buttons={
         <CardButtonGrid mt={10}>
-          <CardButton
-            onClick={() => setNextUrl(`${DUCK_DEBUG_BASE_PATH}/prog/2`)}
-          >
-            Yes
-          </CardButton>
-          <CardButton
-            onClick={() => setNextUrl(`${DUCK_DEBUG_BASE_PATH}/regular/2`)}
-          >
-            No
-          </CardButton>
+          <Link to={`${DUCK_DEBUG_BASE_PATH}/prog/2`}>
+            <CardButton>Yes</CardButton>
+          </Link>
+          <Link to={`${DUCK_DEBUG_BASE_PATH}/regular/2`}>
+            <CardButton>No</CardButton>
+          </Link>
         </CardButtonGrid>
       }
     />

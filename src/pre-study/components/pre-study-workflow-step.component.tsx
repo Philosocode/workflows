@@ -1,3 +1,4 @@
+import { preStudyComponents } from "pre-study/routes/pre-study.routes";
 import {
   IWorkflowStepProps,
   WorkflowStep,
@@ -15,6 +16,10 @@ export function PreStudyWorkflowStep(props: IWorkflowStepProps) {
         { text: `Step ${currentStep}`, to: "#" },
       ]}
       nextUrl={`/pre-study/${currentStep + 1}`}
+      progress={{
+        currentValue: currentStep,
+        maxValue: preStudyComponents.length,
+      }}
       {...props}
     >
       {props.children}

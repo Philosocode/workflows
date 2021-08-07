@@ -49,7 +49,7 @@ export function ConsumeResetModal(props: IProps) {
       <ModalWrapper isOpen={modalShowing} onClose={toggleModal}>
         <ModalContent
           header="Reset Workflow"
-          body="This will reset your progress. Are you sure you want to continue?"
+          body="This will reset your progress and restart the workflow. Are you sure you want to continue?"
           footer={footer}
         />
       </ModalWrapper>

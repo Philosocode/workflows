@@ -22,15 +22,6 @@ export const consumeRoutes = [
   { component: SkimReminder },
   { component: SummaryReminder },
   { component: PracticeReminder },
-  {
-    render: (props: RouteProps) => (
-      <StudySummarize
-        {...props}
-        message="Summarize everything you've learned so far. Try to do it from 
-        memory, without looking at the material."
-      />
-    ),
-  },
   { component: StudyTimer },
   { component: Study },
   {
@@ -102,3 +93,5 @@ export const studyRoutes = [
     ),
   },
 ];
+
+export const CONSUME_NUM_ROUTES = 10;

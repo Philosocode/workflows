@@ -4,19 +4,24 @@ import {
   IWorkflowStepProps,
   WorkflowStep,
 } from "shared/components/step/workflow-step.component";
-import { selectNextStep } from "step/step.slice";
+import { selectCurrentStep } from "step/step.slice";
+import { CONSUME_NUM_ROUTES } from "consume/routes/consume.routes";
 
 export function ConsumeWorkflowStep(props: IWorkflowStepProps) {
-  const nextStep = useAppSelector(selectNextStep);
+  const currentStep = useAppSelector(selectCurrentStep);
 
   return (
     <WorkflowStep
+      {...props}
       breadcrumbLinks={[
         { text: "Read & Watch", to: "#" },
-        { text: `Step ${nextStep - 1}`, to: "#" },
+        { text: `Step ${currentStep}`, to: "#" },
       ]}
-      nextUrl={`/consume/${nextStep}`}
-      {...props}
+      nextUrl={`/consume/${currentStep + 1}`}
+      progress={{
+        currentValue: currentStep,
+        maxValue: CONSUME_NUM_ROUTES,
+      }}
     />
   );
 }

@@ -2,8 +2,8 @@ import {
   AspectRatio,
   Box,
   ListItem,
-  OrderedList,
   SimpleGrid,
+  UnorderedList,
 } from "@chakra-ui/react";
 import { relaxVideoData } from "pre-study/assets/pre-study.data";
 import { theme } from "shared/styles/theme";
@@ -16,15 +16,18 @@ export function PreStudyRelax() {
     <PreStudyWorkflowStep
       message={
         <>
-          <Box>Take a moment to relax.</Box>
-          <OrderedList my={theme.spacing.messageBoxSpacing}>
+          <Box>
+            Take a moment to relax and de-stress. To learn effectively, you want
+            to be in a positive, relaxed state of mind.
+          </Box>
+          <UnorderedList my={theme.spacing.messageBoxSpacing}>
             <ListItem>Start a video below.</ListItem>
             <ListItem>Close your eyes.</ListItem>
-            <ListItem>Breathe deeply.</ListItem>
+            <ListItem>Take long, deep breaths.</ListItem>
             <ListItem>
               Repeat until you're completely calm and relaxed.
             </ListItem>
-          </OrderedList>
+          </UnorderedList>
           <Box fontSize={theme.typography.fontSize.messageAside}>
             Stress has a negative impact on your ability to learn and remember
             and hurts your creativity. If you want to learn more, read this {}

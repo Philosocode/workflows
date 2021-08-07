@@ -11,6 +11,7 @@ import { theme } from "shared/styles/theme";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
 import { Message } from "message/components/message.component";
+import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 
 export function ConsumeFinish() {
   const dispatch = useAppDispatch();
@@ -38,21 +39,26 @@ export function ConsumeFinish() {
     );
 
   return (
-    <>
+    <ConsumeWorkflowStep
+      buttons={
+        <CardButtonGrid>
+          <CardButton color="green" onClick={onNextStudyBlock}>
+            Next Block
+          </CardButton>
+          <CardButton onClick={onNewMaterial}>New Material</CardButton>
+        </CardButtonGrid>
+      }
+      message={
+        <>
+          {message}
+          <Box mt={theme.spacing.messageBoxSpacing}>
+            Click on "Next Block" to continue studying your current material.
+          </Box>
+          <Box>Click on "New Material" to start fresh with a new material.</Box>
+        </>
+      }
+    >
       {redirectUrl && <Redirect to={redirectUrl} />}
-      <Message>
-        {message}
-        <Box mt={theme.spacing.messageBoxSpacing}>
-          Click on "Next Block" to continue studying your current material.
-        </Box>
-        <Box>Click on "New Material" to start fresh with a new material.</Box>
-      </Message>
-      <CardButtonGrid>
-        <CardButton color="green" onClick={onNextStudyBlock}>
-          Next Block
-        </CardButton>
-        <CardButton onClick={onNewMaterial}>New Material</CardButton>
-      </CardButtonGrid>
-    </>
+    </ConsumeWorkflowStep>
   );
 }

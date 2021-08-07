@@ -12,6 +12,7 @@ import {
 } from "shared/components/breadcrumbs.component";
 import { Button } from "shared/components/button/button.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
+import { ProgressBar } from "../progress-bar.component";
 
 export interface IWorkflowStepProps {
   message: ReactNode;
@@ -31,9 +32,12 @@ export interface IWorkflowStepProps {
   keyPressDisabled?: boolean;
   messageProps?: IMessageProps;
   nextUrl?: string;
+  progress?: {
+    currentValue: number;
+    maxValue: number;
+  };
 }
-interface IProps extends IWorkflowStepProps {}
-export function WorkflowStep(props: IProps) {
+export function WorkflowStep(props: IWorkflowStepProps) {
   const [text, setText] = useState("");
   const history = useHistory();
   const showDefaultButton = props.showButton ?? true;
@@ -51,7 +55,16 @@ export function WorkflowStep(props: IProps) {
 
   return (
     <>
-      {props.breadcrumbLinks && <Breadcrumbs links={props.breadcrumbLinks} />}
+      {props.breadcrumbLinks && (
+        <Breadcrumbs breadcrumbLinks={props.breadcrumbLinks} />
+      )}
+      {props.progress && (
+        <ProgressBar
+          currentValue={props.progress.currentValue}
+          maxValue={props.progress.maxValue}
+          mb={4}
+        />
+      )}
       <Message {...props.messageProps}>{props.message}</Message>
 
       {props.editor && props.editor.showEditor && (
