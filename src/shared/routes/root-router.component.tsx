@@ -3,19 +3,20 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { consumeRoutes } from "consume/routes/consume.routes";
 import { duckDebugRoutes } from "duck-debug/routes/duck-debug.routes";
 import { preStudyComponents } from "pre-study/routes/pre-study.routes";
+import { problemSolvingRoutes } from "problem-solving/assets/problem-solving.data";
 
 import { ConsumeNavbar } from "consume/components/consume-navbar.component";
 import { CurrentStep } from "step/current-step.component";
 import { HomePage } from "shared/pages/home.page";
 import { DuckDebugNavbar } from "duck-debug/components/duck-debug-navbar.component";
 import { PreStudyNavbar } from "pre-study/components/pre-study-navbar.component";
-import { problemSolvingMessages } from "problem-solving/assets/problem-solving.data";
-import { ProblemSolvingWorkflowStep } from "problem-solving/components/problem-solving-workflow.component";
+import { ProblemSolvingNavbar } from "problem-solving/components/problem-solving-navbar.component";
 
 const navbarRoutes = [
   { path: "/consume/:currentStep", component: ConsumeNavbar },
   { path: "/duck-debug/:currentStep", component: DuckDebugNavbar },
   { path: "/pre-study/:currentStep", component: PreStudyNavbar },
+  { path: "/problem-solving/:currentStep", component: ProblemSolvingNavbar },
 ];
 
 export function RootRouter() {
@@ -50,11 +51,11 @@ export function RootRouter() {
           <Route key={route.path} {...route} />
         ))}
 
-        {problemSolvingMessages.map((data, index) => (
+        {problemSolvingRoutes.map((route, index) => (
           <Route
             key={`/problem-solving/${index + 1}`}
             path={`/problem-solving/${index + 1}`}
-            render={() => <ProblemSolvingWorkflowStep />}
+            {...route}
           />
         ))}
 

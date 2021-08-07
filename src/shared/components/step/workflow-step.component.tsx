@@ -1,16 +1,22 @@
 import { ReactNode, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { ButtonProps } from "@chakra-ui/react";
 
-import { IMessageProps, Message } from "message/components/message.component";
 import { useKeypress } from "shared/hooks/use-key-press.hook";
+import { theme } from "shared/styles/theme";
+
+import { IMessageProps, Message } from "message/components/message.component";
+import {
+  Breadcrumbs,
+  IBreadcrumbLink,
+} from "shared/components/breadcrumbs.component";
 import { Button } from "shared/components/button/button.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
-import { theme } from "shared/styles/theme";
-import { Link, useHistory } from "react-router-dom";
 
 export interface IWorkflowStepProps {
   message: ReactNode;
 
+  breadcrumbLinks?: IBreadcrumbLink[];
   buttons?: ReactNode;
   buttonText?: string;
   buttonProps?: ButtonProps;
@@ -45,6 +51,7 @@ export function WorkflowStep(props: IProps) {
 
   return (
     <>
+      {props.breadcrumbLinks && <Breadcrumbs links={props.breadcrumbLinks} />}
       <Message {...props.messageProps}>{props.message}</Message>
 
       {props.editor && props.editor.showEditor && (

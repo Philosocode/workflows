@@ -10,8 +10,13 @@ export function ConsumeWorkflowStep(props: IWorkflowStepProps) {
   const nextStep = useAppSelector(selectNextStep);
 
   return (
-    <WorkflowStep nextUrl={`/consume/${nextStep}`} {...props}>
-      {props.children}
-    </WorkflowStep>
+    <WorkflowStep
+      breadcrumbLinks={[
+        { text: "Read & Watch", to: "#" },
+        { text: `Step ${nextStep - 1}`, to: "#" },
+      ]}
+      nextUrl={`/consume/${nextStep}`}
+      {...props}
+    />
   );
 }

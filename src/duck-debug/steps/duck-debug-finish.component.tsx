@@ -19,7 +19,9 @@ export function DuckDebugFinish() {
         editor={{ showEditor: false }}
         buttons={
           <CardButtonGrid>
-            <CardButton color="green" onClick={() => history.push(redirectUrl)}>Done</CardButton>
+            <CardButton color="green" onClick={() => history.push(redirectUrl)}>
+              Done
+            </CardButton>
             <CardButton
               onClick={() => history.push(`${DUCK_DEBUG_BASE_PATH}/1`)}
               colorScheme="gray"

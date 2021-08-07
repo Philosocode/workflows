@@ -9,7 +9,14 @@ export function PreStudyWorkflowStep(props: IWorkflowStepProps) {
   const currentStep = useAppSelector(selectCurrentStep);
 
   return (
-    <WorkflowStep nextUrl={`/pre-study/${currentStep + 1}`} {...props}>
+    <WorkflowStep
+      breadcrumbLinks={[
+        { text: "Pre-Study", to: "#" },
+        { text: `Step ${currentStep}`, to: "#" },
+      ]}
+      nextUrl={`/pre-study/${currentStep + 1}`}
+      {...props}
+    >
       {props.children}
     </WorkflowStep>
   );
