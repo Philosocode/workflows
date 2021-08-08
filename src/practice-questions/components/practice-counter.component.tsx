@@ -52,7 +52,7 @@ export function PracticeCounter(props: IProps) {
           onClick={increment}
         />
       </Box>
-      <Box sx={theme.typography.condensed}>/ 10</Box>
+      <Box sx={theme.typography.condensed}>/ {props.goal}</Box>
     </CardWrapper>
   );
 }
