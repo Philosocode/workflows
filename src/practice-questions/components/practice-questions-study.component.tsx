@@ -168,7 +168,8 @@ export function PracticeQuestionsStudy() {
             />
             {practiceMode === "numQuestions" ? (
               <Box my={theme.spacing.messageBoxSpacing}>
-                You've answered {currentTopic.totalCount} questions so far.{" "}
+                You've completed {currentTopic.totalCount} questions for this
+                topic.
                 <br />
                 In total, you've completed {totalCount} questions.
               </Box>

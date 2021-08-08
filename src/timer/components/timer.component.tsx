@@ -21,7 +21,7 @@ interface IProps {
 // From: https://dev.to/emmaadesile/build-a-timer-using-react-hooks-3he2
 export function Timer(props: IProps) {
   const history = useHistory();
-  const initialSeconds = props.duration;
+  const initialSeconds = props.duration * 60;
 
   const initialTimeString = secondsToTimeString(initialSeconds);
   const [timeString, setTimeString] = useState(initialTimeString);

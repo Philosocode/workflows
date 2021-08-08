@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { VStack } from "@chakra-ui/react";
+import { Box, ListItem, UnorderedList, VStack } from "@chakra-ui/react";
 
 import { TPracticeMode } from "practice-questions/shared/practice-questions.types";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
@@ -19,6 +19,7 @@ import {
 import { NumberInputGroup } from "form/components/number-input-group.component";
 import { RadioButtonGroup } from "form/components/radio-button-group.component";
 import { PracticeTopics } from "./practice-topics.component";
+import { Messages } from "message/components/messages.component";
 
 export function PracticeQuestionsSetup() {
   const dispatch = useAppDispatch();
@@ -61,7 +62,20 @@ export function PracticeQuestionsSetup() {
           ]}
         />
       }
-      message="Use this workflow when doing practice problems."
+      message={
+        <>
+          <Box>Use this workflow when doing practice problems.</Box>
+          <UnorderedList>
+            <ListItem>
+              Practice Mode: track questions completed or time studied
+            </ListItem>
+            <ListItem>
+              Topics: these can be different subjects (e.g. Math, Science) or
+              different topics within a subject (e.g. Multiplication, Division)
+            </ListItem>
+          </UnorderedList>
+        </>
+      }
       nextUrl="/practice-questions/2"
     >
       <VStack spacing={7} alignItems="start">
