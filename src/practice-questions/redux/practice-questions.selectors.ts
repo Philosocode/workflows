@@ -24,3 +24,15 @@ export const selectPracticeTopicIds = createSelector(
   [selectPracticeQuestionsState],
   (state) => state.topicIds,
 );
+
+export const selectTotalPracticeCount = createSelector(
+  [selectPracticeTopics],
+  (state) =>
+    Object.values(state).reduce((acc, curr) => acc + curr.totalCount, 0),
+);
+
+export const selectTotalPracticeTime = createSelector(
+  [selectPracticeTopics],
+  (state) =>
+    Object.values(state).reduce((acc, curr) => acc + curr.totalTime, 0),
+);

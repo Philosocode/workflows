@@ -5,7 +5,11 @@ import random from "lodash/random";
 
 import { useRandom } from "shared/hooks/use-random.hook";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { selectPracticeQuestionsState } from "practice-questions/redux/practice-questions.selectors";
+import {
+  selectPracticeQuestionsState,
+  selectTotalPracticeCount,
+  selectTotalPracticeTime,
+} from "practice-questions/redux/practice-questions.selectors";
 import { useTheme } from "shared/hooks/use-theme.hook";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { theme } from "shared/styles/theme";
@@ -24,6 +28,8 @@ export function PracticeQuestionsStudy() {
   const { amount, practiceMode, topics, topicIds } = useAppSelector(
     selectPracticeQuestionsState,
   );
+  const totalTime = useAppSelector(selectTotalPracticeTime);
+  const totalCount = useAppSelector(selectTotalPracticeCount);
   const [currentId, getRandomTopicId] = useRandom(topicIds);
   const dlTheme = useTheme();
 
@@ -120,12 +126,14 @@ export function PracticeQuestionsStudy() {
           />
           {practiceMode === "numQuestions" ? (
             <Box my={theme.spacing.messageBoxSpacing}>
-              You've answered {currentTopic.totalCount} questions so far.
+              You've answered {currentTopic.totalCount} questions so far. <br />
+              In total, you've completed {totalCount} questions.
             </Box>
           ) : (
             <Box my={theme.spacing.messageBoxSpacing}>
               You've studied this topic for {currentTopic.totalTime} minutes so
-              far.
+              far. <br />
+              In total, you've studied for {totalTime} minutes.
             </Box>
           )}
           <Box fontSize={theme.typography.fontSize.messageAside}>

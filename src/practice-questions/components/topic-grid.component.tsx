@@ -7,24 +7,27 @@ import { selectPracticeTopics } from "practice-questions/redux/practice-question
 import { TopicGridItem } from "./topic-grid-item.component";
 
 interface IProps extends SimpleGridProps {
+  onTopicClick?: () => void;
   currentId?: string;
 }
-export function TopicGrid(props: IProps) {
+export function TopicGrid({ currentId, onTopicClick, ...rest }: IProps) {
   const topics = useAppSelector(selectPracticeTopics);
   const practiceMode = useAppSelector(selectPracticeMode);
 
   return (
-    <SimpleGrid columns={2} spacing={5} {...props}>
+    <SimpleGrid columns={2} spacing={5} {...rest}>
       {Object.values(topics).map((topic) => {
-        if (topic.id === props.currentId) return null;
+        if (topic.id === currentId) return null;
 
-        return (
+        let component = (
           <TopicGridItem
             key={topic.id}
             topic={topic}
             practiceMode={practiceMode}
           />
         );
+
+        return component;
       })}
     </SimpleGrid>
   );
