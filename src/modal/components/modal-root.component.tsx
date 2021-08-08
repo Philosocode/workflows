@@ -3,9 +3,11 @@ import { hideModal } from "modal/redux/modal.slice";
 
 import { ModalWrapper } from "./modal-wrapper.component";
 import { DeleteHookModal } from "hook/components/delete-hook-modal.component";
+import { EditTopicModal } from "hook/components/edit-topic-modal.component";
 
 const MODAL_COMPONENTS: any = {
   "delete-hook": DeleteHookModal,
+  "edit-topic": EditTopicModal,
 };
 
 export function ModalRoot() {

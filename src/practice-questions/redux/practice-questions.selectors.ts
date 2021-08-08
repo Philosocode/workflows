@@ -14,3 +14,13 @@ export const selectPracticeMode = createSelector(
   [selectPracticeQuestionsState],
   (state) => state.practiceMode,
 );
+
+export const selectPracticeTopics = createSelector(
+  [selectPracticeQuestionsState],
+  (state) => state.topics,
+);
+
+export const selectPracticeTopicIds = createSelector(
+  [selectPracticeQuestionsState],
+  (state) => state.topicIds,
+);

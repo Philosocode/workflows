@@ -13,7 +13,10 @@ export interface IProps extends InputProps {
   showLabel?: boolean;
 }
 export function InputGroup(props: IProps) {
-  const borderColor = useColorModeValue("gray.400", "gray.500");
+  const borderColor = useColorModeValue(
+    props.colorScheme === "green" ? "green.500" : "gray.400",
+    props.colorScheme === "green" ? "green.200" : "gray.500",
+  );
 
   return (
     <FormControl id={props.id}>

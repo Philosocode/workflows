@@ -22,12 +22,20 @@ export function CardButtonGrid({ buttons, children, ...rest }: IProps) {
     >
       {buttons?.map((buttonProps) => {
         const { text, ...rest } = buttonProps;
-        const buttonInner = <CardButton {...rest}>{text}</CardButton>;
+        const buttonInner = (
+          <CardButton key={text} {...rest}>
+            {text}
+          </CardButton>
+        );
 
         let button = buttonInner;
 
         if (buttonProps.to) {
-          button = <Link to={buttonProps.to}>{buttonInner}</Link>;
+          button = (
+            <Link key={text} to={buttonProps.to}>
+              {buttonInner}
+            </Link>
+          );
         }
 
         return button;

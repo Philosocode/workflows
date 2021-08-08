@@ -4,7 +4,10 @@ import { VStack } from "@chakra-ui/react";
 
 import { TPracticeMode } from "practice-questions/shared/practice-questions.types";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { selectPracticeQuestionsState } from "practice-questions/redux/practice-questions.selectors";
+import {
+  selectPracticeQuestionsState,
+  selectPracticeTopicIds,
+} from "practice-questions/redux/practice-questions.selectors";
 import { theme } from "shared/styles/theme";
 
 import { WorkflowStep } from "shared/components/step/workflow-step.component";
@@ -15,6 +18,7 @@ import {
 } from "practice-questions/redux/practice-questions.slice";
 import { NumberInputGroup } from "form/components/number-input-group.component";
 import { RadioButtonGroup } from "form/components/radio-button-group.component";
+import { PracticeTopics } from "./practice-topics.component";
 
 export function PracticeQuestionsSetup() {
   const dispatch = useAppDispatch();
@@ -24,7 +28,8 @@ export function PracticeQuestionsSetup() {
   const [maxAmount, setMaxAmount] = useState(storeState.amount.max);
   const [mode, setMode] = useState<TPracticeMode>("numQuestions");
 
-  const nextDisabled = maxAmount < minAmount;
+  const topicIds = useAppSelector(selectPracticeTopicIds);
+  const nextDisabled = maxAmount < minAmount || topicIds.length === 0;
 
   function handleSubmit() {
     // update only if needed
@@ -44,6 +49,7 @@ export function PracticeQuestionsSetup() {
 
   return (
     <WorkflowStep
+      breadcrumbLinks={[{ text: "Practice Questions" }, { text: "Setup" }]}
       buttons={
         <CardButtonGrid
           mt={theme.spacing.workflowStepButtonSpacing}
@@ -89,6 +95,8 @@ export function PracticeQuestionsSetup() {
           value={maxAmount}
           onChange={(_, num) => setMaxAmount(num)}
         />
+
+        <PracticeTopics />
       </VStack>
     </WorkflowStep>
   );

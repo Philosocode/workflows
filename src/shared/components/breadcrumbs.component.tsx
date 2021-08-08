@@ -4,7 +4,6 @@ import { theme } from "shared/styles/theme";
 import { Link as RRLink } from "react-router-dom";
 
 export interface IBreadcrumbLink {
-  to: string;
   text: string;
 }
 interface IProps {

@@ -2,6 +2,12 @@ export const theme = {
   animations: {
     transition: (property: string) => `${property} 300ms ease-in-out`,
   },
+  colors: {
+    cardBackground: {
+      dark: "gray.700",
+      light: "gray.100",
+    },
+  },
   spacing: {
     messageBoxSpacing: { base: 5, md: 7 },
     workflowStepButtonSpacing: { base: 7, md: 10 },

@@ -15,13 +15,13 @@ interface IProps extends NumberInputProps {
   id: string;
   labelText: string;
 }
-export function NumberInputGroup(props: IProps) {
+export function NumberInputGroup({ id, labelText, ...rest }: IProps) {
   const focusBorderColor = useColorModeValue("green.500", "green.200");
 
   return (
-    <FormControl id={props.id}>
-      <FormLabel>{props.labelText}</FormLabel>
-      <NumberInput maxW="100px" focusBorderColor={focusBorderColor} {...props}>
+    <FormControl id={id}>
+      <FormLabel>{labelText}</FormLabel>
+      <NumberInput maxW="100px" focusBorderColor={focusBorderColor} {...rest}>
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />
