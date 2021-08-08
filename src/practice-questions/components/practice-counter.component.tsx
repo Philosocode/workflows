@@ -5,7 +5,6 @@ import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import { theme } from "shared/styles/theme";
 import { useTheme } from "shared/hooks/use-theme.hook";
 
-import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardWrapper } from "shared/components/card/card-wrapper.component";
 import { IconButton } from "shared/components/icon-button.component";
 

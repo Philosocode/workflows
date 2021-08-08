@@ -26,7 +26,7 @@ export function HomePage() {
               { text: "Pre-Study", to: "/pre-study/1", icon: FaSeedling },
               { text: "Read / Watch", to: "/consume/1", icon: IoMdSchool },
               {
-                text: "Practice Questions",
+                text: "Practice",
                 to: "/practice-questions/1",
                 icon: BsQuestionSquareFill,
               },

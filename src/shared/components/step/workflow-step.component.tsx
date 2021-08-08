@@ -79,6 +79,7 @@ export function WorkflowStep(props: IWorkflowStepProps) {
         <Link to={props.nextUrl}>
           <Button
             children={props.buttonText ?? "Next"}
+            colorScheme="green"
             mt={
               props.editor?.showEditor
                 ? theme.spacing.workflowStepButtonSpacing

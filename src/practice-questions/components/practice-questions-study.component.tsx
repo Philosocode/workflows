@@ -17,6 +17,7 @@ import { PracticeCounter } from "./practice-counter.component";
 import { InputGroup } from "form/components/input-group.component";
 import { Timer } from "timer/components/timer.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
+import { useStep } from "shared/hooks/use-step.hook";
 
 export function PracticeQuestionsStudy() {
   const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ export function PracticeQuestionsStudy() {
   const [currentId, getRandomTopicId] = useRandom(topicIds);
   const dlTheme = useTheme();
 
+  const { step: numBlocks, increment: incrementNumBlocks } = useStep();
   const [count, setCount] = useState(0);
   const [goal, setGoal] = useState<number>(getRandomGoal());
   const [timerDone, toggleTimerDone] = useToggle();
@@ -73,9 +75,10 @@ export function PracticeQuestionsStudy() {
       getRandomTopicId();
     }
 
-    // update goal and count
     setGoal(getRandomGoal);
     setCount(0);
+    incrementNumBlocks();
+    toggleTimerDone();
 
     scrollToTop();
   }
@@ -141,6 +144,7 @@ export function PracticeQuestionsStudy() {
           shouldPlayAlarm={false}
           startAutomatically={false}
           onNext={toggleTimerDone}
+          refreshDep={numBlocks}
         />
       )}
 
@@ -153,7 +157,10 @@ export function PracticeQuestionsStudy() {
             disabled: nextButtonDisabled,
             onClick: nextTopic,
           },
-          { text: "Back To Setup", to: "/practice-questions/1" },
+          {
+            text: "Settings",
+            to: "/practice-questions/1",
+          },
         ]}
       />
 

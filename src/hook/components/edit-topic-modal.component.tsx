@@ -44,12 +44,14 @@ export function EditTopicModal(props: IProps) {
       }
       footer={
         <ButtonGroup spacing={3}>
-          <Button disabled={text.trim() === props.title} onClick={handleSave}>
+          <Button
+            colorScheme="green"
+            disabled={text.trim() === props.title}
+            onClick={handleSave}
+          >
             Save
           </Button>
-          <Button colorScheme="gray" onClick={props.onClose}>
-            Cancel
-          </Button>
+          <Button onClick={props.onClose}>Cancel</Button>
         </ButtonGroup>
       }
     />

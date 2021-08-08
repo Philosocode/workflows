@@ -35,7 +35,7 @@ export function GoBackModal(props: IProps) {
           footer={
             <ButtonGroup spacing={5}>
               <Link to={props.redirectUrl}>
-                <Button>Yes</Button>
+                <Button colorScheme="green">Yes</Button>
               </Link>
               <Button colorScheme="gray" onClick={toggleModal}>
                 Cancel

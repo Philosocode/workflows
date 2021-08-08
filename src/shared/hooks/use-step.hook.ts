@@ -1,18 +1,38 @@
 import { useState } from "react";
 
-export function useStep(min: number, max: number, initialValue?: number) {
-  const [step, setStep] = useState(initialValue ?? min);
+interface IProps {
+  initialValue?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+}
+export function useStep(props: IProps = {}) {
+  const [step, setStep] = useState(props.initialValue ?? props.min ?? 0);
 
-  function increment(amount: number = 1) {
-    if (step === max) return;
+  function increment() {
+    if (props.max && step === props.max) return;
 
-    setStep((prevState) => prevState + amount);
+    setStep((prevValue) => {
+      let newValue = prevValue + (props.step ?? 1);
+      if (props.max && newValue > props.max) {
+        newValue = props.max;
+      }
+
+      return newValue;
+    });
   }
 
-  function decrement(amount: number = 1) {
-    if (step === min) return;
+  function decrement() {
+    if (props.min && step === props.min) return;
 
-    setStep((prevState) => prevState - amount);
+    setStep((prevValue) => {
+      let newValue = prevValue - (props.step ?? 1);
+      if (props.min && newValue < props.min) {
+        newValue = props.min;
+      }
+
+      return newValue;
+    });
   }
 
   return { step, setStep, increment, decrement };

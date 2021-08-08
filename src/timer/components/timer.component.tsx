@@ -13,9 +13,10 @@ interface IProps {
   nextUrl?: string;
   shouldPlayAlarm?: boolean;
   startAutomatically?: boolean;
-  showSkipButton?: boolean;
   showNextButton?: boolean;
+  showSkipButton?: boolean;
   onNext?: () => void;
+  refreshDep?: any;
 }
 // From: https://dev.to/emmaadesile/build-a-timer-using-react-hooks-3he2
 export function Timer(props: IProps) {
@@ -30,20 +31,25 @@ export function Timer(props: IProps) {
 
   useEffect(() => {
     setCounter(initialSeconds);
-  }, [initialSeconds]);
+  }, [initialSeconds, props.refreshDep]);
+
+  useEffect(() => {
+    if (counter >= 0) {
+      setTimeString(secondsToTimeString(counter));
+    }
+  }, [counter]);
 
   useEffect(() => {
     let intervalId: ReturnType<typeof setInterval>;
 
     if (isActive && counter >= 0) {
       intervalId = setInterval(() => {
-        setTimeString(secondsToTimeString(counter));
         setCounter((counter) => counter - 1);
       }, 1000);
     }
 
     // timer finished
-    if (initialSeconds > 0 && counter <= -1) {
+    if (initialSeconds > 0 && counter < 0) {
       props.onNext?.();
 
       if (props.shouldPlayAlarm) {
@@ -69,6 +75,8 @@ export function Timer(props: IProps) {
     if (props.nextUrl) {
       history.push(props.nextUrl);
     }
+
+    props.onNext?.();
   }
 
   const styles = {
