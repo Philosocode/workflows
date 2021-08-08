@@ -7,7 +7,7 @@ export interface IBreadcrumbLink {
   text: string;
 }
 interface IProps {
-  breadcrumbLinks: IBreadcrumbLink[];
+  breadcrumbLinks: string[];
 }
 
 export function Breadcrumbs(props: IProps) {
@@ -37,7 +37,7 @@ export function Breadcrumbs(props: IProps) {
               color={isLast ? activeLinkColor : ""}
               fontWeight={isLast ? "bold" : defaultFontWeight}
             >
-              {link.text}
+              {link}
             </Text>
             {!isLast && <Separator />}
           </>

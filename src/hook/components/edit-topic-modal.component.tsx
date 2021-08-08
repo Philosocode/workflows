@@ -1,4 +1,4 @@
-import { Box, ButtonGroup } from "@chakra-ui/react";
+import { ButtonGroup } from "@chakra-ui/react";
 import { InputGroup } from "form/components/input-group.component";
 
 import { ModalContent } from "modal/components/modal-content.component";

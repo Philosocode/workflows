@@ -1,19 +1,12 @@
-import {
-  Box,
-  Heading,
-  Icon,
-  useColorModeValue,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Heading, Icon, useColorModeValue } from "@chakra-ui/react";
 import { showModal } from "modal/redux/modal.slice";
 import { deleteTopic } from "practice-questions/redux/practice-questions.slice";
 
 import { ITopic } from "practice-questions/shared/practice-questions.types";
-import { BiHash } from "react-icons/bi";
 import { FaClock, FaHashtag, FaPencilAlt, FaTrash } from "react-icons/fa";
+import { CardWrapper } from "shared/components/card/card-wrapper.component";
 import { IconButton } from "shared/components/icon-button.component";
 import { useAppDispatch } from "shared/redux/store";
-import { theme } from "shared/styles/theme";
 
 interface IProps {
   topic: ITopic;
@@ -37,24 +30,11 @@ export function TopicGridItem(props: IProps) {
     dispatch(deleteTopic(props.topic.id));
   }
 
-  const bg = useColorModeValue(
-    theme.colors.cardBackground.light,
-    theme.colors.cardBackground.dark,
-  );
-
   const editColor = useColorModeValue("orange.500", "orange.200");
   const deleteColor = useColorModeValue("red.500", "red.200");
 
   return (
-    <VStack
-      alignItems="start"
-      bg={bg}
-      rounded="md"
-      px={5}
-      py={6}
-      shadow="sm"
-      position="relative"
-    >
+    <CardWrapper p={7} position="relative">
       <Box position="absolute" right={1} top={1}>
         <IconButton
           icon={<FaPencilAlt />}
@@ -92,6 +72,6 @@ export function TopicGridItem(props: IProps) {
       <Box d="flex" alignItems="center" fontWeight="semibold">
         <Icon as={FaClock} mr={2} /> {props.topic.totalTime}
       </Box>
-    </VStack>
+    </CardWrapper>
   );
 }

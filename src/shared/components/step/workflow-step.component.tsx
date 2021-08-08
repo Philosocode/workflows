@@ -6,10 +6,7 @@ import { useKeypress } from "shared/hooks/use-key-press.hook";
 import { theme } from "shared/styles/theme";
 
 import { IMessageProps, Message } from "message/components/message.component";
-import {
-  Breadcrumbs,
-  IBreadcrumbLink,
-} from "shared/components/breadcrumbs.component";
+import { Breadcrumbs } from "shared/components/breadcrumbs.component";
 import { Button } from "shared/components/button/button.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
 import { ProgressBar } from "../progress-bar.component";
@@ -17,7 +14,7 @@ import { ProgressBar } from "../progress-bar.component";
 export interface IWorkflowStepProps {
   message: ReactNode;
 
-  breadcrumbLinks?: IBreadcrumbLink[];
+  breadcrumbLinks?: string[];
   buttons?: ReactNode;
   buttonText?: string;
   buttonProps?: ButtonProps;

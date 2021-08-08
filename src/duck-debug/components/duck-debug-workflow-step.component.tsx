@@ -21,10 +21,7 @@ export function DuckDebugWorkflowStep(props: IWorkflowStepProps) {
 
   return (
     <WorkflowStep
-      breadcrumbLinks={[
-        { text: "Rubber Duck Debugging" },
-        { text: `Step ${currentStep}` },
-      ]}
+      breadcrumbLinks={["Rubber Duck Debugging", `Step ${currentStep}`]}
       messageProps={{ avatar: quackers }}
       editor={{
         showEditor: true,

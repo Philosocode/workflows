@@ -76,7 +76,7 @@ export function Timer(props: IProps) {
       >
         <Box
           className="time"
-          fontSize={{ base: "6xl", md: "7xl" }}
+          sx={theme.typography.countHeading}
           fontWeight="light"
         >
           {timeString}

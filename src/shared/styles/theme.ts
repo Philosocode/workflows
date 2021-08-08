@@ -18,6 +18,10 @@ export const theme = {
       letterSpacing: "1px",
       fontWeight: "bold",
     },
+    countHeading: {
+      fontSize: { base: "6xl", md: "7xl" },
+      fontWeight: 300,
+    },
     fontSize: {
       messageAside: { base: "sm", md: "lg" },
       nextButton: { base: "xs", md: "sm" },

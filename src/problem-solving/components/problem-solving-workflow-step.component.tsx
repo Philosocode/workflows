@@ -13,10 +13,7 @@ export function ProblemSolvingWorkflowStep(props: IWorkflowStepProps) {
 
   return (
     <WorkflowStep
-      breadcrumbLinks={[
-        { text: "Problem Solving" },
-        { text: `Step ${currentStep}` },
-      ]}
+      breadcrumbLinks={["Problem Solving", `Step ${currentStep}`]}
       messageProps={{ avatar: quackers }}
       nextUrl={`/problem-solving/${currentStep + 1}`}
       editor={{ showEditor: true }}

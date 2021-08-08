@@ -49,7 +49,7 @@ export function PracticeQuestionsSetup() {
 
   return (
     <WorkflowStep
-      breadcrumbLinks={[{ text: "Practice Questions" }, { text: "Setup" }]}
+      breadcrumbLinks={["Practice Questions", "Setup"]}
       buttons={
         <CardButtonGrid
           mt={theme.spacing.workflowStepButtonSpacing}

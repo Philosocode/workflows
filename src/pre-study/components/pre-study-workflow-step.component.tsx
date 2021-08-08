@@ -11,7 +11,7 @@ export function PreStudyWorkflowStep(props: IWorkflowStepProps) {
 
   return (
     <WorkflowStep
-      breadcrumbLinks={[{ text: "Pre-Study" }, { text: `Step ${currentStep}` }]}
+      breadcrumbLinks={["Pre-Study", `Step ${currentStep}`]}
       nextUrl={`/pre-study/${currentStep + 1}`}
       progress={{
         currentValue: currentStep,

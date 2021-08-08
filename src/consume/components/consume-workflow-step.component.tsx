@@ -13,10 +13,7 @@ export function ConsumeWorkflowStep(props: IWorkflowStepProps) {
   return (
     <WorkflowStep
       {...props}
-      breadcrumbLinks={[
-        { text: "Read & Watch" },
-        { text: `Step ${currentStep}` },
-      ]}
+      breadcrumbLinks={["Read & Watch", `Step ${currentStep}`]}
       nextUrl={`/consume/${currentStep + 1}`}
       progress={{
         currentValue: currentStep,
