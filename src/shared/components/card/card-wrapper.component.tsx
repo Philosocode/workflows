@@ -7,7 +7,7 @@ export function CardWrapper(props: StackProps) {
   return (
     <VStack
       alignItems="start"
-      sx={dlTheme.components.card}
+      bg={dlTheme.components.card.bg}
       rounded="md"
       shadow="sm"
       {...props}
