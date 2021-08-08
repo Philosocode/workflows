@@ -9,7 +9,7 @@ import { Timer } from "timer/components/timer.component";
 import { theme } from "shared/styles/theme";
 
 export function StudyTimer() {
-  const { materialType, studyBlockTime } = useAppSelector(selectConsumeState);
+  const { materialType, studyBlockTime, shouldPlayAlarm } = useAppSelector(selectConsumeState);
   const currentStep = useAppSelector(selectCurrentStep);
 
   const studyMessage =
@@ -39,6 +39,8 @@ export function StudyTimer() {
         duration={studyBlockTime}
         nextUrl={`/consume/${currentStep + 1}/menu`}
         startAutomatically={false}
+        shouldPlayAlarm={shouldPlayAlarm}
+        showSkipButton={true}
       />
     </ConsumeWorkflowStep>
   );

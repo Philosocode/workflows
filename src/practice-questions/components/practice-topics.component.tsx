@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { Box, Heading, IconButton } from "@chakra-ui/react";
+import { Box, IconButton, Text } from "@chakra-ui/react";
 
 import { useAppDispatch } from "shared/redux/store";
 import { createTopic } from "practice-questions/redux/practice-questions.slice";
@@ -8,6 +8,7 @@ import { InputGroup } from "form/components/input-group.component";
 import { ITopic } from "practice-questions/shared/practice-questions.types";
 import { TopicGrid } from "./topic-grid.component";
 import { FaPlus } from "react-icons/fa";
+import { theme } from "shared/styles/theme";
 
 export function PracticeTopics() {
   const dispatch = useAppDispatch();
@@ -30,9 +31,9 @@ export function PracticeTopics() {
 
   return (
     <Box w="full">
-      <Heading mb={1} size="md">
+      <Text mb={1} sx={theme.typography.condensed}>
         Topics
-      </Heading>
+      </Text>
       <form onSubmit={addTopic}>
         <Box d="flex" maxW="96">
           <InputGroup

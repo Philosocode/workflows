@@ -4,16 +4,20 @@ import { deleteTopic } from "practice-questions/redux/practice-questions.slice";
 
 import { useTheme } from "shared/hooks/use-theme.hook";
 import { useAppDispatch } from "shared/redux/store";
+import {
+  ITopic,
+  TPracticeMode,
+} from "practice-questions/shared/practice-questions.types";
 
-import { ITopic } from "practice-questions/shared/practice-questions.types";
 import { FaClock, FaHashtag, FaPencilAlt, FaTrash } from "react-icons/fa";
 import { CardWrapper } from "shared/components/card/card-wrapper.component";
 import { IconButton } from "shared/components/icon-button.component";
 
 interface IProps {
   topic: ITopic;
+  practiceMode: TPracticeMode;
 }
-export function TopicGridItem({ topic }: IProps) {
+export function TopicGridItem({ topic, practiceMode }: IProps) {
   const dlTheme = useTheme();
   const dispatch = useAppDispatch();
 
@@ -79,12 +83,15 @@ export function TopicGridItem({ topic }: IProps) {
       >
         {topic.title}
       </Heading>
-      <Box d="flex" alignItems="center" fontWeight="semibold">
-        <Icon as={FaHashtag} mr={2} /> {topic.totalCount}
-      </Box>
-      <Box d="flex" alignItems="center" fontWeight="semibold">
-        <Icon as={FaClock} mr={2} /> {topic.totalTime}
-      </Box>
+      {practiceMode === "numQuestions" ? (
+        <Box d="flex" alignItems="center" fontWeight="semibold">
+          <Icon as={FaHashtag} mr={2} /> {topic.totalCount}
+        </Box>
+      ) : (
+        <Box d="flex" alignItems="center" fontWeight="semibold">
+          <Icon as={FaClock} mr={2} /> {topic.totalTime} mins
+        </Box>
+      )}
     </CardWrapper>
   );
 }

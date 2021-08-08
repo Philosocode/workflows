@@ -33,7 +33,7 @@ const practiceQuestionsSlice = createSlice({
     setPracticeMode: (state, action: PayloadAction<TPracticeMode>) => {
       state.practiceMode = action.payload;
     },
-    reset: () => {
+    resetState: () => {
       return initialState;
     },
     createTopic: (state, action: PayloadAction<ITopic>) => {
@@ -60,7 +60,7 @@ const practiceQuestionsSlice = createSlice({
 
 export const practiceQuestionsReducer = practiceQuestionsSlice.reducer;
 export const {
-  reset,
+  resetState,
   setAmount,
   setPracticeMode,
   createTopic,

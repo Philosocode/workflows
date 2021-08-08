@@ -23,25 +23,23 @@ import { PracticeTopics } from "./practice-topics.component";
 export function PracticeQuestionsSetup() {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const storeState = useAppSelector(selectPracticeQuestionsState);
-  const [minAmount, setMinAmount] = useState(storeState.amount.min);
-  const [maxAmount, setMaxAmount] = useState(storeState.amount.max);
-  const [mode, setMode] = useState<TPracticeMode>("numQuestions");
+  const { amount, practiceMode } = useAppSelector(selectPracticeQuestionsState);
+  const [minAmount, setMinAmount] = useState(amount.min);
+  const [maxAmount, setMaxAmount] = useState(amount.max);
 
   const topicIds = useAppSelector(selectPracticeTopicIds);
   const nextDisabled = maxAmount < minAmount || topicIds.length === 0;
 
+  function updatePracticeMode(nextValue: TPracticeMode) {
+    if (nextValue !== practiceMode) {
+      dispatch(setPracticeMode(nextValue));
+    }
+  }
+
   function handleSubmit() {
     // update only if needed
-    if (
-      minAmount !== storeState.amount.min ||
-      maxAmount !== storeState.amount.max
-    ) {
+    if (minAmount !== amount.min || maxAmount !== amount.max) {
       dispatch(setAmount({ min: minAmount, max: maxAmount }));
-    }
-
-    if (mode !== storeState.practiceMode) {
-      dispatch(setPracticeMode(mode));
     }
 
     history.push("/practice-questions/2");
@@ -70,8 +68,8 @@ export function PracticeQuestionsSetup() {
         <RadioButtonGroup
           id="practiceMode"
           labelText="Practice Mode:"
-          onChange={(nextValue: TPracticeMode) => setMode(nextValue)}
-          value={mode}
+          onChange={(nextValue: TPracticeMode) => updatePracticeMode(nextValue)}
+          value={practiceMode}
           values={[
             { text: "Number of Questions", value: "numQuestions" },
             { text: "Timer", value: "timer" },
@@ -80,7 +78,11 @@ export function PracticeQuestionsSetup() {
 
         <NumberInputGroup
           id="minAmount"
-          labelText="Min Amount (minutes):"
+          labelText={
+            practiceMode === "numQuestions"
+              ? "Min Amount"
+              : "Min Amount (minutes):"
+          }
           min={1}
           max={25}
           value={minAmount}
@@ -89,7 +91,11 @@ export function PracticeQuestionsSetup() {
 
         <NumberInputGroup
           id="maxAmount"
-          labelText="Max Amount (minutes):"
+          labelText={
+            practiceMode === "numQuestions"
+              ? "Max Amount"
+              : "Max Amount (minutes):"
+          }
           min={minAmount}
           max={25}
           value={maxAmount}

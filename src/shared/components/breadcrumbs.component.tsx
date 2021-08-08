@@ -2,6 +2,7 @@ import { Box, useColorModeValue, Link, Text } from "@chakra-ui/react";
 import { theme } from "shared/styles/theme";
 
 import { Link as RRLink } from "react-router-dom";
+import { Fragment } from "react";
 
 export interface IBreadcrumbLink {
   text: string;
@@ -32,7 +33,7 @@ export function Breadcrumbs(props: IProps) {
         const isLast = index === props.breadcrumbLinks.length - 1;
 
         return (
-          <>
+          <Fragment key={link}>
             <Text
               color={isLast ? activeLinkColor : ""}
               fontWeight={isLast ? "bold" : defaultFontWeight}
@@ -40,7 +41,7 @@ export function Breadcrumbs(props: IProps) {
               {link}
             </Text>
             {!isLast && <Separator />}
-          </>
+          </Fragment>
         );
       })}
     </Box>

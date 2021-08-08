@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Box, ButtonGroup, useColorModeValue } from "@chakra-ui/react";
 
 import { Button } from "shared/components/button/button.component";
 import { theme } from "shared/styles/theme";
-import { useAppSelector } from "shared/redux/store";
-import { selectShouldPlayAlarm } from "consume/redux/consume.selectors";
 
 const audio = new Audio("/alarm-beep.mp3");
 
 interface IProps {
   duration: number;
-  nextUrl: string;
 
+  nextUrl?: string;
+  shouldPlayAlarm?: boolean;
   startAutomatically?: boolean;
+  showSkipButton?: boolean;
+  showNextButton?: boolean;
+  onNext?: () => void;
 }
 // From: https://dev.to/emmaadesile/build-a-timer-using-react-hooks-3he2
 export function Timer(props: IProps) {
-  const initialSeconds = props.duration * 60;
+  const history = useHistory();
+  const initialSeconds = props.duration;
 
   const initialTimeString = secondsToTimeString(initialSeconds);
   const [timeString, setTimeString] = useState(initialTimeString);
@@ -25,11 +28,9 @@ export function Timer(props: IProps) {
   const [counter, setCounter] = useState(initialSeconds);
   const [isActive, setIsActive] = useState(props.startAutomatically ?? true);
 
-  const shouldPlayAlarm = useAppSelector(selectShouldPlayAlarm);
-
   useEffect(() => {
-    setCounter(props.duration * 60);
-  }, [props.duration]);
+    setCounter(initialSeconds);
+  }, [initialSeconds]);
 
   useEffect(() => {
     let intervalId: ReturnType<typeof setInterval>;
@@ -41,12 +42,18 @@ export function Timer(props: IProps) {
       }, 1000);
     }
 
-    if (initialSeconds > 0 && shouldPlayAlarm && counter === -1) {
-      audio.play();
+    // timer finished
+    if (initialSeconds > 0 && counter <= -1) {
+      props.onNext?.();
+
+      if (props.shouldPlayAlarm) {
+        audio.play();
+      }
     }
 
     return () => clearInterval(intervalId);
-  }, [counter, isActive, initialSeconds, shouldPlayAlarm]);
+    // eslint-disable-next-line
+  }, [counter, isActive, initialSeconds, props.shouldPlayAlarm]);
 
   function secondsToTimeString(seconds: number) {
     const secondsCounter = seconds % 60;
@@ -56,6 +63,12 @@ export function Timer(props: IProps) {
     if (computedSeconds.length === 1) computedSeconds = `0${secondsCounter}`;
 
     return `${minutesCounter}:${computedSeconds}`;
+  }
+
+  function handleNext() {
+    if (props.nextUrl) {
+      history.push(props.nextUrl);
+    }
   }
 
   const styles = {
@@ -91,17 +104,20 @@ export function Timer(props: IProps) {
             >
               {isActive ? "Pause" : "Start"}
             </Button>
-            <Link to={props.nextUrl}>
+            {props.showSkipButton && (
               <Button colorScheme="gray">Skip Timer</Button>
-            </Link>
+            )}
           </ButtonGroup>
         )}
       </Box>
 
-      {counter <= -1 && (
-        <Link to={props.nextUrl}>
-          <Button mt={theme.spacing.workflowStepButtonSpacing}>Next</Button>
-        </Link>
+      {props.showNextButton && counter <= -1 && (
+        <Button
+          mt={theme.spacing.workflowStepButtonSpacing}
+          onClick={handleNext}
+        >
+          Next
+        </Button>
       )}
     </>
   );

@@ -7,7 +7,7 @@ export interface IProps extends ButtonProps {
 export function Button({ color, children, ...rest }: IProps) {
   return (
     <ButtonChakra
-      colorScheme="green"
+      colorScheme="gray"
       sx={theme.typography.condensed}
       fontSize={theme.typography.fontSize.nextButton}
       minW={20}
