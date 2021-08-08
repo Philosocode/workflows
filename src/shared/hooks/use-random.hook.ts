@@ -1,7 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import sample from "lodash/sample";
 
-export function useRandom<T>(values: T[], initialValue?: T): [T, () => void] {
+export function useRandom<T>(
+  values: T[],
+  initialValue?: T,
+): [T, () => void, React.Dispatch<React.SetStateAction<T>>] {
   const [currentValue, setCurrentValue] = useState(initialValue ?? values[0]);
 
   function getRandomValue() {
@@ -12,5 +15,5 @@ export function useRandom<T>(values: T[], initialValue?: T): [T, () => void] {
     if (newValue) setCurrentValue(newValue);
   }
 
-  return [currentValue, getRandomValue];
+  return [currentValue, getRandomValue, setCurrentValue];
 }

@@ -7,8 +7,8 @@ import { selectPracticeTopics } from "practice-questions/redux/practice-question
 import { TopicGridItem } from "./topic-grid-item.component";
 
 interface IProps extends SimpleGridProps {
-  onTopicClick?: () => void;
   currentId?: string;
+  onTopicClick?: (id: string) => void;
 }
 export function TopicGrid({ currentId, onTopicClick, ...rest }: IProps) {
   const topics = useAppSelector(selectPracticeTopics);
@@ -24,6 +24,7 @@ export function TopicGrid({ currentId, onTopicClick, ...rest }: IProps) {
             key={topic.id}
             topic={topic}
             practiceMode={practiceMode}
+            onTopicClick={onTopicClick}
           />
         );
 

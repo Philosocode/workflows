@@ -16,12 +16,16 @@ import { IconButton } from "shared/components/icon-button.component";
 interface IProps {
   topic: ITopic;
   practiceMode: TPracticeMode;
+
+  onTopicClick?: (id: string) => void;
 }
-export function TopicGridItem({ topic, practiceMode }: IProps) {
+export function TopicGridItem({ topic, practiceMode, onTopicClick }: IProps) {
   const dlTheme = useTheme();
   const dispatch = useAppDispatch();
 
-  function showEditModal() {
+  function showEditModal(event: React.MouseEvent) {
+    event.stopPropagation();
+
     dispatch(
       showModal({
         modalType: "edit-topic",
@@ -43,12 +47,14 @@ export function TopicGridItem({ topic, practiceMode }: IProps) {
 
   return (
     <CardWrapper
+      cursor={onTopicClick && "pointer"}
       p={7}
       position="relative"
       border="1px solid"
       borderColor={dlTheme.components.card.borderColor}
       bg={dlTheme.components.card.bg}
       textColor={textColor}
+      onClick={() => onTopicClick?.(topic.id)}
     >
       <Box position="absolute" right={1} top={1}>
         <IconButton

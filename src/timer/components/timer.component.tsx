@@ -31,6 +31,7 @@ export function Timer(props: IProps) {
 
   useEffect(() => {
     setCounter(initialSeconds);
+    setIsActive(false);
   }, [initialSeconds, props.refreshDep]);
 
   useEffect(() => {
