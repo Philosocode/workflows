@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Box, Divider, Heading } from "@chakra-ui/react";
+import { Box, Divider, Heading, useToast } from "@chakra-ui/react";
 import random from "lodash/random";
 
 import { useRandom } from "shared/hooks/use-random.hook";
@@ -23,6 +23,7 @@ import { Timer } from "timer/components/timer.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { useStep } from "shared/hooks/use-step.hook";
 import { ConfirmModal } from "modal/components/confirm-modal.component";
+import { truncate } from "shared/helpers/string.helper";
 
 export function PracticeQuestionsStudy() {
   const dispatch = useAppDispatch();
@@ -33,11 +34,12 @@ export function PracticeQuestionsStudy() {
   const totalCount = useAppSelector(selectTotalPracticeCount);
   const [currentId, getRandomTopicId, setTopicId] = useRandom(topicIds);
   const dlTheme = useTheme();
+  const toast = useToast();
 
   const { step: numBlocks, increment: incrementNumBlocks } = useStep();
   const [count, setCount] = useState(0);
   const [goal, setGoal] = useState<number>(getRandomGoal());
-  const [timerDone, toggleTimerDone, setTimerDone] = useToggle();
+  const [timerDone, toggleTimerDone] = useToggle();
   const [modalShowing, toggleModal] = useToggle();
   const [switchTopicId, setSwitchTopicId] = useState("");
 
@@ -80,10 +82,24 @@ export function PracticeQuestionsStudy() {
       }),
     );
 
+    let message: string;
     if (topicIds.length >= 2) {
-      getRandomTopicId();
+      const randomId = getRandomTopicId();
+
+      message =
+        practiceMode === "numQuestions"
+          ? `+${count}. Next Topic: ${topics[randomId].title}`
+          : `+${goal} mins. Next Topic: ${topics[randomId].title}`;
+    } else {
+      message = practiceMode === "numQuestions" ? `+${count}` : `+${goal}`;
     }
 
+    showToast(message);
+
+    nextTopicReset();
+  }
+
+  function nextTopicReset() {
     setGoal(getRandomGoal);
     setCount(0);
     incrementNumBlocks();
@@ -112,14 +128,20 @@ export function PracticeQuestionsStudy() {
   }
 
   function handleSwitch() {
+    showToast("Switched topics");
     setTopicId(switchTopicId);
 
-    setGoal(getRandomGoal);
-    setCount(0);
-    incrementNumBlocks();
-    setTimerDone(false);
+    nextTopicReset();
+  }
 
-    scrollToTop();
+  function showToast(message: string) {
+    toast({
+      title: truncate(message, 55),
+      position: "top",
+      isClosable: true,
+      duration: 3000,
+      status: "success",
+    });
   }
 
   const nextButtonDisabled =
