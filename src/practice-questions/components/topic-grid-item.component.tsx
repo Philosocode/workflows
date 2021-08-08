@@ -12,10 +12,8 @@ import { IconButton } from "shared/components/icon-button.component";
 
 interface IProps {
   topic: ITopic;
-
-  isCurrent?: boolean;
 }
-export function TopicGridItem({ topic, isCurrent }: IProps) {
+export function TopicGridItem({ topic }: IProps) {
   const dlTheme = useTheme();
   const dispatch = useAppDispatch();
 

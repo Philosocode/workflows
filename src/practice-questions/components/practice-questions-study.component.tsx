@@ -94,11 +94,15 @@ export function PracticeQuestionsStudy() {
       }
     >
       <PracticeCounter count={count} goal={goal} setCount={setCount} />
-      <Divider mt={8} mb={5} />
-      <Heading textAlign="center" size="lg">
-        Other Topics
-      </Heading>
-      <TopicGrid mt={5} currentId={currentId} />
+      {topicIds.length >= 2 && (
+        <>
+          <Divider mt={8} mb={5} />
+          <Heading textAlign="center" size="lg">
+            Other Topics
+          </Heading>
+          <TopicGrid mt={5} currentId={currentId} />
+        </>
+      )}
     </WorkflowStep>
   );
 }

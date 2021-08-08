@@ -15,13 +15,7 @@ export function TopicGrid(props: IProps) {
       {Object.values(topics).map((topic) => {
         if (topic.id === props.currentId) return null;
 
-        return (
-          <TopicGridItem
-            key={topic.id}
-            topic={topic}
-            isCurrent={topic.id === props.currentId}
-          />
-        );
+        return <TopicGridItem key={topic.id} topic={topic} />;
       })}
     </SimpleGrid>
   );
