@@ -72,6 +72,9 @@ export function PracticeQuestionsSetup() {
               Topics: these can be different subjects (e.g. Math, Science) or
               different topics within a subject (e.g. Multiplication, Division)
             </ListItem>
+            <ListItem>
+              The amount will be randomly set to a number between min and max.
+            </ListItem>
           </UnorderedList>
         </>
       }

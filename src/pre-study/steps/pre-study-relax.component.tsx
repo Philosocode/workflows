@@ -1,17 +1,17 @@
-import {
-  AspectRatio,
-  Box,
-  ListItem,
-  SimpleGrid,
-  UnorderedList,
-} from "@chakra-ui/react";
+import { AspectRatio, Box, ListItem, UnorderedList } from "@chakra-ui/react";
 import { relaxVideoData } from "pre-study/assets/pre-study.data";
 import { theme } from "shared/styles/theme";
 
 import { PreStudyWorkflowStep } from "pre-study/components/pre-study-workflow-step.component";
 import { Link } from "typography/components/link.component";
+import { Button } from "shared/components/button/button.component";
+import { useRandom } from "shared/hooks/use-random.hook";
+import { IconButton } from "shared/components/icon-button.component";
+import { FaRedo } from "react-icons/fa";
 
 export function PreStudyRelax() {
+  const [currentVideo, getRandomVideo] = useRandom(relaxVideoData);
+
   return (
     <PreStudyWorkflowStep
       message={
@@ -20,7 +20,7 @@ export function PreStudyRelax() {
             Take a moment to relax and de-stress. To learn effectively, you want
             to be in a positive, relaxed state of mind.
           </Box>
-          <UnorderedList my={theme.spacing.messageBoxSpacing}>
+          <UnorderedList mb={theme.spacing.messageBoxSpacing}>
             <ListItem>Start a video below.</ListItem>
             <ListItem>Close your eyes.</ListItem>
             <ListItem>Take long, deep breaths.</ListItem>
@@ -38,19 +38,22 @@ export function PreStudyRelax() {
         </>
       }
     >
-      <SimpleGrid columns={2} mb={theme.spacing.workflowStepButtonSpacing}>
-        {relaxVideoData.map((video) => (
-          <AspectRatio key={video.url}>
-            <iframe
-              src={video.url}
-              title={video.title}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </AspectRatio>
-        ))}
-      </SimpleGrid>
+      <IconButton
+        aria-label="New Video"
+        mb={1}
+        onClick={getRandomVideo}
+        icon={<FaRedo />}
+      />
+
+      <AspectRatio key={currentVideo.url} mb={theme.spacing.messageBoxSpacing}>
+        <iframe
+          src={currentVideo.url}
+          title={currentVideo.title}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </AspectRatio>
     </PreStudyWorkflowStep>
   );
 }

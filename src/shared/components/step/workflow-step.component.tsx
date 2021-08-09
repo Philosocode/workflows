@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { ButtonProps } from "@chakra-ui/react";
+import { ButtonGroup, ButtonProps } from "@chakra-ui/react";
 
 import { useKeypress } from "shared/hooks/use-key-press.hook";
 import { theme } from "shared/styles/theme";
@@ -18,6 +18,7 @@ export interface IWorkflowStepProps {
   buttons?: ReactNode;
   buttonText?: string;
   buttonProps?: ButtonProps;
+  extraButtons?: ReactNode;
   showButton?: boolean;
   children?: ReactNode;
   editor?: {
@@ -76,19 +77,24 @@ export function WorkflowStep(props: IWorkflowStepProps) {
 
       {props.buttons}
       {!props.buttons && showDefaultButton && props.nextUrl && (
-        <Link to={props.nextUrl}>
-          <Button
-            children={props.buttonText ?? "Next"}
-            colorScheme="green"
-            mt={
-              props.editor?.showEditor
-                ? theme.spacing.workflowStepButtonSpacing
-                : 0
-            }
-            disabled={buttonDisabled}
-            {...props.buttonProps}
-          />
-        </Link>
+        <ButtonGroup
+          spacing={5}
+          mt={
+            props.editor?.showEditor
+              ? theme.spacing.workflowStepButtonSpacing
+              : 0
+          }
+        >
+          <Link to={props.nextUrl}>
+            <Button
+              children={props.buttonText ?? "Next"}
+              colorScheme="green"
+              disabled={buttonDisabled}
+              {...props.buttonProps}
+            />
+          </Link>
+          {props.extraButtons}
+        </ButtonGroup>
       )}
     </>
   );
