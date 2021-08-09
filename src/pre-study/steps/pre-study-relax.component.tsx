@@ -4,7 +4,6 @@ import { theme } from "shared/styles/theme";
 
 import { PreStudyWorkflowStep } from "pre-study/components/pre-study-workflow-step.component";
 import { Link } from "typography/components/link.component";
-import { Button } from "shared/components/button/button.component";
 import { useRandom } from "shared/hooks/use-random.hook";
 import { IconButton } from "shared/components/icon-button.component";
 import { FaRedo } from "react-icons/fa";
