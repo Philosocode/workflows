@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Box, ButtonGroup, useColorModeValue } from "@chakra-ui/react";
 
 import { Button } from "shared/components/button/button.component";
@@ -114,7 +114,12 @@ export function Timer(props: IProps) {
               {isActive ? "Pause" : "Start"}
             </Button>
             {props.showSkipButton && (
-              <Button colorScheme="gray">Skip Timer</Button>
+              <Button
+                colorScheme="gray"
+                onClick={() => history.push(props.nextUrl ?? "")}
+              >
+                Skip Timer
+              </Button>
             )}
           </ButtonGroup>
         )}

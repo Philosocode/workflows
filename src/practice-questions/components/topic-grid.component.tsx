@@ -15,7 +15,7 @@ export function TopicGrid({ currentId, onTopicClick, ...rest }: IProps) {
   const practiceMode = useAppSelector(selectPracticeMode);
 
   return (
-    <SimpleGrid columns={2} spacing={5} {...rest}>
+    <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={5} {...rest}>
       {Object.values(topics).map((topic) => {
         if (topic.id === currentId) return null;
 

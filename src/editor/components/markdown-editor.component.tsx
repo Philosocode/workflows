@@ -12,7 +12,10 @@ const toolbarCommands = getDefaultToolbarCommands();
 // remove the strikethrough command
 toolbarCommands[0].pop();
 
-// remove to do command
+// remove image
+toolbarCommands[1].pop();
+
+// remove to do
 toolbarCommands[2].pop();
 
 const converter = new Showdown.Converter({
@@ -38,7 +41,6 @@ export const MarkdownEditor: React.FC<IProps> = ({
   const [selectedTab, setSelectedTab] = useState<TMarkdownEditorTab>(
     initialTab ?? "write",
   );
-
   const { colorMode } = useColorMode();
   const styles = colorMode === "light" ? lightStyles : darkStyles;
 

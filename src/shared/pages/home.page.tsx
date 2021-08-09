@@ -43,7 +43,7 @@ export function HomePage() {
                 state: { from: "/" },
               }}
             >
-              <CardButton icon={GiPlasticDuck}>Rubber Duck Debug</CardButton>
+              <CardButton icon={GiPlasticDuck}>Duck Debug</CardButton>
             </Link>
             <Link
               to={{
@@ -51,7 +51,7 @@ export function HomePage() {
                 state: { from: "/" },
               }}
             >
-              <CardButton icon={FaSearch}>Problem Solving</CardButton>
+              <CardButton icon={FaSearch}>Problem Solve</CardButton>
             </Link>
           </CardButtonGrid>
         </Box>
