@@ -19,7 +19,7 @@ export const theme = {
       fontWeight: "bold",
     },
     countHeading: {
-      fontSize: { base: "6xl", md: "7xl" },
+      fontSize: { base: "5xl", md: "7xl" },
       fontWeight: 300,
     },
     fontSize: {
