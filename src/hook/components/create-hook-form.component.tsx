@@ -1,30 +1,48 @@
 import { useState } from "react";
-import { ButtonGroup, FormControl, VStack } from "@chakra-ui/react";
+import { FormControl, VStack } from "@chakra-ui/react";
 
+import { useAppDispatch, useAppSelector } from "shared/redux/store";
+import { createHook } from "hook/redux/hook.slice";
 import { useToggle } from "shared/hooks/use-toggle.hook";
+import { selectNextStep } from "step/step.slice";
+import { theme } from "shared/styles/theme";
 
-import { Button } from "shared/components/button/button.component";
+import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
+import { CardButton } from "shared/components/button/card-button.component";
+import { CreateHookIcons } from "./create-hook-icons.component";
 import { HookSelectModal } from "./hook-select-modal.component";
 import { InputGroup } from "form/components/input-group.component";
-import { MarkdownEditor } from "editor/components/markdown-editor.component";
-import { CreateHookIcons } from "./create-hook-icons.component";
 import { Link } from "react-router-dom";
+import { MarkdownEditor } from "editor/components/markdown-editor.component";
 
 interface IProps {
-  backUrl: string;
-  onSubmit: (title: string, content: string) => void;
-
+  nextUrl?: string;
+  nextButtonText?: string;
   showIcons?: boolean;
 }
+export interface ICreateHookFormProps extends IProps {}
 export function CreateHookForm(props: IProps) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [modalShowing, toggleModal] = useToggle(false);
 
+  const dispatch = useAppDispatch();
+  const nextStep = useAppSelector(selectNextStep);
+  const defaultNextUrl = `/consume/${nextStep}`;
+
+  const buttonDisabled = title.trim() === "" || content.trim() === "";
+
   function onSubmit(event: React.FormEvent) {
     event.preventDefault();
 
-    props.onSubmit(title, content);
+    dispatch(
+      createHook({
+        id: `${Date.now()}`,
+        title,
+        content,
+        isExpanded: true,
+      }),
+    );
 
     setTitle("");
     setContent("");
@@ -34,12 +52,10 @@ export function CreateHookForm(props: IProps) {
     setTitle(event.target.value);
   }
 
-  const buttonDisabled = title.trim() === "" || content.trim() === "";
-
   return (
     <>
       <form onSubmit={onSubmit}>
-        <VStack spacing={4} alignItems="start">
+        <VStack alignItems="start" spacing={5}>
           <InputGroup
             id="hookTitle"
             label="Hook Title"
@@ -63,18 +79,15 @@ export function CreateHookForm(props: IProps) {
               placeholder="Content"
             />
           </FormControl>
-
-          <ButtonGroup spacing={5}>
-            <Button disabled={buttonDisabled} type="submit">
-              Create
-            </Button>
-            <Link to={props.backUrl}>
-              <Button colorScheme="gray" type="button">
-                Go Back
-              </Button>
-            </Link>
-          </ButtonGroup>
         </VStack>
+        <CardButtonGrid mt={theme.spacing.workflowStepButtonSpacing}>
+          <CardButton color="green" disabled={buttonDisabled} type="submit">
+            Create
+          </CardButton>
+          <Link to={props.nextUrl ?? defaultNextUrl}>
+            <CardButton>{props.nextButtonText ?? "Next"}</CardButton>
+          </Link>
+        </CardButtonGrid>
       </form>
 
       <HookSelectModal

@@ -40,7 +40,7 @@ export function StudyTimer() {
     >
       <Timer
         duration={studyBlockTime}
-        onNext={() => history.push(`/consume/${currentStep + 1}/menu`)}
+        onNext={() => history.push(`/consume/${currentStep + 1}`)}
         startAutomatically={false}
         shouldPlayAlarm={shouldPlayAlarm}
         showSkipButton={true}

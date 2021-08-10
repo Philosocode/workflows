@@ -1,5 +1,7 @@
 import { Redirect, RouteProps } from "react-router-dom";
-import { ListItem, UnorderedList } from "@chakra-ui/react";
+import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
+
+import { theme } from "shared/styles/theme";
 
 import { StudyHooks } from "consume/components/study-hooks.component";
 import { StudyMenu } from "consume/components/study-menu.component";
@@ -14,7 +16,9 @@ import { Study } from "consume/steps/study.component";
 import { SummaryReminder } from "consume/steps/summary-reminder.component";
 import { SummaryScreen } from "consume/steps/summary-screen.component";
 import { Messages } from "message/components/messages.component";
-import { theme } from "shared/styles/theme";
+import { CreateNotes } from "consume/steps/create-notes.component";
+import { StudyFooter } from "consume/components/study-footer.component";
+import { CreateHooks } from "consume/steps/create-hooks.component";
 
 export const consumeRoutes = [
   { component: ConsumeSetup },
@@ -23,6 +27,22 @@ export const consumeRoutes = [
   { component: SummaryReminder },
   { component: PracticeReminder },
   { component: StudyTimer },
+  {
+    render: () => (
+      <>
+        <CreateNotes />
+        <StudyFooter />
+      </>
+    ),
+  },
+  {
+    render: () => (
+      <>
+        <CreateHooks />
+        <StudyFooter />
+      </>
+    ),
+  },
   { component: Study },
   {
     render: (props: RouteProps) => (
@@ -50,48 +70,21 @@ export const studyRoutes = [
   {
     path: "hooks",
     render: () => (
-      <StudyHooks
-        showIcons
-        messageText={
-          <Messages>
-            <UnorderedList spacing={theme.spacing.messageBoxSpacing}>
-              <ListItem>
-                Pause and think deeply about the concept. Don't rush.
-              </ListItem>
-              <ListItem>
-                Create hooks for concepts and ideas you're struggling to
-                understand or want to understand better.
-              </ListItem>
-              <ListItem>
-                Keep creating hooks until you have a solid understanding of the
-                concept.
-              </ListItem>
-            </UnorderedList>
-          </Messages>
-        }
-      />
+      <>
+        <CreateHooks />
+        <StudyFooter showPrevious />
+      </>
     ),
   },
   {
     path: "notes",
     render: () => (
-      <StudyHooks
-        messageText={
-          <Messages>
-            <UnorderedList spacing={theme.spacing.messageBoxSpacing}>
-              <ListItem>
-                Create notes to summarize what what you've learned during this
-                study block.
-              </ListItem>
-              <ListItem>
-                Try to do this from memory without referring to the material.
-              </ListItem>
-            </UnorderedList>
-          </Messages>
-        }
-      />
+      <>
+        <CreateNotes />
+        <StudyFooter showPrevious />
+      </>
     ),
   },
 ];
 
-export const CONSUME_NUM_ROUTES = 10;
+export const CONSUME_NUM_ROUTES = 12;
