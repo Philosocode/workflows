@@ -1,9 +1,5 @@
 import { Redirect, RouteProps } from "react-router-dom";
-import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 
-import { theme } from "shared/styles/theme";
-
-import { StudyHooks } from "consume/components/study-hooks.component";
 import { StudyMenu } from "consume/components/study-menu.component";
 import { ConsumeFinish } from "consume/steps/consume-finish.component";
 import { ConsumeSetup } from "consume/steps/consume-setup.component";
@@ -15,7 +11,6 @@ import { StudyTimer } from "consume/steps/study-timer.component";
 import { Study } from "consume/steps/study.component";
 import { SummaryReminder } from "consume/steps/summary-reminder.component";
 import { SummaryScreen } from "consume/steps/summary-screen.component";
-import { Messages } from "message/components/messages.component";
 import { CreateNotes } from "consume/steps/create-notes.component";
 import { StudyFooter } from "consume/components/study-footer.component";
 import { CreateHooks } from "consume/steps/create-hooks.component";
