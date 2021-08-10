@@ -10,7 +10,7 @@ export function PreStudyFocus() {
       message={
         <>
           <Box>Let's start with your study environment.</Box>
-          <UnorderedList my={theme.spacing.messageBoxSpacing}>
+          <UnorderedList mb={theme.spacing.messageBoxSpacing}>
             <ListItem>Find a quiet, distraction-free place to study</ListItem>
             <ListItem>
               Remove all distractions. Put your phone somewhere else. Avoid

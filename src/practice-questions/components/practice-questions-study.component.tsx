@@ -24,6 +24,7 @@ import { CardButtonGrid } from "shared/components/button/card-button-grid.compon
 import { useStep } from "shared/hooks/use-step.hook";
 import { ConfirmModal } from "modal/components/confirm-modal.component";
 import { truncate } from "shared/helpers/string.helper";
+import { TOAST_OPTIONS } from "shared/data/toast.data";
 
 export function PracticeQuestionsStudy() {
   const dispatch = useAppDispatch();
@@ -136,11 +137,8 @@ export function PracticeQuestionsStudy() {
 
   function showToast(message: string) {
     toast({
+      ...TOAST_OPTIONS,
       title: truncate(message, 55),
-      position: "top",
-      isClosable: true,
-      duration: 3000,
-      status: "success",
     });
   }
 

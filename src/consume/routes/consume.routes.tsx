@@ -14,9 +14,11 @@ import { SummaryScreen } from "consume/steps/summary-screen.component";
 import { CreateNotes } from "consume/steps/create-notes.component";
 import { StudyFooter } from "consume/components/study-footer.component";
 import { CreateHooks } from "consume/steps/create-hooks.component";
+import { PreStudyReminder } from "consume/steps/pre-study-reminder.component";
 
 export const consumeRoutes = [
   { component: ConsumeSetup },
+  { component: PreStudyReminder },
   { component: SlowReminder },
   { component: SkimReminder },
   { component: SummaryReminder },

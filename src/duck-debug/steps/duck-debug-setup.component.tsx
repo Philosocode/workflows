@@ -1,24 +1,14 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 
-import { useAppDispatch } from "shared/redux/store";
 import { DUCK_DEBUG_BASE_PATH } from "duck-debug/routes/duck-debug.routes";
-import { setRedirectUrl } from "step/step.slice";
+import { useSetRedirectUrl } from "shared/hooks/use-set-redirect-url.hook";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { DuckDebugWorkflowStep } from "duck-debug/components/duck-debug-workflow-step.component";
 import { Messages } from "message/components/messages.component";
 
 export function DuckDebugSetup() {
-  const dispatch = useAppDispatch();
-  const location = useLocation<{ from: string }>();
-
-  useEffect(() => {
-    if (location.state?.from) {
-      dispatch(setRedirectUrl(location.state?.from));
-    }
-  }, [dispatch, location.state]);
+  useSetRedirectUrl();
 
   return (
     <DuckDebugWorkflowStep

@@ -20,11 +20,11 @@ export function PreStudyRelax() {
             to be in a positive, relaxed state of mind.
           </Box>
           <UnorderedList mb={theme.spacing.messageBoxSpacing}>
-            <ListItem>Start a video below.</ListItem>
+            <ListItem>Start the video below.</ListItem>
             <ListItem>Close your eyes.</ListItem>
             <ListItem>Take long, deep breaths.</ListItem>
             <ListItem>
-              Repeat until you're completely calm and relaxed.
+              Repeat for a few minutes, or until you're completely relaxed.
             </ListItem>
           </UnorderedList>
           <Box fontSize={theme.typography.fontSize.messageAside}>
