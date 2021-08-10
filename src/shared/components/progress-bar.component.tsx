@@ -4,8 +4,8 @@ interface IProps extends ProgressProps {
   currentValue: number;
   maxValue: number;
 }
-export function ProgressBar(props: IProps) {
-  const value = Math.floor((props.currentValue / props.maxValue) * 100);
+export function ProgressBar({ currentValue, maxValue, ...rest }: IProps) {
+  const value = Math.floor((currentValue / maxValue) * 100);
 
   return (
     <Progress
@@ -13,7 +13,7 @@ export function ProgressBar(props: IProps) {
       colorScheme="green"
       size="sm"
       borderRadius="3xl"
-      {...props}
+      {...rest}
     />
   );
 }
