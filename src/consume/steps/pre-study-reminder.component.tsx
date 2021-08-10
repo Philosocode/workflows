@@ -18,7 +18,7 @@ export function PreStudyReminder() {
       showButton={false}
       message={
         <>
-          <Box>Do you want to go to the Pre-Study routine?</Box>
+          <Box>Do you want to do the Pre-Study routine?</Box>
           <Box>I'd recommend going through it before each study session.</Box>
           <Box
             fontSize={theme.typography.fontSize.messageAside}
@@ -30,7 +30,7 @@ export function PreStudyReminder() {
       }
     >
       <CardButtonGrid>
-        <Link to="/pre-study/1">
+        <Link to="/pre-study/2">
           <CardButton color="green">Yes</CardButton>
         </Link>
         <Link to={nextUrl}>
