@@ -11,6 +11,7 @@ export function useTheme() {
           theme.colors.cardBackground.dark,
         ),
         borderColor: useColorModeValue("gray.300", "gray.600"),
+        textColorFaint: useColorModeValue("gray.500", "gray.400"),
       },
       cardBlack: {
         border: "1px solid",
