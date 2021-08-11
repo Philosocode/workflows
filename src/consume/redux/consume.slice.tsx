@@ -10,6 +10,7 @@ const initialState: IConsumeState = {
   materialType: "reading",
   studyBlockCount: 0,
   studyBlockTime: 5,
+  totalStudyTime: 0,
   shouldPlayAlarm: false,
 };
 
@@ -30,6 +31,9 @@ const consumeSlice = createSlice({
     nextStudyBlock: (state) => {
       state.studyBlockCount++;
     },
+    updateTotalStudyTime: (state, action: PayloadAction<number>) => {
+      state.totalStudyTime = action.payload;
+    },
     updateSettings: (state, action: PayloadAction<IUpdateSettingsPayload>) => {
       return { ...state, ...action.payload };
     },
@@ -40,5 +44,10 @@ const consumeSlice = createSlice({
 });
 
 export const consumeReducer = consumeSlice.reducer;
-export const { setMaterialData, nextStudyBlock, newMaterial, updateSettings } =
-  consumeSlice.actions;
+export const {
+  setMaterialData,
+  nextStudyBlock,
+  newMaterial,
+  updateTotalStudyTime,
+  updateSettings,
+} = consumeSlice.actions;

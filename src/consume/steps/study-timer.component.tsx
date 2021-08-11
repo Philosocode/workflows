@@ -1,7 +1,7 @@
-import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 
-import { useAppSelector } from "shared/redux/store";
+import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { selectConsumeState } from "consume/redux/consume.selectors";
 import { selectCurrentStep } from "step/step.slice";
 
@@ -9,13 +9,24 @@ import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.co
 import { Timer } from "timer/components/timer.component";
 import { theme } from "shared/styles/theme";
 import { RandoHookCard } from "hook/components/rando-hook-card.component";
+import { updateTotalStudyTime } from "consume/redux/consume.slice";
 
 export function StudyTimer() {
+  const dispatch = useAppDispatch();
   const history = useHistory();
   const { materialType, studyBlockTime, shouldPlayAlarm } =
     useAppSelector(selectConsumeState);
   const currentStep = useAppSelector(selectCurrentStep);
   const word = materialType === "reading" ? "read" : "watch";
+
+  function handleNext(remainingSeconds?: number) {
+    if (remainingSeconds) {
+      const minutesStudied = Math.round(studyBlockTime - remainingSeconds);
+      dispatch(updateTotalStudyTime(minutesStudied));
+    }
+
+    history.push(`/consume/${currentStep + 1}`);
+  }
 
   return (
     <ConsumeWorkflowStep
@@ -36,7 +47,7 @@ export function StudyTimer() {
       <RandoHookCard />
       <Timer
         duration={studyBlockTime}
-        onNext={() => history.push(`/consume/${currentStep + 1}`)}
+        onNext={handleNext}
         startAutomatically={false}
         shouldPlayAlarm={shouldPlayAlarm}
         showSkipButton={true}

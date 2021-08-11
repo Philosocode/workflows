@@ -55,12 +55,13 @@ export function CreateHookForm(props: IProps) {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <VStack alignItems="start" spacing={5}>
+        <VStack alignItems="start">
           <InputGroup
             id="hookTitle"
             label="Hook Title"
             placeholder="Hook Title"
             value={title}
+            mb={props.showIcons ? 0 : 5}
             onChange={handleTitleChange}
           />
 

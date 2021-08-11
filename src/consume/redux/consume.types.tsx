@@ -5,6 +5,7 @@ export interface IConsumeState {
   studyBlockCount: number;
   studyBlockTime: number;
   shouldPlayAlarm: boolean;
+  totalStudyTime: number;
 }
 
 export interface ISetMaterialDataPayload {

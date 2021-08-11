@@ -98,10 +98,10 @@ export function ConsumeSettings() {
           footer={
             <>
               <ButtonGroup spacing={5}>
-                <Button onClick={submitForm}>Save</Button>
-                <Button colorScheme="gray" onClick={toggleModal}>
-                  Cancel
+                <Button colorScheme="green" onClick={submitForm}>
+                  Save
                 </Button>
+                <Button onClick={toggleModal}>Cancel</Button>
               </ButtonGroup>
             </>
           }

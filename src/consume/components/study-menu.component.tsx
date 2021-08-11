@@ -11,6 +11,7 @@ import { selectCurrentStep } from "step/step.slice";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
 import { ConsumeWorkflowStep } from "./consume-workflow-step.component";
+import { StudyFooter } from "./study-footer.component";
 
 export function StudyMenu() {
   const location = useLocation();
@@ -25,16 +26,13 @@ export function StudyMenu() {
       message={
         <UnorderedList spacing={theme.spacing.messageBoxSpacing}>
           <ListItem>
-            If you want to better understand an idea or concept, choose "Hooks".
+            If you want to better understand an idea or concept, choose "Hooks"
           </ListItem>
           <ListItem>
             If you want to summarize and reinforce what you've learned, choose
-            "Notes".
+            "Notes"
           </ListItem>
-          <ListItem>
-            If you're stuck on a problem, choose "I'm Stuck" or click on{" "}
-            <Icon as={IoMdHelpCircle} /> in the top-left corner.
-          </ListItem>
+          <ListItem>If you're stuck on a problem, choose "I'm Stuck"</ListItem>
         </UnorderedList>
       }
     >
@@ -68,6 +66,7 @@ export function StudyMenu() {
           <CardButton icon={IoMdCheckmarkCircle}>I'm Done</CardButton>
         </Link>
       </CardButtonGrid>
+      <StudyFooter showPrevious />
     </ConsumeWorkflowStep>
   );
 }

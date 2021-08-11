@@ -1,59 +1,51 @@
-import { useHistory } from "react-router-dom";
-import { Box } from "@chakra-ui/react";
+import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 
-import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
-import { nextStudyBlock, newMaterial } from "consume/redux/consume.slice";
-import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { selectCurrentHooks } from "hook/redux/hook.selectors";
-import { theme } from "shared/styles/theme";
+import { useAppSelector } from "shared/redux/store";
+import { selectPreviousHooks } from "hook/redux/hook.selectors";
+import {
+  selectStudyBlockCount,
+  selectTotalStudyTime,
+} from "consume/redux/consume.selectors";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
+import { HookList } from "hook/components/hook-list.component";
 
 export function ConsumeFinish() {
-  const history = useHistory();
-  const dispatch = useAppDispatch();
-  const currentHooks = useAppSelector(selectCurrentHooks);
-
-  function onNextStudyBlock() {
-    dispatch(nextStudyBlock());
-    history.push(`/consume/${CONSUME_PAGE_NUMBERS.TIMER}`);
-  }
-
-  function onNewMaterial() {
-    dispatch(newMaterial());
-    history.push("/consume/1");
-  }
-
-  const message =
-    currentHooks.length === 0 ? (
-      <Box>You didn't create any hooks/notes during this study block.</Box>
-    ) : (
-      <Box>
-        Well done! You created {currentHooks.length} hook(s) during this study
-        block.
-      </Box>
-    );
+  const previousHooks = useAppSelector(selectPreviousHooks);
+  const totalStudyTime = useAppSelector(selectTotalStudyTime);
+  const studyBlockCount = useAppSelector(selectStudyBlockCount);
 
   return (
-    <ConsumeWorkflowStep
-      buttons={
-        <CardButtonGrid
-          buttons={[
-            { text: "Next Block", onClick: onNextStudyBlock },
-            { text: "New Material", onClick: onNewMaterial },
-          ]}
-        />
-      }
-      message={
-        <>
-          {message}
-          <Box mt={theme.spacing.messageBoxSpacing}>
-            Click on "Next Block" to continue studying your current material.
-          </Box>
-          <Box>Click on "New Material" to start fresh with a new material.</Box>
-        </>
-      }
-    />
+    <>
+      <ConsumeWorkflowStep
+        buttons={
+          <CardButtonGrid
+            buttons={[
+              {
+                text: "New Material",
+                to: "/consume/1",
+              },
+              { text: "Go Home", to: "/" },
+            ]}
+          ></CardButtonGrid>
+        }
+        message={
+          <>
+            <Box>Here's a summary of your study session:</Box>
+            <UnorderedList>
+              <ListItem>You've created {previousHooks.length} hooks</ListItem>
+              <ListItem>
+                You've completed {studyBlockCount} study blocks and studied for
+                about {totalStudyTime} minutes
+              </ListItem>
+            </UnorderedList>
+          </>
+        }
+      ></ConsumeWorkflowStep>
+      {previousHooks.length > 0 && (
+        <HookList heading="All Hooks" hooks={previousHooks} />
+      )}
+    </>
   );
 }

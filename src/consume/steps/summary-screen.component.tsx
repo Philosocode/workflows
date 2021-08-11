@@ -28,8 +28,8 @@ export function SummaryScreen() {
               in the long-term?
             </Box>
             <Box>
-              Create flashcards using tools like{" "}
-              <Link href="https://apps.ankiweb.net/">Anki</Link> or{" "}
+              Create flashcards using tools like {}
+              <Link href="https://apps.ankiweb.net/">Anki</Link> or {}
               <Link href="https://quizlet.com/">Quizlet</Link>.
             </Box>
             <Box fontSize={theme.typography.fontSize.messageAside}>

@@ -23,3 +23,8 @@ export const selectShouldPlayAlarm = createSelector(
   [selectConsumeState],
   (state) => state.shouldPlayAlarm,
 );
+
+export const selectTotalStudyTime = createSelector(
+  [selectConsumeState],
+  (state) => state.totalStudyTime,
+);

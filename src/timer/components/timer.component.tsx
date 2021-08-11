@@ -23,7 +23,7 @@ interface IProps {
   startAutomatically?: boolean;
   showNextButton?: boolean;
   showSkipButton?: boolean;
-  onNext?: () => void;
+  onNext?: (remainingSeconds?: number) => void;
   refreshDep?: any; // when this changes, the timer re-renders
 }
 // From: https://dev.to/emmaadesile/build-a-timer-using-react-hooks-3he2
@@ -78,6 +78,10 @@ export function Timer(props: IProps) {
     return () => clearInterval(intervalId);
   }, [counter, isActive]);
 
+  function handleNext() {
+    props.onNext?.(counter);
+  }
+
   return (
     <>
       <Box
@@ -108,9 +112,7 @@ export function Timer(props: IProps) {
               {isActive ? "Pause" : "Start"}
             </Button>
             {props.showSkipButton && (
-              <Button colorScheme="gray" onClick={props.onNext}>
-                Skip Timer
-              </Button>
+              <Button onClick={handleNext}>Skip Timer</Button>
             )}
           </ButtonGroup>
         )}
@@ -119,7 +121,7 @@ export function Timer(props: IProps) {
       {props.showNextButton && counter <= -1 && (
         <Button
           mt={theme.spacing.workflowStepButtonSpacing}
-          onClick={props.onNext}
+          onClick={handleNext}
         >
           Next
         </Button>

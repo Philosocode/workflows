@@ -1,7 +1,7 @@
 import { Redirect, RouteProps } from "react-router-dom";
 
 import { StudyMenu } from "consume/components/study-menu.component";
-import { ConsumeFinish } from "consume/steps/consume-finish.component";
+import { ConsumeContinue } from "consume/steps/consume-continue.component";
 import { ConsumeSetup } from "consume/steps/consume-setup.component";
 import { PracticeReminder } from "consume/steps/practice-reminder.component";
 import { SkimReminder } from "consume/steps/skim-reminder.component";
@@ -15,6 +15,7 @@ import { CreateNotes } from "consume/steps/create-notes.component";
 import { StudyFooter } from "consume/components/study-footer.component";
 import { CreateHooks } from "consume/steps/create-hooks.component";
 import { PreStudyReminder } from "consume/steps/pre-study-reminder.component";
+import { ConsumeFinish } from "consume/steps/consume-finish.component";
 
 export const consumeRoutes = [
   { component: ConsumeSetup },
@@ -41,16 +42,16 @@ export const consumeRoutes = [
     ),
   },
   { component: Study },
+  { component: SummaryScreen },
+  { component: ConsumeContinue },
   {
     render: (props: RouteProps) => (
       <StudySummarize
         {...props}
-        message="Summarize everything you've learned during this study block.
-        Try to do it from memory, without looking at the material."
+        message="Summarize everything you've learned in this study session."
       />
     ),
   },
-  { component: SummaryScreen },
   { component: ConsumeFinish },
 
   // catch-all
@@ -84,4 +85,4 @@ export const studyRoutes = [
   },
 ];
 
-export const CONSUME_NUM_ROUTES = 12;
+export const CONSUME_NUM_ROUTES = 14;
