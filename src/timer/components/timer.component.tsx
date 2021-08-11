@@ -23,7 +23,7 @@ interface IProps {
   startAutomatically?: boolean;
   showNextButton?: boolean;
   showSkipButton?: boolean;
-  onNext?: (remainingSeconds?: number) => void;
+  onNext?: (remainingSeconds: number) => void;
   refreshDep?: any; // when this changes, the timer re-renders
 }
 // From: https://dev.to/emmaadesile/build-a-timer-using-react-hooks-3he2
@@ -60,7 +60,7 @@ export function Timer(props: IProps) {
         audio.play();
       }
 
-      props.onNext?.();
+      props.onNext?.(counter);
     }
     // eslint-disable-next-line
   }, [counter, initialSeconds]);

@@ -1,8 +1,8 @@
-import { Icon, ListItem, Tooltip, UnorderedList } from "@chakra-ui/react";
+import { ListItem, Tooltip, UnorderedList } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import { BiNetworkChart, BiNote } from "react-icons/bi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { IoMdCheckmarkCircle, IoMdHelpCircle } from "react-icons/io";
+import { IoMdCheckmarkCircle } from "react-icons/io";
 
 import { theme } from "shared/styles/theme";
 import { useAppSelector } from "shared/redux/store";

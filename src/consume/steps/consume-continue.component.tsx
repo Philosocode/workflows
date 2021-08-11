@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 import { Box, Tooltip } from "@chakra-ui/react";
 
 import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
-import { nextStudyBlock, newMaterial } from "consume/redux/consume.slice";
+import { nextStudyBlock } from "consume/redux/consume.slice";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { selectCurrentHooks } from "hook/redux/hook.selectors";
 import { selectNextStep } from "step/step.slice";

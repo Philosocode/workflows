@@ -19,11 +19,12 @@ export function StudyTimer() {
   const currentStep = useAppSelector(selectCurrentStep);
   const word = materialType === "reading" ? "read" : "watch";
 
-  function handleNext(remainingSeconds?: number) {
-    if (remainingSeconds) {
-      const minutesStudied = Math.round(studyBlockTime - remainingSeconds);
-      dispatch(updateTotalStudyTime(minutesStudied));
-    }
+  function handleNext(remainingSeconds: number) {
+    const initialSeconds = studyBlockTime * 60;
+    const secondsStudied = initialSeconds - remainingSeconds;
+    const minutesStudied = Math.round(secondsStudied / 60);
+
+    dispatch(updateTotalStudyTime(minutesStudied));
 
     history.push(`/consume/${currentStep + 1}`);
   }
