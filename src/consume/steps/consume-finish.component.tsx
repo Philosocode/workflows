@@ -56,7 +56,7 @@ export function ConsumeFinish() {
                 You've completed {studyBlockCount} study block(s)
               </ListItem>
               <ListItem>
-                You've {word} for about {totalStudyTime} minutes
+                You've {word} for about {totalStudyTime} minute(s)
               </ListItem>
             </UnorderedList>
           </>
