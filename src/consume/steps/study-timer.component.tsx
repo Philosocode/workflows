@@ -8,36 +8,32 @@ import { selectCurrentStep } from "step/step.slice";
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 import { Timer } from "timer/components/timer.component";
 import { theme } from "shared/styles/theme";
+import { RandoHookCard } from "hook/components/rando-hook-card.component";
 
 export function StudyTimer() {
   const history = useHistory();
   const { materialType, studyBlockTime, shouldPlayAlarm } =
     useAppSelector(selectConsumeState);
   const currentStep = useAppSelector(selectCurrentStep);
-
-  const studyMessage =
-    materialType === "reading"
-      ? `Read for ${studyBlockTime} minute(s). Depending on the material, this may be a few paragraphs, or 1-2 pages`
-      : `Watch for ${studyBlockTime} minute(s).`;
+  const word = materialType === "reading" ? "read" : "watch";
 
   return (
     <ConsumeWorkflowStep
       showButton={false}
       message={
         <>
-          <Box>{studyMessage}.</Box>
-          <Box mt={theme.spacing.messageBoxSpacing}>
-            For now, <strong>don't take any notes.</strong>
+          <Box>
+            Don't take any notes. For now, focus on completely understanding the
+            material.
           </Box>
-          <UnorderedList>
-            <ListItem>Focus on completely understanding the material.</ListItem>
-            <ListItem>
-              Stop and think. Ask yourself questions about the material.
-            </ListItem>
-          </UnorderedList>
+          <Box mt={theme.spacing.messageBoxSpacing}>
+            Regularly stop, think, and ask yourself questions about what you're{" "}
+            {word}ing.
+          </Box>
         </>
       }
     >
+      <RandoHookCard />
       <Timer
         duration={studyBlockTime}
         onNext={() => history.push(`/consume/${currentStep + 1}`)}

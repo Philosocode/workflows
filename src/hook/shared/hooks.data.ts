@@ -1,6 +1,6 @@
 export const commonHooks = [
-  "How do I express this in my own words?",
-  "How do I explain this so a 5 year old can understand?",
+  "How can I express this in my own words?",
+  "How can I explain this so a 5 year old can understand?",
   "Can I think of (simple) concrete examples for this?",
   "What are the key things I need to remember?",
   "What does this remind me of?",
