@@ -3,18 +3,12 @@ import { Box, ButtonGroup, useColorModeValue } from "@chakra-ui/react";
 
 import { Button } from "shared/components/button/button.component";
 import { theme } from "shared/styles/theme";
+import { useTimer } from "shared/hooks/use-timer.hook";
+import { useInterval } from "shared/hooks/use-interval.hook";
+import { msToSeconds } from "shared/helpers/time.heleprs";
 
 const audio = new Audio("/alarm-beep.mp3");
-
-function secondsToTimeString(seconds: number) {
-  const secondsCounter = seconds % 60;
-  const minutesCounter = Math.floor(seconds / 60);
-
-  let computedSeconds = `${secondsCounter}`;
-  if (computedSeconds.length === 1) computedSeconds = `0${secondsCounter}`;
-
-  return `${minutesCounter}:${computedSeconds}`;
-}
+const displayRefreshMs = 500;
 
 interface IProps {
   duration: number;
@@ -28,58 +22,47 @@ interface IProps {
 }
 // From: https://dev.to/emmaadesile/build-a-timer-using-react-hooks-3he2
 export function Timer(props: IProps) {
-  const initialSeconds = props.duration * 60;
+  const timer = useTimer({
+    // the extra 0.01 delays the initial timer tick
+    durationInMinutes: props.duration,
+    startAutomatically: props.startAutomatically ?? true,
+  });
 
-  const initialTimeString = secondsToTimeString(initialSeconds);
-  const [timeString, setTimeString] = useState(initialTimeString);
-
-  const [counter, setCounter] = useState(initialSeconds);
-  const [isActive, setIsActive] = useState(props.startAutomatically ?? true);
+  const [timeString, setTimeString] = useState("");
 
   const styles = {
     borderColor: useColorModeValue("gray.300", "gray.600"),
   };
 
-  // set the initial timer
   useEffect(() => {
-    setCounter(initialSeconds);
-    setIsActive(props.startAutomatically ?? true);
-  }, [initialSeconds, props.startAutomatically, props.refreshDep]);
+    // update time string whenever props.duration changes
+    setTimeString(timer.getTimeText());
 
-  // when the raw counter changes, update display string
-  useEffect(() => {
-    if (counter >= 0) {
-      setTimeString(secondsToTimeString(counter));
-    }
-  }, [counter]);
-
-  // run when the timer hits 0
-  useEffect(() => {
-    if (initialSeconds > 0 && counter < 0) {
-      if (props.shouldPlayAlarm) {
-        audio.play();
-      }
-
-      props.onNext?.(counter);
-    }
     // eslint-disable-next-line
-  }, [counter, initialSeconds]);
+  }, [props.duration, timer]);
 
-  // interval that runs every second
+  // run when timer is finished
   useEffect(() => {
-    let intervalId: ReturnType<typeof setInterval>;
+    if (!timer.isFinished) return;
 
-    if (isActive && counter >= 0) {
-      intervalId = setInterval(() => {
-        setCounter((counter) => counter - 1);
-      }, 1000);
+    if (props.shouldPlayAlarm) {
+      audio.play();
     }
 
-    return () => clearInterval(intervalId);
-  }, [counter, isActive]);
+    props.onNext?.(0);
+  }, [timer.isFinished, props]);
 
-  function handleNext() {
-    props.onNext?.(counter);
+  // hook to update timer display
+  useInterval(
+    () => {
+      setTimeString(timer.getTimeText());
+    },
+    // if running, update display every X ms
+    timer.isRunning ? displayRefreshMs : null,
+  );
+
+  function handleSkip() {
+    props.onNext?.(msToSeconds(timer.getTimeRemaining()));
   }
 
   return (
@@ -102,30 +85,21 @@ export function Timer(props: IProps) {
           {timeString}
         </Box>
 
-        {counter >= 0 && (
+        {!timer.isFinished && (
           <ButtonGroup mt={3} spacing={3}>
             <Button
-              colorScheme={isActive ? "gray" : "green"}
-              onClick={() => setIsActive(!isActive)}
+              colorScheme={timer.isRunning ? "gray" : "green"}
+              onClick={timer.toggleTimer}
               type="button"
             >
-              {isActive ? "Pause" : "Start"}
+              {timer.isRunning ? "Pause" : "Start"}
             </Button>
             {props.showSkipButton && (
-              <Button onClick={handleNext}>Skip Timer</Button>
+              <Button onClick={handleSkip}>Skip Timer</Button>
             )}
           </ButtonGroup>
         )}
       </Box>
-
-      {props.showNextButton && counter <= -1 && (
-        <Button
-          mt={theme.spacing.workflowStepButtonSpacing}
-          onClick={handleNext}
-        >
-          Next
-        </Button>
-      )}
     </>
   );
 }

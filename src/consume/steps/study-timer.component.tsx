@@ -10,6 +10,7 @@ import { Timer } from "timer/components/timer.component";
 import { theme } from "shared/styles/theme";
 import { RandoHookCard } from "hook/components/rando-hook-card.component";
 import { updateTotalStudyTime } from "consume/redux/consume.slice";
+import { minutesToMs, msToMinutes } from "shared/helpers/time.heleprs";
 
 export function StudyTimer() {
   const dispatch = useAppDispatch();
@@ -19,10 +20,10 @@ export function StudyTimer() {
   const currentStep = useAppSelector(selectCurrentStep);
   const word = materialType === "reading" ? "read" : "watch";
 
-  function handleNext(remainingSeconds: number) {
-    const initialSeconds = studyBlockTime * 60;
-    const secondsStudied = initialSeconds - remainingSeconds;
-    const minutesStudied = Math.round(secondsStudied / 60);
+  function handleNext(remainingMs: number) {
+    const initialMs = minutesToMs(studyBlockTime);
+    const msStudied = initialMs - remainingMs;
+    const minutesStudied = msToMinutes(msStudied);
 
     dispatch(updateTotalStudyTime(minutesStudied));
 
