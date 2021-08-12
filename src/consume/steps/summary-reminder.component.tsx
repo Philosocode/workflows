@@ -19,7 +19,7 @@ export function SummaryReminder() {
     <ConsumeWorkflowStep
       message={
         <Messages>
-          {!hasSummary && <Box>Is there a summary page?</Box>}
+          {!hasSummary && <Box>Is there a summary page or section?</Box>}
           {hasSummary && (
             <Box>{word} the summary if you haven't already done so.</Box>
           )}
