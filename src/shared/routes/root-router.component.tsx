@@ -13,9 +13,11 @@ import { DuckDebugNavbar } from "duck-debug/components/duck-debug-navbar.compone
 import { PreStudyNavbar } from "pre-study/components/pre-study-navbar.component";
 import { ProblemSolvingNavbar } from "problem-solving/components/problem-solving-navbar.component";
 import { PracticeQuestionsNavbar } from "practice-questions/components/practice-questions-navbar.component";
+import { GetUnstuck } from "get-unstuck/steps/get-unstuck.component";
 
 const navbarRoutes = [
   { path: "/consume/:currentStep", component: ConsumeNavbar },
+  { path: "/get-unstuck/:currentStep", component: DuckDebugNavbar, },
   { path: "/duck-debug/:currentStep", component: DuckDebugNavbar },
   { path: "/pre-study/:currentStep", component: PreStudyNavbar },
   { path: "/problem-solving/:currentStep", component: ProblemSolvingNavbar },
@@ -65,6 +67,12 @@ export function RootRouter() {
             {...route}
           />
         ))}
+
+        <Route
+          key={"/get-unstuck"}
+          path={"/get-unstuck"}
+          component={GetUnstuck}
+        />
 
         {duckDebugRoutes.map((route, index) => (
           <Route key={route.path} {...route} />
