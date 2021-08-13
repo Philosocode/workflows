@@ -6,12 +6,10 @@ export function PreStudyStart() {
   return (
     <PreStudyWorkflowStep
       message={
-        <>
-          <Box>
-            This workflow will help you get into the right mindset for studying.
-            I'd recommend doing this before you start studying.
-          </Box>
-        </>
+        <Box>
+          This workflow will help you get into the right mindset for studying.
+          I'd recommend doing this before you start studying.
+        </Box>
       }
     />
   );
