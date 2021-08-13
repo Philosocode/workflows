@@ -32,8 +32,8 @@ export function RandoCard(props: IProps) {
         onClick={getRandomValue}
         icon={<FaRedo />}
         position="absolute"
-        right={5}
-        top={5}
+        right={{ base: 3, md: 5 }}
+        top={{ base: 3, md: 5 }}
       />
       <Text
         color={dlTheme.components.card.textColorFaint}
@@ -44,7 +44,7 @@ export function RandoCard(props: IProps) {
       </Text>
       <Text
         textColor={dlTheme.colors.text}
-        fontSize={{ base: "xl", md: "2xl" }}
+        fontSize={{ base: "sm", sm: "lg", md: "2xl" }}
       >
         {value}
       </Text>

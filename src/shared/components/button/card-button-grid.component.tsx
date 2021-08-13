@@ -14,7 +14,7 @@ interface IProps extends SimpleGridProps {
 export function CardButtonGrid({ buttons, children, ...rest }: IProps) {
   return (
     <SimpleGrid
-      columns={{ base: 1, sm: 2 }}
+      columns={{ base: 2, sm: 2 }}
       columnGap={{ base: 5, md: 10 }}
       rowGap={5}
       w="full"

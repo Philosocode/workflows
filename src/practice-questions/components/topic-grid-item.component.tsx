@@ -48,7 +48,7 @@ export function TopicGridItem({ topic, practiceMode, onTopicClick }: IProps) {
   return (
     <CardWrapper
       cursor={onTopicClick && "pointer"}
-      p={7}
+      p={{ base: 5, md: 7 }}
       position="relative"
       border="1px solid"
       borderColor={dlTheme.components.card.borderColor}
@@ -81,6 +81,7 @@ export function TopicGridItem({ topic, practiceMode, onTopicClick }: IProps) {
         />
       </Box>
       <Heading
+        fontSize={{ base: "md", md: "lg" }}
         size="md"
         whiteSpace="nowrap"
         overflow="hidden"
@@ -90,12 +91,22 @@ export function TopicGridItem({ topic, practiceMode, onTopicClick }: IProps) {
         {topic.title}
       </Heading>
       {practiceMode === "numQuestions" ? (
-        <Box d="flex" alignItems="center" fontWeight="semibold">
-          <Icon as={FaHashtag} mr={2} /> {topic.totalCount}
+        <Box
+          d="flex"
+          alignItems="center"
+          fontSize={{ base: "sm", md: "md" }}
+          fontWeight="semibold"
+        >
+          <Icon as={FaHashtag} mr={{ base: 1, md: 2 }} /> {topic.totalCount}
         </Box>
       ) : (
-        <Box d="flex" alignItems="center" fontWeight="semibold">
-          <Icon as={FaClock} mr={2} /> {topic.totalTime} mins
+        <Box
+          d="flex"
+          alignItems="center"
+          fontSize={{ base: "sm", md: "md" }}
+          fontWeight="semibold"
+        >
+          <Icon as={FaClock} mr={{ base: 1, md: 2 }} /> {topic.totalTime} mins
         </Box>
       )}
     </CardWrapper>

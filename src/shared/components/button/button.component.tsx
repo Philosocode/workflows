@@ -9,8 +9,9 @@ export function Button({ color, children, ...rest }: IProps) {
     <ButtonChakra
       colorScheme="gray"
       sx={theme.typography.condensed}
-      fontSize={theme.typography.fontSize.nextButton}
-      minW={20}
+      fontSize={theme.typography.fontSize.button}
+      minW={{ base: 15, sm: 20 }}
+      py={{ base: 3, md: 5 }}
       {...rest}
     >
       {children}

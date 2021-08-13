@@ -74,7 +74,7 @@ export function HookListItem({ hook }: IProps) {
             justifyContent="space-between"
             onClick={handleToggle}
             py={{ base: 3, md: 5 }}
-            px={{ base: 5, md: 10 }}
+            px={{ base: 4, md: 10 }}
           >
             <Text>{hook.title}</Text>
             <Icon as={FaChevronDown} />

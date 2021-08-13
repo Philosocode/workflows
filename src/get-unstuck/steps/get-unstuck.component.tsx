@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 
 import { useSetRedirectUrl } from "shared/hooks/use-set-redirect-url.hook";
 
@@ -19,7 +19,7 @@ export function GetUnstuck() {
         <CardButtonGrid
           buttons={[
             { text: "Duck Debug", to: "/duck-debug/1", icon: GiPlasticDuck },
-            { text: "Problem Solving", to: "/problem-solve/1", icon: FaSearch },
+            { text: "Problem Solve", to: "/problem-solving/1", icon: FaSearch },
           ]}
         />
       }
@@ -30,6 +30,15 @@ export function GetUnstuck() {
         <Box>
           Hello, I'm Mr. Quackers. I'm here to help you get unstuck and solve
           your problem!
+          <UnorderedList>
+            <ListItem>
+              Try doing the prompt in the box below. See if it helps.
+            </ListItem>
+            <ListItem>If you're still stuck, choose "Duck Debug".</ListItem>
+            <ListItem>
+              If you're really, really, REALLY stuck, choose "Problem Solve".
+            </ListItem>
+          </UnorderedList>
         </Box>
       }
     >

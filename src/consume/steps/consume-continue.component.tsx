@@ -1,12 +1,11 @@
 import { useHistory } from "react-router-dom";
-import { Box, Tooltip } from "@chakra-ui/react";
+import { Box, ListItem, Tooltip, UnorderedList } from "@chakra-ui/react";
 
 import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 import { nextStudyBlock } from "consume/redux/consume.slice";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { selectCurrentHooks } from "hook/redux/hook.selectors";
 import { selectNextStep } from "step/step.slice";
-import { theme } from "shared/styles/theme";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
@@ -58,10 +57,14 @@ export function ConsumeContinue() {
       message={
         <>
           {message}
-          <Box mt={theme.spacing.messageBoxSpacing}>
-            Click on "Next Block" to continue studying your current material.
-          </Box>
-          <Box>Click on "New Material" to start fresh with a new material.</Box>
+          <UnorderedList>
+            <ListItem>
+              Choose "Next Block" to continue studying your current material.
+            </ListItem>
+            <ListItem>
+              Choose "Done Studying" to finish your current studying session.
+            </ListItem>
+          </UnorderedList>
         </>
       }
     />

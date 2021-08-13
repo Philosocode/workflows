@@ -69,7 +69,10 @@ export const studyRoutes = [
     path: "hooks",
     render: () => (
       <>
-        <CreateHooks />
+        <CreateHooks
+          nextButtonText="Back"
+          nextUrl={`/consume/${CONSUME_PAGE_NUMBERS.STUDY}/menu`}
+        />
         <StudyFooter showPrevious />
       </>
     ),
@@ -78,7 +81,10 @@ export const studyRoutes = [
     path: "notes",
     render: () => (
       <>
-        <CreateNotes />
+        <CreateNotes
+          nextButtonText="Back"
+          nextUrl={`/consume/${CONSUME_PAGE_NUMBERS.STUDY}/menu`}
+        />
         <StudyFooter showPrevious />
       </>
     ),

@@ -11,7 +11,7 @@ export function ProgressBar({ currentValue, maxValue, ...rest }: IProps) {
     <Progress
       value={value}
       colorScheme="green"
-      size="sm"
+      h={{ base: 1, md: 2 }}
       borderRadius="3xl"
       {...rest}
     />

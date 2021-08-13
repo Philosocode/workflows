@@ -31,7 +31,11 @@ export function PracticeTopics() {
 
   return (
     <Box w="full">
-      <Text mb={1} sx={theme.typography.condensed}>
+      <Text
+        fontSize={{ base: "sm", md: "md" }}
+        mb={1}
+        sx={theme.typography.condensed}
+      >
         Topics
       </Text>
       <form onSubmit={addTopic}>

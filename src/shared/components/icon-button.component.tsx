@@ -17,7 +17,7 @@ export function IconButton(props: IProps) {
     <IconButtonChakra
       variant="ghost"
       size={size}
-      fontSize="2xl"
+      fontSize={{ base: "xl", md: "2xl" }}
       _hover={{ color }}
       {...props}
     />

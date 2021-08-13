@@ -10,17 +10,22 @@ export function KeyQuestionsCard() {
   const dlTheme = useTheme();
 
   return (
-    <CardWrapper px={{ base: 5, md: 10 }} py={8} mb={10} position="relative">
+    <CardWrapper
+      px={{ base: 5, md: 10 }}
+      py={{ base: 5, md: 8 }}
+      mb={theme.spacing.workflowStepButtonSpacing}
+      position="relative"
+    >
       <Text
         color={dlTheme.components.card.textColorFaint}
-        fontSize="sm"
+        fontSize={theme.typography.fontSize.card}
         sx={theme.typography.condensed}
       >
         Key Questions
       </Text>
       <Text
         textColor={dlTheme.colors.text}
-        fontSize={{ base: "xl", md: "2xl" }}
+        fontSize={{ base: "md", sm: "lg", md: "2xl" }}
       >
         <UnorderedList>
           {commonHooks.map((hook) => (

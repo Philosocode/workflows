@@ -17,7 +17,7 @@ export function StudyBlockCounter() {
       d="flex"
       px="0.5em"
       py="0.3em"
-      fontSize={{ base: "lg", md: "xl" }}
+      fontSize={{ base: "md", sm: "lg", md: "xl" }}
       alignItems="center"
       rounded="lg"
       shadow="md"

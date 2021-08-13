@@ -217,7 +217,7 @@ export function PracticeQuestionsStudy() {
         {topicIds.length >= 2 && (
           <>
             <Divider mt={8} mb={5} />
-            <Heading textAlign="center" size="lg">
+            <Heading textAlign="center" fontSize={{ base: "xl", md: "3xl" }}>
               Switch Topics
             </Heading>
             <TopicGrid mt={5} currentId={currentId} onTopicClick={showModal} />

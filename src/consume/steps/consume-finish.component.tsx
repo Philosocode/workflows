@@ -50,7 +50,7 @@ export function ConsumeFinish() {
               <ListItem>
                 {previousHooks.length === 0
                   ? "You didn't create any hooks"
-                  : `You've created ${previousHooks.length} hooks`}
+                  : `You've created ${previousHooks.length} hook(s)`}
               </ListItem>
               <ListItem>
                 You've completed {studyBlockCount} study block(s)

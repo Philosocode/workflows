@@ -10,7 +10,7 @@ import { Link } from "typography/components/link.component";
 
 const headingProps: HeadingProps = {
   as: "h3",
-  fontSize: { base: "xl", md: "2xl" },
+  fontSize: { base: "sm", sm: "md", md: "2xl" },
   mb: 1,
 };
 

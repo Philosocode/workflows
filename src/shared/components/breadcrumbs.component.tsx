@@ -20,7 +20,7 @@ export function Breadcrumbs(props: IProps) {
     <Box
       d="flex"
       textColor={textColor}
-      fontSize="xs"
+      fontSize={{ base: "x-small", md: "xs" }}
       fontWeight={defaultFontWeight}
       mb={2}
       sx={theme.typography.condensed}
