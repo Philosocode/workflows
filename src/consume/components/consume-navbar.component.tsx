@@ -6,9 +6,9 @@ import { AppNavbar } from "navbar/components/app-navbar.component";
 import { ConsumeSettings } from "./consume-settings.component";
 import { ConsumeResetModal } from "./consume-reset-modal.component";
 
+import { GoBackModal } from "modal/components/go-back-modal.component";
 import { StudyBlockCounter } from "consume/components/study-block-counter.component";
 import { ToggleThemeButton } from "navbar/components/toggle-theme-button.component";
-import { BackIconLink } from "shared/components/button/back-icon-link.component";
 
 export function ConsumeNavbar() {
   const currentStep = useSelector(selectCurrentStep);
@@ -17,7 +17,7 @@ export function ConsumeNavbar() {
     <AppNavbar
       leftSlot={
         <>
-          <BackIconLink to="/" />
+          <GoBackModal redirectUrl="/" />
           {currentStep > 1 && <ConsumeResetModal redirectUrl="/consume/1" />}
         </>
       }

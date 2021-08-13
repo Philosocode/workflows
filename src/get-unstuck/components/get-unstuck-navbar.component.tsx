@@ -3,14 +3,14 @@ import { selectRedirectUrl } from "step/step.slice";
 
 import { AppNavbar } from "navbar/components/app-navbar.component";
 import { ToggleThemeButton } from "navbar/components/toggle-theme-button.component";
-import { BackIconLink } from "shared/components/button/back-icon-link.component";
+import { GoBackModal } from "modal/components/go-back-modal.component";
 
 export function GetUnstuckNavbar() {
   const redirectUrl = useAppSelector(selectRedirectUrl);
 
   return (
     <AppNavbar
-      leftSlot={<BackIconLink to={redirectUrl} />}
+      leftSlot={<GoBackModal redirectUrl={redirectUrl} />}
       rightSlot={
         <>
           <ToggleThemeButton />

@@ -30,7 +30,7 @@ export function PreStudyReminder() {
       }
     >
       <CardButtonGrid>
-        <Link to="/pre-study/2">
+        <Link to={{ pathname: "/pre-study/2", state: { from: "/consume/3" } }}>
           <CardButton color="green">Yes</CardButton>
         </Link>
         <Link to={nextUrl}>

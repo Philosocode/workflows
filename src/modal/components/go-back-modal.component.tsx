@@ -1,6 +1,6 @@
 import { Box, ButtonGroup } from "@chakra-ui/react";
-import { IoMdReturnLeft } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { IoMdExit } from "react-icons/io";
 
 import { useToggle } from "shared/hooks/use-toggle.hook";
 
@@ -11,10 +11,10 @@ import { ModalWrapper } from "modal/components/modal-wrapper.component";
 
 interface IProps {
   redirectUrl: string;
-  text: string;
 
   icon?: JSX.Element;
   header?: string;
+  text?: string;
 }
 export function GoBackModal(props: IProps) {
   const [modalShowing, toggleModal] = useToggle(false);
@@ -24,14 +24,14 @@ export function GoBackModal(props: IProps) {
       <Box>
         <IconButton
           aria-label="Go Back"
-          icon={props.icon ?? <IoMdReturnLeft />}
+          icon={props.icon ?? <IoMdExit />}
           onClick={toggleModal}
         />
       </Box>
       <ModalWrapper isOpen={modalShowing} onClose={toggleModal}>
         <ModalContent
           header={props.header ?? "Exit Workflow"}
-          body={props.text}
+          body={props.text ?? "Are you sure you want to exit this workflow?"}
           footer={
             <ButtonGroup spacing={5}>
               <Link to={props.redirectUrl}>
