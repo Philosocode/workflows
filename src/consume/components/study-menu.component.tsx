@@ -58,7 +58,7 @@ export function StudyMenu() {
           </Link>
         </Tooltip>
         <Link
-          to={{ pathname: "/duck-debug/1", state: { from: location.pathname } }}
+          to={{ pathname: "/get-unstuck", state: { from: location.pathname } }}
         >
           <CardButton icon={AiOutlineExclamationCircle}>I'm Stuck</CardButton>
         </Link>
