@@ -14,10 +14,11 @@ import { PreStudyNavbar } from "pre-study/components/pre-study-navbar.component"
 import { ProblemSolvingNavbar } from "problem-solving/components/problem-solving-navbar.component";
 import { PracticeQuestionsNavbar } from "practice-questions/components/practice-questions-navbar.component";
 import { GetUnstuck } from "get-unstuck/steps/get-unstuck.component";
+import { GetUnstuckNavbar } from "get-unstuck/components/get-unstuck-navbar.component";
 
 const navbarRoutes = [
   { path: "/consume/:currentStep", component: ConsumeNavbar },
-  { path: "/get-unstuck/:currentStep", component: DuckDebugNavbar, },
+  { path: "/get-unstuck", component: GetUnstuckNavbar },
   { path: "/duck-debug/:currentStep", component: DuckDebugNavbar },
   { path: "/pre-study/:currentStep", component: PreStudyNavbar },
   { path: "/problem-solving/:currentStep", component: ProblemSolvingNavbar },

@@ -1,15 +1,10 @@
 import { Box } from "@chakra-ui/react";
 
-import { useAppSelector } from "shared/redux/store";
-import { selectRedirectUrl } from "step/step.slice";
-
 import { Messages } from "message/components/messages.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ProblemSolvingWorkflowStep } from "./problem-solving-workflow-step.component";
 
 export function ProblemSolvingStart() {
-  const redirectUrl = useAppSelector(selectRedirectUrl);
-
   return (
     <ProblemSolvingWorkflowStep
       editor={{ showEditor: false }}
@@ -17,7 +12,7 @@ export function ProblemSolvingStart() {
         <CardButtonGrid
           buttons={[
             { text: "Begin", color: "green", to: "/problem-solving/2" },
-            { text: "Go Back", to: redirectUrl },
+            { text: "Go Back", to: "/get-unstuck" },
           ]}
         />
       }
