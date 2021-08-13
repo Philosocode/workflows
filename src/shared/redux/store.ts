@@ -1,21 +1,22 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { persistReducer, persistStore } from "redux-persist";
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
-import { consumeReducer } from "consume/redux/consume.slice";
-import { hookReducer } from "hook/redux/hook.slice";
-import { modalReducer } from "modal/redux/modal.slice";
-import { stepReducer } from "step/step.slice";
-import { practiceQuestionsReducer } from "practice-questions/redux/practice-questions.slice";
+import { rootReducer } from "./root-reducer";
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    consume: consumeReducer,
-    hook: hookReducer,
-    modal: modalReducer,
-    practiceQuestions: practiceQuestionsReducer,
-    step: stepReducer,
-  },
+  reducer: persistedReducer,
 });
+
+export const persistor = persistStore(store);
 
 export type TAppDispatch = typeof store.dispatch;
 export type TAppState = ReturnType<typeof store.getState>;

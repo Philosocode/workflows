@@ -20,7 +20,6 @@ interface IProps {
   onNext?: (remainingSeconds: number) => void;
   refreshDep?: any; // when this changes, the timer re-renders
 }
-// From: https://dev.to/emmaadesile/build-a-timer-using-react-hooks-3he2
 export function Timer(props: IProps) {
   const timer = useTimer({
     // the extra 0.01 delays the initial timer tick
