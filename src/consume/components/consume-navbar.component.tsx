@@ -5,9 +5,10 @@ import { selectCurrentStep } from "step/step.slice";
 import { AppNavbar } from "navbar/components/app-navbar.component";
 import { ConsumeSettings } from "./consume-settings.component";
 import { ConsumeResetModal } from "./consume-reset-modal.component";
-import { GetUnstuckModal } from "modal/components/get-unstuck-modal.component";
+
 import { StudyBlockCounter } from "consume/components/study-block-counter.component";
 import { ToggleThemeButton } from "navbar/components/toggle-theme-button.component";
+import { BackIconLink } from "shared/components/button/back-icon-link.component";
 
 export function ConsumeNavbar() {
   const currentStep = useSelector(selectCurrentStep);
@@ -16,7 +17,7 @@ export function ConsumeNavbar() {
     <AppNavbar
       leftSlot={
         <>
-          <GetUnstuckModal />
+          <BackIconLink to="/" />
           {currentStep > 1 && <ConsumeResetModal redirectUrl="/consume/1" />}
         </>
       }

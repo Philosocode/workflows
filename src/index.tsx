@@ -12,6 +12,10 @@ import * as serviceWorker from "./serviceWorker";
 import "react-mde/lib/styles/css/react-mde-all.css";
 import { chakraTheme } from "chakra-theme";
 
+// fonts
+import "@fontsource/comfortaa/400.css";
+import "@fontsource/comfortaa/700.css";
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

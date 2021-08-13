@@ -23,6 +23,7 @@ export const theme = {
       fontWeight: 300,
     },
     fontSize: {
+      card: { base: "x-small", sm: "xs" },
       messageAside: { base: "sm", md: "lg" },
       nextButton: { base: "xs", md: "sm" },
     },

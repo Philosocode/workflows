@@ -11,13 +11,13 @@ export function IconButton(props: IProps) {
   const color = useColorModeValue("green.500", "green.200");
   const [isSmall] = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
 
-  let size = isSmall ? "xs" : "lg";
+  let size = isSmall ? "sm" : "lg";
 
   return (
     <IconButtonChakra
       variant="ghost"
       size={size}
-      fontSize={{ base: 18, sm: 24 }}
+      fontSize="2xl"
       _hover={{ color }}
       {...props}
     />

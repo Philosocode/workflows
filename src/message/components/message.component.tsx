@@ -1,8 +1,16 @@
-import { Avatar, Box, Fade, useColorModeValue, HStack } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Fade,
+  useColorModeValue,
+  HStack,
+  Text,
+} from "@chakra-ui/react";
 
 import { IAvatarConfig } from "avatar/shared/avatar.type";
 import { soul } from "avatar/data/soul.avatar";
 import { theme } from "shared/styles/theme";
+
 interface IProps {
   avatar?: IAvatarConfig;
   children?: React.ReactNode;
@@ -44,14 +52,14 @@ export function Message(props: IProps) {
       >
         <HStack className="header" position="absolute" top={3} left={3}>
           <Avatar size="sm" src={avatar.imageSrc} />
-          <Box
+          <Text
             sx={theme.typography.condensed}
-            fontSize={{ base: 8, md: 11 }}
+            fontSize={theme.typography.fontSize.card}
             fontFamily="sans-serif"
             textColor={styles.titleColor}
           >
             {avatar.name}
-          </Box>
+          </Text>
         </HStack>
 
         {props.children}

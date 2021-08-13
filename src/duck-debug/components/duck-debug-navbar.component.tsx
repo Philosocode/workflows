@@ -1,18 +1,11 @@
 import { AppNavbar } from "navbar/components/app-navbar.component";
 import { ToggleThemeButton } from "navbar/components/toggle-theme-button.component";
-import { GoBackModal } from "modal/components/go-back-modal.component";
+import { BackIconLink } from "shared/components/button/back-icon-link.component";
 
 export function DuckDebugNavbar() {
   return (
     <AppNavbar
-      leftSlot={
-        <>
-          <GoBackModal
-            redirectUrl="/get-unstuck"
-            text="Are you sure you want to exit Duck Debug?"
-          />
-        </>
-      }
+      leftSlot={<BackIconLink to="/get-unstuck" />}
       rightSlot={<ToggleThemeButton />}
     />
   );

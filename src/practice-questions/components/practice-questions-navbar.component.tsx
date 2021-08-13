@@ -7,6 +7,7 @@ import { selectCurrentStep } from "step/step.slice";
 import { ResetWorkflowModal } from "modal/components/reset-workflow-modal.component";
 import { AppNavbar } from "navbar/components/app-navbar.component";
 import { ToggleThemeButton } from "navbar/components/toggle-theme-button.component";
+import { BackIconLink } from "shared/components/button/back-icon-link.component";
 
 export function PracticeQuestionsNavbar() {
   const dispatch = useAppDispatch();
@@ -20,7 +21,12 @@ export function PracticeQuestionsNavbar() {
 
   return (
     <AppNavbar
-      leftSlot={currentStep > 1 && <ResetWorkflowModal onReset={handleReset} />}
+      leftSlot={
+        <>
+          <BackIconLink to="/" />
+          {currentStep > 1 && <ResetWorkflowModal onReset={handleReset} />}
+        </>
+      }
       rightSlot={<ToggleThemeButton />}
     />
   );

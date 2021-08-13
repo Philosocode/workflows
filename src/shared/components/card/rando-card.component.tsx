@@ -17,7 +17,7 @@ interface IProps {
 }
 export function RandoCard(props: IProps) {
   const [value, getRandomValue] = useRandom(props.values);
-  const dllTheme = useTheme();
+  const dlTheme = useTheme();
 
   return (
     <CardWrapper
@@ -36,14 +36,14 @@ export function RandoCard(props: IProps) {
         top={5}
       />
       <Text
-        color={dllTheme.components.card.textColorFaint}
-        fontSize="sm"
+        color={dlTheme.components.card.textColorFaint}
+        fontSize={theme.typography.fontSize.card}
         sx={theme.typography.condensed}
       >
         {props.heading}
       </Text>
       <Text
-        textColor={dllTheme.colors.text}
+        textColor={dlTheme.colors.text}
         fontSize={{ base: "xl", md: "2xl" }}
       >
         {value}
