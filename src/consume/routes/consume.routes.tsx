@@ -36,7 +36,7 @@ export const consumeRoutes = [
   {
     render: () => (
       <>
-        <CreateHooks />
+        <CreateHooks showPrompt />
         <StudyFooter />
       </>
     ),

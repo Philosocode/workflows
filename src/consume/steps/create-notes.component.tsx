@@ -7,6 +7,7 @@ export function CreateNotes(props: ICreateHookFormProps) {
   return (
     <StudyHooks
       createHookFormProps={props}
+      showForm
       workflowProps={{
         message: (
           <>
