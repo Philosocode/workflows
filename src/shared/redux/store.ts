@@ -8,7 +8,7 @@ import { rootReducer } from "./root-reducer";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["step"],
+  blacklist: ["step", "modal"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

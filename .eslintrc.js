@@ -1,14 +1,7 @@
 module.exports = {
-  extends: ["react-app", "prettier", "plugin:prettier/recommended", ""],
+  extends: ["react-app", "prettier"],
   plugins: ["prettier", "jest"],
-  parser: "@typescript-eslint/parser", // Specifies the ESLint parser
-  parserOptions: {
-    ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
-    sourceType: "module", // Allows for the use of imports
-    ecmaFeatures: {
-      jsx: true, // Allows for the parsing of JSX
-    },
-  },
+  parser: "babel-eslint",
   env: {
     browser: true,
     es6: true,
@@ -20,10 +13,7 @@ module.exports = {
     },
   },
   rules: {
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      { args: "all", argsIgnorePattern: "^_" },
-    ],
+    "@typescript-eslint/no-unused-vars": ["warn", { varsIgnorePattern: "^_" }],
     "prettier/prettier": "warn",
   },
 };

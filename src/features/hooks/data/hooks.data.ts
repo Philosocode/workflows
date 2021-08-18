@@ -15,11 +15,11 @@ const connectPrompts = [
 ];
 
 const processPrompts = [
-  "How can you paraphrase this in your own words?", // process-0
-  "How would you explain this so a 5 year old can understand?", // process-1
-  "What are the key things you need to remember?", // process-2
-  "Can you think of (simple) concrete examples for this?", // process-3
+  "How would you explain this so a 5 year old could understand?", // process-0
+  "What are the key things you need to remember?", // process-1
+  "Can you think of (simple) concrete examples?", // process-2
   "Why is this important?",
+  "How can you express this in your own words?",
   "On a scale from 1-10, how well do you understand this?",
   "What's hard about this? Why is this hard?",
   "How do you feel about this? Is this surprising? Interesting?",
@@ -29,31 +29,18 @@ const processPrompts = [
   "Write down everything you know about this topic/concept in as much detail as possible",
 ];
 
-const memorizePrompts = [
-  "Create an acronym",
-  "Storage: where & how will this be stored? (e.g. memory palace + location)",
-  "Create a story: incorporate senses, emotions, & movement. Make it exaggerated & ridiculous",
-];
-
 export const connectHooks = generateHookHash(connectPrompts, "connect");
 export const processHooks = generateHookHash(processPrompts, "process");
-export const memorizeHooks = generateHookHash(memorizePrompts, "memorize");
 export const commonHookIds = [
   "process-0",
   "process-1",
   "process-2",
-  "process-3",
   "connect-0",
 ];
 
 export const allHooks = {
   ...connectHooks,
   ...processHooks,
-  ...memorizeHooks,
 };
 
-export const allHooksArray = [
-  ...connectPrompts,
-  ...memorizePrompts,
-  ...processPrompts,
-];
+export const allHookPrompts = [...connectPrompts, ...processPrompts];

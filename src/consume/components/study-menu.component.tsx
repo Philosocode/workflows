@@ -26,11 +26,10 @@ export function StudyMenu() {
       message={
         <UnorderedList spacing={theme.spacing.messageBoxSpacing}>
           <ListItem>
-            If you want to better understand an idea or concept, choose "Notes"
+            If you want to summarize what you've learned, choose "Notes"
           </ListItem>
           <ListItem>
-            If you want to summarize and reinforce what you've learned, choose
-            "Notes"
+            If you want to better understand an idea or concept, choose "Hooks"
           </ListItem>
           <ListItem>If you're stuck on a problem, choose "I'm Stuck"</ListItem>
         </UnorderedList>

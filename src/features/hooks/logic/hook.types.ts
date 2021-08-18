@@ -6,3 +6,14 @@ export interface IHook {
 }
 
 export type THookHash = Record<string, IHook>;
+
+export interface IHookState {
+  completedIds: Set<string>;
+}
+
+export interface IHookActions {
+  toggleCompletedId: (id: string) => void;
+  resetCompletedIds: () => void;
+}
+
+export interface IHookStore extends IHookState, IHookActions {}

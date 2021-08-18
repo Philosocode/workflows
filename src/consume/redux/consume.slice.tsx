@@ -25,8 +25,6 @@ const consumeSlice = createSlice({
       const { payload } = action;
 
       state.materialType = payload.materialType;
-      state.studyBlockTime = payload.studyBlockTime;
-      state.shouldPlayAlarm = payload.shouldPlayAlarm;
     },
     nextStudyBlock: (state) => {
       state.studyBlockCount++;

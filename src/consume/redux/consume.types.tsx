@@ -10,8 +10,6 @@ export interface IConsumeState {
 
 export interface ISetMaterialDataPayload {
   materialType: TMaterialType;
-  studyBlockTime: number;
-  shouldPlayAlarm: boolean;
 }
 
 export interface IUpdateSettingsPayload {

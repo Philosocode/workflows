@@ -17,6 +17,7 @@ import { ConsumeFinish } from "consume/steps/consume-finish.component";
 import { StudyUnit } from "consume/steps/study-unit.component";
 import { commonHookIds } from "features/hooks/data/hooks.data";
 import { StudyCommonHook } from "consume/steps/study-common-hook.component";
+import { StudyHooks } from "consume/components/study-hooks.component";
 
 export const consumeRoutes = [
   { component: ConsumeSetup },
@@ -30,6 +31,7 @@ export const consumeRoutes = [
   ...commonHookIds.map((hookId) => ({
     render: () => <StudyCommonHook key={hookId} hookId={hookId} />,
   })),
+  { render: () => <StudyHooks showPrompt /> },
   { component: Study },
   { component: SummaryScreen },
   { component: ConsumeContinue },
