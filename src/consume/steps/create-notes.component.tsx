@@ -5,6 +5,7 @@ import {
   ICreateNoteFormProps,
 } from "features/notes/components/create-note-form.component";
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
+import { StudyFooter } from "consume/components/study-footer.component";
 
 export function CreateNotes(props: ICreateNoteFormProps) {
   return (
@@ -19,7 +20,8 @@ export function CreateNotes(props: ICreateNoteFormProps) {
         </>
       }
     >
-      <CreateNoteForm />
+      <CreateNoteForm {...props} />
+      <StudyFooter />
     </ConsumeWorkflowStep>
   );
 }

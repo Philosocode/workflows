@@ -20,6 +20,10 @@ module.exports = {
     },
   },
   rules: {
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { args: "all", argsIgnorePattern: "^_" },
+    ],
     "prettier/prettier": "warn",
   },
 };

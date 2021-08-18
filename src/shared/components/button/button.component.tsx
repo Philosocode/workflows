@@ -4,7 +4,7 @@ import { theme } from "shared/styles/theme";
 export interface IProps extends ButtonProps {
   children: React.ReactNode;
 }
-export function Button({ color, children, ...rest }: IProps) {
+export function Button(props: IProps) {
   return (
     <ButtonChakra
       colorScheme="gray"
@@ -12,9 +12,7 @@ export function Button({ color, children, ...rest }: IProps) {
       fontSize={theme.typography.fontSize.button}
       minW={{ base: 15, sm: 20 }}
       py={{ base: 3, md: 5 }}
-      {...rest}
-    >
-      {children}
-    </ButtonChakra>
+      {...props}
+    />
   );
 }

@@ -14,6 +14,9 @@ import { CreateNotes } from "consume/steps/create-notes.component";
 import { StudyFooter } from "consume/components/study-footer.component";
 import { PreStudyReminder } from "consume/steps/pre-study-reminder.component";
 import { ConsumeFinish } from "consume/steps/consume-finish.component";
+import { StudyUnit } from "consume/steps/study-unit.component";
+import { commonHookIds } from "features/hooks/data/hooks.data";
+import { StudyCommonHook } from "consume/steps/study-common-hook.component";
 
 export const consumeRoutes = [
   { component: ConsumeSetup },
@@ -22,14 +25,11 @@ export const consumeRoutes = [
   { component: SkimReminder },
   { component: SummaryReminder },
   { component: PracticeReminder },
-  {
-    render: () => (
-      <>
-        <CreateNotes />
-        <StudyFooter />
-      </>
-    ),
-  },
+  { component: CreateNotes },
+  { component: StudyUnit },
+  ...commonHookIds.map((hookId) => ({
+    render: () => <StudyCommonHook key={hookId} hookId={hookId} />,
+  })),
   { component: Study },
   { component: SummaryScreen },
   { component: ConsumeContinue },
@@ -67,4 +67,4 @@ export const studyRoutes = [
   },
 ];
 
-export const CONSUME_NUM_ROUTES = 14;
+export const CONSUME_NUM_ROUTES = consumeRoutes.length + studyRoutes.length - 1;

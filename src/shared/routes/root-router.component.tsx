@@ -75,7 +75,7 @@ export function RootRouter() {
           component={GetUnstuck}
         />
 
-        {duckDebugRoutes.map((route, index) => (
+        {duckDebugRoutes.map((route) => (
           <Route key={route.path} {...route} />
         ))}
 

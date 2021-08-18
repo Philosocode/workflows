@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { selectCurrentStep } from "step/step.slice";
 
 import { AppNavbar } from "navbar/components/app-navbar.component";
-import { ConsumeSettings } from "./consume-settings.component";
 import { ConsumeResetModal } from "./consume-reset-modal.component";
 
 import { GoBackModal } from "modal/components/go-back-modal.component";
@@ -23,7 +22,6 @@ export function ConsumeNavbar() {
       }
       rightSlot={
         <>
-          {currentStep > 1 && <ConsumeSettings />}
           <ToggleThemeButton />
           <StudyBlockCounter />
         </>
