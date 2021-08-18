@@ -1,40 +1,39 @@
+import { NoteList } from "features/notes/components/note-list.component";
 import {
-  selectCurrentHooks,
-  selectPreviousHooks,
-} from "hook/redux/hook.selectors";
+  selectCurrentNotes,
+  selectPreviousNotes,
+} from "features/notes/logic/note.selectors";
 import { useAppSelector } from "shared/redux/store";
-
-import { HookList } from "hook/components/hook-list.component";
-import { ExpandHooksButton } from "./expand-hooks-button.component";
+import { ExpandNotesButton } from "./expand-notes-button.component";
 
 interface IProps {
   showPrevious?: boolean;
 }
 export function StudyFooter(props: IProps) {
-  const currentHooks = useAppSelector(selectCurrentHooks);
-  const previousHooks = useAppSelector(selectPreviousHooks);
+  const currentNotes = useAppSelector(selectCurrentNotes);
+  const previousNotes = useAppSelector(selectPreviousNotes);
 
-  const hasCurrentHooks = currentHooks.length > 0;
-  const hasPreviousHooks = previousHooks.length > 0;
+  const hasCurrentNotes = currentNotes.length > 0;
+  const hasPreviousNotes = previousNotes.length > 0;
 
   function shouldShowExpandButton() {
-    if (hasCurrentHooks) return true;
-    if (hasPreviousHooks && props.showPrevious) return true;
+    if (hasCurrentNotes) return true;
+    if (hasPreviousNotes && props.showPrevious) return true;
 
     return false;
   }
 
   return (
     <>
-      {hasCurrentHooks && (
-        <HookList hooks={currentHooks} heading="Current Hooks" />
+      {hasCurrentNotes && (
+        <NoteList notes={currentNotes} heading="Current Notes" />
       )}
 
-      {props.showPrevious && hasPreviousHooks && (
-        <HookList hooks={previousHooks} heading="Previous Hooks" isPrevious />
+      {props.showPrevious && hasPreviousNotes && (
+        <NoteList notes={previousNotes} heading="Previous Notes" isPrevious />
       )}
 
-      {shouldShowExpandButton() && <ExpandHooksButton />}
+      {shouldShowExpandButton() && <ExpandNotesButton />}
     </>
   );
 }

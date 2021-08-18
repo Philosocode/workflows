@@ -2,22 +2,22 @@ import { useHistory } from "react-router-dom";
 import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { selectPreviousHooks } from "hook/redux/hook.selectors";
 import {
   selectMaterialType,
   selectStudyBlockCount,
   selectTotalStudyTime,
 } from "consume/redux/consume.selectors";
+import { newMaterial } from "consume/redux/consume.slice";
+import { selectPreviousNotes } from "features/notes/logic/note.selectors";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
-import { HookList } from "hook/components/hook-list.component";
-import { newMaterial } from "consume/redux/consume.slice";
+import { NoteList } from "features/notes/components/note-list.component";
 
 export function ConsumeFinish() {
   const history = useHistory();
   const dispatch = useAppDispatch();
-  const previousHooks = useAppSelector(selectPreviousHooks);
+  const previousNotes = useAppSelector(selectPreviousNotes);
   const totalStudyTime = useAppSelector(selectTotalStudyTime);
   const studyBlockCount = useAppSelector(selectStudyBlockCount);
   const materialType = useAppSelector(selectMaterialType);
@@ -48,9 +48,9 @@ export function ConsumeFinish() {
             <Box>Here's a summary of your study session:</Box>
             <UnorderedList>
               <ListItem>
-                {previousHooks.length === 0
-                  ? "You didn't create any hooks"
-                  : `You've created ${previousHooks.length} hook(s)`}
+                {previousNotes.length === 0
+                  ? "You didn't create any notes"
+                  : `You've created ${previousNotes.length} note(s)`}
               </ListItem>
               <ListItem>
                 You've completed {studyBlockCount} study block(s)
@@ -62,8 +62,8 @@ export function ConsumeFinish() {
           </>
         }
       ></ConsumeWorkflowStep>
-      {previousHooks.length > 0 && (
-        <HookList heading="All Hooks" hooks={previousHooks} />
+      {previousNotes.length > 0 && (
+        <NoteList heading="All Notes" notes={previousNotes} />
       )}
     </>
   );

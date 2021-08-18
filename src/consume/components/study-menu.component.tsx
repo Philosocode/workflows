@@ -26,7 +26,7 @@ export function StudyMenu() {
       message={
         <UnorderedList spacing={theme.spacing.messageBoxSpacing}>
           <ListItem>
-            If you want to better understand an idea or concept, choose "Hooks"
+            If you want to better understand an idea or concept, choose "Notes"
           </ListItem>
           <ListItem>
             If you want to summarize and reinforce what you've learned, choose
@@ -44,7 +44,7 @@ export function StudyMenu() {
           placement="top"
         >
           <Link to={`${basePath}/hooks`}>
-            <CardButton icon={BiNetworkChart}>Hooks</CardButton>
+            <CardButton icon={BiNetworkChart}>Notes</CardButton>
           </Link>
         </Tooltip>
         <Tooltip

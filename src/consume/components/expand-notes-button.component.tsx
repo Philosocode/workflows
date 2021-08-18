@@ -2,9 +2,9 @@ import { Box, Icon, useColorModeValue } from "@chakra-ui/react";
 import { AiOutlineExpand } from "react-icons/ai";
 
 import { useAppDispatch } from "shared/redux/store";
-import { toggleAllHooks } from "hook/redux/hook.slice";
+import { toggleAllNotes } from "features/notes/logic/note.slice";
 
-export function ExpandHooksButton() {
+export function ExpandNotesButton() {
   const dispatch = useAppDispatch();
 
   const styles = {
@@ -24,7 +24,7 @@ export function ExpandHooksButton() {
       p={{ base: 3, md: 4 }}
       borderRadius="50%"
       shadow="xl"
-      onClick={() => dispatch(toggleAllHooks())}
+      onClick={() => dispatch(toggleAllNotes())}
     >
       <Icon
         as={AiOutlineExpand}

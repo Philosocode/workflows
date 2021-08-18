@@ -2,15 +2,12 @@ import { useState } from "react";
 import { FormControl, VStack } from "@chakra-ui/react";
 
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { createHook } from "hook/redux/hook.slice";
-import { useToggle } from "shared/hooks/use-toggle.hook";
 import { selectNextStep } from "step/step.slice";
 import { theme } from "shared/styles/theme";
+import { createNote } from "../logic/note.slice";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
-import { CreateHookIcons } from "./create-hook-icons.component";
-import { HookSelectModal } from "./hook-select-modal.component";
 import { InputGroup } from "form/components/input-group.component";
 import { Link } from "react-router-dom";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
@@ -18,13 +15,11 @@ import { MarkdownEditor } from "editor/components/markdown-editor.component";
 interface IProps {
   nextUrl?: string;
   nextButtonText?: string;
-  showIcons?: boolean;
 }
-export interface ICreateHookFormProps extends IProps {}
-export function CreateHookForm(props: IProps) {
+export interface ICreateNoteFormProps extends IProps {}
+export function CreateNoteForm(props: IProps) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [modalShowing, toggleModal] = useToggle(false);
 
   const dispatch = useAppDispatch();
   const nextStep = useAppSelector(selectNextStep);
@@ -36,7 +31,7 @@ export function CreateHookForm(props: IProps) {
     event.preventDefault();
 
     dispatch(
-      createHook({
+      createNote({
         id: `${Date.now()}`,
         title,
         content,
@@ -57,21 +52,13 @@ export function CreateHookForm(props: IProps) {
       <form onSubmit={onSubmit}>
         <VStack alignItems="start">
           <InputGroup
-            id="hookTitle"
-            label="Hook Title"
-            placeholder="Hook Title"
+            id="noteTitle"
+            label="Note Title"
+            placeholder="Note Title"
             value={title}
-            mb={props.showIcons ? 0 : 5}
+            mb={5}
             onChange={handleTitleChange}
           />
-
-          {props.showIcons && (
-            <CreateHookIcons
-              toggleModal={toggleModal}
-              setTitle={setTitle}
-              currentTitle={title}
-            />
-          )}
 
           <FormControl id="content">
             <MarkdownEditor
@@ -90,12 +77,6 @@ export function CreateHookForm(props: IProps) {
           </Link>
         </CardButtonGrid>
       </form>
-
-      <HookSelectModal
-        isOpen={modalShowing}
-        onClose={toggleModal}
-        onSelect={(hook) => setTitle(hook)}
-      />
     </>
   );
 }

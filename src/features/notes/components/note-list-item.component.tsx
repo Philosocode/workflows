@@ -8,42 +8,42 @@ import {
 import { FaChevronDown, FaRegTrashAlt } from "react-icons/fa";
 
 // logic
-import { IHook } from "hook/shared/hook.types";
-import { updateHook } from "hook/redux/hook.slice";
 import { useAppDispatch } from "shared/redux/store";
+import { INote } from "../logic/note.types";
+import { showModal } from "modal/redux/modal.slice";
 
 import { InputGroup } from "form/components/input-group.component";
 import { MarkdownEditor } from "editor/components/markdown-editor.component";
-import { showModal } from "modal/redux/modal.slice";
+import { updateNote } from "../logic/note.slice";
 
 interface IProps {
-  hook: IHook;
+  note: INote;
 }
-export function HookListItem({ hook }: IProps) {
+export function NoteListItem({ note }: IProps) {
   const dispatch = useAppDispatch();
 
   function handleTitleUpdate(event: React.ChangeEvent<HTMLInputElement>) {
-    handleHookUpdate({ title: event.target.value });
+    handleNoteUpdate({ title: event.target.value });
   }
 
   function handleContentUpdate(content: string) {
-    handleHookUpdate({ content });
+    handleNoteUpdate({ content });
   }
 
   function handleToggle() {
-    handleHookUpdate({ isExpanded: !hook.isExpanded });
+    handleNoteUpdate({ isExpanded: !note.isExpanded });
   }
 
-  function handleHookUpdate(updates: Partial<IHook>) {
-    dispatch(updateHook({ id: hook.id, updates: { ...updates } }));
+  function handleNoteUpdate(updates: Partial<INote>) {
+    dispatch(updateNote({ id: note.id, updates: { ...updates } }));
   }
 
   function handleDelete() {
     dispatch(
       showModal({
-        modalType: "delete-hook",
+        modalType: "delete-note",
         modalProps: {
-          id: hook.id,
+          id: note.id,
         },
       }),
     );
@@ -62,12 +62,12 @@ export function HookListItem({ hook }: IProps) {
         border="1px solid"
         borderColor={styles.borderColor}
         borderRadius="md"
-        cursor={hook.isExpanded ? "default" : "pointer"}
+        cursor={note.isExpanded ? "default" : "pointer"}
         position="relative"
         shadow="md"
         w="100%"
       >
-        {!hook.isExpanded && (
+        {!note.isExpanded && (
           <Box
             d="flex"
             alignItems="center"
@@ -76,11 +76,11 @@ export function HookListItem({ hook }: IProps) {
             py={{ base: 3, md: 5 }}
             px={{ base: 4, md: 10 }}
           >
-            <Text>{hook.title}</Text>
+            <Text>{note.title}</Text>
             <Icon as={FaChevronDown} />
           </Box>
         )}
-        {hook.isExpanded && (
+        {note.isExpanded && (
           <Box pb={{ base: 5, md: 10 }} px={{ base: 5, md: 10 }}>
             <Box
               className="header"
@@ -106,15 +106,15 @@ export function HookListItem({ hook }: IProps) {
             </Box>
 
             <InputGroup
-              id={hook.id}
-              label="Hook Title"
+              id={note.id}
+              label="Note Title"
               mb={5}
-              value={hook.title}
+              value={note.title}
               onChange={handleTitleUpdate}
             />
 
             <MarkdownEditor
-              value={hook.content}
+              value={note.content}
               setValue={handleContentUpdate}
             />
           </Box>

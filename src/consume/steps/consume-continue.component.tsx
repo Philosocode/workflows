@@ -1,10 +1,9 @@
 import { useHistory } from "react-router-dom";
 import { Box, ListItem, Tooltip, UnorderedList } from "@chakra-ui/react";
 
-import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 import { nextStudyBlock } from "consume/redux/consume.slice";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { selectCurrentHooks } from "hook/redux/hook.selectors";
+import { selectCurrentNotes } from "features/notes/logic/note.selectors";
 import { selectNextStep } from "step/step.slice";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
@@ -15,11 +14,11 @@ export function ConsumeContinue() {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const nextStep = useAppSelector(selectNextStep);
-  const currentHooks = useAppSelector(selectCurrentHooks);
+  const currentNotes = useAppSelector(selectCurrentNotes);
 
   function onNextStudyBlock() {
     dispatch(nextStudyBlock());
-    history.push(`/consume/${CONSUME_PAGE_NUMBERS.TIMER}`);
+    history.push(`/consume/1`);
   }
 
   function onDoneStudying() {
@@ -28,11 +27,11 @@ export function ConsumeContinue() {
   }
 
   const message =
-    currentHooks.length === 0 ? (
+    currentNotes.length === 0 ? (
       <Box>You didn't create any hooks/notes during this study block.</Box>
     ) : (
       <Box>
-        Well done! You created {currentHooks.length} hook(s) during this study
+        Well done! You created {currentNotes.length} hook(s) during this study
         block.
       </Box>
     );

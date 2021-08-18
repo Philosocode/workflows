@@ -2,11 +2,11 @@ import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { hideModal } from "modal/redux/modal.slice";
 
 import { ModalWrapper } from "./modal-wrapper.component";
-import { DeleteHookModal } from "hook/components/delete-hook-modal.component";
-import { EditTopicModal } from "hook/components/edit-topic-modal.component";
+import { DeleteNoteModal } from "features/notes/components/delete-note-modal.component";
+import { EditTopicModal } from "features/notes/components/edit-topic-modal.component";
 
 const MODAL_COMPONENTS: any = {
-  "delete-hook": DeleteHookModal,
+  "delete-note": DeleteNoteModal,
   "edit-topic": EditTopicModal,
 };
 

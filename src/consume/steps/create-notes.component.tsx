@@ -1,23 +1,25 @@
 import { Box } from "@chakra-ui/react";
 
-import { StudyHooks } from "consume/components/study-hooks.component";
-import { ICreateHookFormProps } from "hook/components/create-hook-form.component";
+import {
+  CreateNoteForm,
+  ICreateNoteFormProps,
+} from "features/notes/components/create-note-form.component";
+import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 
-export function CreateNotes(props: ICreateHookFormProps) {
+export function CreateNotes(props: ICreateNoteFormProps) {
   return (
-    <StudyHooks
-      createHookFormProps={props}
-      showForm
-      workflowProps={{
-        message: (
-          <>
-            <Box>Create notes and summarize what you've learned.</Box>
-            <Box>
-              Try to do this from memory without referring to the material.
-            </Box>
-          </>
-        ),
-      }}
-    />
+    <ConsumeWorkflowStep
+      showButton={false}
+      message={
+        <>
+          <Box>Create notes and summarize what you've learned.</Box>
+          <Box>
+            Try to do this from memory without referring to the material.
+          </Box>
+        </>
+      }
+    >
+      <CreateNoteForm />
+    </ConsumeWorkflowStep>
   );
 }

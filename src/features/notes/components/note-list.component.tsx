@@ -1,22 +1,23 @@
 import { Box, Divider, Heading } from "@chakra-ui/react";
 import { DropResult } from "react-beautiful-dnd";
 
-import { IHook } from "hook/shared/hook.types";
 import { useAppDispatch } from "shared/redux/store";
-import { repositionHook } from "hook/redux/hook.slice";
+
+import { INote } from "../logic/note.types";
+import { repositionNote } from "../logic/note.slice";
 
 import { DragAndDropWrapper } from "shared/components/drag-and-drop/drag-and-drop-wrapper.component";
 import { DraggableWrapper } from "shared/components/drag-and-drop/draggable-wrapper.component";
-import { HookListItem } from "hook/components/hook-list-item.component";
+import { NoteListItem } from "features/notes/components/note-list-item.component";
 
 interface IProps {
   heading: string;
-  hooks: IHook[];
+  notes: INote[];
 
   dragDisabled?: boolean;
   isPrevious?: boolean;
 }
-export function HookList(props: IProps) {
+export function NoteList(props: IProps) {
   const dispatch = useAppDispatch();
 
   function handleDragEnd(result: DropResult) {
@@ -27,7 +28,7 @@ export function HookList(props: IProps) {
     const newIndex = destination.index;
 
     dispatch(
-      repositionHook({
+      repositionNote({
         oldIndex,
         newIndex,
         isPrevious: props.isPrevious ?? false,
@@ -42,19 +43,19 @@ export function HookList(props: IProps) {
         {props.heading}
       </Heading>
       <DragAndDropWrapper
-        droppableId="hook-list-droppable"
+        droppableId="note-list-droppable"
         handleDragEnd={handleDragEnd}
       >
         <Box>
-          {props.hooks.map((hook, index) => (
+          {props.notes.map((note, index) => (
             <DraggableWrapper
-              key={hook.id}
-              draggableId={hook.id}
+              key={note.id}
+              draggableId={note.id}
               dragDisabled={props.dragDisabled ?? false}
               index={index}
               wrapperProps={{ mt: { base: 3, md: 5 } }}
             >
-              <HookListItem key={hook.id} hook={hook} />
+              <NoteListItem key={note.id} note={note} />
             </DraggableWrapper>
           ))}
         </Box>
