@@ -1,6 +1,6 @@
-import { generateHookPromptHash } from "../helpers/hook.helpers";
+import { generateHookHash } from "../helpers/hook.helpers";
 
-export const commonHookPrompts = [
+export const commonPrompts = [
   "How can I paraphrase this in my own words?",
   "How can I explain this so a 5 year old can understand?",
   "What are the key things I need to remember?",
@@ -8,7 +8,7 @@ export const commonHookPrompts = [
   "Can I think of a simile, analogy, or metaphor?",
 ];
 
-const connectHookPrompts = [
+const connectPrompts = [
   "Can I think of a simile, analogy, or metaphor?",
   "What does this remind me of?",
   "Is this my first time encountering this? If not, where have I encountered this before?",
@@ -22,7 +22,7 @@ const connectHookPrompts = [
   "How does this fit in with the rest of what I know about this subject?",
 ];
 
-const processHookPrompts = [
+const processPrompts = [
   "How do I paraphrase this in my own words?",
   "How do I explain this so a 5 year old can understand?",
   "Can I think of (simple) concrete examples for this?",
@@ -37,31 +37,24 @@ const processHookPrompts = [
   "Write down everything I know about this topic/concept in as much detail as possible",
 ];
 
-const memorizeHookPrompts = [
+const memorizePrompts = [
   "Create an acronym",
   "Storage: where & how will this be stored? (e.g. memory palace + location)",
   "Create a story: incorporate senses, emotions, & movement. Make it exaggerated & ridiculous",
 ];
 
-const connectHooks = generateHookPromptHash(connectHookPrompts, "connect");
-const processHooks = generateHookPromptHash(processHookPrompts, "process");
-const memorizeHooks = generateHookPromptHash(memorizeHookPrompts, "memorize");
+export const connectHooks = generateHookHash(connectPrompts, "connect");
+export const processHooks = generateHookHash(processPrompts, "process");
+export const memorizeHooks = generateHookHash(memorizePrompts, "memorize");
 
-export const hooksHash = {
+export const allHooks = {
   ...connectHooks,
   ...processHooks,
   ...memorizeHooks,
 };
 
-export const allHookPromptsArray = [
-  ...connectHookPrompts,
-  ...memorizeHookPrompts,
-  ...processHookPrompts,
+export const allHooksArray = [
+  ...connectPrompts,
+  ...memorizePrompts,
+  ...processPrompts,
 ];
-
-export const hooksByCategoryHash = {
-  common: commonHookPrompts,
-  connect: connectHookPrompts,
-  memorize: memorizeHookPrompts,
-  process: processHookPrompts,
-};

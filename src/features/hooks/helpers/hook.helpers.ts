@@ -1,7 +1,7 @@
-import { THookPromptHash } from "../logic/hook.types";
+import { THookHash } from "../logic/hook.types";
 
-export function generateHookPromptHash(prompts: string[], prefix: string) {
-  return prompts.reduce<THookPromptHash>((hash, prompt, index) => {
+export function generateHookHash(prompts: string[], prefix: string) {
+  return prompts.reduce<THookHash>((hash, prompt, index) => {
     const id = `${prefix}-${index}`;
 
     hash[id] = {

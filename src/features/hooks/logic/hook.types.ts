@@ -1,8 +1,8 @@
 export type THookType = "common" | "connect" | "memorize" | "process";
 
-export interface IHookPrompt {
+export interface IHook {
   id: string;
   prompt: string;
 }
 
-export type THookPromptHash = Record<string, IHookPrompt>;
+export type THookHash = Record<string, IHook>;
