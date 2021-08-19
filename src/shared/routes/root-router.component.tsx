@@ -1,20 +1,20 @@
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import { consumeRoutes } from "consume/routes/consume.routes";
-import { duckDebugRoutes } from "duck-debug/routes/duck-debug.routes";
-import { preStudyComponents } from "pre-study/routes/pre-study.routes";
-import { problemSolvingRoutes } from "problem-solving/assets/problem-solving.data";
-import { practiceQuestionsRoutes } from "practice-questions/shared/practice-questions.routes";
+import { consumeRoutes } from "features/consume/routes/consume.routes";
+import { duckDebugRoutes } from "features/duck-debug/routes/duck-debug.routes";
+import { preStudyComponents } from "features/pre-study/routes/pre-study.routes";
+import { problemSolvingRoutes } from "features/problem-solving/assets/problem-solving.data";
+import { practiceQuestionsRoutes } from "features/practice-questions/shared/practice-questions.routes";
 
-import { ConsumeNavbar } from "consume/components/consume-navbar.component";
-import { CurrentStep } from "step/current-step.component";
+import { ConsumeNavbar } from "features/consume/components/consume-navbar.component";
+import { CurrentStep } from "features/step/current-step.component";
 import { HomePage } from "shared/pages/home.page";
-import { DuckDebugNavbar } from "duck-debug/components/duck-debug-navbar.component";
-import { PreStudyNavbar } from "pre-study/components/pre-study-navbar.component";
-import { ProblemSolvingNavbar } from "problem-solving/components/problem-solving-navbar.component";
-import { PracticeQuestionsNavbar } from "practice-questions/components/practice-questions-navbar.component";
-import { GetUnstuck } from "get-unstuck/steps/get-unstuck.component";
-import { GetUnstuckNavbar } from "get-unstuck/components/get-unstuck-navbar.component";
+import { DuckDebugNavbar } from "features/duck-debug/components/duck-debug-navbar.component";
+import { PreStudyNavbar } from "features/pre-study/components/pre-study-navbar.component";
+import { ProblemSolvingNavbar } from "features/problem-solving/components/problem-solving-navbar.component";
+import { PracticeQuestionsNavbar } from "features/practice-questions/components/practice-questions-navbar.component";
+import { GetUnstuck } from "features/get-unstuck/steps/get-unstuck.component";
+import { GetUnstuckNavbar } from "features/get-unstuck/components/get-unstuck-navbar.component";
 
 const navbarRoutes = [
   { path: "/consume/:currentStep", component: ConsumeNavbar },

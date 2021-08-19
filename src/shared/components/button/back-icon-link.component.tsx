@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { IoMdReturnLeft } from "react-icons/io";
 
-import { IconButton } from "../icon-button.component";
+import { IconButton } from "./icon-button.component";
 
 interface IProps {
   to: string;

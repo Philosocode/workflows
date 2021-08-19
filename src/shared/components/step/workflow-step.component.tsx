@@ -5,11 +5,14 @@ import { ButtonGroup, ButtonProps } from "@chakra-ui/react";
 import { useKeypress } from "shared/hooks/use-key-press.hook";
 import { theme } from "shared/styles/theme";
 
-import { IMessageProps, Message } from "message/components/message.component";
-import { Breadcrumbs } from "shared/components/breadcrumbs.component";
+import {
+  IMessageProps,
+  Message,
+} from "shared/components/message/message.component";
+import { Breadcrumbs } from "shared/components/breadcrumbs/breadcrumbs.component";
 import { Button } from "shared/components/button/button.component";
-import { MarkdownEditor } from "editor/components/markdown-editor.component";
-import { ProgressBar } from "../progress-bar.component";
+import { MarkdownEditor } from "shared/components/editor/markdown-editor.component";
+import { ProgressBar } from "../progress/progress-bar.component";
 
 export interface IWorkflowStepProps {
   message: ReactNode;

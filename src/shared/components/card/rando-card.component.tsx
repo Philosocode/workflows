@@ -6,7 +6,7 @@ import { theme } from "shared/styles/theme";
 import { useTheme } from "shared/hooks/use-theme.hook";
 
 import { CardWrapper } from "shared/components/card/card-wrapper.component";
-import { IconButton } from "shared/components/icon-button.component";
+import { IconButton } from "shared/components/button/icon-button.component";
 
 interface IProps {
   ariaLabel: string;

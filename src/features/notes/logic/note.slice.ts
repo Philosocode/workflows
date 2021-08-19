@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import omit from "lodash/omit";
 
-import { newMaterial, nextStudyBlock } from "consume/redux/consume.slice";
+import { newMaterial } from "features/consume/redux/consume.slice";
 import {
   INote,
   INoteState,

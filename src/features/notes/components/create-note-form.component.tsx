@@ -2,15 +2,15 @@ import { useState } from "react";
 import { FormControl, VStack } from "@chakra-ui/react";
 
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { selectNextStep } from "step/step.slice";
+import { selectNextStep } from "features/step/step.slice";
 import { theme } from "shared/styles/theme";
 import { createNote } from "../logic/note.slice";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
-import { InputGroup } from "form/components/input-group.component";
+import { InputGroup } from "shared/components/form/input-group.component";
 import { Link } from "react-router-dom";
-import { MarkdownEditor } from "editor/components/markdown-editor.component";
+import { MarkdownEditor } from "shared/components/editor/markdown-editor.component";
 
 interface IProps {
   nextUrl?: string;

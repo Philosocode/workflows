@@ -1,11 +1,11 @@
 import { ButtonGroup } from "@chakra-ui/react";
 
-import { IModalProps } from "modal/shared/modal.types";
+import { IModalProps } from "shared/components/modal/shared/modal.types";
 import { useAppDispatch } from "shared/redux/store";
 import { deleteNote } from "../logic/note.slice";
 
 import { Button } from "shared/components/button/button.component";
-import { ModalContent } from "modal/components/modal-content.component";
+import { ModalContent } from "shared/components/modal/components/modal-content.component";
 
 interface IProps extends IModalProps {
   id: string;

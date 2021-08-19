@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
-import { Message } from "message/components/message.component";
-import { Messages } from "message/components/messages.component";
-import { AppNavbar } from "navbar/components/app-navbar.component";
-import { ToggleThemeButton } from "navbar/components/toggle-theme-button.component";
+import { Message } from "shared/components/message/message.component";
+import { Messages } from "shared/components/message/messages.component";
+import { AppNavbar } from "shared/components/navbar/app-navbar.component";
+import { ToggleThemeButton } from "shared/components/navbar/toggle-theme-button.component";
 import { BiHelpCircle } from "react-icons/bi";
 
 export function HomePage() {

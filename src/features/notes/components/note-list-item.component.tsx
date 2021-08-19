@@ -10,10 +10,10 @@ import { FaChevronDown, FaRegTrashAlt } from "react-icons/fa";
 // logic
 import { useAppDispatch } from "shared/redux/store";
 import { INote } from "../logic/note.types";
-import { showModal } from "modal/redux/modal.slice";
+import { showModal } from "shared/components/modal/redux/modal.slice";
 
-import { InputGroup } from "form/components/input-group.component";
-import { MarkdownEditor } from "editor/components/markdown-editor.component";
+import { InputGroup } from "shared/components/form/input-group.component";
+import { MarkdownEditor } from "shared/components/editor/markdown-editor.component";
 import { updateNote } from "../logic/note.slice";
 
 interface IProps {

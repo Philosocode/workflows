@@ -10,7 +10,7 @@ import { persistor, store } from "./shared/redux/store";
 import * as serviceWorker from "./serviceWorker";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
-import { chakraTheme } from "chakra-theme";
+import { chakraTheme } from "shared/styles/chakra-theme";
 
 // fonts
 import "@fontsource/comfortaa/400.css";
