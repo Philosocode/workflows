@@ -18,6 +18,7 @@ import { StudyUnit } from "consume/steps/study-unit.component";
 import { commonHookIds } from "features/hooks/data/hooks.data";
 import { StudyCommonHook } from "consume/steps/study-common-hook.component";
 import { StudyHooks } from "consume/components/study-hooks.component";
+import { StudyQuestions } from "consume/steps/study-questions.component";
 
 export const consumeRoutes = [
   { component: ConsumeSetup },
@@ -26,11 +27,21 @@ export const consumeRoutes = [
   { component: SkimReminder },
   { component: SummaryReminder },
   { component: PracticeReminder },
-  { component: CreateNotes },
   { component: StudyUnit },
-  ...commonHookIds.map((hookId) => ({
-    render: () => <StudyCommonHook key={hookId} hookId={hookId} />,
+  { component: StudyQuestions },
+  ...commonHookIds.map((hookId, index) => ({
+    render: () => (
+      <StudyCommonHook questionNum={index + 1} key={hookId} hookId={hookId} />
+    ),
   })),
+  {
+    render: () => (
+      <>
+        <CreateNotes />
+        <StudyFooter />
+      </>
+    ),
+  },
   { render: () => <StudyHooks showPrompt /> },
   { component: Study },
   { component: SummaryScreen },
@@ -50,7 +61,7 @@ export const consumeRoutes = [
 ];
 
 export const CONSUME_PAGE_NUMBERS = {
-  STUDY: consumeRoutes.findIndex((route) => route.component === Study) + 1,
+  STUDY: consumeRoutes.findIndex((route) => route.component === StudyUnit) + 1,
 };
 
 export const studyRoutes = [
@@ -63,9 +74,13 @@ export const studyRoutes = [
           nextButtonText="Back"
           nextUrl={`/consume/${CONSUME_PAGE_NUMBERS.STUDY}/menu`}
         />
-        <StudyFooter showPrevious />
+        <StudyFooter />
       </>
     ),
+  },
+  {
+    path: "hooks",
+    render: () => <StudyHooks />,
   },
 ];
 

@@ -10,29 +10,13 @@ export const selectNoteHash = createSelector(
   (state) => state.notes,
 );
 
-export const selectCurrentNoteIds = createSelector(
+export const selectNoteIds = createSelector(
   [selectNoteState],
-  (state) => state.currentNoteIds,
+  (state) => state.noteIds,
 );
 
-export const selectPreviousNoteIds = createSelector(
-  [selectNoteState],
-  (state) => state.previousNoteIds,
-);
-
-export const selectCurrentNotes = createSelector(
-  [selectNoteHash, selectCurrentNoteIds],
-  (hash, ids) => {
-    const notes: INote[] = [];
-
-    ids.forEach((id) => notes.push(hash[id]));
-
-    return notes;
-  },
-);
-
-export const selectPreviousNotes = createSelector(
-  [selectNoteHash, selectPreviousNoteIds],
+export const selectNotes = createSelector(
+  [selectNoteHash, selectNoteIds],
   (hash, ids) => {
     const notes: INote[] = [];
 

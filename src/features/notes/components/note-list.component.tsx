@@ -15,7 +15,6 @@ interface IProps {
   notes: INote[];
 
   dragDisabled?: boolean;
-  isPrevious?: boolean;
 }
 export function NoteList(props: IProps) {
   const dispatch = useAppDispatch();
@@ -31,7 +30,6 @@ export function NoteList(props: IProps) {
       repositionNote({
         oldIndex,
         newIndex,
-        isPrevious: props.isPrevious ?? false,
       }),
     );
   }

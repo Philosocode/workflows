@@ -9,8 +9,7 @@ export interface INoteState {
   notes: {
     [key: string]: INote;
   };
-  currentNoteIds: string[];
-  previousNoteIds: string[];
+  noteIds: string[];
 }
 
 // Actions
@@ -25,5 +24,4 @@ export interface IUpdateNotePayload {
 export interface IRepositionNotePayload {
   oldIndex: number;
   newIndex: number;
-  isPrevious: boolean;
 }

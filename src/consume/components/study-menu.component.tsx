@@ -12,9 +12,12 @@ import { CardButtonGrid } from "shared/components/button/card-button-grid.compon
 import { CardButton } from "shared/components/button/card-button.component";
 import { ConsumeWorkflowStep } from "./consume-workflow-step.component";
 import { StudyFooter } from "./study-footer.component";
+import { selectMaterialType } from "consume/redux/consume.selectors";
 
 export function StudyMenu() {
   const location = useLocation();
+  const materialType = useAppSelector(selectMaterialType);
+  const word = materialType === "reading" ? "read" : "watch";
 
   const currentStep = useAppSelector(selectCurrentStep);
   const basePath = `/consume/${currentStep}`;
@@ -32,20 +35,14 @@ export function StudyMenu() {
             If you want to better understand an idea or concept, choose "Hooks"
           </ListItem>
           <ListItem>If you're stuck on a problem, choose "I'm Stuck"</ListItem>
+          <ListItem>
+            If you want to start {word}ing again or finish studying, choose
+            "Next Step"
+          </ListItem>
         </UnorderedList>
       }
     >
       <CardButtonGrid>
-        <Tooltip
-          label="Create hooks for abstract ideas or concepts"
-          hasArrow
-          shouldWrapChildren
-          placement="top"
-        >
-          <Link to={`${basePath}/hooks`}>
-            <CardButton icon={BiNetworkChart}>Notes</CardButton>
-          </Link>
-        </Tooltip>
         <Tooltip
           label="Create notes to summarize info"
           hasArrow
@@ -56,16 +53,29 @@ export function StudyMenu() {
             <CardButton icon={BiNote}>Notes</CardButton>
           </Link>
         </Tooltip>
+
+        <Tooltip
+          label="Use hooks for abstract ideas or concepts"
+          hasArrow
+          shouldWrapChildren
+          placement="top"
+        >
+          <Link to={`${basePath}/hooks`}>
+            <CardButton icon={BiNetworkChart}>Hooks</CardButton>
+          </Link>
+        </Tooltip>
+
         <Link
           to={{ pathname: "/get-unstuck", state: { from: location.pathname } }}
         >
           <CardButton icon={AiOutlineExclamationCircle}>I'm Stuck</CardButton>
         </Link>
+
         <Link to={`/consume/${nextStep}`}>
-          <CardButton icon={IoMdCheckmarkCircle}>I'm Done</CardButton>
+          <CardButton icon={IoMdCheckmarkCircle}>Next Step</CardButton>
         </Link>
       </CardButtonGrid>
-      <StudyFooter showPrevious />
+      <StudyFooter />
     </ConsumeWorkflowStep>
   );
 }

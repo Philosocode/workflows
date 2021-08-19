@@ -1,10 +1,9 @@
-export type TMaterialType = "reading" | "writing";
+export type TMaterialType = "reading" | "watching";
 
 export interface IConsumeState {
   materialType: TMaterialType;
   studyBlockCount: number;
   studyBlockTime: number;
-  shouldPlayAlarm: boolean;
   totalStudyTime: number;
 }
 

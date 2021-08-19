@@ -11,7 +11,6 @@ const initialState: IConsumeState = {
   studyBlockCount: 0,
   studyBlockTime: 5,
   totalStudyTime: 0,
-  shouldPlayAlarm: false,
 };
 
 const consumeSlice = createSlice({

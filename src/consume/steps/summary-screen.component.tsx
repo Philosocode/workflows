@@ -3,20 +3,19 @@ import { Box } from "@chakra-ui/react";
 import { useAppSelector } from "shared/redux/store";
 import { theme } from "shared/styles/theme";
 import { selectNextStep } from "step/step.slice";
+import { selectNotes } from "features/notes/logic/note.selectors";
 
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 import { Link } from "typography/components/link.component";
 import { Messages } from "message/components/messages.component";
 import { Redirect } from "react-router-dom";
-import { selectCurrentNotes } from "features/notes/logic/note.selectors";
 import { NoteList } from "features/notes/components/note-list.component";
 
 export function SummaryScreen() {
   const nextStep = useAppSelector(selectNextStep);
-  const currentNotes = useAppSelector(selectCurrentNotes);
+  const notes = useAppSelector(selectNotes);
 
-  if (currentNotes.length === 0)
-    return <Redirect to={`/consume/${nextStep}`} />;
+  if (notes.length === 0) return <Redirect to={`/consume/${nextStep}`} />;
 
   return (
     <>
@@ -42,7 +41,7 @@ export function SummaryScreen() {
         }
       />
       <Box w="full">
-        <NoteList notes={currentNotes} heading="Current Notes" dragDisabled />
+        <NoteList notes={notes} heading="Notes" dragDisabled />
       </Box>
     </>
   );

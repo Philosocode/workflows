@@ -70,7 +70,7 @@ export function CreateNoteForm(props: IProps) {
         </VStack>
         <CardButtonGrid mt={theme.spacing.workflowStepButtonSpacing}>
           <CardButton color="green" disabled={buttonDisabled} type="submit">
-            Create
+            Create Note
           </CardButton>
           <Link to={props.nextUrl ?? defaultNextUrl}>
             <CardButton>{props.nextButtonText ?? "Next"}</CardButton>

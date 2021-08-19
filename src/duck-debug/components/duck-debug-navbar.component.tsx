@@ -5,7 +5,7 @@ import { ToggleThemeButton } from "navbar/components/toggle-theme-button.compone
 export function DuckDebugNavbar() {
   return (
     <AppNavbar
-      leftSlot={<GoBackModal redirectUrl="/" />}
+      leftSlot={<GoBackModal redirectUrl="/get-unstuck" />}
       rightSlot={<ToggleThemeButton />}
     />
   );

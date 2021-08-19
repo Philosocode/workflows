@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import omit from "lodash/omit";
 
-import { nextStudyBlock } from "consume/redux/consume.slice";
+import { newMaterial, nextStudyBlock } from "consume/redux/consume.slice";
 import {
   INote,
   INoteState,
@@ -11,8 +11,7 @@ import {
 
 const initialState: INoteState = {
   notes: {},
-  currentNoteIds: [],
-  previousNoteIds: [],
+  noteIds: [],
 };
 
 const noteSlice = createSlice({
@@ -23,7 +22,7 @@ const noteSlice = createSlice({
       const newNote = { ...action.payload };
 
       state.notes[newNote.id] = newNote;
-      state.currentNoteIds.unshift(newNote.id);
+      state.noteIds.unshift(newNote.id);
     },
     updateNote: (state, action: PayloadAction<IUpdateNotePayload>) => {
       const { id, updates } = action.payload;
@@ -34,27 +33,15 @@ const noteSlice = createSlice({
       };
     },
     repositionNote: (state, action: PayloadAction<IRepositionNotePayload>) => {
-      const { oldIndex, newIndex, isPrevious } = action.payload;
+      const { oldIndex, newIndex } = action.payload;
 
-      const noteIds = isPrevious ? state.previousNoteIds : state.currentNoteIds;
-      const [noteToReposition] = noteIds.splice(oldIndex, 1);
+      const [noteToReposition] = state.noteIds.splice(oldIndex, 1);
 
-      noteIds.splice(newIndex, 0, noteToReposition);
+      state.noteIds.splice(newIndex, 0, noteToReposition);
     },
     deleteNote: (state, action) => {
-      const isPrevious = state.previousNoteIds.includes(action.payload);
-
       state.notes = omit(state.notes, [action.payload]);
-
-      if (isPrevious) {
-        state.previousNoteIds = state.previousNoteIds.filter(
-          (id) => id !== action.payload,
-        );
-      } else {
-        state.currentNoteIds = state.currentNoteIds.filter(
-          (id) => id !== action.payload,
-        );
-      }
+      state.noteIds = state.noteIds.filter((id) => id !== action.payload);
     },
     toggleAllNotes: (state) => {
       const allNotes = Object.values(state.notes);
@@ -66,10 +53,8 @@ const noteSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(nextStudyBlock, (state) => {
-      // move current note ids into previous
-      state.previousNoteIds.unshift(...state.currentNoteIds);
-      state.currentNoteIds = [];
+    builder.addCase(newMaterial, () => {
+      return initialState;
     });
   },
 });

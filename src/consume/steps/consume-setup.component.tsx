@@ -12,6 +12,7 @@ import { selectNextStep } from "step/step.slice";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
 import { RadioButtonGroup } from "form/components/radio-button-group.component";
+import { CONSUME_PAGE_NUMBERS } from "consume/routes/consume.routes";
 
 interface IFormProps {
   materialType: TMaterialType;
@@ -34,7 +35,7 @@ export function ConsumeSetup() {
 
   function skipToStudy() {
     dispatch(setMaterialData(getValues()));
-    history.push(`/consume/1`);
+    history.push(`/consume/${CONSUME_PAGE_NUMBERS.STUDY}`);
   }
 
   return (

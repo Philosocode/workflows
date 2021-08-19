@@ -1,4 +1,4 @@
-import { ButtonGroup } from "@chakra-ui/react";
+import { Box, ButtonGroup } from "@chakra-ui/react";
 
 import { Button } from "shared/components/button/button.component";
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
@@ -9,15 +9,18 @@ import { selectNextStep } from "step/step.slice";
 import { useHistory } from "react-router-dom";
 import { theme } from "shared/styles/theme";
 import { useHookStore } from "features/hooks/logic/hook.store";
+import { useState } from "react";
 
 interface IProps {
   hookId: string;
+  questionNum: number;
 }
 export function StudyCommonHook(props: IProps) {
   const history = useHistory();
   const { toggleCompletedId } = useHookStore();
   const hook = allHooks[props.hookId];
   const nextStep = useAppSelector(selectNextStep);
+  const [text, setText] = useState("");
 
   function handleComplete() {
     toggleCompletedId(props.hookId);
@@ -32,7 +35,11 @@ export function StudyCommonHook(props: IProps) {
     <ConsumeWorkflowStep
       buttons={
         <ButtonGroup spacing={5} mt={theme.spacing.workflowStepButtonSpacing}>
-          <Button colorScheme="green" onClick={handleComplete}>
+          <Button
+            disabled={text.trim() === ""}
+            colorScheme="green"
+            onClick={handleComplete}
+          >
             Next
           </Button>
           <Button onClick={handleNext}>Skip</Button>
@@ -40,8 +47,10 @@ export function StudyCommonHook(props: IProps) {
       }
       editor={{
         showEditor: true,
+        value: text,
+        setValue: setText,
       }}
-      message={hook.prompt}
+      message={`Question ${props.questionNum}: ${hook.prompt}`}
     />
   );
 }

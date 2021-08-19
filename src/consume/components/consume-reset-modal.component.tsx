@@ -10,6 +10,7 @@ import { IconButton } from "shared/components/icon-button.component";
 import { ModalContent } from "modal/components/modal-content.component";
 import { ModalWrapper } from "modal/components/modal-wrapper.component";
 import { newMaterial } from "consume/redux/consume.slice";
+import { useHookStore } from "features/hooks/logic/hook.store";
 
 interface IProps {
   redirectUrl: string;
@@ -18,9 +19,11 @@ export function ConsumeResetModal(props: IProps) {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const [modalShowing, toggleModal] = useToggle(false);
+  const { resetHookState } = useHookStore();
 
   function onReset() {
     dispatch(newMaterial());
+    resetHookState();
     toggleModal();
     history.push(props.redirectUrl);
   }

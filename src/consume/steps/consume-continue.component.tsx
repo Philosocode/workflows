@@ -3,8 +3,8 @@ import { Box, ListItem, Tooltip, UnorderedList } from "@chakra-ui/react";
 
 import { nextStudyBlock } from "consume/redux/consume.slice";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { selectCurrentNotes } from "features/notes/logic/note.selectors";
 import { selectNextStep } from "step/step.slice";
+import { selectNotes } from "features/notes/logic/note.selectors";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "consume/components/consume-workflow-step.component";
@@ -14,7 +14,7 @@ export function ConsumeContinue() {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const nextStep = useAppSelector(selectNextStep);
-  const currentNotes = useAppSelector(selectCurrentNotes);
+  const notes = useAppSelector(selectNotes);
 
   function onNextStudyBlock() {
     dispatch(nextStudyBlock());
@@ -27,12 +27,11 @@ export function ConsumeContinue() {
   }
 
   const message =
-    currentNotes.length === 0 ? (
-      <Box>You didn't create any hooks/notes during this study block.</Box>
+    notes.length === 0 ? (
+      <Box>You didn't create any notes during this study block.</Box>
     ) : (
       <Box>
-        Well done! You created {currentNotes.length} hook(s) during this study
-        block.
+        Well done! You created {notes.length} note(s) during this study block.
       </Box>
     );
 
@@ -40,16 +39,9 @@ export function ConsumeContinue() {
     <ConsumeWorkflowStep
       buttons={
         <CardButtonGrid>
-          <Tooltip
-            label="This will take you to the study timer"
-            hasArrow
-            shouldWrapChildren
-            placement="top"
-          >
-            <CardButton color="green" onClick={onNextStudyBlock}>
-              Next Block
-            </CardButton>
-          </Tooltip>
+          <CardButton color="green" onClick={onNextStudyBlock}>
+            Next Block
+          </CardButton>
           <CardButton onClick={onDoneStudying}>Done Studying</CardButton>
         </CardButtonGrid>
       }

@@ -13,7 +13,7 @@ export interface IHookState {
 
 export interface IHookActions {
   toggleCompletedId: (id: string) => void;
-  resetCompletedIds: () => void;
+  resetHookState: () => void;
 }
 
 export interface IHookStore extends IHookState, IHookActions {}

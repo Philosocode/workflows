@@ -18,5 +18,12 @@ export const useHookStore = create<IHookStore>((set) => ({
       }
       return { completedIds: updatedIds };
     }),
-  resetCompletedIds: () => set(() => ({}), true),
+  resetHookState: () =>
+    set(
+      (state) => ({
+        ...state,
+        completedIds: new Set<string>(),
+      }),
+      true,
+    ),
 }));

@@ -32,11 +32,11 @@ export function GetUnstuck() {
           your problem!
           <UnorderedList>
             <ListItem>
-              Try doing the prompt in the box below. See if it helps.
+              Try following the prompt in the box below. See if it helps.
             </ListItem>
             <ListItem>If you're still stuck, choose "Duck Debug".</ListItem>
             <ListItem>
-              If you're really, really, REALLY stuck, choose "Problem Solve".
+              If you're working on a difficult problem, choose "Problem Solve".
             </ListItem>
           </UnorderedList>
         </Box>
