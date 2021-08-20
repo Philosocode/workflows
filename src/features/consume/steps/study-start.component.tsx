@@ -8,7 +8,7 @@ export function StudyStart() {
   const materialType = useAppSelector(selectMaterialType);
   const word = materialType === "reading" ? "Read" : "Watch";
   const readingMessage =
-    "Read for a few minutes minutes (e.g. 1-2 paragraphs or 1 page).";
+    "Read for a few minutes (e.g. 1-2 paragraphs or 1 page).";
   const watchMessage = "Watch for a few minutes.";
 
   return (

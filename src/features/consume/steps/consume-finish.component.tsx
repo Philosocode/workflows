@@ -23,7 +23,7 @@ export function ConsumeFinish() {
   const { totalHooksCompleted, resetHookStore } = useHookStore();
   const studyBlockCount = useAppSelector(selectStudyBlockCount);
 
-  const hooksExp = totalHooksCompleted * EXP_RATES.hook;
+  const hooksExp = Math.round(totalHooksCompleted * EXP_RATES.hook);
   const notesExp = notes.length * EXP_RATES.note;
   const blocksExp = studyBlockCount * EXP_RATES.studyBlocks;
   const totalExp = hooksExp + notesExp + blocksExp;
@@ -61,7 +61,7 @@ export function ConsumeFinish() {
                   : `You created ${totalHooksCompleted} ${pluralizeString(
                       "hook",
                       totalHooksCompleted,
-                    )} (+${totalHooksCompleted} exp)`}
+                    )} (+${hooksExp} exp)`}
               </ListItem>
               <ListItem>
                 {notes.length === 0

@@ -54,8 +54,7 @@ export function ConsumeContinue() {
           <Box>
             {completedIds.size === 0
               ? "You didn't complete any hooks during this study block."
-              : `You completed ${completedIds.size} / ${totalNumHooks} (${percentCompleted}%) hooks during
-                this study block.`}
+              : `You completed ${completedIds.size} / ${totalNumHooks} hooks (${percentCompleted}%) during this study block.`}
           </Box>
           <UnorderedList>
             <ListItem mt={theme.spacing.messageBoxSpacing}>

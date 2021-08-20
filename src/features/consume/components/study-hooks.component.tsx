@@ -10,7 +10,10 @@ import {
   TabPanels,
   Tabs,
   UnorderedList,
+  useMediaQuery,
   VStack,
+  theme as themeChakra,
+  Flex,
 } from "@chakra-ui/react";
 
 import {
@@ -40,6 +43,8 @@ export function StudyHooks(props: IProps) {
 
   const totalHooks = Object.values(allHooks).length;
   const { completedIds } = useHookStore();
+
+  const [isSmall] = useMediaQuery(`(max-width: ${themeChakra.breakpoints.sm})`);
 
   // complete 60% of the hooks to get a full bar
   const fullLimit = Math.round(totalHooks * 0.6);
@@ -113,22 +118,30 @@ export function StudyHooks(props: IProps) {
     >
       {(!props.showPrompt || showChecklists) && (
         <VStack alignItems="start">
-          <CircularProgress
-            alignSelf="center"
-            color={getBarColor()}
-            value={currentPercent}
-            capIsRound
-            thickness={5}
-            size="125px"
+          <Flex
+            position={isSmall ? "sticky" : "relative"}
+            top="0"
+            bg="gray.800"
+            w="full"
+            zIndex={9999}
           >
-            <CircularProgressLabel
-              fontWeight={progressExtra ? "bold" : "normal"}
-              textColor={getTextColor()}
-              transition="color 600ms"
+            <CircularProgress
+              color={getBarColor()}
+              value={currentPercent}
+              capIsRound
+              thickness={5}
+              m="0 auto"
+              size={isSmall ? "80px" : "125px"}
             >
-              {currentPercent}%
-            </CircularProgressLabel>
-          </CircularProgress>
+              <CircularProgressLabel
+                fontWeight={progressExtra ? "bold" : "normal"}
+                textColor={getTextColor()}
+                transition="color 600ms"
+              >
+                {currentPercent}%
+              </CircularProgressLabel>
+            </CircularProgress>
+          </Flex>
           <Tabs colorScheme="green" index={tabIndex} onChange={handleTabChange}>
             <TabList>
               <Tab>Process</Tab>

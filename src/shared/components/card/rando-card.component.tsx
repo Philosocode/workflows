@@ -48,7 +48,7 @@ export function RandoCard(props: IProps) {
       </Text>
       <Text
         textColor={dlTheme.colors.text}
-        fontSize={{ base: "sm", sm: "lg", md: "2xl" }}
+        fontSize={{ base: "md", sm: "lg", md: "2xl" }}
       >
         {value}
       </Text>

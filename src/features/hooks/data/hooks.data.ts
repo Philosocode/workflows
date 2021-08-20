@@ -16,7 +16,7 @@ const connectPrompts = [
 
 const processPrompts = [
   "What are the key things you need to remember?", // process-0
-  "How would you explain this so a 5 year old could understand?", // process-1
+  "How would you explain this so a 5 year old can understand?", // process-1
   "Can you think of (simple) concrete examples?", // process-2
   "Why is this important?",
   "How can you express this in your own words?",

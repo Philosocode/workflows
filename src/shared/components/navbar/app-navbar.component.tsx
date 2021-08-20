@@ -19,7 +19,7 @@ export function AppNavbar(props: IProps) {
       alignItems="center"
     >
       <HStack>{props.leftSlot}</HStack>
-      <HStack justifyContent="center">
+      <HStack>
         <LevelStatus />
       </HStack>
       <HStack justifyContent="flex-end">

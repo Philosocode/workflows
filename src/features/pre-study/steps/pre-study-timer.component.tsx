@@ -16,6 +16,14 @@ export function PreStudyTimer() {
               pomofocus.io.
             </Link>
           </Box>
+          <Box>
+            You can also use the stopwatch by clicking on the clock icon in the
+            top-right corner of the screen.
+          </Box>
+          <Box>
+            The stopwatch will run in the background, even if you close the
+            window.
+          </Box>
           <Box fontSize={theme.typography.fontSize.messageAside}>
             To learn more about the Pomodoro method, check out {}
             <Link
