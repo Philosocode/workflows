@@ -12,7 +12,7 @@ export interface IGameState {
 }
 
 const initialState: IGameState = {
-  level: 1,
+  level: 0,
   exp: 0,
 };
 
