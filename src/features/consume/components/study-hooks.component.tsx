@@ -12,8 +12,6 @@ import {
   UnorderedList,
   VStack,
 } from "@chakra-ui/react";
-import { MarkdownEditor } from "shared/components/editor/markdown-editor.component";
-import { HookChecklist } from "features/hooks/components/hook-checklist.component";
 
 import {
   allHooks,
@@ -28,14 +26,17 @@ import { selectNextStep } from "features/step/step.slice";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "./consume-workflow-step.component";
+import { HookChecklist } from "features/hooks/components/hook-checklist.component";
+import { Button } from "shared/components/button/button.component";
+import { Link } from "react-router-dom";
 
 interface IProps {
+  nextUrl?: string;
   showPrompt?: boolean;
 }
 export function StudyHooks(props: IProps) {
   const [tabIndex, setTabIndex] = useState(0);
   const [showChecklists, toggleShowChecklists] = useToggle();
-  const [editorText, setEditorText] = useState("");
 
   const totalHooks = Object.values(allHooks).length;
   const { completedIds } = useHookStore();
@@ -51,7 +52,7 @@ export function StudyHooks(props: IProps) {
   const currentPercent = Math.round((currentCount / fullLimit) * 100);
 
   const nextStep = useAppSelector(selectNextStep);
-  const nextUrl = `/consume/${nextStep}`;
+  const nextUrl = props.nextUrl ?? `/consume/${nextStep}`;
 
   function handleTabChange(index: number) {
     setTabIndex(index);
@@ -83,9 +84,6 @@ export function StudyHooks(props: IProps) {
           <ListItem>
             Not all prompts may be relevant to your situation.
           </ListItem>
-          <ListItem>
-            If needed, use the textarea below to write out your thoughts.
-          </ListItem>
         </UnorderedList>
       </Box>
     );
@@ -93,20 +91,27 @@ export function StudyHooks(props: IProps) {
   return (
     <ConsumeWorkflowStep
       message={message}
-      showButton={!props.showPrompt || showChecklists}
-      buttonProps={{
-        colorScheme: progressExtra ? "orange" : "green",
-        mt: theme.spacing.workflowStepButtonSpacing,
-      }}
+      buttons={
+        props.showPrompt && !showChecklists ? (
+          <CardButtonGrid
+            buttons={[
+              { text: "Yes", onClick: toggleShowChecklists },
+              { text: "No", to: nextUrl },
+            ]}
+          />
+        ) : (
+          <Link to={nextUrl}>
+            <Button
+              mt={theme.spacing.workflowStepButtonSpacing}
+              colorScheme="green"
+            >
+              Next
+            </Button>
+          </Link>
+        )
+      }
     >
-      {props.showPrompt && !showChecklists ? (
-        <CardButtonGrid
-          buttons={[
-            { text: "Yes", onClick: toggleShowChecklists },
-            { text: "No", to: nextUrl },
-          ]}
-        />
-      ) : (
+      {(!props.showPrompt || showChecklists) && (
         <VStack alignItems="start">
           <CircularProgress
             alignSelf="center"
@@ -124,25 +129,19 @@ export function StudyHooks(props: IProps) {
               {currentPercent}%
             </CircularProgressLabel>
           </CircularProgress>
-          <Tabs
-            colorScheme="green"
-            index={tabIndex}
-            onChange={handleTabChange}
-            mb={theme.spacing.workflowStepButtonSpacing}
-          >
+          <Tabs colorScheme="green" index={tabIndex} onChange={handleTabChange}>
             <TabList>
               <Tab>Process</Tab>
               <Tab>Connect</Tab>
             </TabList>
-            <TabPanels mb={1}>
-              <TabPanel paddingLeft={0}>
+            <TabPanels>
+              <TabPanel paddingLeft={0} pb={0}>
                 <HookChecklist hooks={Object.values(processHooks)} />
               </TabPanel>
-              <TabPanel paddingLeft={0}>
+              <TabPanel paddingLeft={0} pb={0}>
                 <HookChecklist hooks={Object.values(connectHooks)} />
               </TabPanel>
             </TabPanels>
-            <MarkdownEditor value={editorText} setValue={setEditorText} />
           </Tabs>
         </VStack>
       )}

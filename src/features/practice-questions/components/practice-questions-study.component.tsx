@@ -23,8 +23,10 @@ import { Timer } from "shared/components/timer/timer.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { useStep } from "shared/hooks/use-step.hook";
 import { ConfirmModal } from "shared/components/modal/components/confirm-modal.component";
-import { truncate } from "shared/helpers/string.helper";
+import { truncate } from "shared/helpers/string.helpers";
 import { TOAST_OPTIONS } from "shared/data/toast.data";
+import { EXP_RATES } from "features/game/game.constants";
+import { addExp } from "features/game/game.slice";
 
 export function PracticeQuestionsStudy() {
   const dispatch = useAppDispatch();
@@ -75,6 +77,13 @@ export function PracticeQuestionsStudy() {
       }),
     };
 
+    const expGained =
+      practiceMode === "numQuestions"
+        ? Math.round(count * EXP_RATES.practiceQuestion)
+        : goal * EXP_RATES.practiceTime;
+
+    dispatch(addExp(expGained));
+
     // update topic stats
     dispatch(
       updateTopic({
@@ -82,20 +91,6 @@ export function PracticeQuestionsStudy() {
         updates,
       }),
     );
-
-    let message: string;
-    if (topicIds.length >= 2) {
-      const randomId = getRandomTopicId();
-
-      message =
-        practiceMode === "numQuestions"
-          ? `+${count}. Next Topic: ${topics[randomId].title}`
-          : `+${goal} mins. Next Topic: ${topics[randomId].title}`;
-    } else {
-      message = practiceMode === "numQuestions" ? `+${count}` : `+${goal}`;
-    }
-
-    showToast(message);
 
     nextTopicReset();
   }
@@ -105,6 +100,7 @@ export function PracticeQuestionsStudy() {
     setCount(0);
     incrementNumBlocks();
     toggleTimerDone();
+    getRandomTopicId();
 
     scrollToTop();
   }

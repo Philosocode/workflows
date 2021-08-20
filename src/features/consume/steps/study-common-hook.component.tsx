@@ -20,7 +20,6 @@ export function StudyCommonHook(props: IProps) {
   const { toggleCompletedId } = useHookStore();
   const hook = allHooks[props.hookId];
   const nextStep = useAppSelector(selectNextStep);
-  const [text, setText] = useState("");
 
   function handleComplete() {
     toggleCompletedId(props.hookId);
@@ -34,22 +33,13 @@ export function StudyCommonHook(props: IProps) {
   return (
     <ConsumeWorkflowStep
       buttons={
-        <ButtonGroup spacing={5} mt={theme.spacing.workflowStepButtonSpacing}>
-          <Button
-            disabled={text.trim() === ""}
-            colorScheme="green"
-            onClick={handleComplete}
-          >
+        <ButtonGroup spacing={5}>
+          <Button colorScheme="green" onClick={handleComplete}>
             Next
           </Button>
           <Button onClick={handleNext}>Skip</Button>
         </ButtonGroup>
       }
-      editor={{
-        showEditor: true,
-        value: text,
-        setValue: setText,
-      }}
       message={`Question ${props.questionNum}: ${hook.prompt}`}
     />
   );

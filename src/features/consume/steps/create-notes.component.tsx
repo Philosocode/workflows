@@ -9,6 +9,7 @@ import { ConsumeWorkflowStep } from "features/consume/components/consume-workflo
 export function CreateNotes(props: ICreateNoteFormProps) {
   return (
     <ConsumeWorkflowStep
+      keyPressDisabled
       showButton={false}
       message={
         <>

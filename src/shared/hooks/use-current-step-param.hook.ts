@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { isNumeric } from "shared/helpers/number.helper";
+import { isNumeric } from "shared/helpers/number.helpers";
 
 export function useCurrentStepParam(callback: (step: number) => void) {
   const params = useParams<{ currentStep?: string }>();

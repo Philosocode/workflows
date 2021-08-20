@@ -19,11 +19,11 @@ export function ConsumeResetModal(props: IProps) {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const [modalShowing, toggleModal] = useToggle(false);
-  const { resetHookState } = useHookStore();
+  const { resetHookStore } = useHookStore();
 
   function onReset() {
     dispatch(newMaterial());
-    resetHookState();
+    resetHookStore();
     toggleModal();
     history.push(props.redirectUrl);
   }
@@ -51,7 +51,7 @@ export function ConsumeResetModal(props: IProps) {
       <ModalWrapper isOpen={modalShowing} onClose={toggleModal}>
         <ModalContent
           header="Reset Workflow"
-          body="This will reset your progress and restart the workflow. Are you sure you want to continue?"
+          body="This will restart the workflow and take you back to step 1. Are you sure you want to continue?"
           footer={footer}
         />
       </ModalWrapper>

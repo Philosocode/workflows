@@ -35,7 +35,7 @@ export function ConsumeSetup() {
 
   function skipToStudy() {
     dispatch(setMaterialData(getValues()));
-    history.push(`/consume/${CONSUME_PAGE_NUMBERS.STUDY}`);
+    history.push(`/consume/${CONSUME_PAGE_NUMBERS.STUDY_START}`);
   }
 
   return (

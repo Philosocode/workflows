@@ -4,7 +4,7 @@ import { useAppSelector } from "shared/redux/store";
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 import { Box } from "@chakra-ui/react";
 
-export function StudyUnit() {
+export function StudyStart() {
   const materialType = useAppSelector(selectMaterialType);
   const word = materialType === "reading" ? "Read" : "Watch";
   const readingMessage =

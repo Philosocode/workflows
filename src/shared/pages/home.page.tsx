@@ -2,6 +2,7 @@ import { Box, Heading, VStack } from "@chakra-ui/react";
 import { BsQuestionSquareFill } from "react-icons/bs";
 import { FaSeedling } from "react-icons/fa";
 import { IoMdSchool } from "react-icons/io";
+import { BiHelpCircle } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
@@ -9,13 +10,11 @@ import { CardButton } from "shared/components/button/card-button.component";
 import { Message } from "shared/components/message/message.component";
 import { Messages } from "shared/components/message/messages.component";
 import { AppNavbar } from "shared/components/navbar/app-navbar.component";
-import { ToggleThemeButton } from "shared/components/navbar/toggle-theme-button.component";
-import { BiHelpCircle } from "react-icons/bi";
 
 export function HomePage() {
   return (
     <>
-      <AppNavbar rightSlot={<ToggleThemeButton />} />
+      <AppNavbar />
       <HomeMessage />
       <VStack spacing={{ base: 10, md: 12 }} alignItems="start">
         <Box w="full">

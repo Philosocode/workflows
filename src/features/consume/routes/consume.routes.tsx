@@ -9,12 +9,12 @@ import { SlowReminder } from "features/consume/steps/slow-reminder.component";
 import { StudySummarize } from "features/consume/steps/study-summarize.component";
 import { Study } from "features/consume/steps/study.component";
 import { SummaryReminder } from "features/consume/steps/summary-reminder.component";
-import { SummaryScreen } from "features/consume/steps/summary-screen.component";
+import { FlashcardsReminder } from "features/consume/steps/flashcards-reminder.component";
 import { CreateNotes } from "features/consume/steps/create-notes.component";
 import { StudyFooter } from "features/consume/components/study-footer.component";
 import { PreStudyReminder } from "features/consume/steps/pre-study-reminder.component";
 import { ConsumeFinish } from "features/consume/steps/consume-finish.component";
-import { StudyUnit } from "features/consume/steps/study-unit.component";
+import { StudyStart } from "features/consume/steps/study-start.component";
 import { commonHookIds } from "features/hooks/data/hooks.data";
 import { StudyCommonHook } from "features/consume/steps/study-common-hook.component";
 import { StudyHooks } from "features/consume/components/study-hooks.component";
@@ -27,7 +27,7 @@ export const consumeRoutes = [
   { component: SkimReminder },
   { component: SummaryReminder },
   { component: PracticeReminder },
-  { component: StudyUnit },
+  { component: StudyStart },
   { component: StudyQuestions },
   ...commonHookIds.map((hookId, index) => ({
     render: () => (
@@ -44,7 +44,6 @@ export const consumeRoutes = [
   },
   { render: () => <StudyHooks showPrompt /> },
   { component: Study },
-  { component: SummaryScreen },
   { component: ConsumeContinue },
   {
     render: (props: RouteProps) => (
@@ -54,6 +53,7 @@ export const consumeRoutes = [
       />
     ),
   },
+  { component: FlashcardsReminder },
   { component: ConsumeFinish },
 
   // catch-all
@@ -61,7 +61,9 @@ export const consumeRoutes = [
 ];
 
 export const CONSUME_PAGE_NUMBERS = {
-  STUDY: consumeRoutes.findIndex((route) => route.component === StudyUnit) + 1,
+  STUDY_START:
+    consumeRoutes.findIndex((route) => route.component === StudyStart) + 1,
+  STUDY_MENU: consumeRoutes.findIndex((route) => route.component === Study) + 1,
 };
 
 export const studyRoutes = [
@@ -72,7 +74,7 @@ export const studyRoutes = [
       <>
         <CreateNotes
           nextButtonText="Back"
-          nextUrl={`/consume/${CONSUME_PAGE_NUMBERS.STUDY}/menu`}
+          nextUrl={`/consume/${CONSUME_PAGE_NUMBERS.STUDY_MENU}/menu`}
         />
         <StudyFooter />
       </>
@@ -80,7 +82,11 @@ export const studyRoutes = [
   },
   {
     path: "hooks",
-    render: () => <StudyHooks />,
+    render: () => (
+      <StudyHooks
+        nextUrl={`/consume/${CONSUME_PAGE_NUMBERS.STUDY_MENU}/menu`}
+      />
+    ),
   },
 ];
 

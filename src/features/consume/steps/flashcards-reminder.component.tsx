@@ -11,7 +11,7 @@ import { Messages } from "shared/components/message/messages.component";
 import { Redirect } from "react-router-dom";
 import { NoteList } from "features/notes/components/note-list.component";
 
-export function SummaryScreen() {
+export function FlashcardsReminder() {
   const nextStep = useAppSelector(selectNextStep);
   const notes = useAppSelector(selectNotes);
 

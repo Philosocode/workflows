@@ -14,6 +14,7 @@ interface IProps {
   values: any[];
 
   wrapperProps?: StackProps;
+  onIconClick?: () => void;
 }
 export function RandoCard(props: IProps) {
   const [value, getRandomValue] = useRandom(props.values);
@@ -29,7 +30,10 @@ export function RandoCard(props: IProps) {
     >
       <IconButton
         aria-label={props.ariaLabel}
-        onClick={getRandomValue}
+        onClick={() => {
+          getRandomValue();
+          props.onIconClick?.();
+        }}
         icon={<FaRedo />}
         position="absolute"
         right={{ base: 3, md: 5 }}

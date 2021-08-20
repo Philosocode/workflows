@@ -11,17 +11,27 @@ import { ConsumeWorkflowStep } from "features/consume/components/consume-workflo
 import { NoteList } from "features/notes/components/note-list.component";
 import { theme } from "shared/styles/theme";
 import { useHookStore } from "features/hooks/logic/hook.store";
+import { pluralizeString } from "shared/helpers/string.helpers";
+import { EXP_RATES } from "features/game/game.constants";
+import { addExp } from "features/game/game.slice";
+import { FaBook, FaHome } from "react-icons/fa";
 
 export function ConsumeFinish() {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const notes = useAppSelector(selectNotes);
-  const { resetHookState } = useHookStore();
+  const { totalHooksCompleted, resetHookStore } = useHookStore();
   const studyBlockCount = useAppSelector(selectStudyBlockCount);
+
+  const hooksExp = totalHooksCompleted * EXP_RATES.hook;
+  const notesExp = notes.length * EXP_RATES.note;
+  const blocksExp = studyBlockCount * EXP_RATES.studyBlocks;
+  const totalExp = hooksExp + notesExp + blocksExp;
 
   function reset(nextUrl: string) {
     dispatch(newMaterial());
-    resetHookState();
+    dispatch(addExp(totalExp));
+    resetHookStore();
 
     history.push(nextUrl);
   }
@@ -35,8 +45,9 @@ export function ConsumeFinish() {
               {
                 text: "New Material",
                 onClick: () => reset("/consume/1"),
+                icon: FaBook,
               },
-              { text: "Go Home", onClick: () => reset("/") },
+              { text: "Go Home", onClick: () => reset("/"), icon: FaHome },
             ]}
           ></CardButtonGrid>
         }
@@ -45,13 +56,31 @@ export function ConsumeFinish() {
             <Box>Here's a summary of your study session:</Box>
             <UnorderedList>
               <ListItem>
-                {notes.length === 0
-                  ? "You didn't create any notes"
-                  : `You've created ${notes.length} note(s)`}
+                {totalHooksCompleted === 0
+                  ? "You didn't create any hooks"
+                  : `You created ${totalHooksCompleted} ${pluralizeString(
+                      "hook",
+                      totalHooksCompleted,
+                    )} (+${totalHooksCompleted} exp)`}
               </ListItem>
               <ListItem>
-                You've completed {studyBlockCount} study block(s)
+                {notes.length === 0
+                  ? "You didn't create any notes"
+                  : `You created ${notes.length} ${pluralizeString(
+                      "note",
+                      notes.length,
+                    )} (+${notesExp} exp)`}
               </ListItem>
+              <ListItem>
+                {studyBlockCount === 0
+                  ? "You didn't complete any study blocks"
+                  : `You've completed ${studyBlockCount} study
+                ${pluralizeString(
+                  "block",
+                  studyBlockCount,
+                )} (+${blocksExp} exp)`}
+              </ListItem>
+              <ListItem>In total, you've gained {totalExp} exp</ListItem>
             </UnorderedList>
             {notes.length > 0 && (
               <Box mt={theme.spacing.messageBoxSpacing}>

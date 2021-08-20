@@ -7,7 +7,6 @@ import { ConsumeResetModal } from "./consume-reset-modal.component";
 
 import { GoBackModal } from "shared/components/modal/components/go-back-modal.component";
 import { StudyBlockCounter } from "features/consume/components/study-block-counter.component";
-import { ToggleThemeButton } from "shared/components/navbar/toggle-theme-button.component";
 
 export function ConsumeNavbar() {
   const currentStep = useSelector(selectCurrentStep);
@@ -22,7 +21,6 @@ export function ConsumeNavbar() {
       }
       rightSlot={
         <>
-          <ToggleThemeButton />
           <StudyBlockCounter />
         </>
       }

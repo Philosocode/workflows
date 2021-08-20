@@ -7,3 +7,7 @@ export function isNumeric(str: string) {
     !isNaN(parseFloat(str))
   ); // ...and ensure strings of whitespace fail
 }
+
+export function numberToStringWithCommas(num: number) {
+  return num.toLocaleString();
+}

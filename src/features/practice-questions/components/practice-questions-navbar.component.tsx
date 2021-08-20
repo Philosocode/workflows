@@ -7,7 +7,6 @@ import { selectCurrentStep } from "features/step/step.slice";
 import { ResetWorkflowModal } from "shared/components/modal/components/reset-workflow-modal.component";
 import { AppNavbar } from "shared/components/navbar/app-navbar.component";
 import { GoBackModal } from "shared/components/modal/components/go-back-modal.component";
-import { ToggleThemeButton } from "shared/components/navbar/toggle-theme-button.component";
 
 export function PracticeQuestionsNavbar() {
   const dispatch = useAppDispatch();
@@ -27,7 +26,6 @@ export function PracticeQuestionsNavbar() {
           {currentStep > 1 && <ResetWorkflowModal onReset={handleReset} />}
         </>
       }
-      rightSlot={<ToggleThemeButton />}
     />
   );
 }

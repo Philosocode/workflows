@@ -10,6 +10,7 @@ export interface INoteState {
     [key: string]: INote;
   };
   noteIds: string[];
+  notesCreatedDuringBlock: number;
 }
 
 // Actions

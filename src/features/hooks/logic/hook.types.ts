@@ -9,11 +9,13 @@ export type THookHash = Record<string, IHook>;
 
 export interface IHookState {
   completedIds: Set<string>;
+  totalHooksCompleted: number;
 }
 
 export interface IHookActions {
+  updateTotalHooksCompleted: () => void;
   toggleCompletedId: (id: string) => void;
-  resetHookState: () => void;
+  resetHookStore: () => void;
 }
 
 export interface IHookStore extends IHookState, IHookActions {}

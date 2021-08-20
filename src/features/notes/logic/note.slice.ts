@@ -12,6 +12,7 @@ import {
 const initialState: INoteState = {
   notes: {},
   noteIds: [],
+  notesCreatedDuringBlock: 0,
 };
 
 const noteSlice = createSlice({

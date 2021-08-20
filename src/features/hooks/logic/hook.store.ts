@@ -1,12 +1,25 @@
 import create from "zustand";
 
-import { IHookStore } from "./hook.types";
+import { IHookState, IHookStore } from "./hook.types";
+
+const initialState: IHookState = {
+  completedIds: new Set<string>(),
+  totalHooksCompleted: 0,
+};
 
 export const useHookStore = create<IHookStore>((set) => ({
-  // data
-  completedIds: new Set<string>(),
+  ...initialState,
 
   // actions
+  updateTotalHooksCompleted: () => {
+    set((state) => {
+      return {
+        totalHooksCompleted:
+          state.totalHooksCompleted + state.completedIds.size,
+        completedIds: new Set<string>(),
+      };
+    });
+  },
   toggleCompletedId: (id: string) =>
     set((state) => {
       let updatedIds: Set<string> = new Set(state.completedIds);
@@ -18,12 +31,10 @@ export const useHookStore = create<IHookStore>((set) => ({
       }
       return { completedIds: updatedIds };
     }),
-  resetHookState: () =>
-    set(
-      (state) => ({
-        ...state,
-        completedIds: new Set<string>(),
-      }),
-      true,
-    ),
+
+  resetHookStore: () =>
+    set((state) => ({
+      ...state,
+      ...initialState,
+    })),
 }));

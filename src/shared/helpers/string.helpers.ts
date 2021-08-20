@@ -8,3 +8,11 @@ export function truncate(str: string, maxLength: number, suffix?: string) {
 
   return str;
 }
+
+export function pluralizeString(
+  str: string,
+  amount: number,
+  suffix: string = "s",
+) {
+  return amount > 1 ? str + suffix : str;
+}
