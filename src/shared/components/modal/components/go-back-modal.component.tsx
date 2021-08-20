@@ -33,7 +33,9 @@ export function GoBackModal(props: IProps) {
           body={props.text ?? "Are you sure you want to exit this workflow?"}
           footer={
             <ButtonGroup spacing={5}>
+              <Link to={props.redirectUrl}>
                 <Button colorScheme="green">Yes</Button>
+              </Link>
               <Button onClick={toggleModal}>Cancel</Button>
             </ButtonGroup>
           }

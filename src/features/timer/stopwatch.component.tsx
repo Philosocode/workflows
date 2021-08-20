@@ -6,7 +6,6 @@ import { useInterval } from "shared/hooks/use-interval.hook";
 import { useTimerStore } from "./timer.store";
 import { getTimeString } from "./timer.helpers";
 
-
 const displayRefreshMs = 500;
 
 export function Stopwatch() {

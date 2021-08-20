@@ -1,5 +1,6 @@
 import {
   FormControl,
+  FormLabel,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
@@ -8,8 +9,6 @@ import {
   NumberInputProps,
   useColorModeValue,
 } from "@chakra-ui/react";
-
-import { FormLabel } from "./form-label.component";
 
 interface IProps extends NumberInputProps {
   id: string;

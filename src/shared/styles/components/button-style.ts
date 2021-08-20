@@ -1,6 +1,6 @@
 import { theme } from "../theme";
 
-export const ButtonStyle = {
+export const buttonStyle = {
   baseStyle: {
     ...theme.typography.condensed,
     colorScheme: "gray",

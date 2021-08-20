@@ -1,6 +1,4 @@
-import { FormControl, Switch, SwitchProps } from "@chakra-ui/react";
-
-import { FormLabel } from "./form-label.component";
+import { FormControl, FormLabel, Switch, SwitchProps } from "@chakra-ui/react";
 
 interface IProps extends SwitchProps {
   id: string;

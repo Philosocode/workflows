@@ -1,13 +1,16 @@
 import { extendTheme } from "@chakra-ui/react";
-import { ButtonStyle } from "./components/button-style";
 
 import { colors } from "./foundations/colors";
 import { fonts } from "./foundations/fonts";
 import { globalStyles } from "./foundations/global-styles";
 
+import { buttonStyle } from "./components/button-style";
+import { formLabelStyle } from "./components/form-label-style";
+
 export const chakraTheme = extendTheme({
   components: {
-    Button: ButtonStyle,
+    Button: buttonStyle,
+    FormLabel: formLabelStyle,
   },
   colors,
   fonts,

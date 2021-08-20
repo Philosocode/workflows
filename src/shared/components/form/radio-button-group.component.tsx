@@ -1,5 +1,6 @@
 import {
   FormControl,
+  FormLabel,
   RadioGroup,
   Stack,
   Radio,
@@ -8,8 +9,6 @@ import {
   theme,
   useMediaQuery,
 } from "@chakra-ui/react";
-
-import { FormLabel } from "./form-label.component";
 
 interface IRadioValue {
   text: string;
