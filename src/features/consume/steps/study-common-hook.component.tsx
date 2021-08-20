@@ -1,12 +1,11 @@
 import { useHistory } from "react-router-dom";
-import { ButtonGroup } from "@chakra-ui/react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
 
 import { allHooks } from "features/hooks/data/hooks.data";
 import { useAppSelector } from "shared/redux/store";
 import { selectNextStep } from "features/step/step.slice";
 import { useHookStore } from "features/hooks/logic/hook.store";
 
-import { Button } from "shared/components/button/button.component";
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 
 interface IProps {

@@ -1,9 +1,8 @@
-import { Box, useColorMode, VStack } from "@chakra-ui/react";
+import { Box, Button, useColorMode, VStack } from "@chakra-ui/react";
 import { FaCog } from "react-icons/fa";
 
 import { useToggle } from "shared/hooks/use-toggle.hook";
 
-import { Button } from "shared/components/button/button.component";
 import { IconButton } from "shared/components/button/icon-button.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 import { ModalWrapper } from "shared/components/modal/components/modal-wrapper.component";

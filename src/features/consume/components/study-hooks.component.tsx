@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Box,
+  Button,
   CircularProgress,
   CircularProgressLabel,
   ListItem,
@@ -30,7 +31,6 @@ import { selectNextStep } from "features/step/step.slice";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "./consume-workflow-step.component";
 import { HookChecklist } from "features/hooks/components/hook-checklist.component";
-import { Button } from "shared/components/button/button.component";
 import { Link } from "react-router-dom";
 
 interface IProps {

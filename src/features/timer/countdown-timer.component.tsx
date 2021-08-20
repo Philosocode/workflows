@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Box, ButtonGroup, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, useColorModeValue } from "@chakra-ui/react";
 
-import { Button } from "shared/components/button/button.component";
 import { theme } from "shared/styles/theme";
 import { useTimer } from "shared/hooks/use-timer.hook";
 import { useInterval } from "shared/hooks/use-interval.hook";

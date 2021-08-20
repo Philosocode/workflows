@@ -16,7 +16,7 @@ export const theme = {
     condensed: {
       textTransform: "uppercase",
       letterSpacing: "1px",
-      fontWeight: "bold",
+      fontWeight: "semibold",
     },
     countHeading: {
       fontSize: { base: "5xl", md: "7xl" },

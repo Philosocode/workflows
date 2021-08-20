@@ -1,13 +1,11 @@
-import { useState } from "react";
-import { Box, ButtonGroup } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Box, Button, ButtonGroup } from "@chakra-ui/react";
 
 import { theme } from "shared/styles/theme";
 import { useInterval } from "shared/hooks/use-interval.hook";
 import { useTimerStore } from "./timer.store";
 import { getTimeString } from "./timer.helpers";
 
-import { Button } from "shared/components/button/button.component";
-import { useEffect } from "react";
 
 const displayRefreshMs = 500;
 

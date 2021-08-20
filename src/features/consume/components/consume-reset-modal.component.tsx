@@ -1,4 +1,4 @@
-import { Box, ButtonGroup } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup } from "@chakra-ui/react";
 import { BiReset } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 
@@ -7,7 +7,6 @@ import { useAppDispatch } from "shared/redux/store";
 import { resetConsume } from "features/consume/redux/consume.slice";
 import { useHookStore } from "features/hooks/logic/hook.store";
 
-import { Button } from "shared/components/button/button.component";
 import { IconButton } from "shared/components/button/icon-button.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 import { ModalWrapper } from "shared/components/modal/components/modal-wrapper.component";
