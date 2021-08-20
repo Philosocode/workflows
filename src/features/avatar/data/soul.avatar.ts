@@ -21,5 +21,4 @@ export const soul: IAvatarConfig = {
   },
   name: "The Professor",
   imageSrc: soulImage,
-  fontFamily: "Open Sans, Helvetica, sans-serif",
 };

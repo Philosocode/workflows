@@ -37,7 +37,7 @@ export function ResetWorkflowModal(props: IProps) {
           onClick={toggleModal}
         />
       </Box>
-      <ModalWrapper isOpen={modalShowing} onClose={toggleModal}>
+      <ModalWrapper isOpen={modalShowing} handleClose={toggleModal}>
         <ModalContent
           header="Reset Workflow"
           body="This will reset your progress and restart the workflow. Are you sure you want to continue?"

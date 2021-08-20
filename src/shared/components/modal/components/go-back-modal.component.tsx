@@ -28,7 +28,7 @@ export function GoBackModal(props: IProps) {
           onClick={toggleModal}
         />
       </Box>
-      <ModalWrapper isOpen={modalShowing} onClose={toggleModal}>
+      <ModalWrapper isOpen={modalShowing} handleClose={toggleModal}>
         <ModalContent
           header={props.header ?? "Exit Workflow"}
           body={props.text ?? "Are you sure you want to exit this workflow?"}

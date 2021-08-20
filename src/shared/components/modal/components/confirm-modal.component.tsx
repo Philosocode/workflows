@@ -20,7 +20,7 @@ export function ConfirmModal(props: IProps) {
 
   return (
     <>
-      <ModalWrapper isOpen={props.modalShowing} onClose={props.toggleModal}>
+      <ModalWrapper isOpen={props.modalShowing} handleClose={props.toggleModal}>
         <ModalContent
           header={props.header}
           body={props.text}

@@ -42,7 +42,7 @@ export function TopicGridItem({ topic, practiceMode, onTopicClick }: IProps) {
   }
 
   const textColor = dlTheme.colors.text;
-  const editColor = useColorModeValue("orange.500", "orange.200");
+  const editColor = useColorModeValue("gold.500", "gold.200");
   const deleteColor = useColorModeValue("red.500", "red.200");
 
   return (

@@ -23,11 +23,11 @@ export function ModalRoot() {
     if (!modalType) return null;
 
     const ModalComponent = MODAL_COMPONENTS[modalType];
-    return <ModalComponent onClose={handleClose} {...modalProps} />;
+    return <ModalComponent handleClose={handleClose} {...modalProps} />;
   }
 
   return (
-    <ModalWrapper isOpen={modalShowing} onClose={handleClose}>
+    <ModalWrapper isOpen={modalShowing} handleClose={handleClose}>
       {getModalComponent()}
     </ModalWrapper>
   );

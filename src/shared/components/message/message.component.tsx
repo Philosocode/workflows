@@ -47,7 +47,7 @@ export function Message(props: IProps) {
         pb={{ base: 5, md: 7 }}
         position="relative"
         fontSize={{ base: "md", sm: "lg", md: "2xl" }}
-        fontFamily={avatar.fontFamily ?? "sans-serif"}
+        fontFamily={avatar.fontFamily ?? "body"}
         textColor={styles.textColor}
       >
         <HStack className="header" position="absolute" top={3} left={3}>
@@ -55,7 +55,7 @@ export function Message(props: IProps) {
           <Text
             sx={theme.typography.condensed}
             fontSize={theme.typography.fontSize.card}
-            fontFamily="sans-serif"
+            fontFamily="body"
             textColor={styles.titleColor}
           >
             {avatar.name}

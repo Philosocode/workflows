@@ -25,7 +25,7 @@ export function SettingsModal() {
           onClick={toggleModal}
         />
       </Box>
-      <ModalWrapper isOpen={modalShowing} onClose={toggleModal}>
+      <ModalWrapper isOpen={modalShowing} handleClose={toggleModal}>
         <ModalContent
           header="Settings"
           body={

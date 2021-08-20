@@ -1,7 +1,16 @@
-import { ChakraTheme, extendTheme } from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
 
-export const chakraTheme: ChakraTheme = extendTheme({
+import { colors } from "./foundations/colors";
+import { fonts } from "./foundations/fonts";
+import { globalStyles } from "./foundations/global-styles";
+
+export const chakraTheme = extendTheme({
+  colors,
+  fonts,
   config: {
     initialColorMode: "dark",
+  },
+  styles: {
+    global: globalStyles,
   },
 });

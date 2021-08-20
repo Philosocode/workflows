@@ -20,8 +20,12 @@ export function StopwatchModal() {
           onClick={toggleModal}
         />
       </Box>
-      <ModalWrapper isOpen={modalShowing} onClose={toggleModal}>
-        <ModalContent header="Settings" body={<Stopwatch />} footer={<div />} />
+      <ModalWrapper isOpen={modalShowing} handleClose={toggleModal}>
+        <ModalContent
+          header="Stopwatch"
+          body={<Stopwatch />}
+          footer={<div />}
+        />
       </ModalWrapper>
     </>
   );

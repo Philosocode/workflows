@@ -28,7 +28,7 @@ export function ResetAllDataModal(props: IModalProps) {
   }
 
   return (
-    <ModalWrapper isOpen={props.isOpen} onClose={props.handleClose}>
+    <ModalWrapper isOpen={props.isOpen} handleClose={props.handleClose}>
       <ModalContent
         header="Reset Data"
         body="This will delete all your data (level, EXP, notes, etc). Are you sure you want to do this?"
