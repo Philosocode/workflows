@@ -15,7 +15,7 @@ export function DeleteNoteModal(props: IProps) {
 
   function handleDelete() {
     dispatch(deleteNote(props.id));
-    props.onClose();
+    props.handleClose();
   }
 
   return (
@@ -27,7 +27,7 @@ export function DeleteNoteModal(props: IProps) {
           <Button colorScheme="red" onClick={handleDelete}>
             Delete
           </Button>
-          <Button colorScheme="gray" onClick={props.onClose}>
+          <Button colorScheme="gray" onClick={props.handleClose}>
             Cancel
           </Button>
         </ButtonGroup>

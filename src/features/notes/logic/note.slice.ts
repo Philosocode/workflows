@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import omit from "lodash/omit";
 
-import { newMaterial } from "features/consume/redux/consume.slice";
+import { resetConsume } from "features/consume/redux/consume.slice";
 import {
   INote,
   INoteState,
@@ -54,7 +54,7 @@ const noteSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(newMaterial, () => {
+    builder.addCase(resetConsume, () => {
       return initialState;
     });
   },

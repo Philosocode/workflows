@@ -55,6 +55,7 @@ const practiceQuestionsSlice = createSlice({
 
       state.topicIds = state.topicIds.filter((id) => id !== action.payload);
     },
+    resetPractice: () => initialState,
   },
 });
 
@@ -66,4 +67,5 @@ export const {
   createTopic,
   deleteTopic,
   updateTopic,
+  resetPractice,
 } = practiceQuestionsSlice.actions;

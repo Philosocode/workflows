@@ -4,13 +4,13 @@ import { useHistory } from "react-router-dom";
 
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { useAppDispatch } from "shared/redux/store";
+import { resetConsume } from "features/consume/redux/consume.slice";
+import { useHookStore } from "features/hooks/logic/hook.store";
 
 import { Button } from "shared/components/button/button.component";
 import { IconButton } from "shared/components/button/icon-button.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 import { ModalWrapper } from "shared/components/modal/components/modal-wrapper.component";
-import { newMaterial } from "features/consume/redux/consume.slice";
-import { useHookStore } from "features/hooks/logic/hook.store";
 
 interface IProps {
   redirectUrl: string;
@@ -22,7 +22,7 @@ export function ConsumeResetModal(props: IProps) {
   const { resetHookStore } = useHookStore();
 
   function onReset() {
-    dispatch(newMaterial());
+    dispatch(resetConsume());
     resetHookStore();
     toggleModal();
     history.push(props.redirectUrl);

@@ -34,7 +34,7 @@ const consumeSlice = createSlice({
     updateSettings: (state, action: PayloadAction<IUpdateSettingsPayload>) => {
       return { ...state, ...action.payload };
     },
-    newMaterial: () => {
+    resetConsume: () => {
       return initialState;
     },
   },
@@ -44,7 +44,7 @@ export const consumeReducer = consumeSlice.reducer;
 export const {
   setMaterialData,
   nextStudyBlock,
-  newMaterial,
+  resetConsume,
   updateTotalStudyTime,
   updateSettings,
 } = consumeSlice.actions;

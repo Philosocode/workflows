@@ -7,7 +7,8 @@ export interface IModalState {
 }
 
 export interface IModalProps {
-  onClose: () => void;
+  handleClose: () => void;
+  isOpen: boolean;
 }
 
 export interface IShowModalPayload {

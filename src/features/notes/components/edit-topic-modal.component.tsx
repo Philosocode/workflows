@@ -26,7 +26,7 @@ export function EditTopicModal(props: IProps) {
       }),
     );
     setText("");
-    props.onClose();
+    props.handleClose();
   }
 
   return (
@@ -51,7 +51,7 @@ export function EditTopicModal(props: IProps) {
           >
             Save
           </Button>
-          <Button onClick={props.onClose}>Cancel</Button>
+          <Button onClick={props.handleClose}>Cancel</Button>
         </ButtonGroup>
       }
     />
