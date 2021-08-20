@@ -1,9 +1,10 @@
 import { createStandaloneToast } from "@chakra-ui/react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { TAppState } from "shared/redux/store";
 import { TOAST_OPTIONS } from "shared/data/toast.data";
 import { EXP_LIST, MAX_LEVEL } from "./game.constants";
+import { TAppState } from "shared/redux/store";
+import { chakraTheme } from "shared/styles/chakra-theme";
 import { pluralizeString } from "shared/helpers/string.helpers";
 
 export interface IGameState {
@@ -37,7 +38,7 @@ const gameSlice = createSlice({
       state.level = currentLevel;
       state.exp = currentExp;
 
-      const toast = createStandaloneToast();
+      const toast = createStandaloneToast({ theme: chakraTheme });
 
       if (initialLevel !== currentLevel) {
         const levelsGained = currentLevel - initialLevel;
