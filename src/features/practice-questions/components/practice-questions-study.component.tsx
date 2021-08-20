@@ -19,7 +19,7 @@ import { TopicGrid } from "./topic-grid.component";
 import { WorkflowStep } from "shared/components/step/workflow-step.component";
 import { PracticeCounter } from "./practice-counter.component";
 import { InputGroup } from "shared/components/form/input-group.component";
-import { Timer } from "shared/components/timer/timer.component";
+import { CountdownTimer } from "features/timer/countdown-timer.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { useStep } from "shared/hooks/use-step.hook";
 import { ConfirmModal } from "shared/components/modal/components/confirm-modal.component";
@@ -185,9 +185,8 @@ export function PracticeQuestionsStudy() {
         )}
 
         {practiceMode === "timer" && goal && (
-          <Timer
+          <CountdownTimer
             duration={goal}
-            shouldPlayAlarm={false}
             startAutomatically={false}
             onNext={toggleTimerDone}
             refreshDep={numBlocks}

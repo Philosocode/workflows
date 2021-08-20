@@ -5,22 +5,20 @@ import { Button } from "shared/components/button/button.component";
 import { theme } from "shared/styles/theme";
 import { useTimer } from "shared/hooks/use-timer.hook";
 import { useInterval } from "shared/hooks/use-interval.hook";
-import { msToSeconds } from "shared/helpers/time.heleprs";
+import { msToSeconds } from "shared/helpers/time.helpers";
 
-const audio = new Audio("/alarm-beep.mp3");
 const displayRefreshMs = 500;
 
 interface IProps {
   duration: number;
 
-  shouldPlayAlarm?: boolean;
   startAutomatically?: boolean;
   showNextButton?: boolean;
   showSkipButton?: boolean;
   onNext?: (remainingSeconds: number) => void;
   refreshDep?: any; // when this changes, the timer re-renders
 }
-export function Timer(props: IProps) {
+export function CountdownTimer(props: IProps) {
   const timer = useTimer({
     // the extra 0.01 delays the initial timer tick
     durationInMinutes: props.duration,
@@ -43,10 +41,6 @@ export function Timer(props: IProps) {
   // run when timer is finished
   useEffect(() => {
     if (!timer.isFinished) return;
-
-    if (props.shouldPlayAlarm) {
-      audio.play();
-    }
 
     props.onNext?.(0);
   }, [timer.isFinished, props]);

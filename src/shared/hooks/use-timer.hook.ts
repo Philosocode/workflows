@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import { minutesToMs, msToMMSS } from "shared/helpers/time.heleprs";
+import { minutesToMs, msToMMSS } from "shared/helpers/time.helpers";
 
 interface IProps {
   durationInMinutes: number;

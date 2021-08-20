@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { HStack, SimpleGrid } from "@chakra-ui/react";
 import { LevelStatus } from "features/game/level-status.component";
 import { SettingsModal } from "../modal/components/settings-modal.component";
+import { StopwatchModal } from "features/timer/stopwatch-modal.component";
 
 interface IProps {
   leftSlot?: ReactNode;
@@ -24,6 +25,7 @@ export function AppNavbar(props: IProps) {
       <HStack justifyContent="flex-end">
         {
           <>
+            <StopwatchModal />
             <SettingsModal />
             {props.rightSlot}
           </>
