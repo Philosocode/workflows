@@ -1,13 +1,15 @@
-import { Box, Button, ButtonGroup } from "@chakra-ui/react";
+import { Box, ButtonGroup } from "@chakra-ui/react";
 import { BiReset } from "react-icons/bi";
 
 import { useToggle } from "shared/hooks/use-toggle.hook";
 
+import { Button } from "shared/components/button/button.component";
 import { IconButton } from "shared/components/button/icon-button.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 import { ModalWrapper } from "shared/components/modal/components/modal-wrapper.component";
+import { IModalProps } from "../shared/modal.types";
 
-interface IProps {
+interface IProps extends IModalProps {
   onReset: () => void;
 }
 export function ResetWorkflowModal(props: IProps) {

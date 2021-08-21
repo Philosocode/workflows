@@ -1,4 +1,4 @@
-import { Box, Heading, VStack } from "@chakra-ui/react";
+import { Box, Heading, SlideFade, VStack } from "@chakra-ui/react";
 import { BsQuestionSquareFill } from "react-icons/bs";
 import { FaSeedling } from "react-icons/fa";
 import { IoMdSchool } from "react-icons/io";
@@ -15,38 +15,40 @@ export function HomePage() {
   return (
     <>
       <AppNavbar />
-      <HomeMessage />
-      <VStack spacing={{ base: 10, md: 12 }} alignItems="start">
-        <Box w="full">
-          <Heading size="lg">Study</Heading>
-          <CardButtonGrid
-            mt={5}
-            buttons={[
-              { text: "Pre-Study", to: "/pre-study/1", icon: FaSeedling },
-              { text: "Read / Watch", to: "/consume/1", icon: IoMdSchool },
-              {
-                text: "Practice",
-                to: "/practice-questions/1",
-                icon: BsQuestionSquareFill,
-              },
-            ]}
-          />
-        </Box>
+      <SlideFade in offsetY={30}>
+        <HomeMessage />
+        <VStack spacing={{ base: 10, md: 12 }} alignItems="start">
+          <Box w="full">
+            <Heading size="lg">Study</Heading>
+            <CardButtonGrid
+              mt={5}
+              buttons={[
+                { text: "Pre-Study", to: "/pre-study/1", icon: FaSeedling },
+                { text: "Read / Watch", to: "/consume/1", icon: IoMdSchool },
+                {
+                  text: "Practice",
+                  to: "/practice-questions/1",
+                  icon: BsQuestionSquareFill,
+                },
+              ]}
+            />
+          </Box>
 
-        <Box w="full">
-          <Heading size="lg">Help</Heading>
-          <CardButtonGrid mt={5}>
-            <Link
-              to={{
-                pathname: `get-unstuck/1`,
-                state: { from: "/" },
-              }}
-            >
-              <CardButton icon={BiHelpCircle}>Get Unstuck</CardButton>
-            </Link>
-          </CardButtonGrid>
-        </Box>
-      </VStack>
+          <Box w="full">
+            <Heading size="lg">Help</Heading>
+            <CardButtonGrid mt={5}>
+              <Link
+                to={{
+                  pathname: `get-unstuck/1`,
+                  state: { from: "/" },
+                }}
+              >
+                <CardButton icon={BiHelpCircle}>Get Unstuck</CardButton>
+              </Link>
+            </CardButtonGrid>
+          </Box>
+        </VStack>
+      </SlideFade>
     </>
   );
 }

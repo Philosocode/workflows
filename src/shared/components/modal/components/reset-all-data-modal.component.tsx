@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { ButtonGroup } from "@chakra-ui/react";
 
 import { IModalProps } from "../shared/modal.types";
 import { useAppDispatch } from "shared/redux/store";
@@ -8,6 +8,7 @@ import { resetPractice } from "features/practice-questions/redux/practice-questi
 import { useHookStore } from "features/hooks/logic/hook.store";
 import { useTimerStore } from "features/timer/timer.store";
 
+import { Button } from "shared/components/button/button.component";
 import { ModalContent } from "./modal-content.component";
 import { ModalWrapper } from "./modal-wrapper.component";
 

@@ -58,7 +58,8 @@ export function CardButton({
       }}
       {...rest}
     >
-      {icon && <Icon mr={3} as={icon} />} {children}
+      {icon && <Icon mr={3} boxSize={{ base: 4, md: 5 }} as={icon} />}
+      {children}
     </Button>
   );
 }

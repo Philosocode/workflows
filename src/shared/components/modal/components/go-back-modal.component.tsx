@@ -1,46 +1,32 @@
-import { Box, Button, ButtonGroup } from "@chakra-ui/react";
+import { ButtonGroup } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { IoMdExit } from "react-icons/io";
 
-import { useToggle } from "shared/hooks/use-toggle.hook";
-
-import { IconButton } from "shared/components/button/icon-button.component";
+import { Button } from "shared/components/button/button.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 import { ModalWrapper } from "shared/components/modal/components/modal-wrapper.component";
+import { IModalProps } from "../shared/modal.types";
 
-interface IProps {
+interface IProps extends IModalProps {
   redirectUrl: string;
 
-  icon?: JSX.Element;
   header?: string;
   text?: string;
 }
 export function GoBackModal(props: IProps) {
-  const [modalShowing, toggleModal] = useToggle(false);
-
   return (
-    <>
-      <Box>
-        <IconButton
-          aria-label="Go Back"
-          icon={props.icon ?? <IoMdExit />}
-          onClick={toggleModal}
-        />
-      </Box>
-      <ModalWrapper isOpen={modalShowing} handleClose={toggleModal}>
-        <ModalContent
-          header={props.header ?? "Exit Workflow"}
-          body={props.text ?? "Are you sure you want to exit this workflow?"}
-          footer={
-            <ButtonGroup spacing={5}>
-              <Link to={props.redirectUrl}>
-                <Button colorScheme="green">Yes</Button>
-              </Link>
-              <Button onClick={toggleModal}>Cancel</Button>
-            </ButtonGroup>
-          }
-        />
-      </ModalWrapper>
-    </>
+    <ModalWrapper isOpen={props.isOpen} handleClose={props.handleClose}>
+      <ModalContent
+        header={props.header ?? "Exit Workflow"}
+        body={props.text ?? "Are you sure you want to exit this workflow?"}
+        footer={
+          <ButtonGroup spacing={5}>
+            <Link to={props.redirectUrl}>
+              <Button colorScheme="green">Yes</Button>
+            </Link>
+            <Button onClick={props.handleClose}>Cancel</Button>
+          </ButtonGroup>
+        }
+      />
+    </ModalWrapper>
   );
 }

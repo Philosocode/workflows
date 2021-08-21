@@ -1,29 +1,27 @@
-import { Box, Button, ButtonGroup } from "@chakra-ui/react";
-import { BiReset } from "react-icons/bi";
+import { ButtonGroup } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 
-import { useToggle } from "shared/hooks/use-toggle.hook";
 import { useAppDispatch } from "shared/redux/store";
 import { resetConsume } from "features/consume/redux/consume.slice";
 import { useHookStore } from "features/hooks/logic/hook.store";
 
-import { IconButton } from "shared/components/button/icon-button.component";
+import { Button } from "shared/components/button/button.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 import { ModalWrapper } from "shared/components/modal/components/modal-wrapper.component";
+import { IModalProps } from "shared/components/modal/shared/modal.types";
 
-interface IProps {
+interface IProps extends IModalProps {
   redirectUrl: string;
 }
 export function ConsumeResetModal(props: IProps) {
   const history = useHistory();
   const dispatch = useAppDispatch();
-  const [modalShowing, toggleModal] = useToggle(false);
   const { resetHookStore } = useHookStore();
 
   function onReset() {
     dispatch(resetConsume());
     resetHookStore();
-    toggleModal();
+    props.handleClose();
     history.push(props.redirectUrl);
   }
 
@@ -32,28 +30,17 @@ export function ConsumeResetModal(props: IProps) {
       <Button colorScheme="red" onClick={onReset}>
         Reset
       </Button>
-      <Button colorScheme="gray" onClick={toggleModal}>
-        Cancel
-      </Button>
+      <Button onClick={props.handleClose}>Cancel</Button>
     </ButtonGroup>
   );
 
   return (
-    <>
-      <Box>
-        <IconButton
-          aria-label="Reset Workflow"
-          icon={<BiReset />}
-          onClick={toggleModal}
-        />
-      </Box>
-      <ModalWrapper isOpen={modalShowing} handleClose={toggleModal}>
-        <ModalContent
-          header="Reset Workflow"
-          body="This will restart the workflow and take you back to step 1. Are you sure you want to continue?"
-          footer={footer}
-        />
-      </ModalWrapper>
-    </>
+    <ModalWrapper isOpen={props.isOpen} handleClose={props.handleClose}>
+      <ModalContent
+        header="Reset Workflow"
+        body="This will restart the workflow and take you back to step 1. Are you sure you want to continue?"
+        footer={footer}
+      />
+    </ModalWrapper>
   );
 }

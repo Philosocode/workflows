@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Button, ButtonGroup, ButtonProps } from "@chakra-ui/react";
+import { ButtonGroup, ButtonProps } from "@chakra-ui/react";
 
 import { useKeypress } from "shared/hooks/use-key-press.hook";
 import { theme } from "shared/styles/theme";
@@ -9,6 +9,7 @@ import {
   IMessageProps,
   Message,
 } from "shared/components/message/message.component";
+import { Button } from "shared/components/button/button.component";
 import { Breadcrumbs } from "shared/components/breadcrumbs/breadcrumbs.component";
 import { MarkdownEditor } from "shared/components/editor/markdown-editor.component";
 import { ProgressBar } from "../progress/progress-bar.component";

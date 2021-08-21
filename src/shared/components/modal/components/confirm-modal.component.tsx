@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { ButtonGroup } from "@chakra-ui/react";
 
+import { Button } from "shared/components/button/button.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 import { ModalWrapper } from "shared/components/modal/components/modal-wrapper.component";
 

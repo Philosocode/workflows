@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Box,
-  Button,
   CircularProgress,
   CircularProgressLabel,
   ListItem,
@@ -12,10 +11,9 @@ import {
   TabPanels,
   Tabs,
   UnorderedList,
-  useMediaQuery,
   VStack,
-  theme as themeChakra,
   Flex,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 
 import {
@@ -29,6 +27,7 @@ import { useAppSelector } from "shared/redux/store";
 import { theme } from "shared/styles/theme";
 import { selectNextStep } from "features/step/step.slice";
 
+import { Button } from "shared/components/button/button.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "./consume-workflow-step.component";
 import { HookChecklist } from "features/hooks/components/hook-checklist.component";
@@ -44,7 +43,10 @@ export function StudyHooks(props: IProps) {
   const totalHooks = Object.values(allHooks).length;
   const { completedIds } = useHookStore();
 
-  const [isSmall] = useMediaQuery(`(max-width: ${themeChakra.breakpoints.sm})`);
+  const progressSize = useBreakpointValue({
+    base: "80px",
+    md: "125px",
+  });
 
   // complete 60% of the hooks to get a full bar
   const fullLimit = Math.round(totalHooks * 0.6);
@@ -119,7 +121,7 @@ export function StudyHooks(props: IProps) {
       {(!props.showPrompt || showChecklists) && (
         <VStack alignItems="start">
           <Flex
-            position={isSmall ? "sticky" : "relative"}
+            position={{ base: "sticky", sm: "relative" }}
             top="0"
             bg="gray.800"
             w="full"
@@ -131,7 +133,7 @@ export function StudyHooks(props: IProps) {
               capIsRound
               thickness={5}
               m="0 auto"
-              size={isSmall ? "80px" : "125px"}
+              size={progressSize}
             >
               <CircularProgressLabel
                 fontWeight={progressExtra ? "bold" : "normal"}

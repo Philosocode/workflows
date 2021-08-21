@@ -1,10 +1,11 @@
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { ButtonGroup } from "@chakra-ui/react";
 
 import { IModalProps } from "shared/components/modal/shared/modal.types";
 import { updateTopic } from "features/practice-questions/redux/practice-questions.slice";
 import { useState } from "react";
 import { useAppDispatch } from "shared/redux/store";
 
+import { Button } from "shared/components/button/button.component";
 import { InputGroup } from "shared/components/form/input-group.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 
