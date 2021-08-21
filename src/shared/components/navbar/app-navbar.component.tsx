@@ -45,7 +45,7 @@ export function AppNavbar(props: IProps) {
     if (props.handleReset && currentStep > 1) {
       items.push({
         text: "Reset Workflow",
-        onClick: toggleExitModal,
+        onClick: toggleResetModal,
         icon: <BiReset />,
       });
     }
@@ -79,15 +79,17 @@ export function AppNavbar(props: IProps) {
           {props.exitUrl && (
             <IconButton
               aria-label="Exit Workflow"
+              hoverColor="red"
               icon={<IoMdExit />}
               onClick={toggleExitModal}
             />
           )}
-          {props.handleReset && (
+          {props.handleReset && currentStep !== 1 && (
             <IconButton
               aria-label="Reset Workflow"
+              hoverColor="red"
               icon={<BiReset />}
-              onClick={toggleExitModal}
+              onClick={toggleResetModal}
             />
           )}
         </HStack>
@@ -131,7 +133,7 @@ export function AppNavbar(props: IProps) {
         <ResetWorkflowModal
           isOpen={resetModalOpen}
           handleClose={toggleResetModal}
-          onReset={props.handleReset}
+          handleReset={props.handleReset}
         />
       )}
 

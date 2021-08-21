@@ -1,4 +1,4 @@
-export type TModalType = "delete-note" | "edit-topic";
+export type TModalType = "delete-note" | "delete-topic" | "edit-topic";
 
 export interface IModalState {
   modalShowing: boolean;

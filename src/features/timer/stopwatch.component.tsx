@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, ButtonGroup } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import { theme } from "shared/styles/theme";
 import { useInterval } from "shared/hooks/use-interval.hook";
@@ -7,6 +7,7 @@ import { useTimerStore } from "./timer.store";
 import { getTimeString } from "./timer.helpers";
 
 import { Button } from "shared/components/button/button.component";
+import { Buttons } from "shared/components/button/buttons.component";
 
 const displayRefreshMs = 500;
 
@@ -52,7 +53,7 @@ export function Stopwatch() {
       <Box d="grid" placeItems="center">
         <Box sx={theme.typography.countHeading}>{timeString}</Box>
 
-        <ButtonGroup mt={3} spacing={3}>
+        <Buttons mt={3}>
           <Button
             colorScheme={timer.isRunning ? "gray" : "green"}
             onClick={toggleTimer}
@@ -65,7 +66,7 @@ export function Stopwatch() {
           >
             Reset
           </Button>
-        </ButtonGroup>
+        </Buttons>
       </Box>
     </>
   );

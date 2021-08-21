@@ -50,6 +50,7 @@ const gameSlice = createSlice({
             levelsGained,
           )}. You are now level ${currentLevel}!`,
           duration: null,
+          isClosable: true,
         });
       }
 

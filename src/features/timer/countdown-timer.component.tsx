@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, ButtonGroup, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 
 import { theme } from "shared/styles/theme";
 import { useTimer } from "shared/hooks/use-timer.hook";
@@ -7,6 +7,7 @@ import { useInterval } from "shared/hooks/use-interval.hook";
 import { msToSeconds } from "shared/helpers/time.helpers";
 
 import { Button } from "shared/components/button/button.component";
+import { Buttons } from "shared/components/button/buttons.component";
 
 const displayRefreshMs = 500;
 
@@ -80,7 +81,7 @@ export function CountdownTimer(props: IProps) {
         </Box>
 
         {!timer.isFinished && (
-          <ButtonGroup mt={3} spacing={3}>
+          <Buttons mt={3}>
             <Button
               colorScheme={timer.isRunning ? "gray" : "green"}
               onClick={timer.toggleTimer}
@@ -91,7 +92,7 @@ export function CountdownTimer(props: IProps) {
             {props.showSkipButton && (
               <Button onClick={handleSkip}>Skip Timer</Button>
             )}
-          </ButtonGroup>
+          </Buttons>
         )}
       </Box>
     </>

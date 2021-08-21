@@ -1,5 +1,4 @@
 import { useHistory } from "react-router-dom";
-import { ButtonGroup } from "@chakra-ui/react";
 
 import { allHooks } from "features/hooks/data/hooks.data";
 import { useAppSelector } from "shared/redux/store";
@@ -7,6 +6,7 @@ import { selectNextStep } from "features/step/step.slice";
 import { useHookStore } from "features/hooks/logic/hook.store";
 
 import { Button } from "shared/components/button/button.component";
+import { Buttons } from "shared/components/button/buttons.component";
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 
 interface IProps {
@@ -31,12 +31,12 @@ export function StudyCommonHook(props: IProps) {
   return (
     <ConsumeWorkflowStep
       buttons={
-        <ButtonGroup spacing={5}>
+        <Buttons>
           <Button colorScheme="green" onClick={handleComplete}>
             Next
           </Button>
           <Button onClick={handleNext}>Skip</Button>
-        </ButtonGroup>
+        </Buttons>
       }
       message={`Question ${props.questionNum}: ${hook.prompt}`}
     />

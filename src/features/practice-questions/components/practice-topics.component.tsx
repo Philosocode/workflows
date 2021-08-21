@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { Box, IconButton, Text } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa";
 
 import { useAppDispatch } from "shared/redux/store";
@@ -39,7 +39,7 @@ export function PracticeTopics() {
         Topics
       </Text>
       <form onSubmit={addTopic}>
-        <Box d="flex" maxW="96">
+        <Flex maxW="96" alignItems="flex-end">
           <InputGroup
             id="topicCreate"
             label="Topics"
@@ -49,15 +49,15 @@ export function PracticeTopics() {
             onChange={(event) => setTitle(event.target.value)}
           />
           <IconButton
+            aria-label="Add Topic"
             colorScheme="green"
             disabled={title.trim() === ""}
-            ml={3}
+            ml={1}
             type="submit"
             icon={<FaPlus />}
-            aria-label="Add Topic"
             variant="solid"
           />
-        </Box>
+        </Flex>
       </form>
       <TopicGrid mt={5} />
     </Box>

@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
-import { ButtonGroup } from "@chakra-ui/react";
 
 import { Button } from "shared/components/button/button.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 import { ModalWrapper } from "shared/components/modal/components/modal-wrapper.component";
+import { Buttons } from "shared/components/button/buttons.component";
 
 interface IProps {
   header: ReactNode;
@@ -25,12 +25,12 @@ export function ConfirmModal(props: IProps) {
           header={props.header}
           body={props.text}
           footer={
-            <ButtonGroup spacing={5}>
+            <Buttons>
               <Button colorScheme="green" onClick={handleConfirm}>
                 Yes
               </Button>
               <Button onClick={props.toggleModal}>Cancel</Button>
-            </ButtonGroup>
+            </Buttons>
           }
         />
       </ModalWrapper>

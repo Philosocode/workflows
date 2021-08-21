@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { ButtonGroup, ButtonProps } from "@chakra-ui/react";
+import { ButtonProps } from "@chakra-ui/react";
 
 import { useKeypress } from "shared/hooks/use-key-press.hook";
 import { theme } from "shared/styles/theme";
@@ -10,6 +10,7 @@ import {
   Message,
 } from "shared/components/message/message.component";
 import { Button } from "shared/components/button/button.component";
+import { Buttons } from "../button/buttons.component";
 import { Breadcrumbs } from "shared/components/breadcrumbs/breadcrumbs.component";
 import { MarkdownEditor } from "shared/components/editor/markdown-editor.component";
 import { ProgressBar } from "../progress/progress-bar.component";
@@ -80,8 +81,7 @@ export function WorkflowStep(props: IWorkflowStepProps) {
 
       {props.buttons}
       {!props.buttons && showDefaultButton && props.nextUrl && (
-        <ButtonGroup
-          spacing={5}
+        <Buttons
           mt={
             props.editor?.showEditor
               ? theme.spacing.workflowStepButtonSpacing
@@ -97,7 +97,7 @@ export function WorkflowStep(props: IWorkflowStepProps) {
             />
           </Link>
           {props.extraButtons}
-        </ButtonGroup>
+        </Buttons>
       )}
     </>
   );

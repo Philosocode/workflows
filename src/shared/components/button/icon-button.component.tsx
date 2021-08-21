@@ -5,9 +5,11 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-interface IProps extends IconButtonProps {}
-export function IconButton(props: IProps) {
-  const color = useColorModeValue("green.500", "green.200");
+interface IProps extends IconButtonProps {
+  hoverColor?: string;
+}
+export function IconButton({ hoverColor = "green", ...rest }: IProps) {
+  const color = useColorModeValue(`${hoverColor}.500`, `${hoverColor}.200`);
   const iconSize = useBreakpointValue({ base: "sm", md: "lg" });
 
   return (
@@ -16,7 +18,7 @@ export function IconButton(props: IProps) {
       size={iconSize}
       fontSize={{ base: "xl", md: "2xl" }}
       _hover={{ color }}
-      {...props}
+      {...rest}
     />
   );
 }

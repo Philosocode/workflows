@@ -11,6 +11,7 @@ import { useTimerStore } from "features/timer/timer.store";
 import { Button } from "shared/components/button/button.component";
 import { ModalContent } from "./modal-content.component";
 import { ModalWrapper } from "./modal-wrapper.component";
+import { Buttons } from "shared/components/button/buttons.component";
 
 export function ResetAllDataModal(props: IModalProps) {
   const dispatch = useAppDispatch();
@@ -33,18 +34,12 @@ export function ResetAllDataModal(props: IModalProps) {
         header="Reset Data"
         body="This will delete all your data (level, EXP, notes, etc). Are you sure you want to do this?"
         footer={
-          <ButtonGroup spacing={5}>
-            <Button
-              colorScheme="red"
-              onClick={() => {
-                handleReset();
-                props.handleClose();
-              }}
-            >
-              Yes
+          <Buttons>
+            <Button colorScheme="red" onClick={() => handleReset()}>
+              Reset
             </Button>
             <Button onClick={props.handleClose}>Cancel</Button>
-          </ButtonGroup>
+          </Buttons>
         }
       />
     </ModalWrapper>

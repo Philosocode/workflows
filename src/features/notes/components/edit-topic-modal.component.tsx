@@ -1,11 +1,10 @@
-import { ButtonGroup } from "@chakra-ui/react";
-
 import { IModalProps } from "shared/components/modal/shared/modal.types";
 import { updateTopic } from "features/practice-questions/redux/practice-questions.slice";
 import { useState } from "react";
 import { useAppDispatch } from "shared/redux/store";
 
 import { Button } from "shared/components/button/button.component";
+import { Buttons } from "shared/components/button/buttons.component";
 import { InputGroup } from "shared/components/form/input-group.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 
@@ -44,7 +43,7 @@ export function EditTopicModal(props: IProps) {
         </>
       }
       footer={
-        <ButtonGroup spacing={3}>
+        <Buttons>
           <Button
             colorScheme="green"
             disabled={text.trim() === props.title}
@@ -53,7 +52,7 @@ export function EditTopicModal(props: IProps) {
             Save
           </Button>
           <Button onClick={props.handleClose}>Cancel</Button>
-        </ButtonGroup>
+        </Buttons>
       }
     />
   );

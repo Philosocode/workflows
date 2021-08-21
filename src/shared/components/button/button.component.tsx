@@ -9,6 +9,7 @@ export function Button(props: ButtonProps) {
       colorScheme="gray"
       fontSize={theme.typography.fontSize.button}
       minW="5rem"
+      h={{ base: 9, md: 10 }}
       {...props}
     />
   );
