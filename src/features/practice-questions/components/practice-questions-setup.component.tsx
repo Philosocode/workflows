@@ -24,10 +24,11 @@ export function PracticeQuestionsSetup() {
   const dispatch = useAppDispatch();
   const history = useHistory();
   const { amount, practiceMode } = useAppSelector(selectPracticeQuestionsState);
+  const topicIds = useAppSelector(selectPracticeTopicIds);
+
   const [minAmount, setMinAmount] = useState(amount.min);
   const [maxAmount, setMaxAmount] = useState(amount.max);
 
-  const topicIds = useAppSelector(selectPracticeTopicIds);
   const nextDisabled = maxAmount < minAmount || topicIds.length === 0;
 
   function updatePracticeMode(nextValue: TPracticeMode) {
@@ -73,10 +74,9 @@ export function PracticeQuestionsSetup() {
               different topics within a subject (e.g. Multiplication, Division)
             </ListItem>
             <ListItem>
-              The{" "}
               {practiceMode === "numQuestions"
-                ? "amount of questions "
-                : "amount of time "}
+                ? "The amount of questions "
+                : "The amount of time "}
               will be randomly set to a number between min and max.
             </ListItem>
           </UnorderedList>
@@ -84,7 +84,7 @@ export function PracticeQuestionsSetup() {
       }
       nextUrl="/practice-questions/2"
     >
-      <VStack spacing={7} alignItems="start">
+      <VStack spacing={theme.spacing.formGroupSpacing} alignItems="start">
         <RadioButtonGroup
           id="practiceMode"
           labelText="Practice Mode:"

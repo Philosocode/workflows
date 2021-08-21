@@ -44,7 +44,7 @@ export function ConsumeSetup() {
       showButton={false}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <VStack spacing={7} alignItems="start">
+        <VStack spacing={theme.spacing.formGroupSpacing} alignItems="start">
           <RadioButtonGroup
             id="materialType"
             labelText="Material Type:"

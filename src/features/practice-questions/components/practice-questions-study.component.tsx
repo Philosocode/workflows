@@ -212,7 +212,11 @@ export function PracticeQuestionsStudy() {
             <Heading textAlign="center" fontSize={{ base: "xl", md: "3xl" }}>
               Switch Topics
             </Heading>
-            <TopicGrid mt={5} currentId={currentId} onTopicClick={showModal} />
+            <TopicGrid
+              mt={5}
+              currentId={currentId}
+              handleTopicClick={showModal}
+            />
           </>
         )}
       </WorkflowStep>

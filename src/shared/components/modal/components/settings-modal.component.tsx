@@ -6,16 +6,17 @@ import {
   useColorMode,
   VStack,
 } from "@chakra-ui/react";
+import { QuestionOutlineIcon } from "@chakra-ui/icons";
 
 import { useToggle } from "shared/hooks/use-toggle.hook";
+import { useSettingsStore } from "features/settings/settings.store";
+import { theme } from "shared/styles/theme";
 
 import { Button } from "shared/components/button/button.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 import { ModalWrapper } from "shared/components/modal/components/modal-wrapper.component";
 import { SwitchGroup } from "shared/components/form/switch-group.component";
 import { ResetAllDataModal } from "./reset-all-data-modal.component";
-import { useSettingsStore } from "features/settings/settings.store";
-import { Icon, QuestionOutlineIcon } from "@chakra-ui/icons";
 
 interface IProps {
   isOpen: boolean;
@@ -34,7 +35,7 @@ export function SettingsModal(props: IProps) {
         header="Settings"
         body={
           <>
-            <VStack spacing={{ base: 5, md: 7 }} alignItems="start">
+            <VStack spacing={theme.spacing.formGroupSpacing} alignItems="start">
               <SwitchGroup
                 id="toggle-dark-mode"
                 labelText="Dark Mode"

@@ -9,6 +9,7 @@ export const theme = {
     },
   },
   spacing: {
+    formGroupSpacing: { base: 5, md: 7 },
     messageBoxSpacing: { base: 5, md: 7 },
     workflowStepButtonSpacing: { base: 7, md: 10 },
   },
