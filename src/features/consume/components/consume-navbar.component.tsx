@@ -1,15 +1,19 @@
-import { useAppDispatch } from "shared/redux/store";
-import { useHookStore } from "features/hooks/logic/hook.store";
+import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { useHistory } from "react-router-dom";
+import { FaHashtag } from "react-icons/fa";
+
+import { useHookStore } from "features/hooks/logic/hook.store";
 import { resetConsume } from "../redux/consume.slice";
+import { selectConsumeState } from "../redux/consume.selectors";
 
 import { AppNavbar } from "shared/components/navbar/app-navbar.component";
-import { StudyBlockCounter } from "features/consume/components/study-block-counter.component";
+import { BlockCounter } from "shared/components/block-counter/block-counter.component";
 
 export function ConsumeNavbar() {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const { resetHookStore } = useHookStore();
+  const { studyBlockCount } = useAppSelector(selectConsumeState);
 
   function handleReset() {
     dispatch(resetConsume());
@@ -21,7 +25,7 @@ export function ConsumeNavbar() {
     <AppNavbar
       exitUrl="/"
       handleReset={handleReset}
-      rightSlot={<StudyBlockCounter />}
+      rightSlot={<BlockCounter count={studyBlockCount} icon={FaHashtag} />}
     />
   );
 }

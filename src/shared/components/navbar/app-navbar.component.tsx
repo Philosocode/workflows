@@ -111,9 +111,13 @@ export function AppNavbar(props: IProps) {
           {props.rightSlot}
         </HStack>
 
-        <Flex display={{ base: "flex", sm: "none" }} justifyContent="flex-end">
-          <NavMenu items={getMenuItems()} />
+        <Flex
+          display={{ base: "flex", sm: "none" }}
+          alignItems="center"
+          justifyContent="flex-end"
+        >
           {props.rightSlot}
+          <NavMenu items={getMenuItems()} />
         </Flex>
       </SimpleGrid>
 

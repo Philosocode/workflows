@@ -49,7 +49,7 @@ const gameSlice = createSlice({
             "level",
             levelsGained,
           )}. You are now level ${currentLevel}!`,
-          duration: null,
+          duration: 7000,
           isClosable: true,
         });
       }

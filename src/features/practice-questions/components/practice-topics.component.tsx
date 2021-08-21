@@ -1,10 +1,9 @@
 import { FormEvent, useState } from "react";
-import { Box, Flex, FormLabel, IconButton, Text } from "@chakra-ui/react";
+import { Box, Flex, FormLabel, IconButton } from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa";
 
 import { useAppDispatch } from "shared/redux/store";
 import { createTopic } from "features/practice-questions/redux/practice-questions.slice";
-import { theme } from "shared/styles/theme";
 
 import { InputGroup } from "shared/components/form/input-group.component";
 import { TopicGrid } from "./topic-grid.component";

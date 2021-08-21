@@ -28,9 +28,9 @@ export function NavMenu(props: IProps) {
         aria-label="Nav Menu"
         icon={<FaBars />}
         variant="ghost"
-        size="sm"
+        size="xs"
         fontSize="xl"
-        mr={2}
+        ml={3}
         _hover={{ color: useColorModeValue("green.500", "green.200") }}
       />
       <MenuList minW="0" w="max-content">

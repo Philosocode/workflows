@@ -1,3 +1,4 @@
+import { FaClock, FaHashtag, FaPencilAlt, FaTrash } from "react-icons/fa";
 import {
   Box,
   Fade,
@@ -15,7 +16,6 @@ import {
   TPracticeMode,
 } from "features/practice-questions/shared/practice-questions.types";
 
-import { FaClock, FaHashtag, FaPencilAlt, FaTrash } from "react-icons/fa";
 import { CardWrapper } from "shared/components/card/card-wrapper.component";
 import { IconButton } from "shared/components/button/icon-button.component";
 
