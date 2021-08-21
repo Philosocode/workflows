@@ -3,8 +3,8 @@ import { Box } from "@chakra-ui/react";
 
 import { theme } from "shared/styles/theme";
 import { useInterval } from "shared/hooks/use-interval.hook";
-import { useTimerStore } from "./timer.store";
-import { getTimeString } from "./timer.helpers";
+import { useTimerStore } from "../logic/timer.store";
+import { getTimeString } from "../logic/timer.helpers";
 
 import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";

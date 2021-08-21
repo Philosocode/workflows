@@ -1,17 +1,15 @@
-import { ButtonGroup } from "@chakra-ui/react";
-
 import { IModalProps } from "../shared/modal.types";
 import { useAppDispatch } from "shared/redux/store";
 import { resetConsume } from "features/consume/redux/consume.slice";
 import { resetGame } from "features/game/game.slice";
 import { resetPractice } from "features/practice-questions/redux/practice-questions.slice";
 import { useHookStore } from "features/hooks/logic/hook.store";
-import { useTimerStore } from "features/timer/timer.store";
+import { useTimerStore } from "features/timer/logic/timer.store";
 
 import { Button } from "shared/components/button/button.component";
+import { Buttons } from "shared/components/button/buttons.component";
 import { ModalContent } from "./modal-content.component";
 import { ModalWrapper } from "./modal-wrapper.component";
-import { Buttons } from "shared/components/button/buttons.component";
 
 export function ResetAllDataModal(props: IModalProps) {
   const dispatch = useAppDispatch();

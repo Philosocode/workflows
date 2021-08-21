@@ -24,19 +24,18 @@ export function SettingsModal(props: IProps) {
         body={
           <>
             <VStack spacing={{ base: 5, md: 7 }} alignItems="start">
-              <Box>
-                <FormLabel>Reset Data</FormLabel>
-                <Button colorScheme="red" onClick={toggleResetModal}>
-                  Reset
-                </Button>
-              </Box>
-
               <SwitchGroup
                 id="toggle-dark-mode"
                 labelText="Dark Mode"
                 isChecked={colorMode === "dark"}
                 onChange={toggleColorMode}
               />
+              <Box>
+                <FormLabel>Reset Data</FormLabel>
+                <Button colorScheme="red" onClick={toggleResetModal}>
+                  Reset
+                </Button>
+              </Box>
             </VStack>
           </>
         }

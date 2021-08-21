@@ -13,8 +13,9 @@ import { IconButton } from "shared/components/button/icon-button.component";
 import { LevelStatus } from "features/game/level-status.component";
 import { SettingsModal } from "../modal/components/settings-modal.component";
 import { ExitWorkflowModal } from "../modal/components/exit-workflow-modal.component";
-import { StopwatchModal } from "features/timer/stopwatch-modal.component";
 import { ResetWorkflowModal } from "../modal/components/reset-workflow-modal.component";
+import { StopwatchTimerIcon } from "features/timer/components/stopwatch-timer-icon.component";
+import { StopwatchModal } from "features/timer/components/stopwatch-modal.component";
 
 interface IProps {
   exitUrl?: string;
@@ -101,11 +102,7 @@ export function AppNavbar(props: IProps) {
           display={{ base: "none", sm: "flex" }}
           justifyContent="flex-end"
         >
-          <IconButton
-            aria-label="Stopwatch"
-            icon={<FaStopwatch />}
-            onClick={toggleStopwatchModal}
-          />
+          <StopwatchTimerIcon showStopwatch={toggleStopwatchModal} />
           <IconButton
             aria-label="Settings"
             icon={<FaCog />}

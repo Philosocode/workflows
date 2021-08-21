@@ -13,3 +13,6 @@ export const useTimerStore = create<ITimerStore>((set) => ({
   ...initialState,
   ...timerActions(set),
 }));
+
+export const selectTimerStarted = (state: ITimerState) =>
+  state.isRunning || state.pauseTime > 0;

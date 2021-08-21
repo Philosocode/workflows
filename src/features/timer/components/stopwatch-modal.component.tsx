@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 import { ModalWrapper } from "shared/components/modal/components/modal-wrapper.component";
 import { Stopwatch } from "./stopwatch.component";
