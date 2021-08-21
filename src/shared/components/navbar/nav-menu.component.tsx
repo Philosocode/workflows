@@ -12,6 +12,7 @@ import { FaBars } from "react-icons/fa";
 export interface INavMenuItem {
   text: string;
   onClick: () => void;
+
   icon?: ReactElement;
   show?: boolean;
 }
@@ -20,8 +21,6 @@ interface IProps {
   items: INavMenuItem[];
 }
 export function NavMenu(props: IProps) {
-  console.log(props.items);
-
   return (
     <Menu placement="bottom-end">
       <MenuButton

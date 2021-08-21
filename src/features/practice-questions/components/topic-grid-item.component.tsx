@@ -38,7 +38,14 @@ export function TopicGridItem({ topic, practiceMode, onTopicClick }: IProps) {
   }
 
   function handleDelete() {
-    dispatch(deleteTopic(topic.id));
+    dispatch(
+      showModal({
+        modalType: "delete-topic",
+        modalProps: {
+          id: topic.id,
+        },
+      }),
+    );
   }
 
   const textColor = dlTheme.colors.text;

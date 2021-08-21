@@ -1,12 +1,17 @@
+import { FC, ReactNode } from "react";
+
+import { TModalType } from "../shared/modal.types";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { hideModal } from "shared/components/modal/redux/modal.slice";
 
-import { ModalWrapper } from "./modal-wrapper.component";
 import { DeleteNoteModal } from "features/notes/components/delete-note-modal.component";
+import { DeleteTopicModal } from "features/practice-questions/components/delete-topic-modal.component";
 import { EditTopicModal } from "features/notes/components/edit-topic-modal.component";
+import { ModalWrapper } from "./modal-wrapper.component";
 
-const MODAL_COMPONENTS: any = {
+const MODAL_COMPONENTS: Record<TModalType, FC<any>> = {
   "delete-note": DeleteNoteModal,
+  "delete-topic": DeleteTopicModal,
   "edit-topic": EditTopicModal,
 };
 

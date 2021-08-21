@@ -26,6 +26,8 @@ export function ResetAllDataModal(props: IModalProps) {
 
     resetHookStore();
     resetTimer();
+
+    props.handleClose();
   }
 
   return (

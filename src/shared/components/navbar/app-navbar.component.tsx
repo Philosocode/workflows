@@ -79,7 +79,6 @@ export function AppNavbar(props: IProps) {
           {props.exitUrl && (
             <IconButton
               aria-label="Exit Workflow"
-              hoverColor="red"
               icon={<IoMdExit />}
               onClick={toggleExitModal}
             />
