@@ -9,6 +9,7 @@ import {
 
 import { IconButton } from "shared/components/button/icon-button.component";
 import { TimerDisplay } from "./timer-display.component";
+import { useSettingsStore } from "features/settings/settings.store";
 
 interface IProps {
   showStopwatch: () => void;
@@ -16,6 +17,9 @@ interface IProps {
 export function StopwatchTimerIcon(props: IProps) {
   const timer = useTimerStore();
   const timerStarted = useTimerStore(selectTimerStarted);
+  const { showStopwatchTimerLabel } = useSettingsStore();
+
+  const labelColor = useColorModeValue("gray.500", "gray.200");
 
   return (
     <Box position="relative">
@@ -24,29 +28,31 @@ export function StopwatchTimerIcon(props: IProps) {
         icon={<FaStopwatch />}
         onClick={props.showStopwatch}
       />
-      <Fade in={timerStarted}>
-        <Text
-          sx={{
-            ...theme.typography.condensed,
-            fontWeight: "bold",
-          }}
-          color={useColorModeValue("gray.500", "gray.200")}
-          fontSize="xs"
-          position="absolute"
-          left="50%"
-          transform="translateX(-50%)"
-          bottom={-3}
-          pointerEvents="none"
-        >
-          <TimerDisplay
-            isRunning={timer.isRunning}
-            pauseTime={timer.pauseTime}
-            stopwatch={{
-              startTime: timer.startTime,
+      {showStopwatchTimerLabel && timerStarted && (
+        <Fade in>
+          <Text
+            sx={{
+              ...theme.typography.condensed,
+              fontWeight: "bold",
             }}
-          />
-        </Text>
-      </Fade>
+            color={labelColor}
+            fontSize="xs"
+            position="absolute"
+            left="50%"
+            transform="translateX(-50%)"
+            bottom={-3}
+            pointerEvents="none"
+          >
+            <TimerDisplay
+              isRunning={timer.isRunning}
+              pauseTime={timer.pauseTime}
+              stopwatch={{
+                startTime: timer.startTime,
+              }}
+            />
+          </Text>
+        </Fade>
+      )}
     </Box>
   );
 }

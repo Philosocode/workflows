@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 
-import { TTimerType } from "../logic/timer.types";
 import { useInterval } from "shared/hooks/use-interval.hook";
 import {
   getCountdownTimeString,
   getStopwatchTimeString,
 } from "features/timer/logic/timer.helpers";
-
-const defaultRefreshDelay = 500;
+import { TIMER_DISPLAY_REFRESH_MS } from "../logic/timer.constants";
 
 interface IProps {
   isRunning: boolean;
   pauseTime: number;
 
-  refreshDelay?: number;
   refreshDep?: any; // trigger refresh of display text
 
   stopwatch?: {
@@ -29,18 +26,16 @@ interface IProps {
 export function TimerDisplay(props: IProps) {
   const [timeString, setTimeString] = useState("");
 
+  // update time string whenever these props change
   useEffect(() => {
     setTimeString(getTimeText());
     // eslint-disable-next-line
   }, [props.stopwatch, props.countdown, props.isRunning, props.refreshDep]);
 
-  // hook to update timer every X ms
-  // happens if timer is running
+  // if timer is running, update timer every X ms
   useInterval(
-    () => {
-      setTimeString(getTimeText());
-    },
-    props.isRunning ? props.refreshDelay ?? defaultRefreshDelay : null,
+    () => setTimeString(getTimeText()),
+    props.isRunning ? TIMER_DISPLAY_REFRESH_MS : null,
   );
 
   function getTimeText() {
@@ -52,7 +47,9 @@ export function TimerDisplay(props: IProps) {
         initialDuration: props.countdown.initialDuration,
         timerFinished: props.countdown.timerFinished,
       });
-    } else if (props.stopwatch) {
+    }
+
+    if (props.stopwatch) {
       return getStopwatchTimeString({
         isRunning: props.isRunning,
         pauseTime: props.pauseTime,
@@ -60,6 +57,7 @@ export function TimerDisplay(props: IProps) {
       });
     }
 
+    // will never reach here
     return "0:00";
   }
 

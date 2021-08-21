@@ -6,7 +6,7 @@ interface IProps {
   refreshDep?: any;
   startAutomatically?: boolean;
 }
-export function useTimer(props: IProps) {
+export function useCountdownTimer(props: IProps) {
   const [endTime, setEndTime] = useState(0);
   const [pauseTime, setPauseTime] = useState(0);
   const [hasStarted, setHasStarted] = useState(
@@ -17,7 +17,7 @@ export function useTimer(props: IProps) {
 
   const timerTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // reset end time when props change
+  // reset state when props change
   useEffect(() => {
     resetTimer();
 

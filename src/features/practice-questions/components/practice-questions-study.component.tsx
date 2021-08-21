@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Box, Divider, Heading, useToast } from "@chakra-ui/react";
+import { Box, Divider, Heading } from "@chakra-ui/react";
 import random from "lodash/random";
 
 import { useRandom } from "shared/hooks/use-random.hook";

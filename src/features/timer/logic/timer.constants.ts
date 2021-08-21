@@ -1,0 +1,1 @@
+export const TIMER_DISPLAY_REFRESH_MS = 500;

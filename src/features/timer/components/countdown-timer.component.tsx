@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Box, useColorModeValue } from "@chakra-ui/react";
 
 import { theme } from "shared/styles/theme";
-import { useTimer } from "shared/hooks/use-timer.hook";
+import { useCountdownTimer } from "shared/hooks/use-countdown-timer.hook";
 import { msToSeconds } from "shared/helpers/time.helpers";
 import { getTimeRemaining } from "../logic/timer.helpers";
 
@@ -20,7 +20,7 @@ interface IProps {
   refreshDep?: any; // when this changes, the timer re-renders
 }
 export function CountdownTimer(props: IProps) {
-  const timer = useTimer({
+  const timer = useCountdownTimer({
     durationInMs: props.durationInMs,
     startAutomatically: props.startAutomatically ?? true,
     refreshDep: props.refreshDep,
