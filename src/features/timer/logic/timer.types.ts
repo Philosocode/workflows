@@ -1,4 +1,5 @@
 export type TTimerStatus = "running" | "paused" | "stopped";
+export type TTimerType = "countdown" | "stopwatch";
 
 export interface ITimerState {
   isRunning: boolean;

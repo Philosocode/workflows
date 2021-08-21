@@ -6,7 +6,7 @@ export function msToMMSS(ms: number) {
 }
 
 export function minutesToMs(minutes: number) {
-  return minutes * 60000;
+  return Number(minutes) * 60000;
 }
 
 export function msToSeconds(ms: number) {

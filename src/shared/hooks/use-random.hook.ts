@@ -7,6 +7,8 @@ export function useRandom<T>(
   const [currentValue, setCurrentValue] = useState(initialValue ?? values[0]);
 
   function getRandomValue() {
+    if (values.length === 1) return values[0];
+
     let newValue = values[Math.floor(Math.random() * values.length)];
 
     while (newValue === currentValue)

@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
 import { TModalType } from "../shared/modal.types";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";

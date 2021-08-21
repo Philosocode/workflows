@@ -1,33 +1,14 @@
-import { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/react";
 
 import { theme } from "shared/styles/theme";
-import { useInterval } from "shared/hooks/use-interval.hook";
 import { useTimerStore } from "../logic/timer.store";
-import { getTimeString } from "../logic/timer.helpers";
 
 import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
-
-const displayRefreshMs = 500;
+import { TimerDisplay } from "./timer-display.component";
 
 export function Stopwatch() {
   const timer = useTimerStore();
-  const [timeString, setTimeString] = useState("");
-
-  useEffect(() => {
-    setTimeString(getTimeText());
-    // eslint-disable-next-line
-  }, [timer.startTime, timer.pauseTime, timer.isRunning]);
-
-  // hook to update timer display
-  useInterval(
-    () => {
-      setTimeString(getTimeText());
-    },
-    // if running, update display every X ms
-    timer.isRunning ? displayRefreshMs : null,
-  );
 
   function toggleTimer() {
     // initial state
@@ -40,18 +21,18 @@ export function Stopwatch() {
     }
   }
 
-  function getTimeText() {
-    return getTimeString({
-      isRunning: timer.isRunning,
-      pauseTime: timer.pauseTime,
-      startTime: timer.startTime,
-    });
-  }
-
   return (
     <>
       <Box d="grid" placeItems="center">
-        <Box sx={theme.typography.countHeading}>{timeString}</Box>
+        <Box sx={theme.typography.countHeading}>
+          <TimerDisplay
+            isRunning={timer.isRunning}
+            pauseTime={timer.pauseTime}
+            stopwatch={{
+              startTime: timer.startTime,
+            }}
+          />
+        </Box>
 
         <Buttons mt={3}>
           <Button

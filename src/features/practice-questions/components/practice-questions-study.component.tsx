@@ -14,19 +14,17 @@ import { useTheme } from "shared/hooks/use-theme.hook";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { theme } from "shared/styles/theme";
 import { updateTopic } from "features/practice-questions/redux/practice-questions.slice";
-
-import { TopicGrid } from "./topic-grid.component";
-import { WorkflowStep } from "shared/components/step/workflow-step.component";
-import { PracticeCounter } from "./practice-counter.component";
-import { InputGroup } from "shared/components/form/input-group.component";
-import { CountdownTimer } from "features/timer/components/countdown-timer.component";
-import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
-import { useStep } from "shared/hooks/use-step.hook";
-import { ConfirmModal } from "shared/components/modal/components/confirm-modal.component";
-import { truncate } from "shared/helpers/string.helpers";
-import { TOAST_OPTIONS } from "shared/data/toast.data";
 import { EXP_RATES } from "features/game/game.constants";
 import { addExp } from "features/game/game.slice";
+import { useStep } from "shared/hooks/use-step.hook";
+
+import { CountdownTimer } from "features/timer/components/countdown-timer.component";
+import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
+import { ConfirmModal } from "shared/components/modal/components/confirm-modal.component";
+import { InputGroup } from "shared/components/form/input-group.component";
+import { PracticeCounter } from "./practice-counter.component";
+import { TopicGrid } from "./topic-grid.component";
+import { WorkflowStep } from "shared/components/step/workflow-step.component";
 
 export function PracticeQuestionsStudy() {
   const dispatch = useAppDispatch();
@@ -37,7 +35,6 @@ export function PracticeQuestionsStudy() {
   const totalCount = useAppSelector(selectTotalPracticeCount);
   const [currentId, getRandomTopicId, setTopicId] = useRandom<string>(topicIds);
   const dlTheme = useTheme();
-  const toast = useToast();
 
   const { step: numBlocks, increment: incrementNumBlocks } = useStep();
   const [count, setCount] = useState(0);
@@ -68,6 +65,7 @@ export function PracticeQuestionsStudy() {
   }
 
   function nextTopic() {
+    // Update total study time / amount
     const updates = {
       ...(practiceMode === "numQuestions" && {
         totalCount: currentTopic.totalCount + count,
@@ -77,6 +75,7 @@ export function PracticeQuestionsStudy() {
       }),
     };
 
+    // update EXP
     const expGained =
       practiceMode === "numQuestions"
         ? Math.round(count * EXP_RATES.practiceQuestion)
@@ -92,15 +91,15 @@ export function PracticeQuestionsStudy() {
       }),
     );
 
+    // switch topics
+    getRandomTopicId();
     nextTopicReset();
   }
 
   function nextTopicReset() {
-    setGoal(getRandomGoal);
-    setCount(0);
     incrementNumBlocks();
-    toggleTimerDone();
-    getRandomTopicId();
+    setCount(0);
+    setGoal(getRandomGoal);
 
     scrollToTop();
   }
@@ -125,21 +124,18 @@ export function PracticeQuestionsStudy() {
   }
 
   function handleSwitch() {
-    showToast("Switched topics");
     setTopicId(switchTopicId);
 
     nextTopicReset();
   }
 
-  function showToast(message: string) {
-    toast({
-      ...TOAST_OPTIONS,
-      title: truncate(message, 55),
-    });
+  function nextButtonDisabled() {
+    if (practiceMode === "numQuestions") {
+      return count < goal;
+    } else {
+      return !timerDone;
+    }
   }
-
-  const nextButtonDisabled =
-    practiceMode === "numQuestions" ? !goal || count < goal : !timerDone;
 
   if (topicIds.length === 0) return <Redirect to="/practice-questions/1" />;
   return (
@@ -186,9 +182,10 @@ export function PracticeQuestionsStudy() {
 
         {practiceMode === "timer" && goal && (
           <CountdownTimer
-            duration={goal}
+            // durationInMs={minutesToMs(goal)}
+            durationInMs={5500}
             startAutomatically={false}
-            onNext={toggleTimerDone}
+            handleNext={toggleTimerDone}
             refreshDep={numBlocks}
           />
         )}
@@ -199,7 +196,7 @@ export function PracticeQuestionsStudy() {
             {
               text: "Next Topic",
               color: "green",
-              disabled: nextButtonDisabled,
+              disabled: nextButtonDisabled(),
               onClick: nextTopic,
             },
             {

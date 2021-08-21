@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
-import { minutesToMs, msToMMSS } from "shared/helpers/time.helpers";
-
 interface IProps {
-  durationInMinutes: number;
+  durationInMs: number;
 
   refreshDep?: any;
   startAutomatically?: boolean;
@@ -24,7 +22,7 @@ export function useTimer(props: IProps) {
     resetTimer();
 
     // eslint-disable-next-line
-  }, [props.durationInMinutes, props.startAutomatically, props.refreshDep]);
+  }, [props.durationInMs, props.startAutomatically, props.refreshDep]);
 
   // whenever the end time is set, create timeout to finish the timer
   useEffect(() => {
@@ -38,16 +36,12 @@ export function useTimer(props: IProps) {
     return () => {
       clearTimerTimeout();
     };
-  }, [endTime, isRunning, props.durationInMinutes]);
+  }, [endTime, isRunning, props.durationInMs]);
 
   function clearTimerTimeout() {
     if (timerTimeout.current) {
       clearTimeout(timerTimeout.current);
     }
-  }
-
-  function getTimeRemaining() {
-    return Math.max(endTime - Date.now(), 0);
   }
 
   function toggleTimer() {
@@ -59,12 +53,8 @@ export function useTimer(props: IProps) {
   }
 
   function startTimer() {
-    // the extra 0.01 delays the start of the initial tick
-    // need to use Number() to prevent props.durationInMinutes from being
-    // treated like a string
-    setEndTime(
-      Date.now() + minutesToMs(Number(props.durationInMinutes) + 0.01),
-    );
+    // setEndTime(Date.now() + props.durationInMs + 500);
+    setEndTime(Date.now() + 5000);
     setHasStarted(true);
     setIsRunning(true);
   }
@@ -94,28 +84,12 @@ export function useTimer(props: IProps) {
     clearTimerTimeout();
   }
 
-  function getTimeText() {
-    // if timer running, show remaining time
-    if (isRunning) {
-      return msToMMSS(getTimeRemaining());
-    }
-
-    // if timer paused, show remaining time
-    if (pauseTime) {
-      return msToMMSS(pauseTime);
-    }
-
-    // timer is stopped and no pause time -> show initial duration
-    return msToMMSS(minutesToMs(props.durationInMinutes));
-  }
-
   return {
+    endTime,
     isRunning,
     pauseTime,
     isFinished,
 
     toggleTimer,
-    getTimeText,
-    getTimeRemaining,
   };
 }

@@ -1,63 +1,45 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Box, useColorModeValue } from "@chakra-ui/react";
 
 import { theme } from "shared/styles/theme";
 import { useTimer } from "shared/hooks/use-timer.hook";
-import { useInterval } from "shared/hooks/use-interval.hook";
 import { msToSeconds } from "shared/helpers/time.helpers";
+import { getTimeRemaining } from "../logic/timer.helpers";
 
 import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
-
-const displayRefreshMs = 500;
+import { TimerDisplay } from "./timer-display.component";
 
 interface IProps {
-  duration: number;
+  durationInMs: number;
 
   startAutomatically?: boolean;
   showNextButton?: boolean;
   showSkipButton?: boolean;
-  onNext?: (remainingSeconds: number) => void;
+  handleNext?: (remainingSeconds: number) => void;
   refreshDep?: any; // when this changes, the timer re-renders
 }
 export function CountdownTimer(props: IProps) {
   const timer = useTimer({
-    // the extra 0.01 delays the initial timer tick
-    durationInMinutes: props.duration,
+    durationInMs: props.durationInMs,
     startAutomatically: props.startAutomatically ?? true,
+    refreshDep: props.refreshDep,
   });
-
-  const [timeString, setTimeString] = useState("");
 
   const styles = {
     borderColor: useColorModeValue("gray.300", "gray.600"),
   };
 
-  useEffect(() => {
-    // update time string whenever props.duration changes
-    setTimeString(timer.getTimeText());
-
-    // eslint-disable-next-line
-  }, [props.duration, timer]);
-
   // run when timer is finished
   useEffect(() => {
     if (!timer.isFinished) return;
 
-    props.onNext?.(0);
-  }, [timer.isFinished, props]);
-
-  // hook to update timer display
-  useInterval(
-    () => {
-      setTimeString(timer.getTimeText());
-    },
-    // if running, update display every X ms
-    timer.isRunning ? displayRefreshMs : null,
-  );
+    props.handleNext?.(0);
+    // eslint-disable-next-line
+  }, [timer.isFinished, props.refreshDep]);
 
   function handleSkip() {
-    props.onNext?.(msToSeconds(timer.getTimeRemaining()));
+    props.handleNext?.(msToSeconds(getTimeRemaining(timer.endTime)));
   }
 
   return (
@@ -77,7 +59,16 @@ export function CountdownTimer(props: IProps) {
           sx={theme.typography.countHeading}
           fontWeight="light"
         >
-          {timeString}
+          <TimerDisplay
+            isRunning={timer.isRunning}
+            pauseTime={timer.pauseTime}
+            refreshDep={props.refreshDep}
+            countdown={{
+              endTime: timer.endTime,
+              initialDuration: props.durationInMs,
+              timerFinished: timer.isFinished,
+            }}
+          />
         </Box>
 
         {!timer.isFinished && (

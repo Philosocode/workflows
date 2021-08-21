@@ -1,6 +1,5 @@
 import { Box, Heading, Icon, useColorModeValue } from "@chakra-ui/react";
 import { showModal } from "shared/components/modal/redux/modal.slice";
-import { deleteTopic } from "features/practice-questions/redux/practice-questions.slice";
 
 import { useTheme } from "shared/hooks/use-theme.hook";
 import { useAppDispatch } from "shared/redux/store";

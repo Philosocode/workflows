@@ -73,7 +73,11 @@ export function PracticeQuestionsSetup() {
               different topics within a subject (e.g. Multiplication, Division)
             </ListItem>
             <ListItem>
-              The amount will be randomly set to a number between min and max.
+              The{" "}
+              {practiceMode === "numQuestions"
+                ? "amount of questions "
+                : "amount of time "}
+              will be randomly set to a number between min and max.
             </ListItem>
           </UnorderedList>
         </>
@@ -97,7 +101,7 @@ export function PracticeQuestionsSetup() {
           labelText={
             practiceMode === "numQuestions"
               ? "Min Amount"
-              : "Min Amount (minutes):"
+              : "Min Time (minutes):"
           }
           min={1}
           max={25}
@@ -110,7 +114,7 @@ export function PracticeQuestionsSetup() {
           labelText={
             practiceMode === "numQuestions"
               ? "Max Amount"
-              : "Max Amount (minutes):"
+              : "Max Time (minutes):"
           }
           min={minAmount}
           max={25}
