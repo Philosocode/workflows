@@ -12,7 +12,7 @@ interface IProps extends IModalProps {
   header?: string;
   text?: string;
 }
-export function GoBackModal(props: IProps) {
+export function ExitWorkflowModal(props: IProps) {
   return (
     <ModalWrapper isOpen={props.isOpen} handleClose={props.handleClose}>
       <ModalContent

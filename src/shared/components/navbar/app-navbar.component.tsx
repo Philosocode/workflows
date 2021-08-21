@@ -1,37 +1,65 @@
 import { ReactNode } from "react";
 import { FaCog, FaStopwatch } from "react-icons/fa";
+import { IoMdExit } from "react-icons/io";
+import { BiReset } from "react-icons/bi";
 import { Flex, HStack, SimpleGrid, useBreakpointValue } from "@chakra-ui/react";
 
-import { INavMenuItem, NavMenu } from "./nav-menu.component";
 import { useToggle } from "shared/hooks/use-toggle.hook";
+import { useAppSelector } from "shared/redux/store";
+import { selectCurrentStep } from "features/step/step.slice";
 
-import { IconButton } from "../button/icon-button.component";
+import { INavMenuItem, NavMenu } from "./nav-menu.component";
+import { IconButton } from "shared/components/button/icon-button.component";
 import { LevelStatus } from "features/game/level-status.component";
 import { SettingsModal } from "../modal/components/settings-modal.component";
+import { ExitWorkflowModal } from "../modal/components/exit-workflow-modal.component";
 import { StopwatchModal } from "features/timer/stopwatch-modal.component";
+import { ResetWorkflowModal } from "../modal/components/reset-workflow-modal.component";
 
 interface IProps {
-  leftSlot?: INavMenuItem[];
+  exitUrl?: string;
+  handleReset?: () => void;
+
   rightSlot?: ReactNode;
 }
 export function AppNavbar(props: IProps) {
-  const [settingsShowing, toggleSettings] = useToggle();
-  const [stopwatchShowing, toggleStopwatch] = useToggle();
+  const [exitModalOpen, toggleExitModal] = useToggle();
+  const [resetModalOpen, toggleResetModal] = useToggle();
+  const [settingsModalOpen, toggleSettingsModal] = useToggle();
+  const [stopwatchModalOpen, toggleStopwatchModal] = useToggle();
+
+  const currentStep = useAppSelector(selectCurrentStep);
   const numColumns = useBreakpointValue({ base: 2, sm: 3 });
 
   function getMenuItems() {
-    let items: INavMenuItem[] = props.leftSlot ?? [];
+    let items: INavMenuItem[] = [];
+
+    if (props.exitUrl) {
+      items.push({
+        text: "Exit Workflow",
+        onClick: toggleExitModal,
+        icon: <IoMdExit />,
+      });
+    }
+
+    if (props.handleReset && currentStep > 1) {
+      items.push({
+        text: "Reset Workflow",
+        onClick: toggleExitModal,
+        icon: <BiReset />,
+      });
+    }
 
     items = items.concat([
       {
         text: "Stopwatch",
         icon: <FaStopwatch />,
-        onClick: toggleStopwatch,
+        onClick: toggleStopwatchModal,
       },
       {
         text: "Settings",
         icon: <FaCog />,
-        onClick: toggleSettings,
+        onClick: toggleSettingsModal,
       },
     ]);
 
@@ -48,14 +76,20 @@ export function AppNavbar(props: IProps) {
         alignItems="center"
       >
         <HStack display={{ base: "none", sm: "flex" }}>
-          {props.leftSlot?.map((item) => (
+          {props.exitUrl && (
             <IconButton
-              key={item.text}
-              aria-label={item.text}
-              icon={item.icon}
-              onClick={item.onClick}
+              aria-label="Exit Workflow"
+              icon={<IoMdExit />}
+              onClick={toggleExitModal}
             />
-          ))}
+          )}
+          {props.handleReset && (
+            <IconButton
+              aria-label="Reset Workflow"
+              icon={<BiReset />}
+              onClick={toggleExitModal}
+            />
+          )}
         </HStack>
 
         <HStack>
@@ -69,12 +103,12 @@ export function AppNavbar(props: IProps) {
           <IconButton
             aria-label="Stopwatch"
             icon={<FaStopwatch />}
-            onClick={toggleStopwatch}
+            onClick={toggleStopwatchModal}
           />
           <IconButton
             aria-label="Settings"
             icon={<FaCog />}
-            onClick={toggleSettings}
+            onClick={toggleSettingsModal}
           />
           {props.rightSlot}
         </HStack>
@@ -85,8 +119,30 @@ export function AppNavbar(props: IProps) {
         </Flex>
       </SimpleGrid>
 
-      <StopwatchModal isOpen={stopwatchShowing} toggleModal={toggleStopwatch} />
-      <SettingsModal isOpen={settingsShowing} toggleModal={toggleSettings} />
+      {props.exitUrl && (
+        <ExitWorkflowModal
+          isOpen={exitModalOpen}
+          handleClose={toggleExitModal}
+          redirectUrl={props.exitUrl}
+        />
+      )}
+
+      {props.handleReset && (
+        <ResetWorkflowModal
+          isOpen={resetModalOpen}
+          handleClose={toggleResetModal}
+          onReset={props.handleReset}
+        />
+      )}
+
+      <StopwatchModal
+        isOpen={stopwatchModalOpen}
+        toggleModal={toggleStopwatchModal}
+      />
+      <SettingsModal
+        isOpen={settingsModalOpen}
+        toggleModal={toggleSettingsModal}
+      />
     </>
   );
 }
