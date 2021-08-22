@@ -17,7 +17,7 @@ export function CardButton({
     shared: {
       d: "flex",
       alignItems: "center",
-      fontSize: { base: "sm", md: "md" },
+      fontSize: { base: "xs", sm: "sm", md: "md" },
       p: { base: 6, md: 10 },
       position: "relative",
       shadow: "sm",
