@@ -20,7 +20,6 @@ import { PracticeCounter } from "./practice-counter.component";
 import { TopicGrid } from "./topic-grid.component";
 import { WorkflowStep } from "shared/components/step/workflow-step.component";
 import { randomFromArray } from "shared/helpers/random.helpers";
-import { useEffect } from "react";
 
 // Types
 interface IState {

@@ -7,7 +7,6 @@ import { resetConsume } from "../redux/consume.slice";
 import { selectConsumeState } from "../redux/consume.selectors";
 
 import { AppNavbar } from "shared/components/navbar/app-navbar.component";
-import { BlockCounter } from "shared/components/block-counter/block-counter.component";
 
 export function ConsumeNavbar() {
   const history = useHistory();
@@ -25,7 +24,10 @@ export function ConsumeNavbar() {
     <AppNavbar
       exitUrl="/"
       handleReset={handleReset}
-      rightSlot={<BlockCounter count={studyBlockCount} icon={FaHashtag} />}
+      blockCounter={{
+        count: studyBlockCount,
+        icon: FaHashtag,
+      }}
     />
   );
 }

@@ -9,7 +9,6 @@ import {
 } from "../redux/practice-questions.selectors";
 
 import { AppNavbar } from "shared/components/navbar/app-navbar.component";
-import { BlockCounter } from "shared/components/block-counter/block-counter.component";
 import { FaClock, FaHashtag } from "react-icons/fa";
 
 export function PracticeQuestionsNavbar() {
@@ -28,12 +27,10 @@ export function PracticeQuestionsNavbar() {
     <AppNavbar
       exitUrl="/"
       handleReset={handleReset}
-      rightSlot={
-        <BlockCounter
-          count={practiceMode === "numQuestions" ? totalCount : totalTime}
-          icon={practiceMode === "numQuestions" ? FaHashtag : FaClock}
-        />
-      }
+      blockCounter={{
+        count: practiceMode === "numQuestions" ? totalCount : totalTime,
+        icon: practiceMode === "numQuestions" ? FaHashtag : FaClock,
+      }}
     />
   );
 }

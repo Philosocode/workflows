@@ -30,7 +30,6 @@ export function NavMenu(props: IProps) {
         variant="ghost"
         size="xs"
         fontSize="xl"
-        ml={3}
         _hover={{ color: useColorModeValue("green.500", "green.200") }}
       />
       <MenuList minW="0" w="max-content">
