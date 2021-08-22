@@ -18,7 +18,6 @@ import { StudyStart } from "features/consume/steps/study-start.component";
 import { commonHookIds } from "features/hooks/data/hooks.data";
 import { StudyCommonHook } from "features/consume/steps/study-common-hook.component";
 import { StudyHooks } from "features/consume/components/study-hooks.component";
-import { StudyQuestions } from "features/consume/steps/study-questions.component";
 
 export const consumeRoutes = [
   { component: ConsumeSetup },
@@ -28,7 +27,6 @@ export const consumeRoutes = [
   { component: SummaryReminder },
   { component: PracticeReminder },
   { component: StudyStart },
-  { component: StudyQuestions },
   ...commonHookIds.map((hookId, index) => ({
     render: () => (
       <StudyCommonHook questionNum={index + 1} key={hookId} hookId={hookId} />

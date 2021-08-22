@@ -79,7 +79,13 @@ export function StudyHooks(props: IProps) {
 
   const message =
     props.showPrompt && !showChecklists ? (
-      "Were there any concepts you struggled with or want to understand better?"
+      <Box>
+        <Box>Were there any concepts or ideas that you:</Box>
+        <UnorderedList>
+          <ListItem>struggled to understand?</ListItem>
+          <ListItem>want to understand better?</ListItem>
+        </UnorderedList>
+      </Box>
     ) : (
       <Box>
         <UnorderedList>
