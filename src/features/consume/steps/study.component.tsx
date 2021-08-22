@@ -1,13 +1,12 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import { studyRoutes } from "features/consume/routes/consume.routes";
-import { useAppSelector } from "shared/redux/store";
-import { selectCurrentStep } from "features/step/step.slice";
+import { useLocationStore } from "features/location/location.store";
 
-import { CurrentStep } from "features/step/current-step.component";
+import { CurrentStep } from "features/location/current-step.component";
 
 export function Study() {
-  const currentStep = useAppSelector(selectCurrentStep);
+  const { currentStep } = useLocationStore();
   const basePath = `/consume/${currentStep}`;
 
   return (

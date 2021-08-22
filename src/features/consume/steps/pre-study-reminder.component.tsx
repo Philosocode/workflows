@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 
-import { useAppSelector } from "shared/redux/store";
-import { selectNextStep } from "features/step/step.slice";
+import { useLocationStore } from "features/location/location.store";
 import { theme } from "shared/styles/theme";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
@@ -10,8 +9,8 @@ import { ConsumeWorkflowStep } from "features/consume/components/consume-workflo
 import { CardButton } from "shared/components/button/card-button.component";
 
 export function PreStudyReminder() {
-  const nextStep = useAppSelector(selectNextStep);
-  const nextUrl = `/consume/${nextStep}`;
+  const { currentStep } = useLocationStore();
+  const nextUrl = `/consume/${currentStep + 1}`;
 
   return (
     <ConsumeWorkflowStep

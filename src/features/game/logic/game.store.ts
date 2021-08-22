@@ -9,8 +9,6 @@ const initialState: IGameState = getLocalStorage(ELocalStorageKeys.Game) ?? {
   level: 0,
 };
 
-console.log(initialState);
-
 export const useGameStore = create<IGameStore>((set) => ({
   ...initialState,
   ...gameActions(set),

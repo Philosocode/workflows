@@ -1,9 +1,8 @@
 import { useHistory } from "react-router-dom";
 
 import { allHooks } from "features/hooks/data/hooks.data";
-import { useAppSelector } from "shared/redux/store";
-import { selectNextStep } from "features/step/step.slice";
 import { useHookStore } from "features/hooks/logic/hook.store";
+import { useLocationStore } from "features/location/location.store";
 
 import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
@@ -17,7 +16,7 @@ export function StudyCommonHook(props: IProps) {
   const history = useHistory();
   const { toggleCompletedId } = useHookStore();
   const hook = allHooks[props.hookId];
-  const nextStep = useAppSelector(selectNextStep);
+  const { currentStep } = useLocationStore();
 
   function handleComplete() {
     toggleCompletedId(props.hookId);
@@ -25,7 +24,7 @@ export function StudyCommonHook(props: IProps) {
   }
 
   function handleNext() {
-    history.push(`/consume/${nextStep}`);
+    history.push(`/consume/${currentStep + 1}`);
   }
 
   return (

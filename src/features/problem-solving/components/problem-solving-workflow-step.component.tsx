@@ -4,12 +4,11 @@ import {
 } from "shared/components/step/workflow-step.component";
 
 import { quackers } from "features/avatar/data/quackers.avatar";
-import { useAppSelector } from "shared/redux/store";
-import { selectCurrentStep } from "features/step/step.slice";
 import { problemSolvingRoutes } from "features/problem-solving/assets/problem-solving.data";
+import { useLocationStore } from "features/location/location.store";
 
 export function ProblemSolvingWorkflowStep(props: IWorkflowStepProps) {
-  const currentStep = useAppSelector(selectCurrentStep);
+  const { currentStep } = useLocationStore();
 
   return (
     <WorkflowStep

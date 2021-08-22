@@ -1,9 +1,8 @@
 import { Box } from "@chakra-ui/react";
 
 import { theme } from "shared/styles/theme";
-import { useAppSelector } from "shared/redux/store";
 import { useToggle } from "shared/hooks/use-toggle.hook";
-import { selectNextStep } from "features/step/step.slice";
+import { useLocationStore } from "features/location/location.store";
 
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 import { Messages } from "shared/components/message/messages.component";
@@ -12,7 +11,7 @@ import { Link } from "shared/components/typography/link.component";
 
 export function PracticeReminder() {
   const [firstTime, toggleFirstTime] = useToggle();
-  const nextStep = useAppSelector(selectNextStep);
+  const { currentStep } = useLocationStore();
 
   return (
     <ConsumeWorkflowStep
@@ -47,7 +46,7 @@ export function PracticeReminder() {
           mt={theme.spacing.workflowStepButtonSpacing}
           buttons={[
             { text: "Yes", onClick: toggleFirstTime },
-            { text: "No", to: `/consume/${nextStep}` },
+            { text: "No", to: `/consume/${currentStep + 1}` },
           ]}
         />
       )}

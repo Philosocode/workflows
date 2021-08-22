@@ -1,14 +1,12 @@
-import { useAppSelector } from "shared/redux/store";
-
 import {
   IWorkflowStepProps,
   WorkflowStep,
 } from "shared/components/step/workflow-step.component";
-import { selectCurrentStep } from "features/step/step.slice";
+import { useLocationStore } from "features/location/location.store";
 import { CONSUME_NUM_ROUTES } from "features/consume/routes/consume.routes";
 
 export function ConsumeWorkflowStep(props: IWorkflowStepProps) {
-  const currentStep = useAppSelector(selectCurrentStep);
+  const { currentStep } = useLocationStore();
 
   return (
     <WorkflowStep

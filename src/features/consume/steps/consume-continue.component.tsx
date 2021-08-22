@@ -3,8 +3,8 @@ import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 
 import { CONSUME_PAGE_NUMBERS } from "../routes/consume.routes";
 import { nextStudyBlock } from "features/consume/redux/consume.slice";
-import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { selectNextStep } from "features/step/step.slice";
+import { useAppDispatch } from "shared/redux/store";
+import { useLocationStore } from "features/location/location.store";
 import { useHookStore } from "features/hooks/logic/hook.store";
 import { allHookPrompts } from "features/hooks/data/hooks.data";
 import { theme } from "shared/styles/theme";
@@ -16,7 +16,7 @@ import { CardButton } from "shared/components/button/card-button.component";
 export function ConsumeContinue() {
   const history = useHistory();
   const dispatch = useAppDispatch();
-  const nextStep = useAppSelector(selectNextStep);
+  const { currentStep } = useLocationStore();
 
   const { updateTotalHooksCompleted, completedIds } = useHookStore();
 
@@ -36,7 +36,7 @@ export function ConsumeContinue() {
 
   function handleDoneStudying() {
     handleButtonClick();
-    history.push(`/consume/${nextStep}`);
+    history.push(`/consume/${currentStep + 1}`);
   }
 
   return (

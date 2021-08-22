@@ -1,13 +1,12 @@
 import { preStudyComponents } from "features/pre-study/routes/pre-study.routes";
+import { useLocationStore } from "features/location/location.store";
 import {
   IWorkflowStepProps,
   WorkflowStep,
 } from "shared/components/step/workflow-step.component";
-import { useAppSelector } from "shared/redux/store";
-import { selectCurrentStep } from "features/step/step.slice";
 
 export function PreStudyWorkflowStep(props: IWorkflowStepProps) {
-  const currentStep = useAppSelector(selectCurrentStep);
+  const { currentStep } = useLocationStore();
 
   return (
     <WorkflowStep

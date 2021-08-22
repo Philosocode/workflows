@@ -23,9 +23,8 @@ import {
 } from "features/hooks/data/hooks.data";
 import { useHookStore } from "features/hooks/logic/hook.store";
 import { useToggle } from "shared/hooks/use-toggle.hook";
-import { useAppSelector } from "shared/redux/store";
+import { useLocationStore } from "features/location/location.store";
 import { theme } from "shared/styles/theme";
-import { selectNextStep } from "features/step/step.slice";
 
 import { Button } from "shared/components/button/button.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
@@ -58,8 +57,8 @@ export function StudyHooks(props: IProps) {
   const progressExtra = currentCount >= extraLimit;
   const currentPercent = Math.round((currentCount / fullLimit) * 100);
 
-  const nextStep = useAppSelector(selectNextStep);
-  const nextUrl = props.nextUrl ?? `/consume/${nextStep}`;
+  const { currentStep } = useLocationStore();
+  const nextUrl = props.nextUrl ?? `/consume/${currentStep + 1}`;
 
   function handleTabChange(index: number) {
     setTabIndex(index);

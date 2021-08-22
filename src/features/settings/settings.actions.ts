@@ -1,9 +1,11 @@
 import { SetState } from "zustand";
 
 import { ELocalStorageKeys, setLocalStorage } from "services/local-storage";
-import { ISettingsStore } from "./settings.types";
+import { ISettingsActions, ISettingsStore } from "./settings.types";
 
-export function settingsActions(set: SetState<ISettingsStore>) {
+export function settingsActions(
+  set: SetState<ISettingsStore>,
+): ISettingsActions {
   return {
     toggleShowStopwatchTimerLabel: () => {
       set((state) => {

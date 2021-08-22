@@ -4,10 +4,9 @@ import { useHistory } from "react-router-dom";
 import { VStack } from "@chakra-ui/react";
 
 import { TMaterialType } from "features/consume/redux/consume.types";
-import { useAppSelector } from "shared/redux/store";
 import { setMaterialData } from "features/consume/redux/consume.slice";
 import { theme } from "shared/styles/theme";
-import { selectNextStep } from "features/step/step.slice";
+import { useLocationStore } from "features/location/location.store";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
@@ -22,7 +21,7 @@ interface IFormProps {
 export function ConsumeSetup() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const nextStep = useAppSelector(selectNextStep);
+  const { currentStep } = useLocationStore();
 
   const { formState, handleSubmit, register, getValues } = useForm<IFormProps>({
     mode: "onChange",
@@ -30,7 +29,7 @@ export function ConsumeSetup() {
 
   function onSubmit(values: IFormProps) {
     dispatch(setMaterialData(values));
-    history.push(`/consume/${nextStep}`);
+    history.push(`/consume/${currentStep + 1}`);
   }
 
   function skipToStudy() {

@@ -2,8 +2,8 @@ import { Box } from "@chakra-ui/react";
 
 import { useAppSelector } from "shared/redux/store";
 import { useToggle } from "shared/hooks/use-toggle.hook";
+import { useLocationStore } from "features/location/location.store";
 import { selectMaterialType } from "features/consume/redux/consume.selectors";
-import { selectNextStep } from "features/step/step.slice";
 
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 import { Messages } from "shared/components/message/messages.component";
@@ -13,7 +13,7 @@ export function SummaryReminder() {
   const materialType = useAppSelector(selectMaterialType);
   const [hasSummary, toggleHasSummary] = useToggle();
   const word = materialType === "reading" ? "Read" : "Watch";
-  const nextStep = useAppSelector(selectNextStep);
+  const { currentStep } = useLocationStore();
 
   return (
     <ConsumeWorkflowStep
@@ -33,7 +33,7 @@ export function SummaryReminder() {
             { text: "Yes", onClick: toggleHasSummary },
             {
               text: "No",
-              to: `/consume/${nextStep}`,
+              to: `/consume/${currentStep + 1}`,
             },
           ]}
         />

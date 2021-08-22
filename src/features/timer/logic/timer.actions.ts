@@ -1,10 +1,10 @@
 import { SetState } from "zustand";
 import produce from "immer";
 
-import { ITimerState, ITimerStore } from "./timer.types";
+import { ITimerActions, ITimerState, ITimerStore } from "./timer.types";
 import { initialState } from "./timer.store";
 
-export function timerActions(set: SetState<ITimerStore>) {
+export function timerActions(set: SetState<ITimerStore>): ITimerActions {
   return {
     startTimer: () => {
       set(

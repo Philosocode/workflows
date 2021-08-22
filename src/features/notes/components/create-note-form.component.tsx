@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { FormControl, VStack } from "@chakra-ui/react";
 
-import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { selectNextStep } from "features/step/step.slice";
+import { useAppDispatch } from "shared/redux/store";
 import { theme } from "shared/styles/theme";
 import { createNote } from "../logic/note.slice";
+import { useLocationStore } from "features/location/location.store";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { CardButton } from "shared/components/button/card-button.component";
@@ -22,8 +22,8 @@ export function CreateNoteForm(props: IProps) {
   const [content, setContent] = useState("");
 
   const dispatch = useAppDispatch();
-  const nextStep = useAppSelector(selectNextStep);
-  const defaultNextUrl = `/consume/${nextStep}`;
+  const { currentStep } = useLocationStore();
+  const defaultNextUrl = `/consume/${currentStep + 1}`;
 
   const buttonDisabled = title.trim() === "" || content.trim() === "";
 

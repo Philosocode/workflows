@@ -3,8 +3,7 @@ import produce from "immer";
 import { IconType } from "react-icons";
 import { SimpleGrid, useBreakpointValue } from "@chakra-ui/react";
 
-import { useAppSelector } from "shared/redux/store";
-import { selectCurrentStep } from "features/step/step.slice";
+import { useLocationStore } from "features/location/location.store";
 
 import { DesktopNav } from "./desktop-nav.component";
 import { MobileNav } from "./mobile-nav.component";
@@ -55,7 +54,7 @@ export interface IAppNavbarProps extends IProps {
 }
 export function AppNavbar(props: IProps) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const currentStep = useAppSelector(selectCurrentStep);
+  const { currentStep } = useLocationStore();
   const numColumns = useBreakpointValue({ base: 2, sm: 3 });
 
   function toggleModal(modalName: TModalName) {

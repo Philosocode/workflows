@@ -2,8 +2,8 @@ import { Box } from "@chakra-ui/react";
 
 import { useAppSelector } from "shared/redux/store";
 import { theme } from "shared/styles/theme";
-import { selectNextStep } from "features/step/step.slice";
 import { selectNotes } from "features/notes/logic/note.selectors";
+import { useLocationStore } from "features/location/location.store";
 
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 import { Link } from "shared/components/typography/link.component";
@@ -12,10 +12,11 @@ import { Redirect } from "react-router-dom";
 import { NoteList } from "features/notes/components/note-list.component";
 
 export function FlashcardsReminder() {
-  const nextStep = useAppSelector(selectNextStep);
+  const { currentStep } = useLocationStore();
   const notes = useAppSelector(selectNotes);
 
-  if (notes.length === 0) return <Redirect to={`/consume/${nextStep}`} />;
+  if (notes.length === 0)
+    return <Redirect to={`/consume/${currentStep + 1}`} />;
 
   return (
     <>

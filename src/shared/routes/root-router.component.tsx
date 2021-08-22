@@ -7,7 +7,7 @@ import { problemSolvingRoutes } from "features/problem-solving/assets/problem-so
 import { practiceQuestionsRoutes } from "features/practice-questions/shared/practice-questions.routes";
 
 import { ConsumeNavbar } from "features/consume/components/consume-navbar.component";
-import { CurrentStep } from "features/step/current-step.component";
+import { CurrentStep } from "features/location/current-step.component";
 import { HomePage } from "shared/pages/home.page";
 import { DuckDebugNavbar } from "features/duck-debug/components/duck-debug-navbar.component";
 import { PreStudyNavbar } from "features/pre-study/components/pre-study-navbar.component";

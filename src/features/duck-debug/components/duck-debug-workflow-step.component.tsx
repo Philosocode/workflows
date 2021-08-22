@@ -5,15 +5,14 @@ import {
   WorkflowStep,
 } from "shared/components/step/workflow-step.component";
 import { quackers } from "features/avatar/data/quackers.avatar";
-import { useAppSelector } from "shared/redux/store";
-import { selectCurrentStep } from "features/step/step.slice";
+import { useLocationStore } from "features/location/location.store";
 import {
   DUCK_DEBUG_NUM_PROG_ROUTES,
   DUCK_DEBUG_NUM_REGULAR_ROUTES,
 } from "features/duck-debug/routes/duck-debug.routes";
 
 export function DuckDebugWorkflowStep(props: IWorkflowStepProps) {
-  const currentStep = useAppSelector(selectCurrentStep);
+  const { currentStep } = useLocationStore();
   const location = useLocation();
   const numSteps = location.pathname.includes("prog")
     ? DUCK_DEBUG_NUM_PROG_ROUTES
