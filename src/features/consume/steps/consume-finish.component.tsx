@@ -2,15 +2,15 @@ import { FaBook, FaHome } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 
-import { EXP_RATES } from "features/game/game.constants";
+import { EXP_RATES } from "features/game/logic/game.constants";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { selectStudyBlockCount } from "features/consume/redux/consume.selectors";
 import { resetConsume } from "features/consume/redux/consume.slice";
-import { addExp } from "features/game/game.slice";
 import { selectNotes } from "features/notes/logic/note.selectors";
 import { theme } from "shared/styles/theme";
 import { useHookStore } from "features/hooks/logic/hook.store";
 import { pluralizeString } from "shared/helpers/string.helpers";
+import { useGameStore } from "features/game/logic/game.store";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
@@ -20,6 +20,7 @@ export function ConsumeFinish() {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const notes = useAppSelector(selectNotes);
+  const { addExp } = useGameStore();
   const { totalHooksCompleted, resetHookStore } = useHookStore();
   const studyBlockCount = useAppSelector(selectStudyBlockCount);
 
@@ -30,7 +31,7 @@ export function ConsumeFinish() {
 
   function reset(nextUrl: string) {
     dispatch(resetConsume());
-    dispatch(addExp(totalExp));
+    addExp(totalExp);
     resetHookStore();
 
     history.push(nextUrl);

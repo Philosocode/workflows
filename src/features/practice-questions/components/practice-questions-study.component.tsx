@@ -6,12 +6,13 @@ import { random } from "lodash";
 
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { selectPracticeQuestionsState } from "features/practice-questions/redux/practice-questions.selectors";
-import { EXP_RATES } from "features/game/game.constants";
+import { EXP_RATES } from "features/game/logic/game.constants";
 import { theme } from "shared/styles/theme";
 import { updateTopic } from "features/practice-questions/redux/practice-questions.slice";
-import { addExp } from "features/game/game.slice";
 import { scrollToTop } from "shared/helpers/window.helpers";
 import { minutesToMs } from "shared/helpers/time.helpers";
+import { randomFromArray } from "shared/helpers/random.helpers";
+import { useGameStore } from "features/game/logic/game.store";
 
 import { CountdownTimer } from "features/timer/components/countdown-timer.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
@@ -19,7 +20,6 @@ import { PracticeQuestionsStudyMessage } from "./practice-questions-study-messag
 import { PracticeCounter } from "./practice-counter.component";
 import { TopicGrid } from "./topic-grid.component";
 import { WorkflowStep } from "shared/components/step/workflow-step.component";
-import { randomFromArray } from "shared/helpers/random.helpers";
 
 // Types
 interface IState {
@@ -86,6 +86,7 @@ export function PracticeQuestionsStudy() {
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const currentTopic = topics[state.currentTopicId];
+  const { addExp } = useGameStore();
 
   // Functions
   function updateCurrentTopicTitle(newTitle: string) {
@@ -147,7 +148,7 @@ export function PracticeQuestionsStudy() {
         ? Math.round(state.count * EXP_RATES.practiceQuestion)
         : state.goal * EXP_RATES.practiceTime;
 
-    appDispatch(addExp(expGained));
+    addExp(expGained);
   }
 
   function nextButtonDisabled() {

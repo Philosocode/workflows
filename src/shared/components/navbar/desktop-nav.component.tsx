@@ -6,7 +6,7 @@ import { IoMdExit } from "react-icons/io";
 import { IAppNavbarProps } from "./app-navbar.component";
 
 import { BlockCounter } from "../block-counter/block-counter.component";
-import { LevelStatus } from "features/game/level-status.component";
+import { LevelStatus } from "features/game/components/level-status.component";
 import { StopwatchTimerIcon } from "features/timer/components/stopwatch-timer-icon.component";
 import { IconButton } from "../button/icon-button.component";
 

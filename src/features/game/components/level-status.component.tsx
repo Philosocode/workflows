@@ -1,13 +1,13 @@
 import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 
-import { EXP_LIST, MAX_LEVEL } from "./game.constants";
-import { useAppSelector } from "shared/redux/store";
+import { EXP_LIST, MAX_LEVEL } from "../logic/game.constants";
 import { theme } from "shared/styles/theme";
+import { useGameStore } from "../logic/game.store";
 
 import { ProgressBar } from "shared/components/progress/progress-bar.component";
 
 export function LevelStatus() {
-  const { level, exp } = useAppSelector((state) => state.game);
+  const { level, exp } = useGameStore();
   const expRequired = EXP_LIST[level];
 
   const currentValue = level === MAX_LEVEL ? 1 : exp;
