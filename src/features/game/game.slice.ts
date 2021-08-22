@@ -1,7 +1,7 @@
 import { createStandaloneToast } from "@chakra-ui/react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { TOAST_OPTIONS } from "shared/data/toast.data";
+import { TOAST_OPTIONS } from "shared/data/toast.config";
 import { EXP_LIST, MAX_LEVEL } from "./game.constants";
 import { TAppState } from "shared/redux/store";
 import { chakraTheme } from "shared/styles/chakra-theme";
