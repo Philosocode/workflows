@@ -11,18 +11,18 @@ import { IconButton } from "shared/components/button/icon-button.component";
 interface IProps {
   count: number;
   goal: number;
-  setCount: React.Dispatch<SetStateAction<number>>;
+  setCount: (nextCount: number) => void;
 }
 export function PracticeCounter(props: IProps) {
   const dlTheme = useTheme();
 
   function decrement() {
     if (props.count === 0) return;
-    props.setCount((prevCount) => prevCount - 1);
+    props.setCount(props.count - 1);
   }
 
   function increment() {
-    props.setCount((prevCount) => prevCount + 1);
+    props.setCount(props.count + 1);
   }
 
   return (

@@ -24,7 +24,7 @@ export function useCountdownTimer(props: IProps) {
     // eslint-disable-next-line
   }, [props.durationInMs, props.startAutomatically, props.refreshDep]);
 
-  // whenever the end time is set, create timeout to finish the timer
+  // whenever the end time is set, set a timeout to finish the timer
   useEffect(() => {
     if (!isRunning) return;
 
@@ -53,8 +53,7 @@ export function useCountdownTimer(props: IProps) {
   }
 
   function startTimer() {
-    // setEndTime(Date.now() + props.durationInMs + 500);
-    setEndTime(Date.now() + 5000);
+    setEndTime(Date.now() + props.durationInMs + 600);
     setHasStarted(true);
     setIsRunning(true);
   }

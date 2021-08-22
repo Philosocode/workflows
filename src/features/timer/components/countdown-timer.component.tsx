@@ -49,9 +49,7 @@ export function CountdownTimer(props: IProps) {
         borderColor={styles.borderColor}
         d="grid"
         placeItems="center"
-        pt={{ base: 5, md: 10 }}
-        pb={{ base: 9, md: 12 }}
-        shadow="md"
+        py={{ base: 5, md: 10 }}
         rounded="md"
       >
         <Box
@@ -72,7 +70,7 @@ export function CountdownTimer(props: IProps) {
         </Box>
 
         {!timer.isFinished && (
-          <Buttons mt={3}>
+          <Buttons>
             <Button
               colorScheme={timer.isRunning ? "gray" : "green"}
               onClick={timer.toggleTimer}

@@ -8,7 +8,7 @@ export const soul: IAvatarConfig = {
     dark: "gray.700",
   },
   borderColor: {
-    light: "gray.300",
+    light: "gray.200",
     dark: "gray.600",
   },
   textColor: {

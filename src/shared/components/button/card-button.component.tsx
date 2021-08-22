@@ -15,10 +15,9 @@ export function CardButton({
 }: CardButtonProps) {
   const styles: { [key: string]: ButtonProps } = {
     shared: {
-      border: "1px solid",
       d: "flex",
       alignItems: "center",
-      fontSize: theme.typography.fontSize.button,
+      fontSize: { base: "sm", md: "md" },
       p: { base: 6, md: 10 },
       position: "relative",
       shadow: "sm",
@@ -26,7 +25,6 @@ export function CardButton({
       w: "full",
     },
     green: {
-      borderColor: useColorModeValue("gray.300", "gray.600"),
       bg: useColorModeValue("green.500", "green.200"),
       textColor: useColorModeValue("gray.50", "gray.800"),
       _hover: {
@@ -34,7 +32,6 @@ export function CardButton({
       },
     },
     gray: {
-      borderColor: useColorModeValue("gray.200", "gray.600"),
       bg: useColorModeValue("gray.100", "gray.700"),
       textColor: useColorModeValue("gray.800", "gray.100"),
       _hover: {

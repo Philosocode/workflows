@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { useReducer } from "react";
+import produce from "immer";
 import { Redirect } from "react-router-dom";
 import { Divider, Heading } from "@chakra-ui/react";
-import random from "lodash/random";
+import { random } from "lodash";
 
-import { useRandom } from "shared/hooks/use-random.hook";
 import { useAppDispatch, useAppSelector } from "shared/redux/store";
 import { selectPracticeQuestionsState } from "features/practice-questions/redux/practice-questions.selectors";
 import { EXP_RATES } from "features/game/game.constants";
-import { useToggle } from "shared/hooks/use-toggle.hook";
-import { useStep } from "shared/hooks/use-step.hook";
 import { theme } from "shared/styles/theme";
 import { updateTopic } from "features/practice-questions/redux/practice-questions.slice";
 import { addExp } from "features/game/game.slice";
@@ -21,30 +19,78 @@ import { PracticeQuestionsStudyMessage } from "./practice-questions-study-messag
 import { PracticeCounter } from "./practice-counter.component";
 import { TopicGrid } from "./topic-grid.component";
 import { WorkflowStep } from "shared/components/step/workflow-step.component";
+import { randomFromArray } from "shared/helpers/random.helpers";
+import { useEffect } from "react";
 
+// Types
+interface IState {
+  currentTopicId: string;
+  count: number;
+  goal: number;
+  blocksCompleted: number;
+  timerDone: boolean;
+}
+
+type TAction =
+  | {
+      type: "Next Topic";
+      payload: {
+        minGoal: number;
+        maxGoal: number;
+        nextTopicId: string;
+      };
+    }
+  | { type: "Set Count"; payload: number }
+  | { type: "Toggle Timer" };
+
+// Reducer
+function reducer(state: IState, action: TAction): IState {
+  return produce(state, (draft) => {
+    switch (action.type) {
+      case "Next Topic":
+        const { maxGoal, minGoal, nextTopicId } = action.payload;
+
+        draft.blocksCompleted++;
+        draft.count = 0;
+        draft.goal = random(minGoal, maxGoal);
+        draft.currentTopicId = nextTopicId;
+        break;
+
+      case "Set Count":
+        draft.count = action.payload;
+        break;
+
+      case "Toggle Timer":
+        draft.timerDone = !state.timerDone;
+        break;
+
+      default:
+        break;
+    }
+  });
+}
+
+// Component
 export function PracticeQuestionsStudy() {
-  const dispatch = useAppDispatch();
-
+  // Data
+  const appDispatch = useAppDispatch();
   const { amount, practiceMode, topics, topicIds } = useAppSelector(
     selectPracticeQuestionsState,
   );
-  const [currentId, getRandomTopicId, setTopicId] = useRandom<string>(topicIds);
+  const initialState = {
+    currentTopicId: randomFromArray<string>({ items: topicIds }),
+    count: 0,
+    goal: random(amount.min, amount.max),
+    blocksCompleted: 0,
+    timerDone: false,
+  };
 
-  const { step: numBlocks, increment: incrementNumBlocks } = useStep();
-  const [count, setCount] = useState(0);
-  const [goal, setGoal] = useState<number>(getRandomGoal());
-  const [timerDone, toggleTimerDone] = useToggle();
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const currentTopic = topics[state.currentTopicId];
 
-  const currentTopic = topics[currentId];
-
-  function getRandomGoal() {
-    if (amount.min === amount.max) return amount.min;
-
-    return random(amount.min, amount.max);
-  }
-
+  // Functions
   function updateCurrentTopicTitle(newTitle: string) {
-    dispatch(
+    appDispatch(
       updateTopic({
         id: currentTopic.id,
         updates: {
@@ -54,28 +100,41 @@ export function PracticeQuestionsStudy() {
     );
   }
 
-  function nextTopic() {
+  function nextTopicReset(nextTopicId: string) {
+    dispatch({
+      type: "Next Topic",
+      payload: {
+        minGoal: amount.min,
+        maxGoal: amount.max,
+        nextTopicId: nextTopicId,
+      },
+    });
+
+    scrollToTop();
+  }
+
+  function finishCurrentTopic() {
     updateCurrentTopicStats();
     updateExp();
 
-    // switch topics
-    getRandomTopicId();
-    nextTopicReset();
+    nextTopicReset(
+      randomFromArray({ items: topicIds, currentItem: state.currentTopicId }),
+    );
   }
 
   function updateCurrentTopicStats() {
     // Update total study time / amount
     const updates = {
       ...(practiceMode === "numQuestions" && {
-        totalCount: currentTopic.totalCount + count,
+        totalCount: currentTopic.totalCount + state.count,
       }),
       ...(practiceMode === "timer" && {
-        totalTime: currentTopic.totalTime + goal,
+        totalTime: currentTopic.totalTime + state.goal,
       }),
     };
 
     // update topic stats
-    dispatch(
+    appDispatch(
       updateTopic({
         id: currentTopic.id,
         updates,
@@ -86,33 +145,21 @@ export function PracticeQuestionsStudy() {
   function updateExp() {
     const expGained =
       practiceMode === "numQuestions"
-        ? Math.round(count * EXP_RATES.practiceQuestion)
-        : goal * EXP_RATES.practiceTime;
+        ? Math.round(state.count * EXP_RATES.practiceQuestion)
+        : state.goal * EXP_RATES.practiceTime;
 
-    dispatch(addExp(expGained));
-  }
-
-  function nextTopicReset() {
-    incrementNumBlocks();
-    setCount(0);
-    setGoal(getRandomGoal);
-
-    scrollToTop();
-  }
-
-  function handleSwitchTopic(nextTopicId: string) {
-    setTopicId(nextTopicId);
-    nextTopicReset();
+    appDispatch(addExp(expGained));
   }
 
   function nextButtonDisabled() {
     if (practiceMode === "numQuestions") {
-      return count < goal;
+      return state.count < state.goal;
     } else {
-      return !timerDone;
+      return !state.timerDone;
     }
   }
 
+  // Render
   if (topicIds.length === 0) return <Redirect to="/practice-questions/1" />;
   return (
     <>
@@ -127,15 +174,21 @@ export function PracticeQuestionsStudy() {
         }
       >
         {practiceMode === "numQuestions" && (
-          <PracticeCounter count={count} setCount={setCount} goal={goal} />
+          <PracticeCounter
+            count={state.count}
+            setCount={(nextCount) =>
+              dispatch({ type: "Set Count", payload: nextCount })
+            }
+            goal={state.goal}
+          />
         )}
 
         {practiceMode === "timer" && (
           <CountdownTimer
-            durationInMs={minutesToMs(goal)}
+            durationInMs={minutesToMs(state.goal)}
             startAutomatically={false}
-            handleNext={toggleTimerDone}
-            refreshDep={numBlocks}
+            handleNext={() => dispatch({ type: "Toggle Timer" })}
+            refreshDep={state.blocksCompleted}
           />
         )}
 
@@ -146,7 +199,7 @@ export function PracticeQuestionsStudy() {
               text: "Next Topic",
               color: "green",
               disabled: nextButtonDisabled(),
-              onClick: nextTopic,
+              onClick: finishCurrentTopic,
             },
             {
               text: "Settings",
@@ -163,8 +216,8 @@ export function PracticeQuestionsStudy() {
             </Heading>
             <TopicGrid
               mt={5}
-              currentId={currentId}
-              handleSwitchTopic={handleSwitchTopic}
+              currentId={state.currentTopicId}
+              handleSwitchTopic={(nextId) => nextTopicReset(nextId)}
             />
           </>
         )}

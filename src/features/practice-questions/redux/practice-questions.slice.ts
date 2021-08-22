@@ -10,10 +10,10 @@ import {
 
 const initialState: IPracticeQuestionsState = {
   amount: {
-    min: 1,
-    max: 1,
+    min: 5,
+    max: 10,
   },
-  practiceMode: "timer",
+  practiceMode: "numQuestions",
   topics: {},
   topicIds: [],
 };
