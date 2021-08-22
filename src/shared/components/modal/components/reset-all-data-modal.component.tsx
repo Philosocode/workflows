@@ -9,20 +9,23 @@ import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
 import { ModalContent } from "./modal-content.component";
 import { ModalWrapper } from "./modal-wrapper.component";
+import { useNoteStore } from "features/notes/logic/note.store";
 
 export function ResetAllDataModal(props: IModalProps) {
-  const { reset: resetConsumeStore } = useConsumeStore();
-  const { reset: resetGameStore } = useGameStore();
-  const { reset: resetHookStore } = useHookStore();
-  const { reset: resetPracticeStore } = usePracticeStore();
-  const { reset: resetTimerStore } = useTimerStore();
+  const { reset: resetConsume } = useConsumeStore();
+  const { reset: resetGame } = useGameStore();
+  const { reset: resetHook } = useHookStore();
+  const { reset: resetNote } = useNoteStore();
+  const { reset: resetPractice } = usePracticeStore();
+  const { reset: resetTimer } = useTimerStore();
 
   function handleReset() {
-    resetConsumeStore();
-    resetGameStore();
-    resetHookStore();
-    resetPracticeStore();
-    resetTimerStore();
+    resetConsume();
+    resetGame();
+    resetNote();
+    resetHook();
+    resetPractice();
+    resetTimer();
 
     props.handleClose();
   }

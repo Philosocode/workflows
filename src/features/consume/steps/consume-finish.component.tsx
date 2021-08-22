@@ -3,35 +3,39 @@ import { useHistory } from "react-router-dom";
 import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 
 import { EXP_RATES } from "features/game/logic/game.constants";
-import { useAppSelector } from "shared/redux/store";
 import { useGameStore } from "features/game/logic/game.store";
 import { useConsumeStore } from "../logic/consume.store";
 import { useHookStore } from "features/hooks/logic/hook.store";
-import { selectNotes } from "features/notes/logic/note.selectors";
+import { useNoteStore } from "features/notes/logic/note.store";
 import { theme } from "shared/styles/theme";
 import { pluralizeString } from "shared/helpers/string.helpers";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 import { NoteList } from "features/notes/components/note-list.component";
+import { selectNoteList } from "features/notes/logic/note.selectors";
 
 export function ConsumeFinish() {
   const history = useHistory();
-  const notes = useAppSelector(selectNotes);
+  const notes = useNoteStore(selectNoteList);
   const { addExp } = useGameStore();
   const { totalHooksCompleted, reset: resetHookStore } = useHookStore();
   const { studyBlockCount, reset: resetConsume } = useConsumeStore();
+  const { reset: resetNote } = useNoteStore();
+
+  const numNotes = notes.length;
 
   const hooksExp = Math.round(totalHooksCompleted * EXP_RATES.hook);
-  const notesExp = notes.length * EXP_RATES.note;
+  const notesExp = numNotes * EXP_RATES.note;
   const blocksExp = studyBlockCount * EXP_RATES.studyBlocks;
   const totalExp = hooksExp + notesExp + blocksExp;
 
   function handleReset(nextUrl: string) {
     resetConsume();
-    addExp(totalExp);
     resetHookStore();
+    resetNote();
 
+    addExp(totalExp);
     history.push(nextUrl);
   }
 
@@ -67,11 +71,11 @@ export function ConsumeFinish() {
                     )} (+${hooksExp} exp)`}
               </ListItem>
               <ListItem>
-                {notes.length === 0
+                {numNotes === 0
                   ? "You didn't create any notes"
-                  : `You created ${notes.length} ${pluralizeString(
+                  : `You created ${numNotes} ${pluralizeString(
                       "note",
-                      notes.length,
+                      numNotes,
                     )} (+${notesExp} exp)`}
               </ListItem>
               <ListItem>
@@ -86,7 +90,7 @@ export function ConsumeFinish() {
               <ListItem>In total, you've gained {totalExp} exp</ListItem>
             </UnorderedList>
 
-            {notes.length > 0 && (
+            {numNotes > 0 && (
               <Box mt={theme.spacing.messageBoxSpacing}>
                 Make sure to save your notes somewhere. They'll be deleted once
                 you leave this page.
@@ -95,7 +99,7 @@ export function ConsumeFinish() {
           </>
         }
       ></ConsumeWorkflowStep>
-      {notes.length > 0 && <NoteList heading="Notes" notes={notes} />}
+      {numNotes > 0 && <NoteList heading="Notes" notes={notes} />}
     </>
   );
 }

@@ -1,12 +1,9 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 
 import App from "./App";
-import { persistor, store } from "./shared/redux/store";
 import * as serviceWorker from "./serviceWorker";
 
 import "react-mde/lib/styles/css/react-mde-all.css";
@@ -17,20 +14,16 @@ import "@fontsource/comfortaa/400.css";
 import "@fontsource/comfortaa/700.css";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <BrowserRouter>
-          <ChakraProvider theme={chakraTheme}>
-            <ColorModeScript
-              initialColorMode={chakraTheme.config.initialColorMode}
-            />
-            <App />
-          </ChakraProvider>
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>,
+  <StrictMode>
+    <BrowserRouter>
+      <ChakraProvider theme={chakraTheme}>
+        <ColorModeScript
+          initialColorMode={chakraTheme.config.initialColorMode}
+        />
+        <App />
+      </ChakraProvider>
+    </BrowserRouter>
+  </StrictMode>,
   document.getElementById("root"),
 );
 

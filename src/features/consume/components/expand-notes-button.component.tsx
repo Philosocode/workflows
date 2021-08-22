@@ -1,11 +1,9 @@
 import { Box, Icon, useColorModeValue } from "@chakra-ui/react";
+import { useNoteStore } from "features/notes/logic/note.store";
 import { AiOutlineExpand } from "react-icons/ai";
 
-import { useAppDispatch } from "shared/redux/store";
-import { toggleAllNotes } from "features/notes/logic/note.slice";
-
 export function ExpandNotesButton() {
-  const dispatch = useAppDispatch();
+  const { toggleAllNotes } = useNoteStore();
 
   const styles = {
     bg: useColorModeValue("green.500", "green.200"),
@@ -24,7 +22,7 @@ export function ExpandNotesButton() {
       p={{ base: 3, md: 4 }}
       borderRadius="50%"
       shadow="xl"
-      onClick={() => dispatch(toggleAllNotes())}
+      onClick={toggleAllNotes}
     >
       <Icon
         as={AiOutlineExpand}

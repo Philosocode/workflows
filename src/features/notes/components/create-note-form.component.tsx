@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { FormControl, VStack } from "@chakra-ui/react";
 
-import { useAppDispatch } from "shared/redux/store";
 import { theme } from "shared/styles/theme";
-import { createNote } from "../logic/note.slice";
 import { useLocationStore } from "features/location/location.store";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
@@ -11,17 +9,17 @@ import { CardButton } from "shared/components/button/card-button.component";
 import { InputGroup } from "shared/components/form/input-group.component";
 import { Link } from "react-router-dom";
 import { MarkdownEditor } from "shared/components/editor/markdown-editor.component";
+import { useNoteStore } from "../logic/note.store";
 
-interface IProps {
+export interface ICreateNoteFormProps {
   nextUrl?: string;
   nextButtonText?: string;
 }
-export interface ICreateNoteFormProps extends IProps {}
-export function CreateNoteForm(props: IProps) {
+export function CreateNoteForm(props: ICreateNoteFormProps) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const dispatch = useAppDispatch();
+  const { createNote } = useNoteStore();
   const { currentStep } = useLocationStore();
   const defaultNextUrl = `/consume/${currentStep + 1}`;
 
@@ -30,14 +28,12 @@ export function CreateNoteForm(props: IProps) {
   function onSubmit(event: React.FormEvent) {
     event.preventDefault();
 
-    dispatch(
-      createNote({
-        id: `${Date.now()}`,
-        title,
-        content,
-        isExpanded: true,
-      }),
-    );
+    createNote({
+      id: `${Date.now()}`,
+      title,
+      content,
+      isExpanded: true,
+    });
 
     setTitle("");
     setContent("");

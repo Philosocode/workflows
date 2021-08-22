@@ -1,4 +1,4 @@
-import { HStack } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { BiReset } from "react-icons/bi";
 import { FaCog } from "react-icons/fa";
 import { IoMdExit } from "react-icons/io";
@@ -40,7 +40,7 @@ export function MobileNav(props: IAppNavbarProps) {
   }
 
   return (
-    <HStack
+    <Box
       display={{ base: "flex", sm: "none" }}
       alignItems="center"
       spacing={3}
@@ -51,6 +51,6 @@ export function MobileNav(props: IAppNavbarProps) {
       />
       <NavMenu items={getMenuItems()} />
       {props.blockCounter && <BlockCounter {...props.blockCounter} />}
-    </HStack>
+    </Box>
   );
 }

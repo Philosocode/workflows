@@ -1,6 +1,5 @@
 import { IModalProps } from "shared/components/modal/logic/modal.types";
-import { useAppDispatch } from "shared/redux/store";
-import { deleteNote } from "../logic/note.slice";
+import { useNoteStore } from "../logic/note.store";
 
 import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
@@ -10,10 +9,10 @@ interface IProps extends IModalProps {
   id: string;
 }
 export function DeleteNoteModal(props: IProps) {
-  const dispatch = useAppDispatch();
+  const { deleteNote } = useNoteStore();
 
   function handleDelete() {
-    dispatch(deleteNote(props.id));
+    deleteNote(props.id);
     props.handleClose();
   }
 

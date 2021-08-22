@@ -1,27 +1,9 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { INote } from "features/notes/logic/note.types";
+import { INote, INoteState } from "./note.types";
 
-import { TAppState } from "shared/redux/store";
+export const selectNoteList = (state: INoteState) => {
+  const notes: INote[] = [];
 
-const selectNoteState = (state: TAppState) => state.note;
+  state.noteIds.forEach((id) => notes.push(state.notes[id]));
 
-export const selectNoteHash = createSelector(
-  [selectNoteState],
-  (state) => state.notes,
-);
-
-export const selectNoteIds = createSelector(
-  [selectNoteState],
-  (state) => state.noteIds,
-);
-
-export const selectNotes = createSelector(
-  [selectNoteHash, selectNoteIds],
-  (hash, ids) => {
-    const notes: INote[] = [];
-
-    ids.forEach((id) => notes.push(hash[id]));
-
-    return notes;
-  },
-);
+  return notes;
+};

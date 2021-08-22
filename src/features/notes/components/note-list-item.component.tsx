@@ -8,19 +8,18 @@ import {
 import { FaChevronDown, FaRegTrashAlt } from "react-icons/fa";
 
 // logic
-import { useAppDispatch } from "shared/redux/store";
 import { INote } from "../logic/note.types";
+import { useNoteStore } from "../logic/note.store";
+import { useModalStore } from "shared/components/modal/logic/modal.store";
 
 import { InputGroup } from "shared/components/form/input-group.component";
 import { MarkdownEditor } from "shared/components/editor/markdown-editor.component";
-import { updateNote } from "../logic/note.slice";
-import { useModalStore } from "shared/components/modal/logic/modal.store";
 
 interface IProps {
   note: INote;
 }
 export function NoteListItem({ note }: IProps) {
-  const dispatch = useAppDispatch();
+  const { updateNote } = useNoteStore();
   const { showModal } = useModalStore();
 
   function handleTitleUpdate(event: React.ChangeEvent<HTMLInputElement>) {
@@ -36,7 +35,7 @@ export function NoteListItem({ note }: IProps) {
   }
 
   function handleNoteUpdate(updates: Partial<INote>) {
-    dispatch(updateNote({ id: note.id, updates: { ...updates } }));
+    updateNote({ id: note.id, updates: { ...updates } });
   }
 
   function handleDelete() {

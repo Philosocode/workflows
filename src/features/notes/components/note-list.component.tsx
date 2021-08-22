@@ -1,10 +1,8 @@
 import { Box, Divider, Heading } from "@chakra-ui/react";
 import { DropResult } from "react-beautiful-dnd";
 
-import { useAppDispatch } from "shared/redux/store";
-
 import { INote } from "../logic/note.types";
-import { repositionNote } from "../logic/note.slice";
+import { useNoteStore } from "../logic/note.store";
 
 import { DragAndDropWrapper } from "shared/components/drag-and-drop/drag-and-drop-wrapper.component";
 import { DraggableWrapper } from "shared/components/drag-and-drop/draggable-wrapper.component";
@@ -17,7 +15,7 @@ interface IProps {
   dragDisabled?: boolean;
 }
 export function NoteList(props: IProps) {
-  const dispatch = useAppDispatch();
+  const { repositionNote } = useNoteStore();
 
   function handleDragEnd(result: DropResult) {
     const { source, destination } = result;
@@ -26,12 +24,10 @@ export function NoteList(props: IProps) {
     const oldIndex = source.index;
     const newIndex = destination.index;
 
-    dispatch(
-      repositionNote({
-        oldIndex,
-        newIndex,
-      }),
-    );
+    repositionNote({
+      oldIndex,
+      newIndex,
+    });
   }
 
   return (
