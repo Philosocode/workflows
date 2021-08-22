@@ -28,12 +28,11 @@ export function PracticeCounter(props: IProps) {
     <CardWrapper
       alignItems="center"
       py={10}
-      bg="none"
-      border="1px solid"
-      sx={dlTheme.components.cardBlack}
+      cornerText="Counter"
       textColor={
         props.count >= props.goal ? dlTheme.colors.green : "currentcolor"
       }
+      variant="outline"
     >
       <Box d="flex" alignItems="center">
         <IconButton

@@ -69,7 +69,6 @@ function reducer(state: IState, action: TAction): IState {
 
 // Component
 export function PracticeQuestionsStudy() {
-  // Data
   const { amount, practiceMode, topicIds, topics, updateTopic } =
     usePracticeStore();
 

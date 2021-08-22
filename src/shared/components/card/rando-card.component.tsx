@@ -40,8 +40,8 @@ export function RandoCard(props: IProps) {
         top={{ base: 3, md: 5 }}
       />
       <Text
-        color={dlTheme.components.card.textColorFaint}
         fontSize={theme.typography.fontSize.card}
+        textColor={dlTheme.colors.textFaint}
         sx={theme.typography.condensed}
       >
         {props.heading}

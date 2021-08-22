@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 import { theme } from "shared/styles/theme";
 import { useCountdownTimer } from "shared/hooks/use-countdown-timer.hook";
@@ -9,6 +9,7 @@ import { getTimeRemaining } from "../logic/timer.helpers";
 import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
 import { TimerDisplay } from "./timer-display.component";
+import { CardWrapper } from "shared/components/card/card-wrapper.component";
 
 interface IProps {
   durationInMs: number;
@@ -26,10 +27,6 @@ export function CountdownTimer(props: IProps) {
     refreshDep: props.refreshDep,
   });
 
-  const styles = {
-    borderColor: useColorModeValue("gray.300", "gray.600"),
-  };
-
   // run when timer is finished
   useEffect(() => {
     if (!timer.isFinished) return;
@@ -43,47 +40,43 @@ export function CountdownTimer(props: IProps) {
   }
 
   return (
-    <>
+    <CardWrapper
+      alignItems="center"
+      py={10}
+      cornerText="Timer"
+      variant="outline"
+    >
       <Box
-        border="1px solid"
-        borderColor={styles.borderColor}
-        d="grid"
-        placeItems="center"
-        py={{ base: 5, md: 10 }}
-        rounded="md"
+        className="time"
+        sx={theme.typography.countHeading}
+        fontWeight="light"
       >
-        <Box
-          className="time"
-          sx={theme.typography.countHeading}
-          fontWeight="light"
-        >
-          <TimerDisplay
-            isRunning={timer.isRunning}
-            pauseTime={timer.pauseTime}
-            refreshDep={props.refreshDep}
-            countdown={{
-              endTime: timer.endTime,
-              initialDuration: props.durationInMs,
-              timerFinished: timer.isFinished,
-            }}
-          />
-        </Box>
-
-        {!timer.isFinished && (
-          <Buttons>
-            <Button
-              colorScheme={timer.isRunning ? "gray" : "green"}
-              onClick={timer.toggleTimer}
-              type="button"
-            >
-              {timer.isRunning ? "Pause" : "Start"}
-            </Button>
-            {props.showSkipButton && (
-              <Button onClick={handleSkip}>Skip Timer</Button>
-            )}
-          </Buttons>
-        )}
+        <TimerDisplay
+          isRunning={timer.isRunning}
+          pauseTime={timer.pauseTime}
+          refreshDep={props.refreshDep}
+          countdown={{
+            endTime: timer.endTime,
+            initialDuration: props.durationInMs,
+            timerFinished: timer.isFinished,
+          }}
+        />
       </Box>
-    </>
+
+      {!timer.isFinished && (
+        <Buttons>
+          <Button
+            colorScheme={timer.isRunning ? "gray" : "green"}
+            onClick={timer.toggleTimer}
+            type="button"
+          >
+            {timer.isRunning ? "Pause" : "Start"}
+          </Button>
+          {props.showSkipButton && (
+            <Button onClick={handleSkip}>Skip Timer</Button>
+          )}
+        </Buttons>
+      )}
+    </CardWrapper>
   );
 }
