@@ -73,7 +73,8 @@ export function PracticeQuestionsStudy() {
     usePracticeStore();
 
   const initialState = {
-    currentTopicId: randomFromArray<string>({ items: topicIds }),
+    currentTopicId:
+      topicIds.length > 0 ? randomFromArray<string>({ items: topicIds }) : "",
     count: 0,
     goal: random(amount.min, amount.max),
     blocksCompleted: 0,
