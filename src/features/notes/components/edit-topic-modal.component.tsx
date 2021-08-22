@@ -1,4 +1,4 @@
-import { IModalProps } from "shared/components/modal/shared/modal.types";
+import { IModalProps } from "shared/components/modal/logic/modal.types";
 import { updateTopic } from "features/practice-questions/redux/practice-questions.slice";
 import { useState } from "react";
 import { useAppDispatch } from "shared/redux/store";
@@ -33,14 +33,13 @@ export function EditTopicModal(props: IProps) {
     <ModalContent
       header="Edit Topic Title"
       body={
-        <>
-          <InputGroup
-            id="editTopic"
-            label="Edit Topic"
-            value={text}
-            onChange={(event) => setText(event.target.value)}
-          />
-        </>
+        <InputGroup
+          id="editTopic"
+          label="Edit Topic"
+          colorScheme="green"
+          value={text}
+          onChange={(event) => setText(event.target.value)}
+        />
       }
       footer={
         <Buttons>

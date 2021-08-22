@@ -10,17 +10,18 @@ import { FaChevronDown, FaRegTrashAlt } from "react-icons/fa";
 // logic
 import { useAppDispatch } from "shared/redux/store";
 import { INote } from "../logic/note.types";
-import { showModal } from "shared/components/modal/redux/modal.slice";
 
 import { InputGroup } from "shared/components/form/input-group.component";
 import { MarkdownEditor } from "shared/components/editor/markdown-editor.component";
 import { updateNote } from "../logic/note.slice";
+import { useModalStore } from "shared/components/modal/logic/modal.store";
 
 interface IProps {
   note: INote;
 }
 export function NoteListItem({ note }: IProps) {
   const dispatch = useAppDispatch();
+  const { showModal } = useModalStore();
 
   function handleTitleUpdate(event: React.ChangeEvent<HTMLInputElement>) {
     handleNoteUpdate({ title: event.target.value });
@@ -39,14 +40,12 @@ export function NoteListItem({ note }: IProps) {
   }
 
   function handleDelete() {
-    dispatch(
-      showModal({
-        modalType: "delete-note",
-        modalProps: {
-          id: note.id,
-        },
-      }),
-    );
+    showModal({
+      modalType: "delete-note",
+      modalProps: {
+        id: note.id,
+      },
+    });
   }
 
   const styles = {

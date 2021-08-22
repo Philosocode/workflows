@@ -7,10 +7,8 @@ import {
   Icon,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { showModal } from "shared/components/modal/redux/modal.slice";
 
 import { useTheme } from "shared/hooks/use-theme.hook";
-import { useAppDispatch } from "shared/redux/store";
 import {
   ITopic,
   TPracticeMode,
@@ -18,6 +16,7 @@ import {
 
 import { CardWrapper } from "shared/components/card/card-wrapper.component";
 import { IconButton } from "shared/components/button/icon-button.component";
+import { useModalStore } from "shared/components/modal/logic/modal.store";
 
 interface IProps {
   topic: ITopic;
@@ -31,31 +30,29 @@ export function TopicGridItem({
   handleTopicClick,
 }: IProps) {
   const dlTheme = useTheme();
-  const dispatch = useAppDispatch();
+  const { showModal } = useModalStore();
 
   function showEditModal(event: React.MouseEvent) {
     event.stopPropagation();
 
-    dispatch(
-      showModal({
-        modalType: "edit-topic",
-        modalProps: {
-          id: topic.id,
-          title: topic.title,
-        },
-      }),
-    );
+    showModal({
+      modalType: "edit-topic",
+      modalProps: {
+        id: topic.id,
+        title: topic.title,
+      },
+    });
   }
 
-  function handleDelete() {
-    dispatch(
-      showModal({
-        modalType: "delete-topic",
-        modalProps: {
-          id: topic.id,
-        },
-      }),
-    );
+  function handleDelete(event: React.MouseEvent) {
+    event.stopPropagation();
+
+    showModal({
+      modalType: "delete-topic",
+      modalProps: {
+        id: topic.id,
+      },
+    });
   }
 
   const editColor = useColorModeValue("gold.500", "gold.200");

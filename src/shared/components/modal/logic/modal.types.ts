@@ -1,7 +1,7 @@
 export type TModalType = "delete-note" | "delete-topic" | "edit-topic";
 
 export interface IModalState {
-  modalShowing: boolean;
+  modalOpen: boolean;
   modalType?: TModalType;
   modalProps?: unknown;
 }
@@ -11,7 +11,14 @@ export interface IModalProps {
   isOpen: boolean;
 }
 
-export interface IShowModalPayload {
+export interface IShowModal {
   modalType: TModalType;
   modalProps?: unknown;
 }
+
+export interface IModalActions {
+  showModal: (args: IShowModal) => void;
+  hideModal: () => void;
+}
+
+export interface IModalStore extends IModalState, IModalActions {}

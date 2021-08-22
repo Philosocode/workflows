@@ -4,7 +4,7 @@ import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
 import { ModalWrapper } from "shared/components/modal/components/modal-wrapper.component";
-import { IModalProps } from "../shared/modal.types";
+import { IModalProps } from "../logic/modal.types";
 
 interface IProps extends IModalProps {
   redirectUrl: string;

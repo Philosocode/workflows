@@ -1,4 +1,4 @@
-import { IModalProps } from "../shared/modal.types";
+import { IModalProps } from "../logic/modal.types";
 import { useAppDispatch } from "shared/redux/store";
 import { resetConsume } from "features/consume/redux/consume.slice";
 import { resetPractice } from "features/practice-questions/redux/practice-questions.slice";

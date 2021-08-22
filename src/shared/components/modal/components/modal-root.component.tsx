@@ -1,13 +1,12 @@
 import { FC } from "react";
 
-import { TModalType } from "../shared/modal.types";
-import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { hideModal } from "shared/components/modal/redux/modal.slice";
+import { TModalType } from "../logic/modal.types";
 
 import { DeleteNoteModal } from "features/notes/components/delete-note-modal.component";
 import { DeleteTopicModal } from "features/practice-questions/components/delete-topic-modal.component";
 import { EditTopicModal } from "features/notes/components/edit-topic-modal.component";
 import { ModalWrapper } from "./modal-wrapper.component";
+import { useModalStore } from "../logic/modal.store";
 
 const MODAL_COMPONENTS: Record<TModalType, FC<any>> = {
   "delete-note": DeleteNoteModal,
@@ -16,23 +15,17 @@ const MODAL_COMPONENTS: Record<TModalType, FC<any>> = {
 };
 
 export function ModalRoot() {
-  const modalState = useAppSelector((state) => state.modal);
-  const { modalType, modalShowing, modalProps } = modalState;
-  const dispatch = useAppDispatch();
-
-  function handleClose() {
-    dispatch(hideModal());
-  }
+  const { hideModal, modalType, modalProps, modalOpen } = useModalStore();
 
   function getModalComponent() {
     if (!modalType) return null;
 
     const ModalComponent = MODAL_COMPONENTS[modalType];
-    return <ModalComponent handleClose={handleClose} {...modalProps} />;
+    return <ModalComponent handleClose={hideModal} {...modalProps} />;
   }
 
   return (
-    <ModalWrapper isOpen={modalShowing} handleClose={handleClose}>
+    <ModalWrapper isOpen={modalOpen} handleClose={hideModal}>
       {getModalComponent()}
     </ModalWrapper>
   );

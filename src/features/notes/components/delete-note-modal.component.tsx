@@ -1,4 +1,4 @@
-import { IModalProps } from "shared/components/modal/shared/modal.types";
+import { IModalProps } from "shared/components/modal/logic/modal.types";
 import { useAppDispatch } from "shared/redux/store";
 import { deleteNote } from "../logic/note.slice";
 
