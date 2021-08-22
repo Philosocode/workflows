@@ -60,7 +60,7 @@ export function CreateNoteForm(props: ICreateNoteFormProps) {
             <MarkdownEditor
               value={content}
               setValue={setContent}
-              placeholder="Content"
+              placeholder="Note Content"
             />
           </FormControl>
         </VStack>
