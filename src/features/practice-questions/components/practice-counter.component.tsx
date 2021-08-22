@@ -1,5 +1,4 @@
 import { Box, Heading } from "@chakra-ui/react";
-import React, { SetStateAction } from "react";
 import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 
 import { theme } from "shared/styles/theme";

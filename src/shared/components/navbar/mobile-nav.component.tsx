@@ -1,4 +1,4 @@
-import { Flex, HStack } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import { BiReset } from "react-icons/bi";
 import { FaCog } from "react-icons/fa";
 import { IoMdExit } from "react-icons/io";
