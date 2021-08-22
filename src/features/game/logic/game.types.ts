@@ -5,7 +5,7 @@ export interface IGameState {
 
 export interface IGameActions {
   addExp: (amount: number) => void;
-  resetGameStore: () => void;
+  reset: () => void;
 }
 
 export interface IGameStore extends IGameState, IGameActions {}

@@ -1,26 +1,24 @@
-import { selectMaterialType } from "features/consume/redux/consume.selectors";
-import { useAppSelector } from "shared/redux/store";
-
-import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 import { Box } from "@chakra-ui/react";
 
+import { useConsumeStore } from "../logic/consume.store";
+
+import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
+
 export function StudyStart() {
-  const materialType = useAppSelector(selectMaterialType);
-  const word = materialType === "reading" ? "Read" : "Watch";
-  const readingMessage =
-    "Read for a few minutes (e.g. 1-2 paragraphs or 1 page).";
-  const watchMessage = "Watch for a few minutes.";
+  const { materialType } = useConsumeStore();
 
   return (
     <ConsumeWorkflowStep
       message={
-        <>
-          <Box>Time to start {word.toLowerCase()}ing.</Box>
-          <Box>
-            {materialType === "reading" ? readingMessage : watchMessage}
-          </Box>
-        </>
+        materialType === "reading" ? (
+          <>
+            <Box>Time to start reading.</Box>
+            <Box>Read for a few minutes (1-2 paragraphs, 1 page, etc).</Box>
+          </>
+        ) : (
+          <Box>Watch for a few minutes.</Box>
+        )
       }
-    ></ConsumeWorkflowStep>
+    />
   );
 }

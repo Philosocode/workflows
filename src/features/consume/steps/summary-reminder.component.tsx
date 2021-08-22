@@ -1,18 +1,17 @@
 import { Box } from "@chakra-ui/react";
 
-import { useAppSelector } from "shared/redux/store";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { useLocationStore } from "features/location/location.store";
-import { selectMaterialType } from "features/consume/redux/consume.selectors";
+import { useConsumeStore } from "../logic/consume.store";
+import { selectMaterialWord } from "../logic/consume.selectors";
 
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 import { Messages } from "shared/components/message/messages.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 
 export function SummaryReminder() {
-  const materialType = useAppSelector(selectMaterialType);
+  const word = useConsumeStore(selectMaterialWord);
   const [hasSummary, toggleHasSummary] = useToggle();
-  const word = materialType === "reading" ? "Read" : "Watch";
   const { currentStep } = useLocationStore();
 
   return (

@@ -1,6 +1,5 @@
 import { IModalProps } from "../logic/modal.types";
 import { useAppDispatch } from "shared/redux/store";
-import { resetConsume } from "features/consume/redux/consume.slice";
 import { resetPractice } from "features/practice-questions/redux/practice-questions.slice";
 import { useHookStore } from "features/hooks/logic/hook.store";
 import { useTimerStore } from "features/timer/logic/timer.store";
@@ -10,20 +9,22 @@ import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
 import { ModalContent } from "./modal-content.component";
 import { ModalWrapper } from "./modal-wrapper.component";
+import { useConsumeStore } from "features/consume/logic/consume.store";
 
 export function ResetAllDataModal(props: IModalProps) {
   const dispatch = useAppDispatch();
 
-  const { resetHookStore } = useHookStore();
-  const { resetTimer } = useTimerStore();
-  const { resetGameStore } = useGameStore();
+  const { reset: resetConsumeStore } = useConsumeStore();
+  const { reset: resetHookStore } = useHookStore();
+  const { reset: resetTimerStore } = useTimerStore();
+  const { reset: resetGameStore } = useGameStore();
 
   function handleReset() {
-    dispatch(resetConsume());
     dispatch(resetPractice());
 
+    resetConsumeStore();
     resetHookStore();
-    resetTimer();
+    resetTimerStore();
     resetGameStore();
 
     props.handleClose();

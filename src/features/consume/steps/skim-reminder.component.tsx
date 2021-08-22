@@ -1,12 +1,11 @@
 import { Box } from "@chakra-ui/react";
 
-import { selectMaterialType } from "features/consume/redux/consume.selectors";
-import { useAppSelector } from "shared/redux/store";
+import { useConsumeStore } from "../logic/consume.store";
 
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 
 export function SkimReminder() {
-  const materialType = useAppSelector(selectMaterialType);
+  const { materialType } = useConsumeStore();
 
   return (
     <ConsumeWorkflowStep

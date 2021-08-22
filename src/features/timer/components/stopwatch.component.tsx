@@ -13,11 +13,11 @@ export function Stopwatch() {
   function toggleTimer() {
     // initial state
     if (!timer.isRunning && timer.pauseTime === 0) {
-      timer.startTimer();
+      timer.start();
     } else if (timer.isRunning) {
-      timer.pauseTimer();
+      timer.pause();
     } else {
-      timer.unpauseTimer();
+      timer.unpause();
     }
   }
 
@@ -42,7 +42,7 @@ export function Stopwatch() {
             {timer.isRunning ? "Pause" : "Start"}
           </Button>
           <Button
-            onClick={timer.resetTimer}
+            onClick={timer.reset}
             disabled={!timer.isRunning && timer.pauseTime === 0}
           >
             Reset

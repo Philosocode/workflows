@@ -5,19 +5,18 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 
 import { theme } from "shared/styles/theme";
-import { useAppSelector } from "shared/redux/store";
-import { selectMaterialType } from "features/consume/redux/consume.selectors";
 import { useLocationStore } from "features/location/location.store";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { StudyFooter } from "./study-footer.component";
 import { CardButton } from "shared/components/button/card-button.component";
 import { ConsumeWorkflowStep } from "./consume-workflow-step.component";
+import { useConsumeStore } from "../logic/consume.store";
+import { selectMaterialWord } from "../logic/consume.selectors";
 
 export function StudyMenu() {
   const location = useLocation();
-  const materialType = useAppSelector(selectMaterialType);
-  const word = materialType === "reading" ? "read" : "watch";
+  const word = useConsumeStore(selectMaterialWord);
 
   const { currentStep } = useLocationStore();
   const basePath = `/consume/${currentStep}`;

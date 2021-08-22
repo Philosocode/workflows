@@ -3,14 +3,13 @@ import { useHistory } from "react-router-dom";
 import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 
 import { EXP_RATES } from "features/game/logic/game.constants";
-import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { selectStudyBlockCount } from "features/consume/redux/consume.selectors";
-import { resetConsume } from "features/consume/redux/consume.slice";
+import { useAppSelector } from "shared/redux/store";
+import { useGameStore } from "features/game/logic/game.store";
+import { useConsumeStore } from "../logic/consume.store";
+import { useHookStore } from "features/hooks/logic/hook.store";
 import { selectNotes } from "features/notes/logic/note.selectors";
 import { theme } from "shared/styles/theme";
-import { useHookStore } from "features/hooks/logic/hook.store";
 import { pluralizeString } from "shared/helpers/string.helpers";
-import { useGameStore } from "features/game/logic/game.store";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
@@ -18,19 +17,18 @@ import { NoteList } from "features/notes/components/note-list.component";
 
 export function ConsumeFinish() {
   const history = useHistory();
-  const dispatch = useAppDispatch();
   const notes = useAppSelector(selectNotes);
   const { addExp } = useGameStore();
-  const { totalHooksCompleted, resetHookStore } = useHookStore();
-  const studyBlockCount = useAppSelector(selectStudyBlockCount);
+  const { totalHooksCompleted, reset: resetHookStore } = useHookStore();
+  const { studyBlockCount, reset: resetConsume } = useConsumeStore();
 
   const hooksExp = Math.round(totalHooksCompleted * EXP_RATES.hook);
   const notesExp = notes.length * EXP_RATES.note;
   const blocksExp = studyBlockCount * EXP_RATES.studyBlocks;
   const totalExp = hooksExp + notesExp + blocksExp;
 
-  function reset(nextUrl: string) {
-    dispatch(resetConsume());
+  function handleReset(nextUrl: string) {
+    resetConsume();
     addExp(totalExp);
     resetHookStore();
 
@@ -45,10 +43,14 @@ export function ConsumeFinish() {
             buttons={[
               {
                 text: "New Material",
-                onClick: () => reset("/consume/1"),
+                onClick: () => handleReset("/consume/1"),
                 icon: FaBook,
               },
-              { text: "Go Home", onClick: () => reset("/"), icon: FaHome },
+              {
+                text: "Go Home",
+                onClick: () => handleReset("/"),
+                icon: FaHome,
+              },
             ]}
           ></CardButtonGrid>
         }
@@ -83,6 +85,7 @@ export function ConsumeFinish() {
               </ListItem>
               <ListItem>In total, you've gained {totalExp} exp</ListItem>
             </UnorderedList>
+
             {notes.length > 0 && (
               <Box mt={theme.spacing.messageBoxSpacing}>
                 Make sure to save your notes somewhere. They'll be deleted once

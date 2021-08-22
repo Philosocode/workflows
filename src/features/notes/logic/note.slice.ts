@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import omit from "lodash/omit";
 
-import { resetConsume } from "features/consume/redux/consume.slice";
 import {
   INote,
   INoteState,
@@ -53,11 +52,11 @@ const noteSlice = createSlice({
       allNotes.forEach((note) => (state.notes[note.id].isExpanded = newValue));
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(resetConsume, () => {
-      return initialState;
-    });
-  },
+  // extraReducers: (builder) => {
+  //   builder.addCase(resetConsume, () => {
+  //     return initialState;
+  //   });
+  // },
 });
 
 export const noteReducer = noteSlice.reducer;

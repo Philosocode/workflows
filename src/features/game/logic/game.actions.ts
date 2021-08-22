@@ -36,7 +36,7 @@ export function gameActions(set: SetState<IGameStore>): IGameActions {
         }),
       );
     },
-    resetGameStore: () => {
+    reset: () => {
       set((state) => ({ ...state, exp: 0, level: 0 }));
     },
   };

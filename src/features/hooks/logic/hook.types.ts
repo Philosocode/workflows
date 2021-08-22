@@ -15,7 +15,7 @@ export interface IHookState {
 export interface IHookActions {
   updateTotalHooksCompleted: () => void;
   toggleCompletedId: (id: string) => void;
-  resetHookStore: () => void;
+  reset: () => void;
 }
 
 export interface IHookStore extends IHookState, IHookActions {}

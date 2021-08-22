@@ -8,10 +8,10 @@ export interface ITimerState {
 }
 
 export interface ITimerActions {
-  startTimer: () => void;
-  resetTimer: () => void;
-  pauseTimer: () => void;
-  unpauseTimer: () => void;
+  start: () => void;
+  reset: () => void;
+  pause: () => void;
+  unpause: () => void;
 }
 
 export interface ITimerStore extends ITimerState, ITimerActions {}

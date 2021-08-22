@@ -2,22 +2,21 @@ import { useHistory } from "react-router-dom";
 import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
 
 import { CONSUME_PAGE_NUMBERS } from "../routes/consume.routes";
-import { nextStudyBlock } from "features/consume/redux/consume.slice";
-import { useAppDispatch } from "shared/redux/store";
-import { useLocationStore } from "features/location/location.store";
+import { useConsumeStore } from "../logic/consume.store";
 import { useHookStore } from "features/hooks/logic/hook.store";
+import { useLocationStore } from "features/location/location.store";
 import { allHookPrompts } from "features/hooks/data/hooks.data";
 import { theme } from "shared/styles/theme";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 import { CardButton } from "shared/components/button/card-button.component";
+import { pluralizeString } from "shared/helpers/string.helpers";
 
 export function ConsumeContinue() {
   const history = useHistory();
-  const dispatch = useAppDispatch();
   const { currentStep } = useLocationStore();
-
+  const { finishStudyBlock } = useConsumeStore();
   const { updateTotalHooksCompleted, completedIds } = useHookStore();
 
   const hooksCompleted = completedIds.size;
@@ -26,7 +25,7 @@ export function ConsumeContinue() {
 
   function handleButtonClick() {
     updateTotalHooksCompleted();
-    dispatch(nextStudyBlock());
+    finishStudyBlock();
   }
 
   function handleNextStudyBlock() {
@@ -54,7 +53,12 @@ export function ConsumeContinue() {
           <Box>
             {completedIds.size === 0
               ? "You didn't complete any hooks during this study block."
-              : `You completed ${completedIds.size} / ${totalNumHooks} hooks (${percentCompleted}%) during this study block.`}
+              : `You completed ${
+                  completedIds.size
+                } / ${totalNumHooks} ${pluralizeString(
+                  "hook",
+                  completedIds.size,
+                )} (${percentCompleted}%) during this study block.`}
           </Box>
           <UnorderedList>
             <ListItem mt={theme.spacing.messageBoxSpacing}>

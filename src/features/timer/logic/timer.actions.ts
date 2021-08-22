@@ -6,7 +6,7 @@ import { initialState } from "./timer.store";
 
 export function timerActions(set: SetState<ITimerStore>): ITimerActions {
   return {
-    startTimer: () => {
+    start: () => {
       set(
         produce((state: ITimerState) => {
           state.startTime = Date.now();
@@ -14,7 +14,7 @@ export function timerActions(set: SetState<ITimerStore>): ITimerActions {
         }),
       );
     },
-    pauseTimer: () => {
+    pause: () => {
       set(
         produce((state: ITimerState) => {
           state.pauseTime = Date.now() - state.startTime;
@@ -23,7 +23,7 @@ export function timerActions(set: SetState<ITimerStore>): ITimerActions {
         }),
       );
     },
-    unpauseTimer: () => {
+    unpause: () => {
       set(
         produce((state: ITimerState) => {
           state.startTime = Date.now() - state.pauseTime;
@@ -32,7 +32,7 @@ export function timerActions(set: SetState<ITimerStore>): ITimerActions {
         }),
       );
     },
-    resetTimer: () => {
+    reset: () => {
       set((state) => ({
         ...state,
         ...initialState,
