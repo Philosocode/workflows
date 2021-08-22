@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { FaClock, FaHashtag } from "react-icons/fa";
 
-import { AppNavbar } from "shared/components/navbar/app-navbar.component";
+import { AppNavbar } from "shared/components/nav/app-navbar.component";
 import { usePracticeStore } from "../logic/practice.store";
 import {
   selectTotalPracticeCount,

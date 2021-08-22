@@ -4,7 +4,7 @@ import { FaHashtag } from "react-icons/fa";
 import { useConsumeStore } from "../logic/consume.store";
 import { useHookStore } from "features/hooks/logic/hook.store";
 
-import { AppNavbar } from "shared/components/navbar/app-navbar.component";
+import { AppNavbar } from "shared/components/nav/app-navbar.component";
 
 export function ConsumeNavbar() {
   const history = useHistory();

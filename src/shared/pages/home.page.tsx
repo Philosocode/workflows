@@ -9,7 +9,7 @@ import { CardButtonGrid } from "shared/components/button/card-button-grid.compon
 import { CardButton } from "shared/components/button/card-button.component";
 import { Message } from "shared/components/message/message.component";
 import { Messages } from "shared/components/message/messages.component";
-import { AppNavbar } from "shared/components/navbar/app-navbar.component";
+import { AppNavbar } from "shared/components/nav/app-navbar.component";
 
 export function HomePage() {
   return (

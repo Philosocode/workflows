@@ -1,4 +1,4 @@
-import { AppNavbar } from "shared/components/navbar/app-navbar.component";
+import { AppNavbar } from "shared/components/nav/app-navbar.component";
 
 export function DuckDebugNavbar() {
   return <AppNavbar exitUrl="/get-unstuck" />;
