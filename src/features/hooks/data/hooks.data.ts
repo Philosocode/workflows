@@ -1,8 +1,8 @@
 import { generateHookHash } from "../helpers/hook.helpers";
 
 const connectPrompts = [
+  "What does this remind you of?", // connect-0
   "Can you think of a simile, analogy, or metaphor?",
-  "What does this remind you of?",
   "Is this your first time encountering this? If not, where have you encountered this before?",
   "Do you have any personal experience with this?",
   "How can you apply this to your own life?",
@@ -16,8 +16,8 @@ const connectPrompts = [
 
 const processPrompts = [
   "What are the key things you need to remember?", // process-0
-  "How can you express this in your own words?", // process-1
-  "How would you explain this so a 5 year old can understand?", // process-2
+  "How would you explain this so a 5 year old can understand?", // process-1
+  "How can you express this in your own words?",
   "Can you think of (simple) concrete examples?",
   "Why is this important?",
   "On a scale from 1-10, how well do you understand this?",
@@ -31,7 +31,7 @@ const processPrompts = [
 
 export const connectHooks = generateHookHash(connectPrompts, "connect");
 export const processHooks = generateHookHash(processPrompts, "process");
-export const commonHookIds = ["process-0", "process-1", "process-2"];
+export const commonHookIds = ["process-0", "connect-0", "process-1"];
 
 export const allHooks = {
   ...connectHooks,
