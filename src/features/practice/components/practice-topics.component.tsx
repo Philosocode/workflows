@@ -2,28 +2,25 @@ import { FormEvent, useState } from "react";
 import { Box, Flex, FormLabel, IconButton } from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa";
 
-import { useAppDispatch } from "shared/redux/store";
-import { createTopic } from "features/practice-questions/redux/practice-questions.slice";
+import { usePracticeStore } from "../logic/practice.store";
 
 import { InputGroup } from "shared/components/form/input-group.component";
 import { TopicGrid } from "./topic-grid.component";
 
 export function PracticeTopics() {
-  const dispatch = useAppDispatch();
+  const { createTopic } = usePracticeStore();
   const [title, setTitle] = useState("");
 
   function addTopic(event: FormEvent) {
     event.preventDefault();
     if (!title) return;
 
-    dispatch(
-      createTopic({
-        id: `${Date.now()}`,
-        title: title.trim(),
-        totalCount: 0,
-        totalTime: 0,
-      }),
-    );
+    createTopic({
+      id: `${Date.now()}`,
+      title: title.trim(),
+      totalCount: 0,
+      totalTime: 0,
+    });
     setTitle("");
   }
 

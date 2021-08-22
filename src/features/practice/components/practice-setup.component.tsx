@@ -2,29 +2,20 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Box, ListItem, UnorderedList, VStack } from "@chakra-ui/react";
 
-import { TPracticeMode } from "features/practice-questions/shared/practice-questions.types";
-import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import {
-  selectPracticeQuestionsState,
-  selectPracticeTopicIds,
-} from "features/practice-questions/redux/practice-questions.selectors";
+import { TPracticeMode } from "features/practice/logic/practice.types";
+import { usePracticeStore } from "../logic/practice.store";
 import { theme } from "shared/styles/theme";
 
 import { WorkflowStep } from "shared/components/step/workflow-step.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
-import {
-  setAmount,
-  setPracticeMode,
-} from "features/practice-questions/redux/practice-questions.slice";
 import { NumberInputGroup } from "shared/components/form/number-input-group.component";
 import { RadioButtonGroup } from "shared/components/form/radio-button-group.component";
 import { PracticeTopics } from "./practice-topics.component";
 
 export function PracticeQuestionsSetup() {
-  const dispatch = useAppDispatch();
   const history = useHistory();
-  const { amount, practiceMode } = useAppSelector(selectPracticeQuestionsState);
-  const topicIds = useAppSelector(selectPracticeTopicIds);
+  const { amount, practiceMode, topicIds, setPracticeMode, setAmount } =
+    usePracticeStore();
 
   const [minAmount, setMinAmount] = useState(amount.min);
   const [maxAmount, setMaxAmount] = useState(amount.max);
@@ -33,17 +24,17 @@ export function PracticeQuestionsSetup() {
 
   function updatePracticeMode(nextValue: TPracticeMode) {
     if (nextValue !== practiceMode) {
-      dispatch(setPracticeMode(nextValue));
+      setPracticeMode(nextValue);
     }
   }
 
   function handleSubmit() {
     // update only if needed
     if (minAmount !== amount.min || maxAmount !== amount.max) {
-      dispatch(setAmount({ min: minAmount, max: maxAmount }));
+      setAmount({ min: minAmount, max: maxAmount });
     }
 
-    history.push("/practice-questions/2");
+    history.push("/practice/2");
   }
 
   return (
@@ -82,7 +73,7 @@ export function PracticeQuestionsSetup() {
           </UnorderedList>
         </>
       }
-      nextUrl="/practice-questions/2"
+      nextUrl="/practice/2"
     >
       <VStack spacing={theme.spacing.formGroupSpacing} alignItems="start">
         <RadioButtonGroup

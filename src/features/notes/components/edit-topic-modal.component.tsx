@@ -1,30 +1,28 @@
-import { IModalProps } from "shared/components/modal/logic/modal.types";
-import { updateTopic } from "features/practice-questions/redux/practice-questions.slice";
 import { useState } from "react";
-import { useAppDispatch } from "shared/redux/store";
+
+import { IModalProps } from "shared/components/modal/logic/modal.types";
 
 import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
 import { InputGroup } from "shared/components/form/input-group.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
+import { usePracticeStore } from "features/practice/logic/practice.store";
 
 interface IProps extends IModalProps {
   id: string;
   title: string;
 }
 export function EditTopicModal(props: IProps) {
+  const { updateTopic } = usePracticeStore();
   const [text, setText] = useState<string>(props.title);
-  const dispatch = useAppDispatch();
 
   function handleSave() {
-    dispatch(
-      updateTopic({
-        id: props.id,
-        updates: {
-          title: text.trim(),
-        },
-      }),
-    );
+    updateTopic({
+      id: props.id,
+      updates: {
+        title: text.trim(),
+      },
+    });
     setText("");
     props.handleClose();
   }

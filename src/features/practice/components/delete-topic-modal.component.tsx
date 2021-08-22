@@ -1,19 +1,19 @@
 import { IModalProps } from "shared/components/modal/logic/modal.types";
-import { useAppDispatch } from "shared/redux/store";
+
+import { usePracticeStore } from "../logic/practice.store";
 
 import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
 import { ModalContent } from "shared/components/modal/components/modal-content.component";
-import { deleteTopic } from "../redux/practice-questions.slice";
 
 interface IProps extends IModalProps {
   id: string;
 }
 export function DeleteTopicModal(props: IProps) {
-  const dispatch = useAppDispatch();
+  const { deleteTopic } = usePracticeStore();
 
   function handleDelete() {
-    dispatch(deleteTopic(props.id));
+    deleteTopic(props.id);
     props.handleClose();
   }
 

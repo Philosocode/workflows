@@ -1,21 +1,18 @@
 import { useState } from "react";
 import { SimpleGrid, SimpleGridProps } from "@chakra-ui/react";
 
-import { useAppSelector } from "shared/redux/store";
-import { selectPracticeMode } from "features/practice-questions/redux/practice-questions.selectors";
-import { selectPracticeTopics } from "features/practice-questions/redux/practice-questions.selectors";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 
 import { TopicGridItem } from "./topic-grid-item.component";
 import { ConfirmModal } from "shared/components/modal/components/confirm-modal.component";
+import { usePracticeStore } from "../logic/practice.store";
 
 interface IProps extends SimpleGridProps {
   currentId?: string;
   handleSwitchTopic?: (id: string) => void;
 }
 export function TopicGrid({ currentId, handleSwitchTopic, ...rest }: IProps) {
-  const topics = useAppSelector(selectPracticeTopics);
-  const practiceMode = useAppSelector(selectPracticeMode);
+  const { topics, practiceMode } = usePracticeStore();
 
   const [switchTopicId, setSwitchTopicId] = useState("");
   const [switchTopicModalOpen, toggleSwitchTopicModal] = useToggle();

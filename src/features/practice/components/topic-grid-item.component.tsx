@@ -9,14 +9,11 @@ import {
 } from "@chakra-ui/react";
 
 import { useTheme } from "shared/hooks/use-theme.hook";
-import {
-  ITopic,
-  TPracticeMode,
-} from "features/practice-questions/shared/practice-questions.types";
+import { useModalStore } from "shared/components/modal/logic/modal.store";
+import { ITopic, TPracticeMode } from "features/practice/logic/practice.types";
 
 import { CardWrapper } from "shared/components/card/card-wrapper.component";
 import { IconButton } from "shared/components/button/icon-button.component";
-import { useModalStore } from "shared/components/modal/logic/modal.store";
 
 interface IProps {
   topic: ITopic;

@@ -27,7 +27,7 @@ export function HomePage() {
                 { text: "Read / Watch", to: "/consume/1", icon: IoMdSchool },
                 {
                   text: "Practice",
-                  to: "/practice-questions/1",
+                  to: "/practice/1",
                   icon: BsQuestionSquareFill,
                 },
               ]}

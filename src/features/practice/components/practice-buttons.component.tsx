@@ -16,7 +16,7 @@ export function PracticeQuestionsButtons(props: IProps) {
           disabled: props.disabled,
           onClick: props.onClick,
         },
-        { text: "Done Studying", to: "/practice-questions/3" },
+        { text: "Done Studying", to: "/practice/3" },
       ]}
     />
   );

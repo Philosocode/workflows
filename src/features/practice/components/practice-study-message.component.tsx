@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 
-import { ITopic, TPracticeMode } from "../shared/practice-questions.types";
+import { ITopic, TPracticeMode } from "../logic/practice.types";
 import { useTheme } from "shared/hooks/use-theme.hook";
 import { theme } from "shared/styles/theme";
 import { pluralizeString } from "shared/helpers/string.helpers";

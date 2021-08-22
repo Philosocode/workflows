@@ -1,31 +1,28 @@
 import { IModalProps } from "../logic/modal.types";
-import { useAppDispatch } from "shared/redux/store";
-import { resetPractice } from "features/practice-questions/redux/practice-questions.slice";
 import { useHookStore } from "features/hooks/logic/hook.store";
 import { useTimerStore } from "features/timer/logic/timer.store";
 import { useGameStore } from "features/game/logic/game.store";
+import { useConsumeStore } from "features/consume/logic/consume.store";
+import { usePracticeStore } from "features/practice/logic/practice.store";
 
 import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
 import { ModalContent } from "./modal-content.component";
 import { ModalWrapper } from "./modal-wrapper.component";
-import { useConsumeStore } from "features/consume/logic/consume.store";
 
 export function ResetAllDataModal(props: IModalProps) {
-  const dispatch = useAppDispatch();
-
   const { reset: resetConsumeStore } = useConsumeStore();
-  const { reset: resetHookStore } = useHookStore();
-  const { reset: resetTimerStore } = useTimerStore();
   const { reset: resetGameStore } = useGameStore();
+  const { reset: resetHookStore } = useHookStore();
+  const { reset: resetPracticeStore } = usePracticeStore();
+  const { reset: resetTimerStore } = useTimerStore();
 
   function handleReset() {
-    dispatch(resetPractice());
-
     resetConsumeStore();
-    resetHookStore();
-    resetTimerStore();
     resetGameStore();
+    resetHookStore();
+    resetPracticeStore();
+    resetTimerStore();
 
     props.handleClose();
   }

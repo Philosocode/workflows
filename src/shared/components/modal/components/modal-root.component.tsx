@@ -3,7 +3,7 @@ import { FC } from "react";
 import { TModalType } from "../logic/modal.types";
 
 import { DeleteNoteModal } from "features/notes/components/delete-note-modal.component";
-import { DeleteTopicModal } from "features/practice-questions/components/delete-topic-modal.component";
+import { DeleteTopicModal } from "features/practice/components/delete-topic-modal.component";
 import { EditTopicModal } from "features/notes/components/edit-topic-modal.component";
 import { ModalWrapper } from "./modal-wrapper.component";
 import { useModalStore } from "../logic/modal.store";

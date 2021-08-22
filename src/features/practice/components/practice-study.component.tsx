@@ -4,19 +4,17 @@ import { Redirect } from "react-router-dom";
 import { Divider, Heading } from "@chakra-ui/react";
 import { random } from "lodash";
 
-import { useAppDispatch, useAppSelector } from "shared/redux/store";
-import { selectPracticeQuestionsState } from "features/practice-questions/redux/practice-questions.selectors";
 import { EXP_RATES } from "features/game/logic/game.constants";
+import { useGameStore } from "features/game/logic/game.store";
+import { usePracticeStore } from "../logic/practice.store";
 import { theme } from "shared/styles/theme";
-import { updateTopic } from "features/practice-questions/redux/practice-questions.slice";
 import { scrollToTop } from "shared/helpers/window.helpers";
 import { minutesToMs } from "shared/helpers/time.helpers";
 import { randomFromArray } from "shared/helpers/random.helpers";
-import { useGameStore } from "features/game/logic/game.store";
 
 import { CountdownTimer } from "features/timer/components/countdown-timer.component";
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
-import { PracticeQuestionsStudyMessage } from "./practice-questions-study-message.component";
+import { PracticeQuestionsStudyMessage } from "./practice-study-message.component";
 import { PracticeCounter } from "./practice-counter.component";
 import { TopicGrid } from "./topic-grid.component";
 import { WorkflowStep } from "shared/components/step/workflow-step.component";
@@ -72,10 +70,9 @@ function reducer(state: IState, action: TAction): IState {
 // Component
 export function PracticeQuestionsStudy() {
   // Data
-  const appDispatch = useAppDispatch();
-  const { amount, practiceMode, topics, topicIds } = useAppSelector(
-    selectPracticeQuestionsState,
-  );
+  const { amount, practiceMode, topicIds, topics, updateTopic } =
+    usePracticeStore();
+
   const initialState = {
     currentTopicId: randomFromArray<string>({ items: topicIds }),
     count: 0,
@@ -90,14 +87,12 @@ export function PracticeQuestionsStudy() {
 
   // Functions
   function updateCurrentTopicTitle(newTitle: string) {
-    appDispatch(
-      updateTopic({
-        id: currentTopic.id,
-        updates: {
-          title: newTitle,
-        },
-      }),
-    );
+    updateTopic({
+      id: currentTopic.id,
+      updates: {
+        title: newTitle,
+      },
+    });
   }
 
   function nextTopicReset(nextTopicId: string) {
@@ -134,12 +129,10 @@ export function PracticeQuestionsStudy() {
     };
 
     // update topic stats
-    appDispatch(
-      updateTopic({
-        id: currentTopic.id,
-        updates,
-      }),
-    );
+    updateTopic({
+      id: currentTopic.id,
+      updates,
+    });
   }
 
   function updateExp() {
@@ -160,7 +153,7 @@ export function PracticeQuestionsStudy() {
   }
 
   // Render
-  if (topicIds.length === 0) return <Redirect to="/practice-questions/1" />;
+  if (topicIds.length === 0) return <Redirect to="/practice/1" />;
   return (
     <>
       <WorkflowStep
@@ -203,7 +196,7 @@ export function PracticeQuestionsStudy() {
             },
             {
               text: "Settings",
-              to: "/practice-questions/1",
+              to: "/practice/1",
             },
           ]}
         />
