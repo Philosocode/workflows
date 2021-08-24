@@ -37,7 +37,7 @@ export function CountdownTimer(props: IProps) {
   }, [timer.isFinished, props.refreshDep]);
 
   function handleSkip() {
-    props.handleNext?.(msToSeconds(getTimeRemaining(timer.endTime)));
+    props.handleSkip?.(msToSeconds(getTimeRemaining(timer.endTime)));
   }
 
   return (
