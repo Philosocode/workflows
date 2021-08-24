@@ -16,8 +16,9 @@ interface IProps {
 
   startAutomatically?: boolean;
   showNextButton?: boolean;
-  showSkipButton?: boolean;
+  handleSkip?: (remainingSeconds: number) => void;
   handleNext?: (remainingSeconds: number) => void;
+  nextUrl?: string;
   refreshDep?: any; // when this changes, the timer re-renders
 }
 export function CountdownTimer(props: IProps) {
@@ -72,9 +73,7 @@ export function CountdownTimer(props: IProps) {
           >
             {timer.isRunning ? "Pause" : "Start"}
           </Button>
-          {props.showSkipButton && (
-            <Button onClick={handleSkip}>Skip Timer</Button>
-          )}
+          {props.handleSkip && <Button onClick={handleSkip}>Skip Timer</Button>}
         </Buttons>
       )}
     </CardWrapper>

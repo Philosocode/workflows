@@ -1,17 +1,21 @@
 import { Box, Text } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 
 import { useConsumeStore } from "../logic/consume.store";
 import { useToggle } from "shared/hooks/use-toggle.hook";
 import { theme } from "shared/styles/theme";
 import { minutesToMs } from "shared/helpers/time.helpers";
+import { useLocationStore } from "features/location/location.store";
 
 import { ConsumeWorkflowStep } from "features/consume/components/consume-workflow-step.component";
 import { Messages } from "shared/components/message/messages.component";
 import { CountdownTimer } from "features/timer/components/countdown-timer.component";
 
 export function StudyStart() {
+  const history = useHistory();
   const { materialType } = useConsumeStore();
   const [timerFinished, toggleTimer] = useToggle();
+  const { currentStep } = useLocationStore();
 
   return (
     <ConsumeWorkflowStep
@@ -38,7 +42,7 @@ export function StudyStart() {
         durationInMs={minutesToMs(2)}
         startAutomatically={false}
         handleNext={toggleTimer}
-        showSkipButton
+        handleSkip={() => history.push(`/consume/${currentStep + 1}`)}
       />
     </ConsumeWorkflowStep>
   );
