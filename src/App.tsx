@@ -1,10 +1,10 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 
+import { Footer } from "shared/components/nav/footer.component";
 import { ModalRoot } from "shared/components/modal/components/modal-root.component";
 import { RootRouter } from "shared/routes/root-router.component";
 import { ScrollToTop } from "shared/components/scroll-to-top/scroll-to-top.component";
-import { Footer } from "shared/components/nav/footer.component";
 
 const App: React.FC = () => {
   return (
