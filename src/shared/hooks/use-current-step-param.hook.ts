@@ -12,5 +12,5 @@ export function useCurrentStepParam(callback: (step: number) => void) {
       callback(Number.parseInt(params.currentStep));
     }
     // eslint-disable-next-line
-  }, [params]);
+  }, [params.currentStep]);
 }
