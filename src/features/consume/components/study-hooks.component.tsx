@@ -22,12 +22,10 @@ import {
   processHooks,
 } from "features/hooks/data/hooks.data";
 import { useHookStore } from "features/hooks/logic/hook.store";
-import { useToggle } from "shared/hooks/use-toggle.hook";
 import { useLocationStore } from "features/location/location.store";
 import { theme } from "shared/styles/theme";
 
 import { Button } from "shared/components/button/button.component";
-import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { ConsumeWorkflowStep } from "./consume-workflow-step.component";
 import { HookChecklist } from "features/hooks/components/hook-checklist.component";
 
@@ -37,7 +35,6 @@ interface IProps {
 }
 export function StudyHooks(props: IProps) {
   const [tabIndex, setTabIndex] = useState(0);
-  const [showChecklists, toggleShowChecklists] = useToggle();
 
   const totalHooks = Object.values(allHooks).length;
   const { completedIds } = useHookStore();
@@ -77,94 +74,72 @@ export function StudyHooks(props: IProps) {
     return "yellow.400";
   }
 
-  const message =
-    props.showPrompt && !showChecklists ? (
-      <Box>
-        <Box>Were there any concepts or ideas that you:</Box>
-        <UnorderedList>
-          <ListItem>struggled to understand?</ListItem>
-          <ListItem>want to understand better?</ListItem>
-        </UnorderedList>
-      </Box>
-    ) : (
-      <Box>
-        <UnorderedList>
-          <ListItem>
-            Complete as many prompts as you need to better understand the
-            concept(s).
-          </ListItem>
-          <ListItem>
-            Not all prompts may be relevant to your situation.
-          </ListItem>
-        </UnorderedList>
-      </Box>
-    );
-
   return (
     <ConsumeWorkflowStep
-      message={message}
+      message={
+        <Box>
+          <UnorderedList>
+            <ListItem>
+              Complete as many prompts as you need to better understand the
+              concept(s).
+            </ListItem>
+            <ListItem>
+              Not all prompts may be relevant to your situation.
+            </ListItem>
+          </UnorderedList>
+        </Box>
+      }
       buttons={
-        props.showPrompt && !showChecklists ? (
-          <CardButtonGrid
-            buttons={[
-              { text: "Yes", onClick: toggleShowChecklists },
-              { text: "No", to: nextUrl },
-            ]}
-          />
-        ) : (
-          <Link to={nextUrl}>
-            <Button
-              mt={theme.spacing.workflowStepButtonSpacing}
-              colorScheme="green"
-            >
-              Next
-            </Button>
-          </Link>
-        )
+        <Link to={nextUrl}>
+          <Button
+            mt={theme.spacing.workflowStepButtonSpacing}
+            colorScheme="green"
+          >
+            Next
+          </Button>
+        </Link>
       }
     >
-      {(!props.showPrompt || showChecklists) && (
-        <VStack alignItems="start">
-          <Flex
-            position={{ base: "sticky", sm: "relative" }}
-            top="0"
-            bg="gray.800"
-            w="full"
-            zIndex={9999}
+      <VStack alignItems="start">
+        <Flex
+          position={{ base: "sticky", sm: "relative" }}
+          top="0"
+          bg="gray.800"
+          w="full"
+          zIndex={9999}
+        >
+          <CircularProgress
+            color={getBarColor()}
+            value={currentPercent}
+            capIsRound
+            thickness={5}
+            m="0 auto"
+            size={progressSize}
           >
-            <CircularProgress
-              color={getBarColor()}
-              value={currentPercent}
-              capIsRound
-              thickness={5}
-              m="0 auto"
-              size={progressSize}
+            <CircularProgressLabel
+              fontWeight={progressExtra ? "bold" : "normal"}
+              textColor={getTextColor()}
+              transition="color 600ms"
             >
-              <CircularProgressLabel
-                fontWeight={progressExtra ? "bold" : "normal"}
-                textColor={getTextColor()}
-                transition="color 600ms"
-              >
-                {currentPercent}%
-              </CircularProgressLabel>
-            </CircularProgress>
-          </Flex>
-          <Tabs colorScheme="green" index={tabIndex} onChange={handleTabChange}>
-            <TabList>
-              <Tab>Process</Tab>
-              <Tab>Connect</Tab>
-            </TabList>
-            <TabPanels>
-              <TabPanel paddingLeft={0} pb={0}>
-                <HookChecklist hooks={Object.values(processHooks)} />
-              </TabPanel>
-              <TabPanel paddingLeft={0} pb={0}>
-                <HookChecklist hooks={Object.values(connectHooks)} />
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-        </VStack>
-      )}
+              {currentPercent}%
+            </CircularProgressLabel>
+          </CircularProgress>
+        </Flex>
+        <Tabs colorScheme="green" index={tabIndex} onChange={handleTabChange}>
+          <TabList>
+            <Tab>Process</Tab>
+            <Tab>Connect</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel paddingLeft={0} pb={0}>
+              <HookChecklist hooks={Object.values(processHooks)} />
+            </TabPanel>
+            <TabPanel paddingLeft={0} pb={0}>
+              <HookChecklist hooks={Object.values(connectHooks)} />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </VStack>
     </ConsumeWorkflowStep>
   );
 }

@@ -40,7 +40,7 @@ export const consumeRoutes = [
       </>
     ),
   },
-  { render: () => <StudyHooks showPrompt /> },
+  { component: StudyHooks },
   { component: Study },
   { component: ConsumeContinue },
   {
