@@ -31,7 +31,7 @@ const processPrompts = [
 
 export const connectHooks = generateHookHash(connectPrompts, "connect");
 export const processHooks = generateHookHash(processPrompts, "process");
-export const commonHookIds = ["process-0", "connect-0"];
+export const commonHookIds = ["process-0"];
 
 export const allHooks = {
   ...connectHooks,

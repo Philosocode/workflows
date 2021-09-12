@@ -51,7 +51,7 @@ export function StudyCommonHook(props: IProps) {
         setValue: setEditorText,
         placeholder: "Write out your thoughts here...",
       }}
-      message={`Question ${props.questionNum}: ${hook.prompt}`}
+      message={hook.prompt}
     />
   );
 }

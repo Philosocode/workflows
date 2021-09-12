@@ -15,7 +15,7 @@ export function StopwatchModal(props: IProps) {
         header="Stopwatch"
         body={
           <Box pb={{ base: 3, md: 5 }}>
-            <Stopwatch />
+            <Stopwatch handleClose={props.toggleModal} />
           </Box>
         }
       />

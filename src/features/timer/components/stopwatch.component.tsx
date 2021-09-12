@@ -7,17 +7,22 @@ import { Button } from "shared/components/button/button.component";
 import { Buttons } from "shared/components/button/buttons.component";
 import { TimerDisplay } from "./timer-display.component";
 
-export function Stopwatch() {
+interface IProps {
+  handleClose?: () => void;
+}
+export function Stopwatch(props: IProps) {
   const timer = useTimerStore();
 
   function toggleTimer() {
     // initial state
     if (!timer.isRunning && timer.pauseTime === 0) {
       timer.start();
+      props.handleClose?.();
     } else if (timer.isRunning) {
       timer.pause();
     } else {
       timer.unpause();
+      props.handleClose?.();
     }
   }
 
