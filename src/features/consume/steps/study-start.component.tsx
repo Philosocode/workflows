@@ -13,7 +13,7 @@ import { CountdownTimer } from "features/timer/components/countdown-timer.compon
 
 export function StudyStart() {
   const history = useHistory();
-  const { materialType } = useConsumeStore();
+  const { materialType, studyBlockCount } = useConsumeStore();
   const [timerFinished, toggleTimer] = useToggle();
   const { currentStep } = useLocationStore();
 
@@ -40,7 +40,7 @@ export function StudyStart() {
     >
       <CountdownTimer
         durationInMs={minutesToMs(2)}
-        startAutomatically={false}
+        startAutomatically={studyBlockCount > 0}
         handleNext={toggleTimer}
         handleSkip={() => history.push(`/consume/${currentStep + 1}`)}
       />
