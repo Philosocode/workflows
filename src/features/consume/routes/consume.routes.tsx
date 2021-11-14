@@ -1,7 +1,6 @@
 import { Redirect, RouteProps } from "react-router-dom";
 
 import { StudyMenu } from "features/consume/components/study-menu.component";
-import { ConsumeContinue } from "features/consume/steps/consume-continue.component";
 import { ConsumeSetup } from "features/consume/steps/consume-setup.component";
 import { PracticeReminder } from "features/consume/steps/practice-reminder.component";
 import { SkimReminder } from "features/consume/steps/skim-reminder.component";
@@ -42,7 +41,6 @@ export const consumeRoutes = [
   },
   { component: StudyHooks },
   { component: Study },
-  { component: ConsumeContinue },
   {
     render: (props: RouteProps) => (
       <StudySummarize

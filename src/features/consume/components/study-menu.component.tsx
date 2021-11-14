@@ -1,26 +1,47 @@
 import { ListItem, Tooltip, UnorderedList } from "@chakra-ui/react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { BiNetworkChart, BiNote } from "react-icons/bi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { FaArrowCircleRight } from "react-icons/fa";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 
 import { theme } from "shared/styles/theme";
 import { useLocationStore } from "features/location/location.store";
+import { useHookStore } from "features/hooks/logic/hook.store";
+import { CONSUME_PAGE_NUMBERS } from "../routes/consume.routes";
+import { useConsumeStore } from "../logic/consume.store";
+import { selectMaterialWord } from "../logic/consume.selectors";
 
 import { CardButtonGrid } from "shared/components/button/card-button-grid.component";
 import { StudyFooter } from "./study-footer.component";
 import { CardButton } from "shared/components/button/card-button.component";
 import { ConsumeWorkflowStep } from "./consume-workflow-step.component";
-import { useConsumeStore } from "../logic/consume.store";
-import { selectMaterialWord } from "../logic/consume.selectors";
 
 export function StudyMenu() {
+  const history = useHistory();
   const location = useLocation();
   const word = useConsumeStore(selectMaterialWord);
+  const { finishStudyBlock } = useConsumeStore();
+  const { updateTotalHooksCompleted } = useHookStore();
 
   const { currentStep } = useLocationStore();
   const basePath = `/consume/${currentStep}`;
   const nextStep = currentStep + 1;
+
+  function handleButtonClick() {
+    updateTotalHooksCompleted();
+    finishStudyBlock();
+  }
+
+  function handleNextBlock() {
+    handleButtonClick();
+    history.push(`/consume/${CONSUME_PAGE_NUMBERS.STUDY_START}`);
+  }
+
+  function handleDoneStudying() {
+    handleButtonClick();
+    history.push(`/consume/${nextStep}`);
+  }
 
   return (
     <ConsumeWorkflowStep
@@ -70,9 +91,13 @@ export function StudyMenu() {
           <CardButton icon={AiOutlineExclamationCircle}>I'm Stuck</CardButton>
         </Link>
 
-        <Link to={`/consume/${nextStep}`}>
-          <CardButton icon={IoMdCheckmarkCircle}>Next Step</CardButton>
-        </Link>
+        <CardButton onClick={handleNextBlock} icon={FaArrowCircleRight}>
+          Next Block
+        </CardButton>
+
+        <CardButton onClick={handleDoneStudying} icon={IoMdCheckmarkCircle}>
+          I'm Done
+        </CardButton>
       </CardButtonGrid>
       <StudyFooter />
     </ConsumeWorkflowStep>
