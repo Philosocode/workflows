@@ -81,6 +81,8 @@ export function useCountdownTimer(props: IProps) {
     setIsFinished(false);
 
     clearTimerTimeout();
+
+    if (props.startAutomatically) startTimer();
   }
 
   return {
