@@ -26,7 +26,7 @@ export function useCountdownTimer(props: IProps) {
 
   // whenever the end time is set, set a timeout to finish the timer
   useEffect(() => {
-    if (!isRunning) return;
+    if (!isRunning || !endTime) return;
 
     timerTimeout.current = setTimeout(() => {
       setIsFinished(true);
